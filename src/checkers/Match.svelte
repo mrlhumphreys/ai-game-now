@@ -6,6 +6,7 @@
   import AiService from '../services/ai_service';
   import Notification from '../shared/Notification.svelte';
   import ResetControl from '../shared/ResetControl.svelte';
+
   import PieceImage from './PieceImage.svelte';
   import SquareControl from './SquareControl.svelte';
 
