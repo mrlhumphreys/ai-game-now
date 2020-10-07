@@ -1,0 +1,5 @@
+# TODO
+
+* Randomize player.
+* Persist state in local
+* force https
