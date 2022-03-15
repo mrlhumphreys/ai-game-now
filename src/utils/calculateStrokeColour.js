@@ -1,5 +1,5 @@
-const calculateStrokeColour = function(piece) {
-  switch (piece.player_number) {
+const calculateStrokeColour = function(playerNumber) {
+  switch (playerNumber) {
     case 1:
       return '#3cc5de';
       break;

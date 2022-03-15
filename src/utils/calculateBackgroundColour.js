@@ -1,8 +1,8 @@
-const calculateBackgroundColour = function(piece) {
-  if (piece.selected) {
+const calculateBackgroundColour = function(playerNumber, selected) {
+  if (selected) {
     return '#ffffff';
   } else {
-    switch (piece.player_number) {
+    switch (playerNumber) {
       case 1:
         return '#303030';
         break;

@@ -3,16 +3,29 @@
   import BottomBar from './layout/BottomBar.svelte';
   import GameSelector from './shared/GameSelector.svelte';
   import CheckersMatch from './checkers/Match.svelte';
+  import BackgammonMatch from './backgammon/Match.svelte';
+
+  const DEFAULT_GAME = 'checkers'
 
   // Add more games
-  let games = [
-    'checkers'
+  const GAMES = [
+    'checkers',
+    'backgammon'
   ];
 
-  let selectedGame = 'checkers';
+  let selectedGame = fetchGameFromUrl();
 
   function selectGame(name) {
     selectedGame = name;
+  };
+
+  function fetchGameFromUrl() {
+    let game = window.location.hash.substring(1);
+    if (GAMES.includes(game)) {
+      return game;
+    } else {
+      return DEFAULT_GAME;
+    };
   };
 </script>
 
@@ -23,14 +36,16 @@
    <h1>AI Game Now</h1>
  </header>
 
- <GameSelector games={games} selectedGame={selectedGame} selectGame={selectGame} />
+ <GameSelector games={GAMES} selectedGame={selectedGame} selectGame={selectGame} />
 
  <main>
    <article class="match_container" class:selected={'checkers' === selectedGame}>
      <CheckersMatch />  
    </article>
 
-   <!-- Add More Games -->
+   <article class="match_container" class:selected={'backgammon' === selectedGame}>
+     <BackgammonMatch />
+   </article>
  </main>
 </div>
 

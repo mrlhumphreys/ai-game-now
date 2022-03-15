@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" height="1300" width="1500">
+  <defs>
+    <g id="even_point_top">
+      <polygon points="1,1 99,1 50,500" stroke="#a0a0a0" fill="#a0a0a0" stroke-width="2" />
+    </g>
+
+    <g id="odd_point_top">
+      <polygon points="1,1 99,1 50,500" stroke="#ffffff" fill="#ffffff" stroke-width="2" />
+    </g>
+
+    <g id="even_point_bottom">
+      <polygon points="1,1 99,1 50,500" stroke="#a0a0a0" fill="#a0a0a0" stroke-width="2" transform="translate(100, 500) rotate(180)" />
+    </g>
+
+    <g id="odd_point_bottom">
+      <polygon points="1,1 99,1 50,500" stroke="#ffffff" fill="#ffffff" stroke-width="2" transform="translate(100, 500) rotate(180)" />
+    </g>
+
+    <g id="edge">
+      <rect x="0" y="0" width="100" height="1300"  fill="#606060" />
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="100%" height="100%"  fill="#d0d0d0" />
+
+  <use x="0" y="0" xlink:href="#edge" />
+
+  <use x="100" y="0" xlink:href="#odd_point_top" />
+  <use x="200" y="0" xlink:href="#even_point_top" />
+  <use x="300" y="0" xlink:href="#odd_point_top" />
+  <use x="400" y="0" xlink:href="#even_point_top" />
+  <use x="500" y="0" xlink:href="#odd_point_top" />
+  <use x="600" y="0" xlink:href="#even_point_top" />
+
+  <use x="100" y="800" xlink:href="#even_point_bottom" />
+  <use x="200" y="800" xlink:href="#odd_point_bottom" />
+  <use x="300" y="800" xlink:href="#even_point_bottom" />
+  <use x="400" y="800" xlink:href="#odd_point_bottom" />
+  <use x="500" y="800" xlink:href="#even_point_bottom" />
+  <use x="600" y="800" xlink:href="#odd_point_bottom" />
+
+  <use x="700" y="0" xlink:href="#edge" />
+
+  <use x="800" y="0" xlink:href="#odd_point_top" />
+  <use x="900" y="0" xlink:href="#even_point_top" />
+  <use x="1000" y="0" xlink:href="#odd_point_top" />
+  <use x="1100" y="0" xlink:href="#even_point_top" />
+  <use x="1200" y="0" xlink:href="#odd_point_top" />
+  <use x="1300" y="0" xlink:href="#even_point_top" />
+
+  <use x="800" y="800" xlink:href="#even_point_bottom" />
+  <use x="900" y="800" xlink:href="#odd_point_bottom" />
+  <use x="1000" y="800" xlink:href="#even_point_bottom" />
+  <use x="1100" y="800" xlink:href="#odd_point_bottom" />
+  <use x="1200" y="800" xlink:href="#even_point_bottom" />
+  <use x="1300" y="800" xlink:href="#odd_point_bottom" />
+
+  <use x="1400" y="0" xlink:href="#edge" />
+
+</svg>
+

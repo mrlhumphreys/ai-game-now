@@ -5,10 +5,10 @@
   export let square;
   export let pov;
 
-  let colour = calculateStrokeColour(square.piece);
+  let colour = calculateStrokeColour(square.piece.player_number);
 
   $: positionClass = calculatePositionClass(square, pov);
-  $: background = calculateBackgroundColour(square.piece);
+  $: background = calculateBackgroundColour(square.piece.player_number, square.piece.selected);
 </script>
 
 <div class={ 'piece ' + positionClass }>

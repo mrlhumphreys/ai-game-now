@@ -1,0 +1,13 @@
+.match {
+  margin: 1em auto;
+}
+
+.match_bar {
+  border-top: solid 1px $gray-20;
+  width: 100%;
+  margin: 0em auto;
+  background-color: $gray-60;
+  display: flex;
+  flex-direction: row;
+}
+
