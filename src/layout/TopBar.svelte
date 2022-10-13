@@ -4,7 +4,7 @@
   </nav>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import "../styles/colors.scss";
   @import "../styles/responsive_full_width.scss";
 

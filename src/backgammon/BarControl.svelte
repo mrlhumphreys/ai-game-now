@@ -6,7 +6,7 @@
 <div class={'bar_' + position} on:click={() => touchPoint('bar')}> 
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/backgammon_units.scss';
 
   .bar_top, .bar_bottom {

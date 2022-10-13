@@ -12,7 +12,7 @@
 <div class={'square ' + positionClass + ' marked_' + marked} on:click={() => touchSquare(square.id)}>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/colors.scss';
   @import '../styles/checkers_position.scss';
 

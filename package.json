@@ -2,7 +2,7 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "engines": {
-    "node": "10.15.x"
+    "node": "18.9.1"
   },
   "scripts": {
     "build": "rollup -c",
@@ -10,20 +10,21 @@
     "start": "sirv public --host $HOST"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^14.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-svelte": "^6.0.0",
-    "rollup-plugin-terser": "^7.0.0",
-    "svelte": "^3.0.0"
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.50.1"
   },
   "dependencies": {
-    "@mrlhumphreys/jcheckers": "^1.0.1",
     "@mrlhumphreys/jbackgammon": "^1.2.4",
-    "@rollup/plugin-replace": "^2.3.3",
-    "node-sass": "^4.14.1",
-    "sirv-cli": "^1.0.0",
-    "svelte-preprocess": "^4.3.0"
+    "@mrlhumphreys/jcheckers": "^1.0.1",
+    "@rollup/plugin-replace": "^4.0.0",
+    "rollup-plugin-css-only": "^3.0.0",
+    "node-sass": "^7.0.3",
+    "sirv-cli": "^2.0.2",
+    "svelte-preprocess": "^4.10.7"
   }
 }

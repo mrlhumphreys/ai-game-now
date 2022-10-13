@@ -6,7 +6,7 @@
 <div class={'off_board_' + position } on:click={() => touchPoint('off_board')}>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/backgammon_units.scss';
 
   .off_board_top, .off_board_bottom {

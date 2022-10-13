@@ -21,7 +21,7 @@
   </svg>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/backgammon_units.scss';
 
   @mixin backgammon-bar-position($position, $piece-index) {

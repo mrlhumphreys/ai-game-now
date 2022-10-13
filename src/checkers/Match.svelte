@@ -1,6 +1,6 @@
 <script>
   import jcheckers from '@mrlhumphreys/jcheckers';
-  const CheckersMatch = jcheckers.default.Match;
+  const CheckersMatch = jcheckers.Match;
 
   import exists from '../utils/exists';
   import AiService from '../services/AiService';
@@ -68,7 +68,7 @@
   </div>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/colors.scss';
   @import '../styles/match.scss';
 

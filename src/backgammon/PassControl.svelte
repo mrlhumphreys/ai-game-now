@@ -9,7 +9,7 @@
   <div class="nopass"></div>
 {/if}
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/colors.scss';
   @import '../styles/backgammon_units.scss';
 

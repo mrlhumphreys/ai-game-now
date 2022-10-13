@@ -16,7 +16,7 @@
 <div class={'point ' + boardPosition } on:click={() => touchPoint(number)}>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   @import '../styles/backgammon_units.scss';
 
   .point {

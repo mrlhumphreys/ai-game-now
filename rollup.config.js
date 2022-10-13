@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import css from 'rollup-plugin-css-only';
 
 import preprocess from 'svelte-preprocess';
 import replace from '@rollup/plugin-replace';
@@ -44,11 +45,13 @@ export default {
 			dev: !production,
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
-			css: css => {
-				css.write('bundle.css');
-			},
+			// css: css => {
+		  //	css.write('bundle.css');
+			// },
       preprocess: preprocess()
 		}),
+
+    css({output: 'bundle.css'}),
 
     replace({
       AI_SERVICE_URL: JSON.stringify(process.env.AI_SERVICE_URL)

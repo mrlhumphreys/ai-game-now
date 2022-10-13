@@ -51,7 +51,7 @@
   </svg>
 </div>
 
-<style type="text/scss">
+<style lang="scss">
   .die {
     width: 25%;
     margin: 0 auto;
