@@ -94,7 +94,7 @@
     width: 100%;
     cursor: pointer; 
     background-size: 100% 100%;
-    background-image: url('../images/checkers-board.svg');
+    background-image: url('./images/checkers-board.svg');
     position: relative;
   }
 </style>

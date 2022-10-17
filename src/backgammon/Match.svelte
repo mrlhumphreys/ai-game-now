@@ -190,7 +190,7 @@
     cursor: pointer;
     overflow: hidden;
     background-size: 100% 100%;
-    background-image: url('../images/backgammon-board.svg');
+    background-image: url('./images/backgammon-board.svg');
 
     .pieces {
       width: 100%;
