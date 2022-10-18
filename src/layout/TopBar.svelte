@@ -1,6 +1,6 @@
 <div id="topbar">
   <nav>
-    <a href="/" class="logo">AI Game Now</a>
+    <a href="#" class="logo">AI Game Now</a>
   </nav>
 </div>
 
