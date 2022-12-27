@@ -13,8 +13,8 @@
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
-
   export let matchState = undefined;
+
   $: match = new CheckersMatch(matchState);
   $: notification = match.notification;
   $: squaresWithPieces = matchState.game_state.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);

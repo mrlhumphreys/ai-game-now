@@ -3,6 +3,7 @@
   const BackgammonMatch = jbackgammon.Match;
 
   import exists from '../utils/exists';
+  import tossCoin from '../utils/tossCoin';
   import AiService from '../services/AiService';
   import Notification from '../shared/Notification.svelte';
   import ResetControl from '../shared/ResetControl.svelte';
@@ -13,55 +14,56 @@
   import DiceControl from './DiceControl.svelte';
   import PieceImage from './PieceImage.svelte';
   import collatePieces from './collatePieces';
-  import DEFAULT_MATCH_ATTRIBUTES from './DEFAULT_MATCH_ATTRIBUTES';
+  import buildMatchAttributes from './buildMatchAttributes';
 
-  const PLAYER_NUMBER = 1;
-  const AI_PLAYER_NUMBER = 2;
-  const TOP_LEFT = [13, 14, 15, 16, 17, 18];
-  const TOP_RIGHT = [19, 20, 21, 22, 23, 24];
-  const BOTTOM_LEFT = [12, 11, 10, 9, 8 , 7];
-  const BOTTOM_RIGHT = [6, 5, 4, 3, 2, 1];
+  export let playerNumber = undefined;
+  export let aiPlayerNumber = undefined;
+  export let matchState = undefined;
+  export let topLeft = undefined;
+  export let topRight = undefined;
+  export let bottomLeft = undefined;
+  export let bottomRight = undefined;
 
-  export let matchState = DEFAULT_MATCH_ATTRIBUTES;
   $: match = new BackgammonMatch(matchState);
   $: notification = match.notification;
-  $: passable = match.passable(PLAYER_NUMBER);
+  $: passable = match.passable(playerNumber);
   $: pieces = collatePieces(matchState);
   $: dice = matchState.game_state.dice;
 
-  // Actions
+  // setup functions
+  function randomiseFirstPlayer() {
+    let result = tossCoin();
 
-  function touchDice() {
-    match.touchDice(PLAYER_NUMBER);
-    matchState = match.asJson;
-  }
-
-  function touchPoint(pointNumber) {
-    match.touchPoint(pointNumber, PLAYER_NUMBER);
-    matchState = match.asJson;
-
-    let lastActionKind = exists(match.lastAction) && match.lastAction.kind;
-    let winner = match.gameState.winner;
-
-    if (lastActionKind === 'move' && !exists(winner)) {
-      aiTurn();
+    if (result === 0) {
+      playerNumber = 1;
+      aiPlayerNumber = 2;
+      topLeft = [13, 14, 15, 16, 17, 18];
+      topRight = [19, 20, 21, 22, 23, 24];
+      bottomLeft = [12, 11, 10, 9, 8 , 7];
+      bottomRight = [6, 5, 4, 3, 2, 1];
+    } else {
+      playerNumber = 2;
+      aiPlayerNumber = 1;
+      topLeft = [1, 2, 3, 4, 5, 6];
+      topRight = [7, 8, 9, 10, 11, 12];
+      bottomLeft = [24, 23, 22, 21, 20 , 19];
+      bottomRight = [18, 17, 16, 15, 14, 13];
+      setTimeout(aiTurn, 2000);
     }
   }
 
-  function touchPass() {
-    match.touchPass(PLAYER_NUMBER);
-    matchState = match.asJson;
-
-    aiTurn();
+  function setInitialMatchState() {
+    matchState = buildMatchAttributes(playerNumber);
   }
 
-  function touchReset() {
-    matchState = DEFAULT_MATCH_ATTRIBUTES;
-  }
+  // setup
+  randomiseFirstPlayer();
+  setInitialMatchState();
 
+  // ai action functions
   function aiTurn() {
     aiRoll();
-    if (match.passable(AI_PLAYER_NUMBER)) {
+    if (match.passable(aiPlayerNumber)) {
       aiPass();
     } else {
       let aiService = new AiService(AI_SERVICE_URL);
@@ -78,22 +80,22 @@
   }
 
   function aiRoll() {
-    match.touchDice(AI_PLAYER_NUMBER);
+    match.touchDice(aiPlayerNumber);
     matchState = match.asJson;
   }
 
   function aiMove(moveList) {
     moveList.forEach((move, index) => {
       let legFunc = () => {
-        match.touchPoint(move[0], AI_PLAYER_NUMBER);
-        match.touchPoint(move[1], AI_PLAYER_NUMBER);
+        match.touchPoint(move[0], aiPlayerNumber);
+        match.touchPoint(move[1], aiPlayerNumber);
         matchState = match.asJson;
       };
       setTimeout(legFunc, index*1500);
     });
 
     let passFunc = () => {
-      if (match.passable(AI_PLAYER_NUMBER)) {
+      if (match.passable(aiPlayerNumber)) {
         aiPass();
       }
     };
@@ -102,8 +104,39 @@
   }
 
   function aiPass() {
-    match.touchPass(AI_PLAYER_NUMBER);
+    match.touchPass(aiPlayerNumber);
     matchState = match.asJson;
+  }
+
+  function touchDice() {
+    match.touchDice(playerNumber);
+    matchState = match.asJson;
+  }
+
+  // user action functions
+
+  function touchPoint(pointNumber) {
+    match.touchPoint(pointNumber, playerNumber);
+    matchState = match.asJson;
+
+    let lastActionKind = exists(match.lastAction) && match.lastAction.kind;
+    let winner = match.gameState.winner;
+
+    if (lastActionKind === 'move' && !exists(winner)) {
+      aiTurn();
+    }
+  }
+
+  function touchPass() {
+    match.touchPass(playerNumber);
+    matchState = match.asJson;
+
+    aiTurn();
+  }
+
+  function touchReset() {
+    randomiseFirstPlayer();
+    setInitialMatchState();
   }
 </script>
 
@@ -111,7 +144,7 @@
   <div class="backgammon_board">
     <div class="pieces">
       {#each pieces as piece (piece.piece.id)}
-        <PieceImage pointNumber={piece.point.number} pieceIndex={piece.pieceIndex} playerNumber={piece.piece.player_number} selected={piece.point.selected} pov={PLAYER_NUMBER} />
+        <PieceImage pointNumber={piece.point.number} pieceIndex={piece.pieceIndex} playerNumber={piece.piece.player_number} selected={piece.point.selected} pov={playerNumber} />
       {/each}
     </div>
     <div class="controls">
@@ -121,13 +154,13 @@
       </div>
       <div class="left">
         <div class="points">
-          {#each TOP_LEFT as number (number)}
+          {#each topLeft as number (number)}
             <PointControl number={number} touchPoint={touchPoint} />
           {/each}
         </div>
         <DiceControl dice={dice} touchDice={touchDice} />
         <div class="points">
-          {#each BOTTOM_LEFT as number (number)}
+          {#each bottomLeft as number (number)}
             <PointControl number={number} touchPoint={touchPoint} />
           {/each}
         </div>
@@ -138,13 +171,13 @@
       </div>
       <div class="right">
         <div class="points">
-          {#each TOP_RIGHT as number (number)}
+          {#each topRight as number (number)}
             <PointControl number={number} touchPoint={touchPoint} />
           {/each}
         </div>
         <PassControl passable={passable} touchPass={touchPass} />
         <div class="points">
-          {#each BOTTOM_RIGHT as number (number)}
+          {#each bottomRight as number (number)}
             <PointControl number={number} touchPoint={touchPoint} />
           {/each}
         </div>
