@@ -3,23 +3,69 @@
   const CheckersMatch = jcheckers.Match;
 
   import exists from '../utils/exists';
+  import tossCoin from '../utils/tossCoin';
   import AiService from '../services/AiService';
   import Notification from '../shared/Notification.svelte';
   import ResetControl from '../shared/ResetControl.svelte';
   import PieceImage from './PieceImage.svelte';
   import SquareControl from './SquareControl.svelte';
-  import DEFAULT_MATCH_ATTRIBUTES from './DEFAULT_MATCH_ATTRIBUTES';
+  import buildMatchAttributes from './buildMatchAttributes';
 
-  const PLAYER_NUMBER = 1;
-  const AI_PLAYER_NUMBER = 2;
+  export let playerNumber = undefined;
+  export let aiPlayerNumber = undefined;
 
-  export let matchState = DEFAULT_MATCH_ATTRIBUTES;
+  export let matchState = undefined;
   $: match = new CheckersMatch(matchState);
   $: notification = match.notification;
   $: squaresWithPieces = matchState.game_state.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
 
+  // setup functions
+  function randomiseFirstPlayer() {
+    let result = tossCoin();
+
+    if (result === 0) {
+      playerNumber = 1;
+      aiPlayerNumber = 2;
+    } else {
+      playerNumber = 2;
+      aiPlayerNumber = 1;
+      setTimeout(fetchAndPerformAiMove, 2000);
+    }
+  }
+
+  function setInitialMatchState() {
+    matchState = buildMatchAttributes(playerNumber);
+  }
+
+  // setup
+  randomiseFirstPlayer();
+  setInitialMatchState();
+
+  // ai action functions
+  function performAiMove(move) {
+    move.forEach((leg) => {
+      match.touchSquare(leg, aiPlayerNumber);
+    });
+
+    matchState = match.asJson;
+  };
+
+  function fetchAndPerformAiMove() {
+      let aiService = new AiService(AI_SERVICE_URL);
+      let game = 'checkers';
+      aiService.getMove(game, match.gameState.asJson, (move) => {
+        if (exists(move)) {
+          let func = () => performAiMove(move);
+          setTimeout(func, 1500);
+        }
+      }, (_) => {
+        alert("Something went wrong. Please try again later.");
+      });
+  };
+
+  // user action functions
   function touchSquare(squareId) {
-    match.touchSquare(squareId, PLAYER_NUMBER);
+    match.touchSquare(squareId, playerNumber);
 
     matchState = match.asJson;
 
@@ -27,39 +73,23 @@
     let winner = match.gameState.winner;
 
     if (lastActionKind === 'move' && !exists(winner)) {
-      let aiService = new AiService(AI_SERVICE_URL);
-      let game = 'checkers';
-      aiService.getMove(game, match.gameState.asJson, (move) => {
-        if (exists(move)) {
-          let func = () => aiMove(move);
-          setTimeout(func, 1500);
-        }
-      }, (_) => {
-        alert("Something went wrong. Please try again later.");
-      });
+      fetchAndPerformAiMove();
     }
   };
 
-  function aiMove(move) {
-    move.forEach((leg) => {
-      match.touchSquare(leg, AI_PLAYER_NUMBER);
-    });
-  
-    matchState = match.asJson;
-  };
-
   function touchReset() {
-    matchState = DEFAULT_MATCH_ATTRIBUTES;
+    randomiseFirstPlayer();
+    setInitialMatchState();
   };
 </script>
 
 <div class="match checkers_match">
   <div class="checkers_board">
     {#each squaresWithPieces as square (square.piece.id)}
-      <PieceImage square={square} pov={PLAYER_NUMBER} />
+      <PieceImage square={square} pov={playerNumber} />
     {/each}
     {#each matchState.game_state.squares as square (square.id)}
-      <SquareControl square={square} touchSquare={touchSquare} pov={PLAYER_NUMBER} />
+      <SquareControl square={square} touchSquare={touchSquare} pov={playerNumber} />
     {/each}
   </div>
   <Notification notification={notification} />
