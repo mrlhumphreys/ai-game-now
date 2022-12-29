@@ -19,7 +19,7 @@
     "svelte": "^3.50.1"
   },
   "dependencies": {
-    "@mrlhumphreys/jbackgammon": "^1.2.4",
+    "@mrlhumphreys/jbackgammon": "^1.2.5",
     "@mrlhumphreys/jcheckers": "^1.0.1",
     "@rollup/plugin-replace": "^4.0.0",
     "rollup-plugin-css-only": "^3.0.0",
