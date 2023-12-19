@@ -4,8 +4,7 @@
   export let pov;
   export let touchSquare;
 
-  let positionClass = calculatePositionClass(square, pov);
-
+  $: positionClass = calculatePositionClass(square, pov);
   $: marked = square.marked;
 </script>
 

@@ -2,7 +2,7 @@
   export let number;
   export let touchPoint;
 
-  let boardPosition = calculateBoardPosition(number);
+  $: boardPosition = calculateBoardPosition(number);
 
   function calculateBoardPosition(number) {
     if (number > 12) {
