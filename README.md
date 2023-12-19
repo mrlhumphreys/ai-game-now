@@ -6,31 +6,21 @@ Frontend written in Svelte.
 
 ## URL
 
-https://aigamenow.herokuapp.com
+https://mrlhumphreys.github.io/ai-game-now/
 
 ## Games Available
 
 * Checkers
+* Backgammon
 
 ## Environment Variables 
 
 * `AI_SERVICE_URL` - The url of the api service .
-* `HOST` - The host this app is being served on.
 
 ## How to run in dev
 
 ```bash
-  yarn dev
-```
-## How to build for prod
-
-```bash
-  yarn build
+  yarn run dev
 ```
 
-## How to run a prod server
-
-```bash
-  yarn start
-```
 

@@ -1,30 +1,23 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
-  "engines": {
-    "node": "18.9.1"
-  },
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public --host $HOST"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "rollup": "^2.79.1",
-    "rollup-plugin-livereload": "^2.0.5",
-    "rollup-plugin-svelte": "^7.1.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "svelte": "^3.50.1"
-  },
-  "dependencies": {
-    "@mrlhumphreys/jbackgammon": "^1.2.5",
-    "@mrlhumphreys/jcheckers": "^1.0.1",
-    "@rollup/plugin-replace": "^4.0.0",
-    "rollup-plugin-css-only": "^3.0.0",
-    "node-sass": "^7.0.3",
-    "sirv-cli": "^2.0.2",
-    "svelte-preprocess": "^4.10.7"
-  }
+	"name": "ai-game-now",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"@mrlhumphreys/jbackgammon": "^1.2.5",
+		"@mrlhumphreys/jcheckers": "^1.0.1",
+		"@sveltejs/adapter-static": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.1",
+		"sass": "^1.69.5",
+		"svelte": "^4.2.7",
+		"vite": "^5.0.3",
+		"vitest": "^1.0.0"
+	},
+	"type": "module"
 }
