@@ -22,7 +22,7 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: '${{ github.event.repository.name }}'
+          BASE_PATH: '/${{ github.event.repository.name }}'
           PUBLIC_AI_SERVICE_URL: 'https://salieri.onrender.com'
         run: |
           yarn build
