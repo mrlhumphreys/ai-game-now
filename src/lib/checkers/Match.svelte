@@ -17,7 +17,7 @@
   import ResetControl from '$lib/shared/ResetControl.svelte';
   import PieceImage from '$lib/checkers/PieceImage.svelte';
   import SquareControl from '$lib/checkers/SquareControl.svelte';
-  import buildMatchAttributes from '$lib/Checkers/buildMatchAttributes';
+  import buildMatchAttributes from '$lib/checkers/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
