@@ -22,6 +22,7 @@
 </div>
 
 <style lang="scss">
+  @use "sass:math";
   @import '$lib/styles/backgammon_units.scss';
 
   @mixin backgammon-bar-position($position, $piece-index) {
@@ -32,17 +33,17 @@
     }
 
     @if $position == 'bottom' {
-      top: ($piece-index +7)*$backgammon-vertical-percent-unit;
+      top: ($piece-index + 7)*$backgammon-vertical-percent-unit;
     }
   }
 
   @mixin backgammon-position($point-number, $piece-index) {
     @if 1 <= $point-number and $point-number <= 12 {
-      top: (($piece-index*-1)+36)*($backgammon-vertical-percent-unit/3);
+      top: (($piece-index*-1)+36)*math.div($backgammon-vertical-percent-unit, 3);
     }
 
     @if 13 <= $point-number and $point-number <= 24 {
-      top: $piece-index*$backgammon-vertical-percent-unit/3;
+      top: $piece-index*math.div($backgammon-vertical-percent-unit, 3);
     }
 
     @if 1 <= $point-number and $point-number <= 6 {
@@ -74,11 +75,11 @@
     }
 
     @if $y-position == 'top' {
-      top: (-1*$piece-index + 20)*($backgammon-vertical-percent-unit/4);
+      top: (-1*$piece-index + 20)*math.div($backgammon-vertical-percent-unit, 4);
     }
 
     @if $y-position == 'bottom' {
-      top: ($piece-index + 28)*($backgammon-vertical-percent-unit/4);
+      top: ($piece-index + 28)*math.div($backgammon-vertical-percent-unit, 4);
     }
 
     z-index: $piece-index+1;

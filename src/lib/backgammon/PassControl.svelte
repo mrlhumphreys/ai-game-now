@@ -4,12 +4,13 @@
 </script>
 
 {#if passable}
-  <div class="pass" on:click={() => touchPass()}><p>Pass</p></div>
+  <div class="pass" role="button" on:click={() => touchPass()}><p>Pass</p></div>
 {:else}
   <div class="nopass"></div>
 {/if}
 
 <style lang="scss">
+  @use "sass:math";
   @import '$lib/styles/colors.scss';
   @import '$lib/styles/backgammon_units.scss';
 
@@ -34,11 +35,11 @@
   .pass {
     p {
       @media only screen and (max-device-width: 480px) {
-        font-size: $backgammon-vertical-unit/2;
+        font-size: math.div($backgammon-vertical-unit, 2);
       }
 
       @media only screen and (min-device-width: 481px) {
-        font-size: $backgammon-pixel-unit/2;
+        font-size: math.div($backgammon-pixel-unit, 2);
       }
 
       text-align: center;

@@ -5,7 +5,7 @@
   export let touchDice;
 </script>
 
-<div class="dice" on:click={() => touchDice()}>
+<div class="dice" role="button" on:click={() => touchDice()}>
   {#each dice as die (die.id)}
     <DieImage number={die.number} used={die.used} />
   {/each}

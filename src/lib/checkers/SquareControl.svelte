@@ -9,7 +9,7 @@
   $: marked = square.marked;
 </script>
 
-<div class={'square ' + positionClass + ' marked_' + marked} on:click={() => touchSquare(square.id)}>
+<div class={'square ' + positionClass + ' marked_' + marked} role="button" on:click={() => touchSquare(square.id)}>
 </div>
 
 <style lang="scss">

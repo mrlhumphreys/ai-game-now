@@ -13,7 +13,7 @@
   }
 </script>
 
-<div class={'point ' + boardPosition } on:click={() => touchPoint(number)}>
+<div class={'point ' + boardPosition } role="button" on:click={() => touchPoint(number)}>
 </div>
 
 <style lang="scss">

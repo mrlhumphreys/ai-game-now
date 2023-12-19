@@ -2,7 +2,7 @@
   export let touchReset;
 </script>
 
-<div class="match_bar_button reset_control" on:click={() => touchReset()}>
+<div class="match_bar_button reset_control" role="button" on:click={() => touchReset()}>
   <p>Reset</p>
 </div>
 

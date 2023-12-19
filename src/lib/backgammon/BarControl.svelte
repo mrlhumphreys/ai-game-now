@@ -3,7 +3,7 @@
   export let touchPoint;
 </script>
 
-<div class={'bar_' + position} on:click={() => touchPoint('bar')}> 
+<div class={'bar_' + position} role="button" on:click={() => touchPoint('bar')}> 
 </div>
 
 <style lang="scss">
