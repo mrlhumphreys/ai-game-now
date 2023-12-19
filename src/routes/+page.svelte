@@ -1,4 +1,5 @@
 <script>
+  import { browser } from '$app/environment';
   import GameSelector from '$lib/shared/GameSelector.svelte';
   import CheckersMatch from '$lib/checkers/Match.svelte';
   import BackgammonMatch from '$lib/backgammon/Match.svelte';
@@ -18,7 +19,10 @@
   };
 
   function fetchGameFromUrl() {
-    let game = 'checkers'; // window.location.hash.substring(1);
+    let game = 'checkers';
+    if (browser) {
+      game = window.location.hash.substring(1);
+    }
     if (GAMES.includes(game)) {
       return game;
     } else {

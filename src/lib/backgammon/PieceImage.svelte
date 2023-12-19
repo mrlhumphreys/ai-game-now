@@ -12,7 +12,6 @@
   let colour = calculateStrokeColour(playerNumber);
   $: background = calculateBackgroundColour(playerNumber, selected);
   $: className = calculatePieceClassName(pov, playerNumber, pointNumber, pieceIndex);
-
 </script>
 
 <div class="{className}">
