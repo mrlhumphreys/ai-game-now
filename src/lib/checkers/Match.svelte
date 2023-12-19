@@ -61,7 +61,7 @@
   function fetchAndPerformAiMove() {
       let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
       let game = 'checkers';
-      aiService.getMove(game, match.gameState.asJson, (move) => {
+      aiService.postMove(game, match.gameState.asJson, (move) => {
         if (exists(move)) {
           let func = () => performAiMove(move);
           setTimeout(func, 1500);

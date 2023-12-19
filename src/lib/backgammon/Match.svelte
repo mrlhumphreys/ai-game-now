@@ -76,7 +76,7 @@
     } else {
       let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
       let game = 'backgammon';
-      aiService.getMove(game, match.gameState.asJson, (moveList) => {
+      aiService.postMove(game, match.gameState.asJson, (moveList) => {
         if (exists(moveList)) {
           let moveFunc = () => aiMove(moveList);
           setTimeout(moveFunc, 1500);
