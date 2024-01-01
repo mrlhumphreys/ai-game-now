@@ -1,14 +1,13 @@
 <script>
-  // TODO fix pov to avoid inversion
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
-  import jcheckers from '@mrlhumphreys/jcheckers';
-  let CheckersMatch = undefined;
+  import jchess from '@mrlhumphreys/jchess';
+  let ChessMatch = undefined;
 
   if (browser) {
-    CheckersMatch = jcheckers.Match
+    ChessMatch = jchess.Match
   } else {
-    CheckersMatch = jcheckers.default.Match
+    ChessMatch = jchess.default.Match
   }
 
   import exists from '$lib/utils/exists';
@@ -16,15 +15,16 @@
   import AiService from '$lib/services/AiService';
   import Notification from '$lib/shared/Notification.svelte';
   import ResetControl from '$lib/shared/ResetControl.svelte';
-  import PieceImage from '$lib/checkers/PieceImage.svelte';
-  import SquareControl from '$lib/checkers/SquareControl.svelte';
-  import buildMatchAttributes from '$lib/checkers/buildMatchAttributes';
+  import PieceImage from '$lib/chess/PieceImage.svelte';
+  import SquareControl from '$lib/chess/SquareControl.svelte';
+  import PromotionSelect from '$lib/chess/PromotionSelect.svelte';
+  import buildMatchAttributes from '$lib/chess/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
   export let matchState = undefined;
 
-  $: match = new CheckersMatch(matchState);
+  $: match = new ChessMatch(matchState);
   $: notification = match.notification;
   $: squaresWithPieces = matchState.game_state.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
 
@@ -52,16 +52,18 @@
 
   // ai action functions
   function performAiMove(move) {
-    move.forEach((leg) => {
-      match.touchSquare(leg, aiPlayerNumber);
-    });
+    match.touchSquare(move.fromId, aiPlayerNumber);
+    match.touchSquare(move.toId, aiPlayerNumber);
+    if (exists(move.promotionPieceType)) {
+      match.touchPromotionPiece(move.promotionPieceType, aiPlayerNumber);
+    }
 
     matchState = match.asJson;
   };
 
   function fetchAndPerformAiMove() {
       let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
-      let game = 'checkers';
+      let game = 'chess';
       aiService.postMove(game, match.gameState.asJson, (move) => {
         if (exists(move)) {
           let func = () => performAiMove(move);
@@ -88,21 +90,35 @@
     }
   };
 
+  function touchPromotionPiece(pieceType) {
+    match.touchPromotionPiece(pieceType, playerNumber);
+
+    matchState = match.asJson;
+
+    let lastActionKind = exists(match.lastAction) && match.lastAction.kind
+    let winner = match.gameState.winner;
+
+    if (lastActionKind === 'move' && !exists(winner)) {
+      fetchAndPerformAiMove();
+    }
+  }
+  
   function touchReset() {
     randomiseFirstPlayer();
     setInitialMatchState();
   };
 </script>
 
-<div class="match checkers_match">
-  <div class="checkers_board">
+<div class="match chess_match">
+  <div class="chess_board">
     {#each squaresWithPieces as square (square.piece.id)}
-      <PieceImage square={square} pov={playerNumber === 2 ? 1 : 2} />
+      <PieceImage square={square} pov={playerNumber} />
     {/each}
     {#each matchState.game_state.squares as square (square.id)}
-      <SquareControl square={square} touchSquare={touchSquare} pov={playerNumber === 2 ? 1 : 2} />
+      <SquareControl square={square} touchSquare={touchSquare} pov={playerNumber} />
     {/each}
-  </div>
+    <PromotionSelect touchPromotionPiece={touchPromotionPiece} display={matchState.promotion} />
+  </div>  
   <Notification notification={notification} />
   <div class="match_bar">
     <ResetControl touchReset={touchReset} />
@@ -113,7 +129,7 @@
   @import '$lib/styles/colors.scss';
   @import '$lib/styles/match.scss';
 
-  .checkers_match {
+  .chess_match {
     @media only screen and (max-device-width: 480px) {
       width: 100%;
     }
@@ -123,7 +139,7 @@
     }
   }
 
-  .checkers_board {
+  .chess_board {
     @media only screen and (max-device-width: 480px) {
       height: 100vw;
     }
@@ -139,4 +155,3 @@
     position: relative;
   }
 </style>
-

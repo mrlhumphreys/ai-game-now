@@ -3,13 +3,15 @@
   import GameSelector from '$lib/shared/GameSelector.svelte';
   import CheckersMatch from '$lib/checkers/Match.svelte';
   import BackgammonMatch from '$lib/backgammon/Match.svelte';
+  import ChessMatch from '$lib/chess/Match.svelte';
 
   const DEFAULT_GAME = 'checkers'
 
   // Add more games
   const GAMES = [
     'checkers',
-    'backgammon'
+    'backgammon',
+    'chess'
   ];
 
   let selectedGame = fetchGameFromUrl();
@@ -45,6 +47,10 @@
 
    <article class="match_container" class:selected={'backgammon' === selectedGame}>
      <BackgammonMatch />
+   </article>
+
+   <article class="match_container" class:selected={'chess' === selectedGame}>
+     <ChessMatch />
    </article>
  </main>
 </div>

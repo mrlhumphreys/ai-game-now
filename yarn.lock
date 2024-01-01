@@ -183,6 +183,13 @@
   dependencies:
     "@mrlhumphreys/jboardgame" "2.0.10"
 
+"@mrlhumphreys/jchess@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@mrlhumphreys/jchess/-/jchess-1.0.7.tgz#27ba873ed76642aec4fda2ee41ceb6e77ba38981"
+  integrity sha512-LYw63w+TMBS4VNZKcjGMd+iJoSY9eBnDL5QBdfyVmWMxW9Clu1AR4hckWAMtIQKihR8qU49dJorzGGag56hgzA==
+  dependencies:
+    "@mrlhumphreys/jboardgame" "2.0.10"
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.24"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.24.tgz#58601079e11784d20f82d0585865bb42305c4df3"

@@ -2,13 +2,13 @@ const calculatePositionClass = function(square, pov) {
   let x = undefined;
   let y = undefined;
 
-  if (pov === 1) {
+  if (pov === 2) {
     x = -1 * square.x + 7;
   } else {
     x = square.x;
   }
 
-  if (pov === 1) {
+  if (pov === 2) {
     y = -1 * square.y + 7;
   } else {
     y = square.y;

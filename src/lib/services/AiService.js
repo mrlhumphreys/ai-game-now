@@ -39,7 +39,7 @@ class AiService {
     fetch(postMoveUrl, { method: "POST", body: serializedState }).then(function(res) {
       if (res.status === 200) {
         res.text().then(function(text) {
-          let move = moveParser(game)(text);
+          let move = moveParser(game)(text, state);
           callback(move);
         });
       } else {

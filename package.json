@@ -11,6 +11,7 @@
 	"devDependencies": {
 		"@mrlhumphreys/jbackgammon": "^1.2.5",
 		"@mrlhumphreys/jcheckers": "^1.0.1",
+		"@mrlhumphreys/jchess": "^1.0.7",
 		"@sveltejs/adapter-static": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.1",
