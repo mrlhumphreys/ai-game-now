@@ -21,8 +21,8 @@
   import PassControl from '$lib/backgammon/PassControl.svelte';
   import DiceControl from '$lib/backgammon/DiceControl.svelte';
   import PieceImage from '$lib/backgammon/PieceImage.svelte';
-  import collatePieces from '$lib/backgammon/collatePieces';
-  import buildMatchAttributes from '$lib/backgammon/buildMatchAttributes';
+  import collatePieces from '$lib/backgammon/logic/collatePieces';
+  import buildMatchAttributes from '$lib/backgammon/logic/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;

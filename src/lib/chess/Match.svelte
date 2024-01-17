@@ -18,7 +18,7 @@
   import PieceImage from '$lib/chess/PieceImage.svelte';
   import SquareControl from '$lib/chess/SquareControl.svelte';
   import PromotionSelect from '$lib/chess/PromotionSelect.svelte';
-  import buildMatchAttributes from '$lib/chess/buildMatchAttributes';
+  import buildMatchAttributes from '$lib/chess/logic/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;

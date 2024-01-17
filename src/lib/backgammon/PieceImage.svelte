@@ -1,7 +1,7 @@
 <script>
   import calculateStrokeColour from '$lib/utils/calculateStrokeColour';
   import calculateBackgroundColour from '$lib/utils/calculateBackgroundColour';
-  import calculatePieceClassName from '$lib/backgammon/calculatePieceClassName';
+  import calculatePieceClassName from '$lib/backgammon/logic/calculatePieceClassName';
 
   export let pointNumber;
   export let pieceIndex;
