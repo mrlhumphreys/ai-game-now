@@ -1,4 +1,7 @@
-let DEFAULT_MATCH_ATTRIBUTES = {
+import type Match from '$lib/checkers/interfaces/Match';
+import deepClone from '$lib/utils/deepClone';
+
+let match = {
   id: 0,
   game_state: {
     current_player_number: 1,
@@ -16,7 +19,7 @@ let DEFAULT_MATCH_ATTRIBUTES = {
   
       { id: 9, x: 6, y: 5, marked: false, piece: { id: 8, king: false, player_number: 1, selected: false} },
       { id: 10, x: 4, y: 5, marked: false, piece: { id: 9, king: false, player_number: 1, selected: false} },
-      { id: 11, x: 2, y: 5, marked: false, piece: { id: 10, king: false, player_number: 1, selected: false} },
+      { id: 11, x: 2, y: 5, marked: false, piece: { id: 10, king: false, player_number: 1, selected: true} },
       { id: 12, x: 0, y: 5, marked: false, piece: { id: 11, king: false, player_number: 1, selected: false} },
   
       { id: 13, x: 7, y: 4, marked: false, piece: null },
@@ -50,11 +53,14 @@ let DEFAULT_MATCH_ATTRIBUTES = {
     { player_number: 2, name: 'Computer', resigned: false }
   ],
   winner: null,
-  current_move_from_id: null,
+  current_move_from_id: 11,
   current_move_to_ids: [],
   last_action: null,
   notification: 'Player to move'
 };
 
-export default DEFAULT_MATCH_ATTRIBUTES;
+const generateMatch = function(): Match {
+  return deepClone(match);
+};
 
+export default generateMatch;

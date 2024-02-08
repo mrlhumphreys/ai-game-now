@@ -26,6 +26,7 @@
 
   $: match = new ChessMatch(matchState);
   $: notification = match.notification;
+  $: promotion = match.promotion;
   $: squaresWithPieces = matchState.game_state.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
 
   // setup functions
@@ -117,7 +118,7 @@
     {#each matchState.game_state.squares as square (square.id)}
       <SquareControl square={square} touchSquare={touchSquare} pov={playerNumber} />
     {/each}
-    <PromotionSelect touchPromotionPiece={touchPromotionPiece} display={matchState.promotion} />
+    <PromotionSelect touchPromotionPiece={touchPromotionPiece} display={promotion} />
   </div>  
   <Notification notification={notification} />
   <div class="match_bar">

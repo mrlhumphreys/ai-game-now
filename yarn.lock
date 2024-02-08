@@ -176,13 +176,6 @@
   resolved "https://registry.yarnpkg.com/@mrlhumphreys/jboardgame/-/jboardgame-2.0.10.tgz#d4d7855ae67bb3709901d580d4003b0d20e1033f"
   integrity sha512-vQZaJePbS9OUFS4xKYJJ8Sz6UoUSYUe4ofEc4bjidvZCuBOwPjj75HgHCa8pzhTb4N77iTbsPiJReQlNDNzfRg==
 
-"@mrlhumphreys/jcheckers@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@mrlhumphreys/jcheckers/-/jcheckers-1.0.2.tgz#b72586c2aec1955570ec9a4fa1a87e9698dd8a5a"
-  integrity sha512-LRw+55T7nrgN14EQCACunBe6ipJzWHIDj1ndghutJleI4LWXhfK7CFZv1Ns/njfxiFXZGSZy/FiIEPrWgN3hFw==
-  dependencies:
-    "@mrlhumphreys/jboardgame" "2.0.10"
-
 "@mrlhumphreys/jchess@^1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@mrlhumphreys/jchess/-/jchess-1.0.7.tgz#27ba873ed76642aec4fda2ee41ceb6e77ba38981"
