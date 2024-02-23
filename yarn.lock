@@ -159,18 +159,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mrlhumphreys/jbackgammon@^1.2.5":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@mrlhumphreys/jbackgammon/-/jbackgammon-1.2.5.tgz#ff5ff51bad978685ac79ac7e43aa3bb54fed28b3"
-  integrity sha512-xZwDvMlRR9eKi5p2rtqFKc+kR5FtqyuBcKDaFhWzxqmGUVSYil9T3OIL+02WyvgWvC3x2FZy67orHNtUqKLAxw==
-  dependencies:
-    "@mrlhumphreys/jboardgame" "0.1.6"
-
-"@mrlhumphreys/jboardgame@0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@mrlhumphreys/jboardgame/-/jboardgame-0.1.6.tgz#01ce674276272ede1606fba47e77d64130e9740b"
-  integrity sha512-IQ75oJGsygah0+O05W4eFVOoqr3j4vtjSiZG5HyJEefNdLMv+i0DRJ67Clb82qkYb29qLyFXKVNZ3ZPfH/12CA==
-
 "@mrlhumphreys/jboardgame@2.0.10":
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/@mrlhumphreys/jboardgame/-/jboardgame-2.0.10.tgz#d4d7855ae67bb3709901d580d4003b0d20e1033f"

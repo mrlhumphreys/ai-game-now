@@ -3,6 +3,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
   game_state: {
     current_player_number: 1,
     current_phase: 'roll',
+    first_turn: true,
     dice: [
       { id: 0, number: null, used: false },
       { id: 1, number: null, used: false }
@@ -46,8 +47,8 @@ const DEFAULT_MATCH_ATTRIBUTES = {
     }
   },
   players: [
-    { player_number: 1, name: 'Player' },
-    { player_number: 2, name: 'Computer' }
+    { player_number: 1, name: 'Player', resigned: false },
+    { player_number: 2, name: 'Computer', resigned: false }
   ], 
   winner: null,
   move_list: [],

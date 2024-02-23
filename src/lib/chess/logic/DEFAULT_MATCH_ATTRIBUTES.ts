@@ -78,8 +78,8 @@ const DEFAULT_MATCH_ATTRIBUTES = {
     ]
   },
   players: [
-    { player_number: 1, name: 'Player' },
-    { player_number: 2, name: 'Computer' }
+    { player_number: 1, name: 'Player', resigned: false },
+    { player_number: 2, name: 'Computer', resigned: false }
   ],
   winner: null,
   current_move: null,

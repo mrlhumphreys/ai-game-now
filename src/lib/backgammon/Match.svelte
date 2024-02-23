@@ -1,18 +1,21 @@
 <script>
+  // bug: when too many pieces on one point, piece is rendered in corner
+  // bug: off board: move does not match dice roll (ai)
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
-  import jbackgammon from '@mrlhumphreys/jbackgammon';
-  let BackgammonMatch = undefined;
-
-  if (browser) {
-    BackgammonMatch = jbackgammon.Match
-  } else {
-    BackgammonMatch = jbackgammon.default.Match
-  }
 
   import exists from '$lib/utils/exists';
   import tossCoin from '$lib/utils/tossCoin';
   import AiService from '$lib/services/AiService';
+  import {
+    touchDice as matchTouchDice,
+    touchPoint as matchTouchPoint,
+    touchPass as matchTouchPass,
+    passable as matchPassable,
+    winner as matchWinner
+  } from '$lib/backgammon/logic/match';
+  import buildMatchAttributes from '$lib/backgammon/logic/buildMatchAttributes';
+
   import Notification from '$lib/shared/Notification.svelte';
   import ResetControl from '$lib/shared/ResetControl.svelte';
   import PointControl from '$lib/backgammon/PointControl.svelte';
@@ -22,7 +25,6 @@
   import DiceControl from '$lib/backgammon/DiceControl.svelte';
   import PieceImage from '$lib/backgammon/PieceImage.svelte';
   import collatePieces from '$lib/backgammon/logic/collatePieces';
-  import buildMatchAttributes from '$lib/backgammon/logic/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
@@ -32,9 +34,9 @@
   export let bottomLeft = undefined;
   export let bottomRight = undefined;
 
-  $: match = new BackgammonMatch(matchState);
-  $: notification = match.notification;
-  $: passable = match.passable(playerNumber);
+  $: matchState;
+  $: notification = matchState.notification;
+  $: passable = matchPassable(matchState, playerNumber);
   $: pieces = collatePieces(matchState);
   $: dice = matchState.game_state.dice;
 
@@ -71,12 +73,12 @@
   // ai action functions
   function aiTurn() {
     aiRoll();
-    if (match.passable(aiPlayerNumber)) {
+    if (matchPassable(matchState, aiPlayerNumber)) {
       aiPass();
     } else {
       let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
       let game = 'backgammon';
-      aiService.postMove(game, match.gameState.asJson, (moveList) => {
+      aiService.postMove(game, matchState.game_state, (moveList) => {
         if (exists(moveList)) {
           let moveFunc = () => aiMove(moveList);
           setTimeout(moveFunc, 1500);
@@ -90,22 +92,22 @@
   }
 
   function aiRoll() {
-    match.touchDice(aiPlayerNumber);
-    matchState = match.asJson;
+    matchTouchDice(matchState, aiPlayerNumber);
+    matchState = matchState;
   }
 
   function aiMove(moveList) {
     moveList.forEach((move, index) => {
       let legFunc = () => {
-        match.touchPoint(move[0], aiPlayerNumber);
-        match.touchPoint(move[1], aiPlayerNumber);
-        matchState = match.asJson;
+        matchTouchPoint(matchState, aiPlayerNumber, move[0]);
+        matchTouchPoint(matchState, aiPlayerNumber, move[1]);
+        matchState = matchState;
       };
       setTimeout(legFunc, index*1500);
     });
 
     let passFunc = () => {
-      if (match.passable(aiPlayerNumber)) {
+      if (matchPassable(matchState, aiPlayerNumber)) {
         aiPass();
       }
     };
@@ -114,23 +116,23 @@
   }
 
   function aiPass() {
-    match.touchPass(aiPlayerNumber);
-    matchState = match.asJson;
+    matchTouchPass(matchState, aiPlayerNumber);
+    matchState = matchState;
   }
 
   function touchDice() {
-    match.touchDice(playerNumber);
-    matchState = match.asJson;
+    matchTouchDice(matchState, playerNumber);
+    matchState = matchState;
   }
 
   // user action functions
 
   function touchPoint(pointNumber) {
-    match.touchPoint(pointNumber, playerNumber);
-    matchState = match.asJson;
+    matchTouchPoint(matchState, playerNumber, pointNumber);
+    matchState = matchState;
 
-    let lastActionKind = exists(match.lastAction) && match.lastAction.kind;
-    let winner = match.gameState.winner;
+    let lastActionKind = exists(matchState.last_action) && matchState.last_action.kind;
+    let winner = matchWinner(matchState);
 
     if (lastActionKind === 'move' && !exists(winner)) {
       aiTurn();
@@ -138,8 +140,8 @@
   }
 
   function touchPass() {
-    match.touchPass(playerNumber);
-    matchState = match.asJson;
+    matchTouchPass(matchState, playerNumber);
+    matchState = matchState;
 
     aiTurn();
   }

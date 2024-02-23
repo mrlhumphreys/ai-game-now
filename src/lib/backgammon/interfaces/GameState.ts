@@ -7,6 +7,7 @@ import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
 interface GameState {
   current_player_number: number;
   current_phase: string;
+  first_turn: boolean;
   dice: Array<Die>;
   bar: Bar;
   points: Array<Point>;

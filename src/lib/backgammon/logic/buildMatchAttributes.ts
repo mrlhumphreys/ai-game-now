@@ -1,8 +1,9 @@
 import type Match from '$lib/backgammon/interfaces/Match';
 import DEFAULT_MATCH_ATTRIBUTES from '$lib/backgammon/logic/DEFAULT_MATCH_ATTRIBUTES';
+import deepClone from '$lib/utils/deepClone';
 
 const buildMatchAttributes = function(playerNumber: number): Match {
-  let matchAttributes = DEFAULT_MATCH_ATTRIBUTES;
+  let matchAttributes = deepClone(DEFAULT_MATCH_ATTRIBUTES);
 
   let playerOneName = undefined;
   let playerTwoName = undefined;
@@ -16,8 +17,8 @@ const buildMatchAttributes = function(playerNumber: number): Match {
   }
 
   matchAttributes.players = [
-    { player_number: 1, name: playerOneName },
-    { player_number: 2, name: playerTwoName }
+    { player_number: 1, name: playerOneName, resigned: false },
+    { player_number: 2, name: playerTwoName, resigned: false }
   ];
   matchAttributes.notification = `${playerOneName} to roll dice`;
 
