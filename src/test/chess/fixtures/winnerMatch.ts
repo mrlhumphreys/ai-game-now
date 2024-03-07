@@ -1,4 +1,7 @@
-const DEFAULT_MATCH_ATTRIBUTES = {
+import type Match from '$lib/chess/interfaces/Match';
+import deepClone from '$lib/utils/deepClone';
+
+let match = {
   id: 0,
   game_state: {
     current_player_number: 1,
@@ -79,7 +82,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
   },
   players: [
     { player_number: 1, name: 'Player', resigned: false },
-    { player_number: 2, name: 'Computer', resigned: false }
+    { player_number: 2, name: 'Computer', resigned: true }
   ],
   winner: null,
   current_move: null,
@@ -88,5 +91,8 @@ const DEFAULT_MATCH_ATTRIBUTES = {
   notification: 'Player to move'
 };
 
-export default DEFAULT_MATCH_ATTRIBUTES;
+const generateMatch = function(): Match {
+  return deepClone(match);
+};
 
+export default generateMatch;

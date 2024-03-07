@@ -1,4 +1,7 @@
-const DEFAULT_MATCH_ATTRIBUTES = {
+import type Match from '$lib/chess/interfaces/Match';
+import deepClone from '$lib/utils/deepClone';
+
+let match = {
   id: 0,
   game_state: {
     current_player_number: 1,
@@ -62,7 +65,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
       { id: 'b2', x: 1, y: 6, piece: { id: 18, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'c2', x: 2, y: 6, piece: { id: 19, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'd2', x: 3, y: 6, piece: { id: 20, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
-      { id: 'e2', x: 4, y: 6, piece: { id: 21, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
+      { id: 'e2', x: 4, y: 6, piece: { id: 21, player_number: 1, type: 'pawn', has_moved: false, selected: true } },
       { id: 'f2', x: 5, y: 6, piece: { id: 22, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'g2', x: 6, y: 6, piece: { id: 23, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'h2', x: 7, y: 6, piece: { id: 24, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
@@ -88,5 +91,8 @@ const DEFAULT_MATCH_ATTRIBUTES = {
   notification: 'Player to move'
 };
 
-export default DEFAULT_MATCH_ATTRIBUTES;
+const generateMatch = function(): Match {
+  return deepClone(match);
+};
 
+export default generateMatch;

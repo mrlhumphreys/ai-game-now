@@ -1,20 +1,20 @@
 <script>
-  import { browser } from '$app/environment';
+  // clear notification after valid moves?
+  // pawn capture promote doesn't promote
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
-  import jchess from '@mrlhumphreys/jchess';
-  let ChessMatch = undefined;
-
-  if (browser) {
-    ChessMatch = jchess.Match
-  } else {
-    ChessMatch = jchess.default.Match
-  }
 
   import exists from '$lib/utils/exists';
   import tossCoin from '$lib/utils/tossCoin';
   import AiService from '$lib/services/AiService';
   import Notification from '$lib/shared/Notification.svelte';
   import ResetControl from '$lib/shared/ResetControl.svelte';
+
+  import {
+    touchSquare as matchTouchSquare,
+    touchPromotionPiece as matchTouchPromotionPiece,
+    winner
+  } from '$lib/chess/logic/match';
+
   import PieceImage from '$lib/chess/PieceImage.svelte';
   import SquareControl from '$lib/chess/SquareControl.svelte';
   import PromotionSelect from '$lib/chess/PromotionSelect.svelte';
@@ -24,9 +24,9 @@
   export let aiPlayerNumber = undefined;
   export let matchState = undefined;
 
-  $: match = new ChessMatch(matchState);
-  $: notification = match.notification;
-  $: promotion = match.promotion;
+  $: matchState;
+  $: notification = matchState.notification;
+  $: promotion = matchState.promotion;
   $: squaresWithPieces = matchState.game_state.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
 
   // setup functions
@@ -53,53 +53,52 @@
 
   // ai action functions
   function performAiMove(move) {
-    match.touchSquare(move.fromId, aiPlayerNumber);
-    match.touchSquare(move.toId, aiPlayerNumber);
+    matchTouchSquare(matchState, aiPlayerNumber, move.fromId);
+    matchTouchSquare(matchState, aiPlayerNumber, move.toId);
     if (exists(move.promotionPieceType)) {
-      match.touchPromotionPiece(move.promotionPieceType, aiPlayerNumber);
+      matchTouchPromotionPiece(matchState, aiPlayerNumber, move.promotionPieceType);
     }
 
-    matchState = match.asJson;
+    matchState = matchState;
   };
 
   function fetchAndPerformAiMove() {
-      let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
-      let game = 'chess';
-      aiService.postMove(game, match.gameState.asJson, (move) => {
-        if (exists(move)) {
-          let func = () => performAiMove(move);
-          setTimeout(func, 1500);
-        }
-      }, (_) => {
-        if (browser) {
-          alert("Something went wrong. Please try again later.");
-        }
-      });
+    let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
+    let game = 'chess';
+    aiService.postMove(game, matchState.game_state, (move) => {
+      if (exists(move)) {
+        let func = () => performAiMove(move);
+        setTimeout(func, 1500);
+      }
+    }, (_) => {
+      console.log(matchState);
+      alert("Something went wrong. Please try again later.");
+    });
   };
 
   // user action functions
   function touchSquare(squareId) {
-    match.touchSquare(squareId, playerNumber);
+    matchTouchSquare(matchState, playerNumber, squareId);
 
-    matchState = match.asJson;
+    matchState = matchState;
 
-    let lastActionKind = exists(match.lastAction) && match.lastAction.kind
-    let winner = match.gameState.winner;
+    let lastActionKind = exists(matchState.last_action) && matchState.last_action.kind
+    let winnerPlayerNumber = winner(matchState);
 
-    if (lastActionKind === 'move' && !exists(winner)) {
+    if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
       fetchAndPerformAiMove();
     }
   };
 
   function touchPromotionPiece(pieceType) {
-    match.touchPromotionPiece(pieceType, playerNumber);
+    matchTouchPromotionPiece(matchState, playerNumber, pieceType);
 
-    matchState = match.asJson;
+    matchState = matchState;
 
-    let lastActionKind = exists(match.lastAction) && match.lastAction.kind
-    let winner = match.gameState.winner;
+    let lastActionKind = exists(matchState.last_action) && match.last_action.kind
+    let winnerPlayerNumber = winner(matchState);
 
-    if (lastActionKind === 'move' && !exists(winner)) {
+    if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
       fetchAndPerformAiMove();
     }
   }

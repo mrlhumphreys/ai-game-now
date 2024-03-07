@@ -1,4 +1,7 @@
-const DEFAULT_MATCH_ATTRIBUTES = {
+import type Match from '$lib/chess/interfaces/Match';
+import deepClone from '$lib/utils/deepClone';
+
+let match = {
   id: 0,
   game_state: {
     current_player_number: 1,
@@ -44,7 +47,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
       { id: 'b4', x: 1, y: 4, piece: null },
       { id: 'c4', x: 2, y: 4, piece: null },
       { id: 'd4', x: 3, y: 4, piece: null },
-      { id: 'e4', x: 4, y: 4, piece: null },
+      { id: 'e4', x: 4, y: 4, piece: { id: 21, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'f4', x: 5, y: 4, piece: null },
       { id: 'g4', x: 6, y: 4, piece: null },
       { id: 'h4', x: 7, y: 4, piece: null },
@@ -62,7 +65,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
       { id: 'b2', x: 1, y: 6, piece: { id: 18, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'c2', x: 2, y: 6, piece: { id: 19, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'd2', x: 3, y: 6, piece: { id: 20, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
-      { id: 'e2', x: 4, y: 6, piece: { id: 21, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
+      { id: 'e2', x: 4, y: 6, piece: null },
       { id: 'f2', x: 5, y: 6, piece: { id: 22, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'g2', x: 6, y: 6, piece: { id: 23, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
       { id: 'h2', x: 7, y: 6, piece: { id: 24, player_number: 1, type: 'pawn', has_moved: false, selected: false } },
@@ -84,9 +87,12 @@ const DEFAULT_MATCH_ATTRIBUTES = {
   winner: null,
   current_move: null,
   promotion: false,
-  last_action: null,
+  last_action: { kind: 'move', data: { fromId: 'e2', toId: 'e4', pieceType: null } },
   notification: 'Player to move'
 };
 
-export default DEFAULT_MATCH_ATTRIBUTES;
+const generateMatch = function(): Match {
+  return deepClone(match);
+};
 
+export default generateMatch;

@@ -9,6 +9,7 @@ interface Match {
   players: Array<Player>;
   winner: number | null;
   current_move: CurrentMove | null;
+  promotion: boolean;
   last_action: Action | null;
   notification: string;
 }

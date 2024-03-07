@@ -1,7 +1,6 @@
 interface CurrentMove {
-  fromId: string | null;
-  toId: string | null;
-  pieceType: string | null;
+  fromId: string;
+  toId: string;
 }
 
 export type { CurrentMove as default };

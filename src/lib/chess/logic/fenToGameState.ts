@@ -9,29 +9,29 @@ const parsePiece = function(char: string, id: number): Piece | null {
 
   switch(char) {
     case 'p':
-      return { id: id, player_number: 2, type: 'pawn', has_moved: false };
+      return { id: id, player_number: 2, type: 'pawn', has_moved: false, selected: false };
     case 'P':
-      return { id: id, player_number: 1, type: 'pawn', has_moved: false };
+      return { id: id, player_number: 1, type: 'pawn', has_moved: false, selected: false };
     case 'r':
-      return { id: id, player_number: 2, type: 'rook', has_moved: false };
+      return { id: id, player_number: 2, type: 'rook', has_moved: false, selected: false };
     case 'R':
-      return { id: id, player_number: 1, type: 'rook', has_moved: false };
+      return { id: id, player_number: 1, type: 'rook', has_moved: false, selected: false };
     case 'n':
-      return { id: id, player_number: 2, type: 'knight', has_moved: false };
+      return { id: id, player_number: 2, type: 'knight', has_moved: false, selected: false };
     case 'N':
-      return { id: id, player_number: 1, type: 'knight', has_moved: false };
+      return { id: id, player_number: 1, type: 'knight', has_moved: false, selected: false };
     case 'b':
-      return { id: id, player_number: 2, type: 'bishop', has_moved: false };
+      return { id: id, player_number: 2, type: 'bishop', has_moved: false, selected: false };
     case 'B':
-      return { id: id, player_number: 1, type: 'bishop', has_moved: false };
+      return { id: id, player_number: 1, type: 'bishop', has_moved: false, selected: false };
     case 'q':
-      return { id: id, player_number: 2, type: 'queen', has_moved: false };
+      return { id: id, player_number: 2, type: 'queen', has_moved: false, selected: false };
     case 'Q':
-      return { id: id, player_number: 1, type: 'queen', has_moved: false };
+      return { id: id, player_number: 1, type: 'queen', has_moved: false, selected: false };
     case 'k':
-      return { id: id, player_number: 2, type: 'king', has_moved: false };
+      return { id: id, player_number: 2, type: 'king', has_moved: false, selected: false };
     case 'K':
-      return { id: id, player_number: 1, type: 'king', has_moved: false };
+      return { id: id, player_number: 1, type: 'king', has_moved: false, selected: false };
     default:
       return null;
   }
