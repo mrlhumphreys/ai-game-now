@@ -65,21 +65,21 @@ export const gameOver = function(match: Match): boolean {
 };
 
 export const notPlayersTurn = function(match: Match, playerNumber: number): boolean {
-  return !playersTurn(match.game_state, playerNumber);  
+  return !playersTurn(match.gameState, playerNumber);
 };
 
 export const isSquareSelected = function(match: Match): boolean {
-  return selectedSquare(match.game_state) !== undefined; 
+  return selectedSquare(match.gameState) !== undefined;
 };
 
 export const getTouchedSquare = function(match: Match, touchedSquareId: number): Square | undefined {
-  return findSquareById(match.game_state, touchedSquareId);
+  return findSquareById(match.gameState, touchedSquareId);
 };
 
 export const movePossible = function(match: Match, touchedSquareId: number): boolean {
   let square = getTouchedSquare(match, touchedSquareId);
   if (square !== undefined) {
-    return selectable(square, match.game_state.squares);
+    return selectable(square, match.gameState.squares);
   } else {
     return false;
   }
@@ -88,7 +88,7 @@ export const movePossible = function(match: Match, touchedSquareId: number): boo
 export const notPlayersPiece = function(match: Match, playerNumber: number, touchedSquareId: number): boolean {
   let square = getTouchedSquare(match, touchedSquareId);
   if (square !== undefined && square.piece !== null) {
-    return square.piece.player_number !== playerNumber;
+    return square.piece.playerNumber !== playerNumber;
   } else {
     return false;
   }
@@ -125,7 +125,7 @@ export const moveValid = function(match: Match, touchedSquareId: number): boolea
     let legs = getLegs(fromSquare, toSquares, touchedSquare); 
     return eachCons(legs, 2).every((leg) => {
       if (fromSquare !== undefined && fromSquare.piece !== null) {
-        return actionable(leg[0], fromSquare.piece, leg[1], match.game_state.squares);
+        return actionable(leg[0], fromSquare.piece, leg[1], match.gameState.squares);
       } else {
         return false;
       }
@@ -136,19 +136,19 @@ export const moveValid = function(match: Match, touchedSquareId: number): boolea
 };
 
 export const getFrom = function(match: Match): Square | undefined {
-  if (match.current_move_from_id !== null) {
-    return findSquareById(match.game_state, match.current_move_from_id);
+  if (match.currentMoveFromId !== null) {
+    return findSquareById(match.gameState, match.currentMoveFromId);
   } else {
     return undefined;
   }
 };
 
 export const getTos = function(match: Match): Array<Square> {
-  return filterSquaresByIds(match.game_state, match.current_move_to_ids);
+  return filterSquaresByIds(match.gameState, match.currentMoveToIds);
 };
 
 export const lastLegEnd = function(match: Match, piece: Piece, lastSquare: Square, toSquares: Array<Square>): boolean {
-  let jumps = possibleJumps(lastSquare, piece, match.game_state.squares);
+  let jumps = possibleJumps(lastSquare, piece, match.gameState.squares);
   let withoutToSquares = difference(jumps, toSquares); 
   return withoutToSquares.length === 0;
 };
@@ -187,7 +187,7 @@ export const defaultMessage = function(match: Match): string {
 
 export const nextTurnMessage = function(match: Match): string {
   let nextPlayer = match.players.find((p) => {
-    return p.player_number !== match.game_state.current_player_number;
+    return p.playerNumber !== match.gameState.currentPlayerNumber;
   });
 
   if (nextPlayer !== undefined) {
@@ -199,7 +199,7 @@ export const nextTurnMessage = function(match: Match): string {
 
 export const winnerMessage = function(match: Match): string {
   let winningPlayer = match.players.find((p) => {
-    return p.player_number === winner(match);
+    return p.playerNumber === winner(match);
   });
 
   if (winningPlayer !== undefined) {

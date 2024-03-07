@@ -19,7 +19,7 @@
 
   $: matchState;
   $: notification = matchState.notification;
-  $: squaresWithPieces = matchState.game_state.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
+  $: squaresWithPieces = matchState.gameState.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
 
   // setup functions
   function randomiseFirstPlayer() {
@@ -54,7 +54,7 @@
   function fetchAndPerformAiMove() {
     let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
     let game = 'checkers';
-    aiService.postMove(game, matchState.game_state, (move) => {
+    aiService.postMove(game, matchState.gameState, (move) => {
       if (exists(move)) {
         let func = () => performAiMove(move);
         setTimeout(func, 1500);
@@ -71,7 +71,7 @@
     matchTouchSquare(matchState, playerNumber, squareId);
     matchState = matchState;
 
-    let lastActionKind = exists(matchState.last_action) && matchState.last_action.kind
+    let lastActionKind = exists(matchState.lastAction) && matchState.lastAction.kind
     let winnerPlayerNumber = winner(matchState);
 
     if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
@@ -90,7 +90,7 @@
     {#each squaresWithPieces as square (square.piece.id)}
       <PieceImage square={square} pov={playerNumber} />
     {/each}
-    {#each matchState.game_state.squares as square (square.id)}
+    {#each matchState.gameState.squares as square (square.id)}
       <SquareControl square={square} touchSquare={touchSquare} pov={playerNumber} />
     {/each}
   </div>

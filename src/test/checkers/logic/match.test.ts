@@ -34,21 +34,21 @@ describe('touchSquare', () => {
   it('clears last action', () => {
     let match = lastActionMatch();
     touchSquare(match, 1, 11);
-    expect(match.last_action).toBe(null);
+    expect(match.lastAction).toBe(null);
   });
 
   describe('when move is invalid', () => {
     it('must clears move', () => {
       let match = firstLegIncompleteMatch();
       touchSquare(match, 1, 15);
-      expect(match.current_move_from_id).toBe(null);
-      expect(match.current_move_to_ids).toEqual([]);
+      expect(match.currentMoveFromId).toBe(null);
+      expect(match.currentMoveToIds).toEqual([]);
     });
 
     it('must deselects squares', () => {
       let match = firstLegIncompleteMatch();
       touchSquare(match, 1, 15);
-      match.game_state.squares.forEach((s) => {
+      match.gameState.squares.forEach((s) => {
         if (s.piece !== null) {
           expect(s.piece.selected).toBe(false);
         }
@@ -67,7 +67,7 @@ describe('touchSquare', () => {
       let match = firstLegIncompleteMatch();
       let touchedSquareId = 14; 
       touchSquare(match, 1, touchedSquareId);
-      let square = match.game_state.squares.find((s) => {
+      let square = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
 
@@ -82,7 +82,7 @@ describe('touchSquare', () => {
       let match = firstLegIncompleteMatch();
       let touchedSquareId = 14; 
       touchSquare(match, 1, touchedSquareId);
-      expect(match.current_move_to_ids).toEqual([touchedSquareId]);
+      expect(match.currentMoveToIds).toEqual([touchedSquareId]);
     });
 
     it('must notify with a message', () => {
@@ -98,11 +98,11 @@ describe('touchSquare', () => {
       let match = firstLegCompleteMatch();
       let fromId = 7;
       let touchedSquareId = 23; 
-      let piece = { id: 6, king: false, player_number: 1, selected: false };
+      let piece = { id: 6, king: false, playerNumber: 1, selected: false };
 
       touchSquare(match, 1, touchedSquareId);
 
-      let from = match.game_state.squares.find((s) => {
+      let from = match.gameState.squares.find((s) => {
         return s.id === fromId;
       });
       if (from !== undefined) {
@@ -111,7 +111,7 @@ describe('touchSquare', () => {
         expect(from).not.toBe(undefined);
       }
 
-      let to = match.game_state.squares.find((s) => {
+      let to = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
       if (to !== undefined) {
@@ -134,15 +134,15 @@ describe('touchSquare', () => {
           toIds: toIds
         }
       };
-      expect(match.last_action).toEqual(expected);
+      expect(match.lastAction).toEqual(expected);
     });
 
     it('must clear current move', () => {
       let match = firstLegCompleteMatch();
       let touchedSquareId = 23; 
       touchSquare(match, 1, touchedSquareId);
-      expect(match.current_move_from_id).toBe(null);
-      expect(match.current_move_to_ids).toEqual([]);
+      expect(match.currentMoveFromId).toBe(null);
+      expect(match.currentMoveToIds).toEqual([]);
     });
 
     it('must notify with message', () => {
@@ -158,7 +158,7 @@ describe('touchSquare', () => {
       let match = defaultMatch();
       let touchedSquareId = 11;
       touchSquare(match, 1, touchedSquareId);
-      let square = match.game_state.squares.find((s) => {
+      let square = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
       if (square !== undefined && square.piece !== null) {
@@ -172,7 +172,7 @@ describe('touchSquare', () => {
       let match = defaultMatch();
       let touchedSquareId = 11;
       touchSquare(match, 1, touchedSquareId);
-      expect(match.current_move_from_id).toEqual(touchedSquareId);
+      expect(match.currentMoveFromId).toEqual(touchedSquareId);
     });
   });
 
@@ -182,7 +182,7 @@ describe('touchSquare', () => {
       let match = defaultMatch();
       let touchedSquareId = 15;
       touchSquare(match, 1, touchedSquareId);
-      expect(match.current_move_from_id).toBe(null);
+      expect(match.currentMoveFromId).toBe(null);
     });
 
     it('must notify with a message', () => {
@@ -199,7 +199,7 @@ describe('addFromToCurrentMove', () => {
     let match = defaultMatch();
     let squareId = 11;
     addFromToCurrentMove(match, squareId);
-    expect(match.current_move_from_id).toEqual(squareId);
+    expect(match.currentMoveFromId).toEqual(squareId);
   });
 });
 
@@ -208,7 +208,7 @@ describe('addToToCurrentMove', () => {
     let match = firstLegIncompleteMatch();
     let squareId = 14;
     addToToCurrentMove(match, squareId);
-    expect(match.current_move_to_ids).toEqual([squareId]);
+    expect(match.currentMoveToIds).toEqual([squareId]);
   });
 });
 
@@ -216,8 +216,8 @@ describe('clearMove', () => {
   it('clears current move from and tos ids', () => {
     let match = firstLegCompleteMatch();
     clearMove(match);
-    expect(match.current_move_from_id).toBe(null);
-    expect(match.current_move_to_ids).toEqual([]);
+    expect(match.currentMoveFromId).toBe(null);
+    expect(match.currentMoveToIds).toEqual([]);
   });
 });
 
@@ -225,7 +225,7 @@ describe('clearLastAction', () => {
   it('sets last action to null', () => {
     let match = lastActionMatch();
     clearLastAction(match);
-    expect(match.last_action).toBe(null);
+    expect(match.lastAction).toBe(null);
   });
 });
 
@@ -251,6 +251,6 @@ describe('addMoveToLastAction', () => {
       }
     };
     addMoveToLastAction(match, fromId, toIds);
-    expect(match.last_action).toEqual(expected);
+    expect(match.lastAction).toEqual(expected);
   });
 });

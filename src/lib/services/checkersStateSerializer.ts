@@ -4,7 +4,7 @@ import type GameState from '$lib/checkers/interfaces/GameState';
 const checkersStateSerializer = function(state: GameState) {
   let board = state.squares.map((s) => {
     if (exists(s.piece)) {
-      let playerNumber = s.piece?.player_number;
+      let playerNumber = s.piece?.playerNumber;
       let king = s.piece?.king;
       if (playerNumber === 1) {
         if (king) {
@@ -24,7 +24,7 @@ const checkersStateSerializer = function(state: GameState) {
     }
   }).join('');
 
-  let player = state.current_player_number == 1 ? 'b' : 'w';
+  let player = state.currentPlayerNumber === 1 ? 'b' : 'w';
 
   return board + player;
 }

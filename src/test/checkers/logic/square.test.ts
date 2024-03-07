@@ -21,7 +21,7 @@ import {
 describe('occupied', () => {
   describe('with piece', () => {
     it('returns true', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(occupied(square)).toBe(true); 
     });
@@ -39,7 +39,7 @@ describe('occupied', () => {
 describe('unoccupied', () => {
   describe('with piece', () => {
     it('returns false', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(unoccupied(square)).toBe(false); 
     });
@@ -57,7 +57,7 @@ describe('unoccupied', () => {
 describe('occupiedByPlayer', () => {
   describe('with piece owned by player', () => {
     it('returns true', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(occupiedByPlayer(square, 1)).toBe(true); 
     });
@@ -65,7 +65,7 @@ describe('occupiedByPlayer', () => {
 
   describe('with piece not owned by player', () => {
     it('returns false', () => {
-      let piece = { id: 1, player_number: 2, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 2, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(occupiedByPlayer(square, 1)).toBe(false); 
     });
@@ -83,7 +83,7 @@ describe('occupiedByPlayer', () => {
 describe('occupiedByOpponentOf', () => {
   describe('with piece owned by player', () => {
     it('returns false', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(occupiedByOpponentOf(square, 1)).toBe(false); 
     });
@@ -91,7 +91,7 @@ describe('occupiedByOpponentOf', () => {
 
   describe('with piece not owned by player', () => {
     it('returns true', () => {
-      let piece = { id: 1, player_number: 2, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 2, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(occupiedByOpponentOf(square, 1)).toBe(true); 
     });
@@ -116,7 +116,7 @@ describe('point', () => {
 describe('player', () => {
   describe('with piece', () => {
     it('returns player number', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
       expect(player(square)).toEqual(1); 
     });
@@ -133,13 +133,13 @@ describe('player', () => {
 
 describe('selectable', () => {
   it('must return false if there are other pieces that can jump', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
     let destination = { id: 2, x: 3, y: 7, marked: false, piece: null };
 
-    let otherPiece = { id: 2, player_number: 1, king: false, selected: false };
+    let otherPiece = { id: 2, playerNumber: 1, king: false, selected: false };
     let otherOrigin = { id: 3, x: 1, y: 6, marked: false, piece: otherPiece };
-    let otherOpponentPiece = { id: 4, player_number: 2, king: false, selected: false };
+    let otherOpponentPiece = { id: 4, playerNumber: 2, king: false, selected: false };
     let otherBetween = { id: 4, x: 2, y: 5, marked: false, piece: otherOpponentPiece };
     let otherDestination = { id: 5, x: 3, y: 4, marked: false, piece: null };
 
@@ -154,7 +154,7 @@ describe('selectable', () => {
   });
 
   it('must return true if there are no jumps, but some moves', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
     let destination = { id: 3, x: 3, y: 7, marked: false, piece: null };
     let squares = [
@@ -175,9 +175,9 @@ describe('selectable', () => {
   });
 
   it('must be false if it is blocked', () => {
-    let origin = { id: 1, x: 4, y: 8, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } };
-    let blocked = { id: 3, x: 3, y: 7, marked: false, piece: { id: 2, player_number: 1, king: false, selected: false } };
-    let farBlocked = { id: 5, x: 2, y: 6, marked: false, piece: { id: 3, player_number: 1, king: false, selected: false } };
+    let origin = { id: 1, x: 4, y: 8, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } };
+    let blocked = { id: 3, x: 3, y: 7, marked: false, piece: { id: 2, playerNumber: 1, king: false, selected: false } };
+    let farBlocked = { id: 5, x: 2, y: 6, marked: false, piece: { id: 3, playerNumber: 1, king: false, selected: false } };
     let squares = [
       origin,
       blocked,
@@ -189,9 +189,9 @@ describe('selectable', () => {
 
 describe('actionable', () => {
   it('must return true with jumps', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
-    let opponentPiece = { id: 2, player_number: 2, king: false, selected: false };
+    let opponentPiece = { id: 2, playerNumber: 2, king: false, selected: false };
     let opponentSquare = { id: 2, x: 3, y: 7, marked: false, piece: opponentPiece };
     let destination = { id: 3, x: 2, y: 6, marked: false, piece: null };
     let squares = [
@@ -203,7 +203,7 @@ describe('actionable', () => {
   });
 
   it('must return true with no jumps and some moves', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
     let destination = { id: 3, x: 3, y: 7, marked: false, piece: null };
     let squares = [
@@ -214,9 +214,9 @@ describe('actionable', () => {
   });
 
   it('must return false with no jumps or moves', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
-    let opposingPiece = { id: 1, player_number: 2, king: false, selected: false };
+    let opposingPiece = { id: 1, playerNumber: 2, king: false, selected: false };
     let destination = { id: 3, x: 3, y: 7, marked: false, piece: opposingPiece };
     let squares = [
       origin,
@@ -228,9 +228,9 @@ describe('actionable', () => {
 
 describe('possibleJumps', () => {
   it('must return squares that can be jumped to', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
-      let opponentPiece = { id: 2, player_number: 2, king: false, selected: false };
+      let opponentPiece = { id: 2, playerNumber: 2, king: false, selected: false };
       let opponentSquare = { id: 2, x: 3, y: 7, marked: false, piece: opponentPiece };
       let destination = { id: 3, x: 2, y: 6, marked: false, piece: null };
       let squares = [
@@ -248,9 +248,9 @@ describe('possibleJumps', () => {
 
 describe('possibleMoves', () => {
   it('must return squares that can be move to', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false };
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
       let origin = { id: 1, x: 4, y: 8, marked: false, piece: piece };
-      let opponentPiece = { id: 2, player_number: 2, king: false, selected: false };
+      let opponentPiece = { id: 2, playerNumber: 2, king: false, selected: false };
       let opponentSquare = { id: 2, x: 3, y: 7, marked: false, piece: opponentPiece };
       let destination = { id: 3, x: 5, y: 7, marked: false, piece: null };
       let squares = [
@@ -294,7 +294,7 @@ describe('lastRankForPlayer', () => {
 
 describe('select', () => {
   it('must select the piece and return true if there is one', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
     let result = select(square);
     expect(result).toBe(true);
@@ -310,7 +310,7 @@ describe('select', () => {
 
 describe('deselect', () => {
   it('must select the piece and return true if there is one', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: true };
+    let piece = { id: 1, playerNumber: 1, king: false, selected: true };
     let square = { id: 1, x: 1, y: 1, marked: false, piece: piece };
     let result = deselect(square);
     expect(result).toBe(true);
@@ -344,7 +344,7 @@ describe('unmark', () => {
 
 describe('promote', () => {
   it('promotes the piece', () => {
-    let square = { id: 1, x: 1, y: 1, piece: { id: 1, player_number: 1, king: false, selected: false }, marked: true };
+    let square = { id: 1, x: 1, y: 1, piece: { id: 1, playerNumber: 1, king: false, selected: false }, marked: true };
     let result = promote(square);
     expect(result).toBe(true);
     expect(square.piece.king).toBe(true);

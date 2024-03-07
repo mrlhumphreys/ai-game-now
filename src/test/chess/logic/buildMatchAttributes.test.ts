@@ -89,6 +89,7 @@ describe('build match attributes', () => {
       ],
       winner: null,
       current_move: null,
+      promotion: false,
       last_action: null,
       notification: 'Player to move'
     };

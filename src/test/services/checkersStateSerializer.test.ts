@@ -5,7 +5,7 @@ import buildMatchAttributes from '$lib/checkers/logic/buildMatchAttributes';
 describe('state', () => {
   it('must be serialized', () => {
     let match = buildMatchAttributes(1);
-    let gameState = match.game_state;
+    let gameState = match.gameState;
     let result = checkersStateSerializer(gameState);
     let expected = 'bbbbbbbbbbbb--------wwwwwwwwwwwwb';
     expect(result).toEqual(expected);

@@ -18,7 +18,7 @@ describe('post', () => {
       let aiService = new AiService("http://127.0.0.1:7878");
       let match = buildMatchAttributes(1);
       let expectedMove = [11, 15];
-      aiService.postMove('checkers', match.game_state, (move: Array<number>) => {
+      aiService.postMove('checkers', match.gameState, (move: Array<number>) => {
         expect(move).toEqual(expectedMove);
       },
       (err: string) => {
@@ -35,7 +35,7 @@ describe('post', () => {
       let aiService = new AiService("http://127.0.0.1:7878");
       let match = buildMatchAttributes(1);
       let expectedResult = 'INVALID_SERVER_RESPONSE'
-      aiService.postMove('checkers', match.game_state, (move: string) => {
+      aiService.postMove('checkers', match.gameState, (move: string) => {
         expect(move).toBe(null);
       },
       (err: string) => {

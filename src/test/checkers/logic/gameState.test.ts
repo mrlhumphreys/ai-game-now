@@ -26,7 +26,7 @@ import {
 describe('selectedSquare', () => {
   it('returns a square if it is selected', () => {
     let result = selectedSquare(selectedGameState()); 
-    let expected = { id: 11, x: 2, y: 5, marked: false, piece: { id: 10, king: false, player_number: 1, selected: true } };
+    let expected = { id: 11, x: 2, y: 5, marked: false, piece: { id: 10, king: false, playerNumber: 1, selected: true } };
     expect(result).toEqual(expected);
   });
 
@@ -198,7 +198,7 @@ describe('move', () => {
     let toIds = [15];
     move(gameState, fromId, toIds);
 
-    expect(gameState.current_player_number).toEqual(2);
+    expect(gameState.currentPlayerNumber).toEqual(2);
   });
 
   it('unmarks squares', () => {
@@ -353,13 +353,13 @@ describe('movePieces', () => {
 describe('passTurn', () => {
   it('should set the player to 2 if currently 1', () => {
     let gameState = defaultGameState();
-    let result = passTurn(gameState);
-    expect(gameState.current_player_number).toEqual(2);
+    passTurn(gameState);
+    expect(gameState.currentPlayerNumber).toEqual(2);
   });
 
   it('should set the player to 1 if currently 2', () => {
     let gameState = playerTwoGameState();
-    let result = passTurn(gameState);
-    expect(gameState.current_player_number).toEqual(1);
+    passTurn(gameState);
+    expect(gameState.currentPlayerNumber).toEqual(1);
   });
 });

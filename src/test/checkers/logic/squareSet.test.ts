@@ -67,9 +67,9 @@ describe('findByCoordinate', () => {
 
 describe('selected', () => {
   it('must return only the squares with pieces that are selected', () => {
-    let squareSelected = { id: 1, x: 1, y: 1, marked: false, piece: { id: 1, player_number: 1, king: false, selected: true } }; 
-    let squareUnselected = { id: 2, x: 2, y: 2, marked: false, piece: { id: 2, player_number: 2, king: false, selected: false } }; 
-    let squareEmpty = { id: 2, x: 2, y: 2, marked: false, piece: null }; 
+    let squareSelected = { id: 1, x: 1, y: 1, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: true } };
+    let squareUnselected = { id: 2, x: 2, y: 2, marked: false, piece: { id: 2, playerNumber: 2, king: false, selected: false } };
+    let squareEmpty = { id: 2, x: 2, y: 2, marked: false, piece: null };
     let squares = [
       squareSelected,
       squareUnselected,
@@ -104,9 +104,9 @@ describe('difference', () => {
 
 describe('occupiedByPlayer', () => {
   it('should return squares occupied by the player', () => {
-    let occupiedByPlayerOne = { id: 1, x: 1, y: 1, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
-    let occupiedByPlayerTwo = { id: 2, x: 1, y: 2, marked: false, piece: { id: 1, player_number: 2, king: false, selected: false } }; 
-    let unoccupiedByPlayer = { id: 2, x: 1, y: 2, marked: false, piece: null }; 
+    let occupiedByPlayerOne = { id: 1, x: 1, y: 1, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } };
+    let occupiedByPlayerTwo = { id: 2, x: 1, y: 2, marked: false, piece: { id: 1, playerNumber: 2, king: false, selected: false } };
+    let unoccupiedByPlayer = { id: 2, x: 1, y: 2, marked: false, piece: null };
     let squares = [
       occupiedByPlayerOne,
       occupiedByPlayerTwo,
@@ -143,10 +143,10 @@ describe('squaresAwayFrom', () => {
 describe('inDirectionOf', () => {
   describe('king', () => {
     it('must return squares in all directions', () => {
-      let piece = { id: 1, player_number: 1, king: true, selected: false }; 
-      let origin = { id: 1, x: 4, y: 4, marked: false, piece: piece }; 
-      let forwardDirection = { id: 2, x: 3, y: 3, marked: false, piece: null }; 
-      let backwardDirection = { id: 3, x: 5, y: 5, marked: false, piece: null }; 
+      let piece = { id: 1, playerNumber: 1, king: true, selected: false };
+      let origin = { id: 1, x: 4, y: 4, marked: false, piece: piece };
+      let forwardDirection = { id: 2, x: 3, y: 3, marked: false, piece: null };
+      let backwardDirection = { id: 3, x: 5, y: 5, marked: false, piece: null };
       let squares = [
         origin,
         forwardDirection,
@@ -164,10 +164,10 @@ describe('inDirectionOf', () => {
 
   describe('non-king', () => {
     it('must return squares in forwards direction', () => {
-      let piece = { id: 1, player_number: 1, king: false, selected: false }; 
-      let origin = { id: 1, x: 4, y: 4, marked: false, piece: piece }; 
-      let forwardDirection = { id: 2, x: 3, y: 3, marked: false, piece: null }; 
-      let backwardDirection = { id: 3, x: 5, y: 5, marked: false, piece: null }; 
+      let piece = { id: 1, playerNumber: 1, king: false, selected: false };
+      let origin = { id: 1, x: 4, y: 4, marked: false, piece: piece };
+      let forwardDirection = { id: 2, x: 3, y: 3, marked: false, piece: null };
+      let backwardDirection = { id: 3, x: 5, y: 5, marked: false, piece: null };
       let squares = [
         origin,
         forwardDirection,
@@ -184,7 +184,7 @@ describe('inDirectionOf', () => {
 
 describe('occupied', () => {
   it('must only return occupied squares', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false }; 
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let occupiedSquare = { id: 1, x: 1, y: 1, marked: false, piece: piece };
     let unoccupiedSquare = { id: 2, x: 2, y: 2, marked: false, piece: null };
     let squares = [
@@ -201,7 +201,7 @@ describe('occupied', () => {
 
 describe('unoccupied', () => {
   it('must only return unoccupied squares', () => {
-    let piece = { id: 1, player_number: 1, king: false, selected: false }; 
+    let piece = { id: 1, playerNumber: 1, king: false, selected: false };
     let occupiedSquare = { id: 1, x: 1, y: 1, marked: false, piece: piece };
     let unoccupiedSquare = { id: 2, x: 2, y: 2, marked: false, piece: null };
     let squares = [
@@ -218,9 +218,9 @@ describe('unoccupied', () => {
 
 describe('occupiedByOpponentOf', () => {
   it('must return squares occupied by opponent of player', () => {
-    let playerPiece = { id: 1, player_number: 1, king: false, selected: false }; 
+    let playerPiece = { id: 1, playerNumber: 1, king: false, selected: false };
     let occupiedByPlayerSquare = { id: 1, x: 1, y: 1, marked: false, piece: playerPiece };
-    let opponentPiece = { id: 2, player_number: 2, king: false, selected: false }; 
+    let opponentPiece = { id: 2, playerNumber: 2, king: false, selected: false };
     let occupiedByOpponentSquare = { id: 2, x: 1, y: 1, marked: false, piece: opponentPiece };
     let unoccupiedSquare = { id: 3, x: 2, y: 2, marked: false, piece: null };
     let squares = [
@@ -311,8 +311,8 @@ describe('orthogonalOrDiagonal', () => {
 
 describe('allMovesForPlayer', () => {
   it('must return all squares with possible jumps if there are jumps', () => {
-    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
-    let opponentSquare = { id: 2, x: 2, y: 2, marked: false, piece: { id: 2, player_number: 2, king: false, selected: false } }; 
+    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } }; 
+    let opponentSquare = { id: 2, x: 2, y: 2, marked: false, piece: { id: 2, playerNumber: 2, king: false, selected: false } }; 
     let jumpSquare = { id: 3, x: 1, y: 1, marked: false, piece: null }; 
     let squares = [
       origin,
@@ -327,7 +327,7 @@ describe('allMovesForPlayer', () => {
   });
 
   it('must return all squares with possible moves if there are no jumps', () => {
-    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
+    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } }; 
     let destinationSquare = { id: 2, x: 2, y: 2, marked: false, piece: null }; 
     let squares = [
       origin,
@@ -341,8 +341,8 @@ describe('allMovesForPlayer', () => {
   });
 
   it('must return no moves if there are no moves', () => {
-    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
-    let destinationSquare = { id: 2, x: 2, y: 2, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
+    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } }; 
+    let destinationSquare = { id: 2, x: 2, y: 2, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } }; 
     let squares = [
       origin,
       destinationSquare
@@ -356,9 +356,9 @@ describe('allMovesForPlayer', () => {
 
 describe('allPossibleJumps', () => {
   it('returns all possible jumps', () => {
-    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
-    let opponentSquare = { id: 2, x: 2, y: 2, marked: false, piece: { id: 2, player_number: 2, king: false, selected: false } }; 
-    let jumpSquare = { id: 3, x: 1, y: 1, marked: false, piece: null }; 
+    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } };
+    let opponentSquare = { id: 2, x: 2, y: 2, marked: false, piece: { id: 2, playerNumber: 2, king: false, selected: false } };
+    let jumpSquare = { id: 3, x: 1, y: 1, marked: false, piece: null };
     let playerSquares = [
       origin
     ];
@@ -377,8 +377,8 @@ describe('allPossibleJumps', () => {
 
 describe('allPossibleMoves', () => {
   it('returns all possible moves', () => {
-    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
-    let moveSquare = { id: 2, x: 2, y: 2, marked: false, piece: null }; 
+    let origin = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } };
+    let moveSquare = { id: 2, x: 2, y: 2, marked: false, piece: null };
     let playerSquares = [
       origin
     ];
@@ -396,8 +396,8 @@ describe('allPossibleMoves', () => {
 
 describe('deselectSquares', () => {
   it('must deselect squares', () => {
-    let selectedSquare = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: true } }; 
-    let unselectedSquare = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, player_number: 1, king: false, selected: false } }; 
+    let selectedSquare = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: true } };
+    let unselectedSquare = { id: 1, x: 3, y: 3, marked: false, piece: { id: 1, playerNumber: 1, king: false, selected: false } };
     let squares = [
       selectedSquare,
       unselectedSquare

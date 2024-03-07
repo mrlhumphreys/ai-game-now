@@ -1,6 +1,6 @@
 interface Piece {
   id: number;
-  player_number: number;
+  playerNumber: number;
   king: boolean;
   selected: boolean;
 }

@@ -12,10 +12,11 @@ https://mrlhumphreys.github.io/ai-game-now/
 
 * Checkers
 * Backgammon
+* Chess
 
 ## Environment Variables 
 
-* `AI_SERVICE_URL` - The url of the api service .
+* `PUBLIC_AI_SERVICE_URL` - The url of the api service. Default: http://127.0.0.1:7878
 
 ## How to run in dev
 
@@ -23,4 +24,15 @@ https://mrlhumphreys.github.io/ai-game-now/
   yarn run dev
 ```
 
+## How to run tests
+
+```bash
+  yarn run test 
+```
+
+## How to run typescript checks 
+
+```bash
+  yarn run check 
+```
 

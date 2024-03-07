@@ -29,7 +29,7 @@ export const occupiedByPlayer = function(square: Square, playerNumber: number): 
   if (square.piece === null) {
     return false;
   } else {
-    return square.piece.player_number === playerNumber;
+    return square.piece.playerNumber === playerNumber;
   }
 };
 
@@ -37,7 +37,7 @@ export const occupiedByOpponentOf = function(square: Square, playerNumber: numbe
   if (square.piece === null) {
     return false;
   } else {
-    return square.piece.player_number !== playerNumber;
+    return square.piece.playerNumber !== playerNumber;
   }
 };
 
@@ -49,14 +49,14 @@ export const player = function(square: Square): number | null {
   if (square.piece === null) {
     return null;
   } else {
-    return square.piece.player_number;
+    return square.piece.playerNumber;
   }
 };
 
 export const selectable = function(square: Square, squares: Array<Square>): boolean {
   if (square.piece !== null) {
     // should be all possible jumps
-    let playerSquares = squareSetOccupiedByPlayer(squares, square.piece.player_number);
+    let playerSquares = squareSetOccupiedByPlayer(squares, square.piece.playerNumber);
     let allPossibleJumpSquares = allPossibleJumps(playerSquares, squares);
     if (allPossibleJumpSquares.length > 0) {
       let possibleJumpSquares = possibleJumps(square, square.piece, squares);
@@ -81,7 +81,7 @@ export const possibleJumps = function(square: Square, piece: Piece, squares: Arr
   let diagonalSquares = diagonal(twoSquaresAway, square);
   let inDirection = inDirectionOf(diagonalSquares, piece, square);
   return squareSetUnoccupied(inDirection).filter(function(to) {
-    return squareSetOccupiedByOpponentOf(between(squares, square, to), piece.player_number).length > 0;
+    return squareSetOccupiedByOpponentOf(between(squares, square, to), piece.playerNumber).length > 0;
   });
 };
 

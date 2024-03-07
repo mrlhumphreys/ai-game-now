@@ -167,7 +167,7 @@ describe('isSquareSelected', () => {
 describe('getTouchedSquare', () => {
   it('must return the square matching the touchedSquareId', () => {
     let match = defaultMatch();
-    let expected = { id: 11, x: 2, y: 5, marked: false, piece: { id: 10, king: false, player_number: 1, selected: false }};
+    let expected = { id: 11, x: 2, y: 5, marked: false, piece: { id: 10, king: false, playerNumber: 1, selected: false }};
     expect(getTouchedSquare(match, 11)).toEqual(expected);
   });
 });
@@ -275,7 +275,7 @@ describe('getTos', () => {
 describe('lastLegEnd', () => {
   it('returns false if it can continue to jump', () => {
     let match = firstLegIncompleteMatch();
-    let piece = { id: 6, king: false, player_number: 1, selected: true };
+    let piece = { id: 6, king: false, playerNumber: 1, selected: true };
     let lastSquare = { id: 14, x: 5, y: 4, marked: true, piece: null };
     let toSquares: Array<Square> = [];
     let result = lastLegEnd(match, piece, lastSquare, toSquares);
@@ -284,7 +284,7 @@ describe('lastLegEnd', () => {
 
   it('returns true if it can no longer jump', () => {
     let match = firstLegCompleteMatch();
-    let piece = { id: 6, king: false, player_number: 1, selected: true };
+    let piece = { id: 6, king: false, playerNumber: 1, selected: true };
     let lastSquare = { id: 23, x: 3, y: 2, marked: false, piece: null };
     let toSquares = [ { id: 14, x: 5, y: 4, marked: true, piece: null } ];
     let result = lastLegEnd(match, piece, lastSquare, toSquares);
@@ -294,7 +294,7 @@ describe('lastLegEnd', () => {
 
 describe('getLegs', () => {
   it('joins fromSquare, toSquares and touchedSquare', () => {
-    let fromSquare = { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, player_number: 1, selected: true} };
+    let fromSquare = { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, playerNumber: 1, selected: true} };
     let toSquares = [ { id: 14, x: 5, y: 4, marked: true, piece: null } ];
     let touchedSquare = { id: 23, x: 3, y: 2, marked: false, piece: null };
     let expected = [
@@ -310,7 +310,7 @@ describe('getLegs', () => {
 describe('lastLeg', () => {
   it('must return the last 2 elements of legs', () => {
     let legs = [
-      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, player_number: 1, selected: true} },
+      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, playerNumber: 1, selected: true} },
       { id: 14, x: 5, y: 4, marked: true, piece: null },
       { id: 23, x: 3, y: 2, marked: false, piece: null }
     ];
@@ -326,7 +326,7 @@ describe('lastLeg', () => {
 describe('moveType', () => {
   it('must return true if the distance is 1', () => {
     let leg = [
-      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, player_number: 1, selected: true} },
+      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, playerNumber: 1, selected: true} },
       { id: 11, x: 2, y: 5, marked: false, piece: null }
     ];
     expect(moveType(leg)).toBe(true);
@@ -334,7 +334,7 @@ describe('moveType', () => {
 
   it('must return false if the distinace is 2', () => {
     let leg = [
-      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, player_number: 1, selected: true} },
+      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, playerNumber: 1, selected: true} },
       { id: 14, x: 5, y: 4, marked: true, piece: null }
     ];
     expect(moveType(leg)).toBe(false);
@@ -344,7 +344,7 @@ describe('moveType', () => {
 describe('jumpType', () => {
   it('must return true if the distance is 2', () => {
     let leg = [
-      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, player_number: 1, selected: true} },
+      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, playerNumber: 1, selected: true} },
       { id: 14, x: 5, y: 4, marked: true, piece: null }
     ];
     expect(jumpType(leg)).toBe(true);
@@ -352,7 +352,7 @@ describe('jumpType', () => {
 
   it('must return false if the distance is 1', () => {
     let leg = [
-      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, player_number: 1, selected: true} },
+      { id: 7, x: 3, y: 6, marked: false, piece: { id: 6, king: false, playerNumber: 1, selected: true} },
       { id: 11, x: 2, y: 5, marked: false, piece: null }
     ];
     expect(jumpType(leg)).toBe(false);

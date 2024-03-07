@@ -2,15 +2,15 @@ import type GameState from '$lib/checkers/interfaces/GameState';
 import deepClone from '$lib/utils/deepClone';
 
 let gameState = {
-  player_number: 1,
+  currentPlayerNumber: 1,
   squares: [
-    { id: 1, x: 6, y: 7, piece: { id: 0, king: false, player_number: 1, selected: false} },
+    { id: 1, x: 6, y: 7, piece: { id: 0, king: false, playerNumber: 1, selected: false} },
 
-    { id: 2, x: 4, y: 7, piece: { id: 1, king: false, player_number: 1, selected: false} },
-    { id: 3, x: 2, y: 7, piece: { id: 2, king: false, player_number: 1, selected: false} },
-    { id: 4, x: 0, y: 7, piece: { id: 3, king: false, player_number: 1, selected: false} },
+    { id: 2, x: 4, y: 7, piece: { id: 1, king: false, playerNumber: 1, selected: false} },
+    { id: 3, x: 2, y: 7, piece: { id: 2, king: false, playerNumber: 1, selected: false} },
+    { id: 4, x: 0, y: 7, piece: { id: 3, king: false, playerNumber: 1, selected: false} },
 
-    { id: 5, x: 7, y: 6, piece: { id: 20, king: false, player_number: 2, selected: false} },
+    { id: 5, x: 7, y: 6, piece: { id: 20, king: false, playerNumber: 2, selected: false} },
     { id: 6, x: 5, y: 6, piece: null },
     { id: 7, x: 3, y: 6, piece: null },
     { id: 8, x: 1, y: 6, piece: null },

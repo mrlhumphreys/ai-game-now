@@ -40,7 +40,7 @@ export const filterSquaresByIds = function(gameState: GameState, ids: Array<numb
 };
 
 export const playersTurn = function(gameState: GameState, playerNumber: number): boolean {
-  return (gameState.current_player_number === playerNumber);
+  return (gameState.currentPlayerNumber === playerNumber);
 };
 
 export const selectSquare = function(gameState: GameState, squareId: number): boolean {
@@ -93,7 +93,7 @@ export const movePieces = function(gameState: GameState, fromId: number, toIds: 
     });
 
     // promote
-    if (lastRankForPlayer(last, gameState.current_player_number)) {
+    if (lastRankForPlayer(last, gameState.currentPlayerNumber)) {
       promote(last);
     }
 
@@ -104,10 +104,10 @@ export const movePieces = function(gameState: GameState, fromId: number, toIds: 
 };
 
 export const passTurn = function(gameState: GameState): boolean {
-  if (gameState.current_player_number === 1) {
-    gameState.current_player_number = 2;
+  if (gameState.currentPlayerNumber === 1) {
+    gameState.currentPlayerNumber = 2;
   } else {
-    gameState.current_player_number = 1;
+    gameState.currentPlayerNumber = 1;
   }
   return true;
 };

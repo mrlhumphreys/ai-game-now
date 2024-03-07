@@ -1,7 +1,7 @@
 import type Square from '$lib/checkers/interfaces/Square';
 
 interface GameState {
-  current_player_number: number;
+  currentPlayerNumber: number;
   squares: Array<Square>;
 }
 

@@ -1,7 +1,7 @@
 import type Piece from '$lib/checkers/interfaces/Piece';
 
 export const direction = function(piece: Piece): number {
-  return (piece.player_number === 1 ? -1 : 1); 
+  return (piece.playerNumber === 1 ? -1 : 1);
 };
 
 export const select = function(piece: Piece): boolean {

@@ -78,7 +78,7 @@ const fenToGameState = function(fen: string): GameState | undefined {
       let letter = matches[1];
       if (matches !== null && matches[2] !== undefined) {
         let number = parseInt(matches[2]);
-        let piece = { id: i, player_number: 1, king: (letter === 'K'), selected: false }; 
+        let piece = { id: i, playerNumber: 1, king: (letter === 'K'), selected: false };
         let coordinate = idToCoordinate[number];
         if (coordinate !== undefined) {
           let square = { id: number, x: coordinate.x, y: coordinate.y, marked: false, piece: piece }; 
@@ -100,7 +100,7 @@ const fenToGameState = function(fen: string): GameState | undefined {
       let letter = matches[1];
       if (matches[2] !== undefined) {
         let number = parseInt(matches[2]);
-        let piece = { id: (i + 12), player_number: 2, king: (letter === 'K'), selected: false }; 
+        let piece = { id: (i + 12), playerNumber: 2, king: (letter === 'K'), selected: false }; 
         let coordinate = idToCoordinate[number];
         if (coordinate !== undefined) {
           let square = { id: number, x: coordinate.x, y: coordinate.y, marked: false, piece: piece }; 
@@ -116,7 +116,7 @@ const fenToGameState = function(fen: string): GameState | undefined {
     }
   });
 
-  // find unoccupied squares
+  // TODO: find unoccupied squares
   let occupiedSquareIds = squares.map(function(s) { return s.id; });
   let unoccupiedSquareIds = [];
 
@@ -136,7 +136,7 @@ const fenToGameState = function(fen: string): GameState | undefined {
   }
 
   return {
-    current_player_number: playerNumber,
+    currentPlayerNumber: playerNumber,
     squares: squares.sort(function(a, b) { return a.id - b.id; })
   };
 };

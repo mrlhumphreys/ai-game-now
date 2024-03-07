@@ -12,9 +12,9 @@ import { getMoveResult, winnerMessage } from '$lib/checkers/logic/moveResult';
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;
   if (playerResigned) {
-    return match.players.find(function(p) { return !p.resigned; })?.player_number || null;
+    return match.players.find(function(p) { return !p.resigned; })?.playerNumber || null;
   } else {
-    return gameStateWinner(match.game_state);
+    return gameStateWinner(match.gameState);
   }
 };
 
@@ -25,19 +25,19 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
   switch(result.name) {
     case 'MoveInvalid':
       clearMove(match);
-      deselectSquares(match.game_state);
+      deselectSquares(match.gameState);
       notify(match, result.message);
       break;
     case 'MoveIncomplete':
-      markSquare(match.game_state, touchedSquareId);
+      markSquare(match.gameState, touchedSquareId);
       addToToCurrentMove(match, touchedSquareId);
       notify(match, result.message);
       break;
     case 'MoveComplete':
-      let fromId = match.current_move_from_id;
+      let fromId = match.currentMoveFromId;
       if (fromId !== null) {
-        let toIds = match.current_move_to_ids.concat([touchedSquareId]);
-        move(match.game_state, fromId, toIds);
+        let toIds = match.currentMoveToIds.concat([touchedSquareId]);
+        move(match.gameState, fromId, toIds);
         addMoveToLastAction(match, fromId, toIds);
         clearMove(match);
         if (winner(match)) {
@@ -50,7 +50,7 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
       }
       break;
     case 'MovePossible':
-      selectSquare(match.game_state, touchedSquareId);
+      selectSquare(match.gameState, touchedSquareId);
       addFromToCurrentMove(match, touchedSquareId);
       break;
     default:
@@ -62,23 +62,23 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
 };
 
 export const addFromToCurrentMove = function(match: Match, squareId: number): boolean {
-  match.current_move_from_id = squareId;
+  match.currentMoveFromId = squareId;
   return true;
 };
 
 export const addToToCurrentMove = function(match: Match, squareId: number): boolean {
-  match.current_move_to_ids.push(squareId);
+  match.currentMoveToIds.push(squareId);
   return true;
 };
 
 export const clearMove = function(match: Match): boolean {
-  match.current_move_from_id = null;
-  match.current_move_to_ids = [];
+  match.currentMoveFromId = null;
+  match.currentMoveToIds = [];
   return true;
 };
 
 export const clearLastAction = function(match: Match): boolean {
-  match.last_action = null;
+  match.lastAction = null;
   return true;
 };
 
@@ -88,7 +88,7 @@ export const notify = function(match: Match, message: string): boolean {
 };
 
 export const addMoveToLastAction = function(match: Match, fromId: number | null, toIds: Array<number>): boolean {
-  match.last_action = {
+  match.lastAction = {
     kind: 'move',
     data: {
       fromId: fromId,

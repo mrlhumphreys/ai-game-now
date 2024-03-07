@@ -71,7 +71,6 @@
         setTimeout(func, 1500);
       }
     }, (_) => {
-      console.log(matchState);
       alert("Something went wrong. Please try again later.");
     });
   };
