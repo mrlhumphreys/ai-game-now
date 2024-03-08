@@ -3,7 +3,7 @@ import type Bar from '$lib/backgammon/interfaces/Bar';
 
 export const piecesOwnedByPlayer = function(bar: Bar, playerNumber: number): Array<Piece> {
   return bar.pieces.filter((p) => {
-    return p.player_number === playerNumber;
+    return p.playerNumber === playerNumber;
   });
 };
 
@@ -14,7 +14,7 @@ export const push = function(bar: Bar, piece: Piece): boolean {
 
 export const hasPiecesOwnedByPlayer = function(bar: Bar, playerNumber: number): boolean {
   return bar.pieces.some((p) => {
-    return p.player_number === playerNumber;
+    return p.playerNumber === playerNumber;
   });
 };
 
@@ -34,10 +34,10 @@ export const deselect = function(bar: Bar): boolean {
 
 export const pop = function(bar: Bar, playerNumber: number): Piece | undefined {
   let piece = bar.pieces.find((p) => {
-    return p.player_number === playerNumber;
+    return p.playerNumber === playerNumber;
   });
   let pieceIndex = bar.pieces.findIndex((p) => {
-    return p.player_number === playerNumber;
+    return p.playerNumber === playerNumber;
   });
 
   if (pieceIndex !== -1) {

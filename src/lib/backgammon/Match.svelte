@@ -1,6 +1,8 @@
 <script>
   // bug: when too many pieces on one point, piece is rendered in corner
   // bug: off board: move does not match dice roll (ai)
+  // bug: doubles not rolling
+  // bug: add winner message
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 
@@ -38,7 +40,7 @@
   $: notification = matchState.notification;
   $: passable = matchPassable(matchState, playerNumber);
   $: pieces = collatePieces(matchState);
-  $: dice = matchState.game_state.dice;
+  $: dice = matchState.gameState.dice;
 
   // setup functions
   function randomiseFirstPlayer() {
@@ -78,7 +80,7 @@
     } else {
       let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
       let game = 'backgammon';
-      aiService.postMove(game, matchState.game_state, (moveList) => {
+      aiService.postMove(game, matchState.gameState, (moveList) => {
         if (exists(moveList)) {
           let moveFunc = () => aiMove(moveList);
           setTimeout(moveFunc, 1500);
@@ -131,7 +133,7 @@
     matchTouchPoint(matchState, playerNumber, pointNumber);
     matchState = matchState;
 
-    let lastActionKind = exists(matchState.last_action) && matchState.last_action.kind;
+    let lastActionKind = exists(matchState.lastAction) && matchState.lastAction.kind;
     let winner = matchWinner(matchState);
 
     if (lastActionKind === 'move' && !exists(winner)) {
@@ -156,7 +158,7 @@
   <div class="backgammon_board">
     <div class="pieces">
       {#each pieces as piece (piece.piece.id)}
-        <PieceImage pointNumber={piece.point.number} pieceIndex={piece.pieceIndex} playerNumber={piece.piece.player_number} selected={piece.point.selected} pov={playerNumber} />
+        <PieceImage pointNumber={piece.point.number} pieceIndex={piece.pieceIndex} playerNumber={piece.piece.playerNumber} selected={piece.point.selected} pov={playerNumber} />
       {/each}
     </div>
     <div class="controls">

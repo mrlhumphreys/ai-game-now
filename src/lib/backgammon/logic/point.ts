@@ -16,7 +16,7 @@ export const empty = function(point: Point): boolean {
 export const ownedBy = function(point: Point, playerNumber: number): boolean {
   let piece = point.pieces[0];
   if (piece !== undefined) {
-    return piece.player_number === playerNumber;
+    return piece.playerNumber === playerNumber;
   } else {
     return false;
   }
@@ -25,7 +25,7 @@ export const ownedBy = function(point: Point, playerNumber: number): boolean {
 export const ownedByOpponent = function(point: Point, playerNumber: number): boolean {
   let piece = point.pieces[0];
   if (piece !== undefined) {
-    return piece.player_number !== playerNumber;
+    return piece.playerNumber !== playerNumber;
   } else {
     return false;
   }
@@ -60,7 +60,7 @@ export const distanceFromOffBoard = function(point: Point, playerNumber: number)
 export const getPlayerNumber = function(point: Point): number | null {
   let piece = point.pieces[0];
   if (piece !== undefined) {
-    return piece.player_number;
+    return piece.playerNumber;
   } else {
     return null;
   }

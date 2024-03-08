@@ -34,9 +34,9 @@ export const winner = function(match: Match): boolean {
 };
 
 export const playersTurn = function(match: Match, playerNumber: number): boolean {
-  return gameStatePlayersTurn(match.game_state, playerNumber);
+  return gameStatePlayersTurn(match.gameState, playerNumber);
 };
 
 export const movePhase = function(match: Match): boolean {
-  return gameStateMovePhase(match.game_state); 
+  return gameStateMovePhase(match.gameState);
 };

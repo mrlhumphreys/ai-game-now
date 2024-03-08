@@ -1,6 +1,7 @@
 <script>
-  // clear notification after valid moves?
-  // pawn capture promote doesn't promote
+  // bug: clear notification after valid moves?
+  // bug: pawn capture promote doesn't promote
+  // bug: add winner message
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 
   import exists from '$lib/utils/exists';

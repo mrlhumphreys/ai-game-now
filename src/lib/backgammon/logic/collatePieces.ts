@@ -1,11 +1,9 @@
 import type Match from '$lib/backgammon/interfaces/Match';
 import type Piece from '$lib/backgammon/interfaces/Piece';
 import type Point from '$lib/backgammon/interfaces/Point';
-import type Bar from '$lib/backgammon/interfaces/Bar';
-import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
 
 interface SimplePoint {
-  number: number | 'bar' | 'off_board';
+  number: number | 'bar' | 'offBoard';
   selected: boolean
 }
 
@@ -16,7 +14,7 @@ interface SimplePiece {
 }
 
 const pointPieces = function(matchState: Match): Array<SimplePiece> {
-  return matchState.game_state.points.map((point: Point) => {
+  return matchState.gameState.points.map((point: Point) => {
     return point.pieces.map((piece: Piece, pieceIndex: number): SimplePiece => {
       return {
         piece: piece,
@@ -30,21 +28,21 @@ const pointPieces = function(matchState: Match): Array<SimplePiece> {
 };
 
 const barPieces = function(matchState: Match): Array<SimplePiece> {
-  let barOnePieces = matchState.game_state.bar.pieces.filter((piece: Piece) => {
-    return piece.player_number === 1;
+  let barOnePieces = matchState.gameState.bar.pieces.filter((piece: Piece) => {
+    return piece.playerNumber === 1;
   }).map((piece: Piece, pieceIndex: number): SimplePiece => {
     return {
-      point: { number: 'bar', selected: matchState.game_state.bar.selected },
+      point: { number: 'bar', selected: matchState.gameState.bar.selected },
       piece: piece,
       pieceIndex: pieceIndex
     };
   });
 
-  let barTwoPieces = matchState.game_state.bar.pieces.filter((piece) => {
-    return piece.player_number === 2;
+  let barTwoPieces = matchState.gameState.bar.pieces.filter((piece) => {
+    return piece.playerNumber === 2;
   }).map((piece: Piece, pieceIndex: number): SimplePiece => {
     return {
-      point: { number: 'bar', selected: matchState.game_state.bar.selected },
+      point: { number: 'bar', selected: matchState.gameState.bar.selected },
       piece: piece,
       pieceIndex: pieceIndex
     };
@@ -54,21 +52,21 @@ const barPieces = function(matchState: Match): Array<SimplePiece> {
 };
 
 const offBoardPieces = function(matchState: Match): Array<SimplePiece> {
-  let offBoardOnePieces = matchState.game_state.off_board.pieces.filter((piece: Piece) => {
-    return piece.player_number === 1;
+  let offBoardOnePieces = matchState.gameState.offBoard.pieces.filter((piece: Piece) => {
+    return piece.playerNumber === 1;
   }).map((piece: Piece, pieceIndex: number): SimplePiece => {
     return {
-      point: { number: 'off_board', selected: matchState.game_state.off_board.selected },
+      point: { number: 'offBoard', selected: matchState.gameState.offBoard.selected },
       piece: piece,
       pieceIndex: pieceIndex
     };
   });
 
-  let offBoardTwoPieces = matchState.game_state.off_board.pieces.filter((piece: Piece) => {
-    return piece.player_number === 2;
+  let offBoardTwoPieces = matchState.gameState.offBoard.pieces.filter((piece: Piece) => {
+    return piece.playerNumber === 2;
   }).map((piece: Piece, pieceIndex: number): SimplePiece => {
     return {
-      point: { number: 'off_board', selected: matchState.game_state.off_board.selected },
+      point: { number: 'offBoard', selected: matchState.gameState.offBoard.selected },
       piece: piece,
       pieceIndex: pieceIndex
     };

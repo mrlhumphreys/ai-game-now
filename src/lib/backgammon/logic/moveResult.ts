@@ -5,7 +5,7 @@ import type Move from '$lib/backgammon/interfaces/Move';
 import type Match from '$lib/backgammon/interfaces/Match';
 
 import {
-  piecesOwnedByPlayer 
+  piecesOwnedByPlayer
 } from '$lib/backgammon/logic/offBoard';
 import {
   ownedByOpponent as pointOwnedByOpponent,
@@ -21,7 +21,7 @@ import {
   highestUnused
 } from '$lib/backgammon/logic/diceSet';
 import {
-  backPointForPlayer, 
+  backPointForPlayer,
   somePiecesNotHome,
   destinations
 } from '$lib/backgammon/logic/pointSet';
@@ -62,7 +62,7 @@ export const getMoveResult = function(match: Match, playerNumber: number, touche
 };
 
 export const selectedResult = function(match: Match, playerNumber: number, touchedId: string | number): Result {
-  if (touchedId === 'off_board') {
+  if (touchedId === 'offBoard') {
     if (somePiecesAreNotHome(match, playerNumber)) {
       return { name: 'PiecesNotHome', message: 'Cannot bear off while pieces are not home.' };
     } else if (diceRollMismatch(match, playerNumber, touchedId)) {
@@ -116,11 +116,11 @@ export const winner = function(match: Match): boolean {
 };
 
 export const playersTurn = function(match: Match, playerNumber: number): boolean {
-  return gameStatePlayersTurn(match.game_state, playerNumber);
+  return gameStatePlayersTurn(match.gameState, playerNumber);
 };
 
 export const rollPhase = function(match: Match): boolean {
-  return gameStateRollPhase(match.game_state); 
+  return gameStateRollPhase(match.gameState);
 };
 
 export const pointSelected = function(match: Match): boolean {
@@ -130,10 +130,10 @@ export const pointSelected = function(match: Match): boolean {
 export const dieNumber = function(match: Match, playerNumber: number, touchedId: string | number): number | undefined {
   let pointDistance = distance(match, playerNumber, touchedId);
   if (pointDistance !== undefined) {
-    if (findByNumber(unused(match.game_state.dice), pointDistance)) {
-      return distance(match, playerNumber, touchedId); 
+    if (findByNumber(unused(match.gameState.dice), pointDistance)) {
+      return distance(match, playerNumber, touchedId);
     } else {
-      return highestUnused(match.game_state.dice);
+      return highestUnused(match.gameState.dice);
     }
   } else {
     return undefined;
@@ -145,7 +145,7 @@ export const details = function(match: Match, touchedId: string | number): Move 
   let to = touchedPoint(match, touchedId);
   if (from !== undefined && to !== undefined) {
     let fromId = ("number" in from) ? from.number : 'bar';
-    let toId = ("number" in to) ? to.number : 'off_board';
+    let toId = ("number" in to) ? to.number : 'offBoard';
     return { fromId: fromId, toId: toId };
   } else {
     return undefined;
@@ -154,7 +154,7 @@ export const details = function(match: Match, touchedId: string | number): Move 
 
 // selected off board/point
 export const complete = function(match: Match, touchedId: string | number): boolean {
-  return (selectedPoint(match) !== undefined) && (touchedPoint(match, touchedId) !== undefined) && (numberOfMoves(match) === match.game_state.dice.length);
+  return (selectedPoint(match) !== undefined) && (touchedPoint(match, touchedId) !== undefined) && (numberOfMoves(match) === match.gameState.dice.length);
 };
 
 // selected off board
@@ -167,18 +167,18 @@ export const completeMoveList = function(match: Match, touchedId: string | numbe
   let to = touchedPoint(match, touchedId);
   if (from !== undefined && to !== undefined) {
     let fromId = ("number" in from) ? from.number : 'bar';
-    let toId = ("number" in to) ? to.number : 'off_board';
-    return match.move_list.concat([
+    let toId = ("number" in to) ? to.number : 'offBoard';
+    return match.moveList.concat([
       { fromId: fromId, toId: toId }
     ]);
   } else {
-    return match.move_list;
+    return match.moveList;
   }
 };
 
 // unselected bar
 export const barHasNoPiecesOwnedByPlayer = function(match: Match, playerNumber: number): boolean {
-  return noPiecesOwnedByPlayer(match.game_state.bar, playerNumber);
+  return noPiecesOwnedByPlayer(match.gameState.bar, playerNumber);
 };
 
 // unselected point
@@ -203,8 +203,8 @@ export const touchedOwnedByOpponent = function(match: Match, playerNumber: numbe
 
 // unselected point
 export const barHasPieces = function(match: Match, playerNumber: number): boolean {
-  return match.game_state.bar.pieces.some((p) => {
-    return p.player_number === playerNumber;
+  return match.gameState.bar.pieces.some((p) => {
+    return p.playerNumber === playerNumber;
   });
 };
 
@@ -212,7 +212,7 @@ export const barHasPieces = function(match: Match, playerNumber: number): boolea
 export const noDestinations = function(match: Match, playerNumber: number, touchedId: string | number): boolean {
   let point = touchedPoint(match, touchedId);
   if (point !== undefined) {
-    return destinations(match.game_state.points, point, match.game_state.dice, playerNumber).length === 0;
+    return destinations(match.gameState.points, point, match.gameState.dice, playerNumber).length === 0;
   } else {
     return true;
   }
@@ -220,12 +220,12 @@ export const noDestinations = function(match: Match, playerNumber: number, touch
 
 // unselected point / selected off board
 export const somePiecesAreNotHome = function(match: Match, playerNumber: number): boolean {
-  return somePiecesNotHome(match.game_state.points, playerNumber);
+  return somePiecesNotHome(match.gameState.points, playerNumber);
 };
 
-// unselected point 
+// unselected point
 export const cannotBearOff = function(match: Match, playerNumber: number, touchedId: string | number): boolean {
-  let backPoint = backPointForPlayer(match.game_state.points, playerNumber);
+  let backPoint = backPointForPlayer(match.gameState.points, playerNumber);
   let fromPoint = touchedPoint(match, touchedId);
   if (backPoint !== undefined && fromPoint !== undefined) {
     let backPointNumber = backPoint.number;
@@ -233,9 +233,9 @@ export const cannotBearOff = function(match: Match, playerNumber: number, touche
       let pointDistance = distanceFromOffBoard(fromPoint, playerNumber);
       if (pointDistance !== undefined) {
         if (backPointNumber === touchedId) {
-          return filterGreaterThanOrEqualToNumber(unused(match.game_state.dice), pointDistance).length === 0;
+          return filterGreaterThanOrEqualToNumber(unused(match.gameState.dice), pointDistance).length === 0;
         } else {
-          return filterEqualToNumber(unused(match.game_state.dice), pointDistance).length === 0;
+          return filterEqualToNumber(unused(match.gameState.dice), pointDistance).length === 0;
         }
       } else {
         return true;
@@ -248,9 +248,9 @@ export const cannotBearOff = function(match: Match, playerNumber: number, touche
   }
 };
 
-// selected off board / point 
+// selected off board / point
 export const diceRollMismatch = function(match: Match, playerNumber: number, touchedId: string | number): boolean {
-  return !unused(match.game_state.dice).some((d) => {
+  return !unused(match.gameState.dice).some((d) => {
     let pointDistance = distance(match, playerNumber, touchedId);
     if (d.number !== null && pointDistance !== undefined) {
       if (bearOff(touchedId)) {
@@ -278,8 +278,8 @@ export const toBlocked = function(match: Match, playerNumber: number, touchedId:
 export const wrongDirection = function(match: Match, playerNumber: number, touchedId: string | number): boolean {
   let from = fromInt(match, playerNumber);
   let to = toInt(playerNumber, touchedId);
-  if (from !== undefined && to !== undefined) { 
-    let vectorDistance = to - from; 
+  if (from !== undefined && to !== undefined) {
+    let vectorDistance = to - from;
     switch(playerNumber) {
       case 1:
         return vectorDistance < 0;
@@ -313,7 +313,7 @@ export const fromInt = function(match: Match, playerNumber: number): number | un
         } else {
           return 0;
         }
-      case 2: 
+      case 2:
         if ("number" in point) {
           return point.number;
         } else {
@@ -321,7 +321,7 @@ export const fromInt = function(match: Match, playerNumber: number): number | un
         }
       default:
         return undefined;
-    } 
+    }
   } else {
     return undefined;
   }
@@ -331,13 +331,13 @@ export const toInt = function(playerNumber: number, touchedId: string | number):
   switch(playerNumber) {
     case 1:
       if (typeof touchedId === 'string') {
-        return touchedId === 'off_board' ? 25 : undefined;
+        return touchedId === 'offBoard' ? 25 : undefined;
       } else {
         return touchedId;
       }
     case 2:
       if (typeof touchedId === 'string') {
-        return touchedId === 'off_board' ? 0 : undefined;
+        return touchedId === 'offBoard' ? 0 : undefined;
       } else {
         return touchedId;
       }
@@ -347,21 +347,21 @@ export const toInt = function(playerNumber: number, touchedId: string | number):
 };
 
 export const bearOff = function(touchedId: string | number): boolean {
-  return touchedId === 'off_board';
+  return touchedId === 'offBoard';
 };
 
 export const selectedPoint = function(match: Match): Point | Bar | undefined {
-  return gameStateSelectedPoint(match.game_state);
+  return gameStateSelectedPoint(match.gameState);
 };
 
 export const touchedPoint = function(match: Match, touchedId: string | number): Point | Bar | OffBoard | undefined {
-  return findPoint(match.game_state, touchedId);
+  return findPoint(match.gameState, touchedId);
 };
 
 export const numberOfMoves = function(match: Match): number {
-  return match.move_list.length + 1;
+  return match.moveList.length + 1;
 };
 
 export const numberOfPiecesOnBoard = function(match: Match, playerNumber: number): number {
-  return 15 - piecesOwnedByPlayer(match.game_state.off_board, playerNumber).length;
+  return 15 - piecesOwnedByPlayer(match.gameState.offBoard, playerNumber).length;
 };

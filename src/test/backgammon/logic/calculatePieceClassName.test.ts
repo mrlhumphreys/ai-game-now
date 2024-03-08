@@ -31,28 +31,28 @@ describe('pov 2, player 1, point bar, pieceIndex 1', () => {
 
 describe('pov 1, player 1, point off board, pieceIndex 1', () => {
   it('should return class name', () => {
-     let result = calculatePieceClassName(1, 1, 'off_board', 1);
+     let result = calculatePieceClassName(1, 1, 'offBoard', 1);
      expect(result).toEqual('piece position_off_board_right_top_1');
   });
 });
 
 describe('pov 1, player 1, point off board, pieceIndex 2', () => {
   it('should return class name', () => {
-     let result = calculatePieceClassName(1, 1, 'off_board', 2);
+     let result = calculatePieceClassName(1, 1, 'offBoard', 2);
      expect(result).toEqual('piece position_off_board_right_top_2');
   });
 });
 
 describe('pov 1, player 2, point off board, pieceIndex 1', () => {
   it('should return class name', () => {
-     let result = calculatePieceClassName(1, 2, 'off_board', 1);
+     let result = calculatePieceClassName(1, 2, 'offBoard', 1);
      expect(result).toEqual('piece position_off_board_right_bottom_1');
   });
 });
 
 describe('pov 2, player 1, point off board, pieceIndex 1', () => {
   it('should return class name', () => {
-     let result = calculatePieceClassName(2, 1, 'off_board', 1);
+     let result = calculatePieceClassName(2, 1, 'offBoard', 1);
      expect(result).toEqual('piece position_off_board_left_bottom_1');
   });
 });

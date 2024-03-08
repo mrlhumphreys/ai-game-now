@@ -3,7 +3,7 @@ import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
 
 export const piecesOwnedByPlayer = function(offBoard: OffBoard, playerNumber: number): Array<Piece> {
   return offBoard.pieces.filter((p) => {
-    return p.player_number === playerNumber;
+    return p.playerNumber === playerNumber;
   });
 };
 

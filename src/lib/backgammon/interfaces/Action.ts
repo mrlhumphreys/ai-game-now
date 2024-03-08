@@ -1,7 +1,7 @@
 import type Move from '$lib/backgammon/interfaces/Move';
 
 interface ActionData {
-  move_list: Array<Move>;
+  moveList: Array<Move>;
 }
 
 interface Action {

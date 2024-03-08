@@ -61,7 +61,7 @@ describe('touchDice', () => {
       let match = defaultMatch();
       let playerNumber = 1;
       touchDice(match, playerNumber);
-      match.game_state.dice.forEach((d) => {
+      match.gameState.dice.forEach((d) => {
         expect(d.number).toBeGreaterThanOrEqual(1);
         expect(d.number).toBeLessThanOrEqual(6);
       });
@@ -72,7 +72,7 @@ describe('touchDice', () => {
       let playerNumber = 1;
       let expected = 'move';
       touchDice(match, playerNumber);
-      expect(match.game_state.current_phase).toEqual(expected);
+      expect(match.gameState.currentPhase).toEqual(expected);
     });
 
     it('adds roll to last action', () => {
@@ -80,16 +80,16 @@ describe('touchDice', () => {
       let playerNumber = 1;
       let expected = {
         kind: 'roll',
-        data: null 
+        data: null
       };
       touchDice(match, playerNumber);
-      expect(match.last_action).toEqual(expected);
+      expect(match.lastAction).toEqual(expected);
     });
 
     it('sets the notification to the result message', () => {
       let match = defaultMatch();
       let playerNumber = 1;
-      let expected = 'Dice have been rolled.'; 
+      let expected = 'Dice have been rolled.';
       touchDice(match, playerNumber);
       expect(match.notification).toEqual(expected);
     });
@@ -99,7 +99,7 @@ describe('touchDice', () => {
     it('sets the notification to the result message', () => {
       let match = defaultMatch();
       let playerNumber = 2;
-      let expected = 'It is not your turn.'; 
+      let expected = 'It is not your turn.';
       touchDice(match, playerNumber);
       expect(match.notification).toEqual(expected);
     });
@@ -114,7 +114,7 @@ describe('touchPoint', () => {
       let touchedId = 4;
       touchPoint(match, playerNumber, touchedId);
 
-      let fromPoint = match.game_state.points.find((p) => {
+      let fromPoint = match.gameState.points.find((p) => {
         return p.number === 1;
       });
       if (fromPoint !== undefined) {
@@ -123,7 +123,7 @@ describe('touchPoint', () => {
         expect(fromPoint).not.toBe(undefined);
       }
 
-      let toPoint = match.game_state.points.find((p) => {
+      let toPoint = match.gameState.points.find((p) => {
         return p.number === touchedId;
       });
       if (toPoint !== undefined) {
@@ -142,7 +142,7 @@ describe('touchPoint', () => {
         { id: 1, number: null, used: false }
       ]
       touchPoint(match, playerNumber, touchedId);
-      expect(match.game_state.dice).toEqual(expected);
+      expect(match.gameState.dice).toEqual(expected);
     });
 
     it('steps the phase', () => {
@@ -151,7 +151,7 @@ describe('touchPoint', () => {
       let touchedId = 4;
       let expected = 'roll';
       touchPoint(match, playerNumber, touchedId);
-      expect(match.game_state.current_phase).toEqual(expected);
+      expect(match.gameState.currentPhase).toEqual(expected);
     });
 
     it('passes the turn', () => {
@@ -160,7 +160,7 @@ describe('touchPoint', () => {
       let touchedId = 4;
       let expected = 2;
       touchPoint(match, playerNumber, touchedId);
-      expect(match.game_state.current_player_number).toEqual(expected);
+      expect(match.gameState.currentPlayerNumber).toEqual(expected);
     });
 
     it('adds the move to last action', () => {
@@ -170,14 +170,14 @@ describe('touchPoint', () => {
       let expected = {
         kind: 'move',
         data: {
-          move_list: [
+          moveList: [
             { fromId: 1, toId: 5 },
             { fromId: 1, toId: 4 }
           ]
         }
       };
       touchPoint(match, playerNumber, touchedId);
-      expect(match.last_action).toEqual(expected);
+      expect(match.lastAction).toEqual(expected);
     });
 
     it('clears the move list', () => {
@@ -186,7 +186,7 @@ describe('touchPoint', () => {
       let touchedId = 4;
       let expected: Array<Move> = [];
       touchPoint(match, playerNumber, touchedId);
-      expect(match.move_list).toEqual(expected);
+      expect(match.moveList).toEqual(expected);
     });
 
     it('deselects the point', () => {
@@ -194,7 +194,7 @@ describe('touchPoint', () => {
       let playerNumber = 1;
       let touchedId = 4;
       touchPoint(match, playerNumber, touchedId);
-      let fromPoint = match.game_state.points.find((p) => {
+      let fromPoint = match.gameState.points.find((p) => {
         return p.number === 1;
       });
 
@@ -213,7 +213,7 @@ describe('touchPoint', () => {
       let touchedId = 5;
       touchPoint(match, playerNumber, touchedId);
 
-      let fromPoint = match.game_state.points.find((p) => {
+      let fromPoint = match.gameState.points.find((p) => {
         return p.number === 1;
       });
       if (fromPoint !== undefined) {
@@ -222,7 +222,7 @@ describe('touchPoint', () => {
         expect(fromPoint).not.toBe(undefined);
       }
 
-      let toPoint = match.game_state.points.find((p) => {
+      let toPoint = match.gameState.points.find((p) => {
         return p.number === touchedId;
       });
       if (toPoint !== undefined) {
@@ -241,7 +241,7 @@ describe('touchPoint', () => {
         { id: 1, number: 4, used: true }
       ];
       touchPoint(match, playerNumber, touchedId);
-      expect(match.game_state.dice).toEqual(expected);
+      expect(match.gameState.dice).toEqual(expected);
     });
 
     it('adds the move to the move list', () => {
@@ -252,7 +252,7 @@ describe('touchPoint', () => {
         { fromId: 1, toId: 5 }
       ];
       touchPoint(match, playerNumber, touchedId);
-      expect(match.move_list).toEqual(expected);
+      expect(match.moveList).toEqual(expected);
     });
 
     it('deselects the point', () => {
@@ -261,7 +261,7 @@ describe('touchPoint', () => {
       let touchedId = 5;
       touchPoint(match, playerNumber, touchedId);
 
-      let fromPoint = match.game_state.points.find((p) => {
+      let fromPoint = match.gameState.points.find((p) => {
         return p.number === 1;
       });
       if (fromPoint !== undefined) {
@@ -287,7 +287,7 @@ describe('touchPoint', () => {
       let playerNumber = 1;
       let touchedId = 1;
       touchPoint(match, playerNumber, touchedId);
-      let point = match.game_state.points.find((p) => {
+      let point = match.gameState.points.find((p) => {
         return p.number === touchedId;
       });
 
@@ -314,7 +314,7 @@ describe('touchPoint', () => {
       let playerNumber = 1;
       let touchedId = 5;
       touchPoint(match, playerNumber, touchedId);
-      let point = match.game_state.points.find((p) => {
+      let point = match.gameState.points.find((p) => {
         return p.number === touchedId;
       });
 
@@ -342,25 +342,25 @@ describe('touchPass', () => {
       let match = noMovesMatch();
       let playerNumber = 1;
       touchPass(match, playerNumber);
-      expect(match.game_state.current_player_number).toEqual(2);
+      expect(match.gameState.currentPlayerNumber).toEqual(2);
     });
 
     it('steps the phase', () => {
       let match = noMovesMatch();
       let playerNumber = 1;
       touchPass(match, playerNumber);
-      expect(match.game_state.current_phase).toEqual('roll');
+      expect(match.gameState.currentPhase).toEqual('roll');
     });
 
     it('clears the dice', () => {
       let match = noMovesMatch();
       let playerNumber = 1;
-      let expected = [ 
+      let expected = [
         { id: 0, number: null, used: false },
         { id: 1, number: null, used: false }
       ];
       touchPass(match, playerNumber);
-      expect(match.game_state.dice).toEqual(expected);
+      expect(match.gameState.dice).toEqual(expected);
     });
 
     it('adds the move list to last action', () => {
@@ -369,20 +369,20 @@ describe('touchPass', () => {
       let expected = {
         kind: 'move',
         data: {
-          move_list: [ 
-            { fromId: 24, toId: 'off_board' }
+          moveList: [
+            { fromId: 24, toId: 'offBoard' }
           ]
         }
       };
       touchPass(match, playerNumber);
-      expect(match.last_action).toEqual(expected);
+      expect(match.lastAction).toEqual(expected);
     });
 
     it('clears the move list', () => {
       let match = noMovesMatch();
       let playerNumber = 1;
       touchPass(match, playerNumber);
-      expect(match.move_list).toEqual([]);
+      expect(match.moveList).toEqual([]);
     });
   });
 
@@ -403,7 +403,7 @@ describe('addMoveToList', () => {
     let move = { fromId: 1, toId: 5 };
     addMoveToList(match, move);
     let expected = [ move ];
-    expect(match.move_list).toEqual(expected);
+    expect(match.moveList).toEqual(expected);
   });
 });
 
@@ -411,7 +411,7 @@ describe('clearMoveList', () => {
   it('sets the move list to null', () => {
     let match = moveListIncompleteMatch();
     clearMoveList(match);
-    expect(match.move_list).toEqual([]);
+    expect(match.moveList).toEqual([]);
   });
 });
 
@@ -429,10 +429,10 @@ describe('addRollToLastAction', () => {
     let match = defaultMatch();
     let expected = {
       kind: 'roll',
-      data: null 
+      data: null
     };
     addRollToLastAction(match);
-    expect(match.last_action).toEqual(expected);
+    expect(match.lastAction).toEqual(expected);
   });
 });
 
@@ -446,11 +446,11 @@ describe('addMoveToLastAction', () => {
     let expected = {
       kind: 'move',
       data: {
-        move_list: moveList 
+        moveList: moveList
       }
-    }; 
+    };
     addMoveToLastAction(match, moveList);
-    expect(match.last_action).toEqual(expected);
+    expect(match.lastAction).toEqual(expected);
   });
 });
 
@@ -458,6 +458,6 @@ describe('clearLastAction', () => {
   it('sets the last action to null', () => {
     let match = lastActionMatch();
     clearLastAction(match);
-    expect(match.last_action).toBe(null);
+    expect(match.lastAction).toBe(null);
   });
 });

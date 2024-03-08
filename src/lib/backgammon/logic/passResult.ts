@@ -6,7 +6,7 @@ interface Result {
 }
 
 import {
-  unused 
+  unused
 } from '$lib/backgammon/logic/diceSet';
 import {
   playersTurn as gameStatePlayersTurn ,
@@ -46,17 +46,17 @@ export const winner = function(match: Match): boolean {
 };
 
 export const playersTurn = function(match: Match, playerNumber: number): boolean {
-  return gameStatePlayersTurn(match.game_state, playerNumber);
+  return gameStatePlayersTurn(match.gameState, playerNumber);
 };
 
 export const rollPhase = function(match: Match): boolean {
-  return gameStateRollPhase(match.game_state); 
+  return gameStateRollPhase(match.gameState);
 };
 
 export const movesAvailable = function(match: Match, playerNumber: number): boolean {
-  return !noMovesForPlayer(match.game_state, playerNumber); 
+  return !noMovesForPlayer(match.gameState, playerNumber);
 };
 
 export const allDiceUsed = function(match: Match): boolean {
-  return unused(match.game_state.dice).length === 0;
+  return unused(match.gameState.dice).length === 0;
 }

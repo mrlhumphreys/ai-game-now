@@ -11,7 +11,6 @@ import piecesHomeCannotBearOffMatch from '../fixtures/piecesHomeCannotBearOffMat
 import completeMatch from '../fixtures/completeMatch';
 import firstMoveMatch from '../fixtures/firstMoveMatch';
 import moveUnselectedMatch from '../fixtures/moveUnselectedMatch';
-import bearingOffMatch from '../fixtures/bearingOffMatch';
 import bearingOffDiceEqualMatch from '../fixtures/bearingOffDiceEqualMatch';
 import bearingOffDiceGreaterThanMatch from '../fixtures/bearingOffDiceGreaterThanMatch';
 import bearingOffDiceLessThanMatch from '../fixtures/bearingOffDiceLessThanMatch';
@@ -73,7 +72,7 @@ import {
 describe('getMoveResult', () => {
   describe('when there is a winner', () => {
     it('returns a game over result', () => {
-      let match = winnerMatch(); 
+      let match = winnerMatch();
       let playerNumber = 1;
       let touchedId = 1;
       let result = getMoveResult(match, playerNumber, touchedId);
@@ -84,7 +83,7 @@ describe('getMoveResult', () => {
 
   describe('when it is not players turn', () => {
     it('returns a NotPlayersTurn result', () => {
-      let match = defaultMatch(); 
+      let match = defaultMatch();
       let playerNumber = 2;
       let touchedId = 1;
       let result = getMoveResult(match, playerNumber, touchedId);
@@ -95,7 +94,7 @@ describe('getMoveResult', () => {
 
   describe('when it is roll phase', () => {
     it('returns a RollPhase result', () => {
-      let match = defaultMatch(); 
+      let match = defaultMatch();
       let playerNumber = 1;
       let touchedId = 1;
       let result = getMoveResult(match, playerNumber, touchedId);
@@ -132,7 +131,7 @@ describe('selectedResult', () => {
     it('returns a PiecesNotHome result if some pieces are not home', () => {
       let match = bearingOffPiecesNotHomeMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = selectedResult(match, playerNumber, touchedId);
       let expected = { name: 'PiecesNotHome', message: 'Cannot bear off while pieces are not home.' };
       expect(result).toEqual(expected);
@@ -141,7 +140,7 @@ describe('selectedResult', () => {
     it('returns a DiceMismatch result if the dice do not match the moves', () => {
       let match = bearingOffDiceMismatchMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = selectedResult(match, playerNumber, touchedId);
       let expected = { name: 'DiceMismatch', message: 'That move does not match the die roll.' };
       expect(result).toEqual(expected);
@@ -150,7 +149,7 @@ describe('selectedResult', () => {
     it('returns a MoveComplete result if there are no more moves to be made', () => {
       let match = bearingOffCompleteMoveMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = selectedResult(match, playerNumber, touchedId);
       let expected = { name: 'MoveComplete', message: '' };
       expect(result).toEqual(expected);
@@ -159,7 +158,7 @@ describe('selectedResult', () => {
     it('returns a MoveComplete result if all the pieces are off board', () => {
       let match = bearingOffAllPiecesOffBoardMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = selectedResult(match, playerNumber, touchedId);
       let expected = { name: 'MoveComplete', message: '' };
       expect(result).toEqual(expected);
@@ -168,7 +167,7 @@ describe('selectedResult', () => {
     it('returns a MoveIncomplete result if there are still moves to be made', () => {
       let match = bearingOffIncompleteMoveMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = selectedResult(match, playerNumber, touchedId);
       let expected = { name: 'MoveIncomplete', message: '' };
       expect(result).toEqual(expected);
@@ -397,7 +396,7 @@ describe('details', () => {
 describe('complete', () => {
   it('returns true if selected point and touched point are present and number of moves equals number of dice', () => {
     let match = completeMatch();
-    let touchedId = 'off_board';
+    let touchedId = 'offBoard';
     let result = complete(match, touchedId);
     expect(result).toBe(true);
   });
@@ -443,7 +442,7 @@ describe('allPiecesOffBoard', () => {
 describe('completeMoveList', () => {
   it('returns the move list with the current move', () => {
     let match = moveListIncompleteMatch();
-    let touchedId = 5 
+    let touchedId = 5
     let expected = [
       { fromId: 1, toId: 4 },
       { fromId: 1, toId: 5 }
@@ -454,7 +453,7 @@ describe('completeMoveList', () => {
 
   it('returns the move list with the current move from bar', () => {
     let match = moveListIncompleteFromBarMatch();
-    let touchedId = 4 
+    let touchedId = 4
     let expected = [
       { fromId: 'bar', toId: 3 },
       { fromId: 'bar', toId: 4 }
@@ -465,10 +464,10 @@ describe('completeMoveList', () => {
 
   it('returns the move list with the current move to off board', () => {
     let match = moveListIncompleteToOffBoardMatch();
-    let touchedId = 'off_board' 
+    let touchedId = 'offBoard'
     let expected = [
-      { fromId: 22, toId: 'off_board' },
-      { fromId: 23, toId: 'off_board' }
+      { fromId: 22, toId: 'offBoard' },
+      { fromId: 23, toId: 'offBoard' }
     ];
     let result = completeMoveList(match, touchedId);
     expect(result).toEqual(expected);
@@ -528,12 +527,12 @@ describe('touchedOwnedByOpponent', () => {
 
 describe('barHasPieces', () => {
   it('returns true if it has pieces owned by player', () => {
-    let match = playerOneSelectedBarMatch();     
+    let match = playerOneSelectedBarMatch();
     let playerNumber = 1;
     let result = barHasPieces(match, playerNumber);
     expect(result).toBe(true);
   });
-  
+
   it('returns false if it does not have pieces owned by player', () => {
     let match = defaultMatch();
     let playerNumber = 1;
@@ -567,7 +566,7 @@ describe('somePiecesAreNotHome', () => {
     let result = somePiecesAreNotHome(match, playerNumber);
     expect(result).toBe(true);
   });
-  
+
   it('returns false if all pieces are home', () => {
     let match = bearingOffDiceEqualMatch();
     let playerNumber = 1;
@@ -619,7 +618,7 @@ describe('diceRollMismatch', () => {
     it('returns true if the dice roll is less than the distance', () => {
       let match = bearingOffDiceLessThanMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board'; 
+      let touchedId = 'offBoard';
       let result = diceRollMismatch(match, playerNumber, touchedId);
       expect(result).toBe(true);
     });
@@ -627,7 +626,7 @@ describe('diceRollMismatch', () => {
     it('returns false if the dice roll is equal to the distance', () => {
       let match = bearingOffDiceEqualMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board'; 
+      let touchedId = 'offBoard';
       let result = diceRollMismatch(match, playerNumber, touchedId);
       expect(result).toBe(false);
     });
@@ -635,7 +634,7 @@ describe('diceRollMismatch', () => {
     it('returns false if the dice roll is greater than the distance', () => {
       let match = bearingOffDiceGreaterThanMatch();
       let playerNumber = 1;
-      let touchedId = 'off_board'; 
+      let touchedId = 'offBoard';
       let result = diceRollMismatch(match, playerNumber, touchedId);
       expect(result).toBe(false);
     });
@@ -645,7 +644,7 @@ describe('diceRollMismatch', () => {
     it('returns true if the dice roll is less than the distance', () => {
       let match = playerOneSelectedPointMatch();
       let playerNumber = 1;
-      let touchedId = 8; 
+      let touchedId = 8;
       let result = diceRollMismatch(match, playerNumber, touchedId);
       expect(result).toBe(true);
     });
@@ -653,7 +652,7 @@ describe('diceRollMismatch', () => {
     it('returns false if the dice roll is equal to the distance', () => {
       let match = playerOneSelectedPointMatch();
       let playerNumber = 1;
-      let touchedId = 7; 
+      let touchedId = 7;
       let result = diceRollMismatch(match, playerNumber, touchedId);
       expect(result).toBe(false);
     });
@@ -661,7 +660,7 @@ describe('diceRollMismatch', () => {
     it('returns true if the dice roll is greater than the distance', () => {
       let match = playerOneSelectedPointMatch();
       let playerNumber = 1;
-      let touchedId = 5; 
+      let touchedId = 5;
       let result = diceRollMismatch(match, playerNumber, touchedId);
       expect(result).toBe(true);
     });
@@ -672,7 +671,7 @@ describe('toBlocked', () => {
   it('returns true if owned by opponent and blocked', () => {
     let match = playerOneSelectedPointMatch();
     let playerNumber = 1;
-    let touchedId = 6; 
+    let touchedId = 6;
     let result = toBlocked(match, playerNumber, touchedId);
     expect(result).toBe(true);
   });
@@ -680,7 +679,7 @@ describe('toBlocked', () => {
   it('returns false if owned by opponent and not blocked', () => {
     let match = playerOneSelectedPointMatch();
     let playerNumber = 1;
-    let touchedId = 7; 
+    let touchedId = 7;
     let result = toBlocked(match, playerNumber, touchedId);
     expect(result).toBe(false);
   });
@@ -688,7 +687,7 @@ describe('toBlocked', () => {
   it('returns false if owned by player and blocked', () => {
     let match = playerOneSelectedPointMatch();
     let playerNumber = 1;
-    let touchedId = 12; 
+    let touchedId = 12;
     let result = toBlocked(match, playerNumber, touchedId);
     expect(result).toBe(false);
   });
@@ -696,7 +695,7 @@ describe('toBlocked', () => {
   it('returns false if owned by player and not blocked', () => {
     let match = playerOneSelectedPointMatch();
     let playerNumber = 1;
-    let touchedId = 9; 
+    let touchedId = 9;
     let result = toBlocked(match, playerNumber, touchedId);
     expect(result).toBe(false);
   });
@@ -706,7 +705,7 @@ describe('wrongDirection', () => {
   it('returns true if from is invalid', () => {
     let match = defaultMatch();
     let playerNumber = 1;
-    let touchedId = 1; 
+    let touchedId = 1;
     let result = wrongDirection(match, playerNumber, touchedId);
     expect(result).toBe(true);
   });
@@ -715,7 +714,7 @@ describe('wrongDirection', () => {
     it('returns true if from is bigger than or equal to to', () => {
       let match = playerOneSelectedPointMatch();
       let playerNumber = 1;
-      let touchedId = 1; 
+      let touchedId = 1;
       let result = wrongDirection(match, playerNumber, touchedId);
       expect(result).toBe(true);
     });
@@ -723,7 +722,7 @@ describe('wrongDirection', () => {
     it('returns false if from is smaller than to', () => {
       let match = playerOneSelectedPointMatch();
       let playerNumber = 1;
-      let touchedId = 6; 
+      let touchedId = 6;
       let result = wrongDirection(match, playerNumber, touchedId);
       expect(result).toBe(false);
     });
@@ -733,7 +732,7 @@ describe('wrongDirection', () => {
     it('returns true if from is smaller than or equal to to', () => {
       let match = playerTwoSelectedPointMatch();
       let playerNumber = 2;
-      let touchedId = 24; 
+      let touchedId = 24;
       let result = wrongDirection(match, playerNumber, touchedId);
       expect(result).toBe(true);
     });
@@ -741,7 +740,7 @@ describe('wrongDirection', () => {
     it('returns false if from is bigger than to', () => {
       let match = playerTwoSelectedPointMatch();
       let playerNumber = 2;
-      let touchedId = 19; 
+      let touchedId = 19;
       let result = wrongDirection(match, playerNumber, touchedId);
       expect(result).toBe(false);
     });
@@ -751,7 +750,7 @@ describe('wrongDirection', () => {
     it('returns true', () => {
       let match = playerOneSelectedPointMatch();
       let playerNumber = 3;
-      let touchedId = 1; 
+      let touchedId = 1;
       let result = wrongDirection(match, playerNumber, touchedId);
       expect(result).toBe(true);
     });
@@ -829,7 +828,7 @@ describe('fromInt', () => {
 
 describe('bearOff', () => {
   it('returns true if off board', () => {
-    expect(bearOff('off_board')).toBe(true);
+    expect(bearOff('offBoard')).toBe(true);
   });
 
   it('returns false if bar', () => {
@@ -848,10 +847,10 @@ describe('selectedPoint', () => {
     let expected = {
       number: 3,
       pieces: [
-        {id: 1, player_number: 1},
-        {id: 2, player_number: 1},
+        {id: 1, playerNumber: 1},
+        {id: 2, playerNumber: 1},
       ],
-      selected: true 
+      selected: true
     };
     expect(result).toEqual(expected);
   });
@@ -860,8 +859,8 @@ describe('selectedPoint', () => {
     let match = playerOneSelectedBarMatch();
     let result = selectedPoint(match);
     let expected = {
-      pieces: [{id: 1, player_number: 1}],
-      selected: true 
+      pieces: [{id: 1, playerNumber: 1}],
+      selected: true
     };
     expect(result).toEqual(expected);
   });
@@ -883,7 +882,7 @@ describe('touchedPoint', () => {
 
   it('returns off board if off board specified', () => {
     let match = defaultMatch();
-    let result = touchedPoint(match, 'off_board');
+    let result = touchedPoint(match, 'offBoard');
     let expected = { pieces: [], selected: false };
     expect(result).toEqual(expected);
   });
@@ -906,7 +905,7 @@ describe('toInt', () => {
   describe('when player 1', () => {
     it('returns 25 if off board', () => {
       let playerNumber = 1;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = toInt(playerNumber, touchedId);
       expect(result).toEqual(25);
     });
@@ -922,7 +921,7 @@ describe('toInt', () => {
   describe('when player 2', () => {
     it('returns 0 if off board', () => {
       let playerNumber = 2;
-      let touchedId = 'off_board';
+      let touchedId = 'offBoard';
       let result = toInt(playerNumber, touchedId);
       expect(result).toEqual(0);
     });
@@ -948,7 +947,7 @@ describe('toInt', () => {
 describe('numberOfMoves', () => {
   it('returns 1 + the nubmer of moves in the movelist', () => {
     let gameState = moveListIncompleteMatch();
-    let result = numberOfMoves(gameState); 
+    let result = numberOfMoves(gameState);
     expect(result).toEqual(2);
   });
 });

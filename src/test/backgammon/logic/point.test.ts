@@ -17,24 +17,24 @@ import {
 
 describe('blocked', () => {
   it('must return true if the number of pieces is 2 or more', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 }, { id: 2, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 }, { id: 2, playerNumber: 1 } ], selected: false };
     expect(blocked(point)).toBe(true);
   });
 
   it('must return false if the number of pieces is 1 or less', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(blocked(point)).toBe(false);
   });
 });
 
 describe('blot', () => {
   it('must return true if the number of pieces is 1', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(blot(point)).toBe(true);  
   });
 
   it('must return false if the number of pieces is not 1', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 }, { id: 2, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 }, { id: 2, playerNumber: 1 } ], selected: false };
     expect(blot(point)).toBe(false);  
   });
 });
@@ -46,19 +46,19 @@ describe('empty', () => {
   });
 
   it('must return false if the number of pieces is not 0', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(empty(point)).toBe(false);  
   });
 });
 
 describe('ownedBy', () => {
   it('must return true if a piece is owned by the player', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(ownedBy(point, 1)).toBe(true);  
   });
 
   it('must return false if a piece is owned by the opponent', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(ownedBy(point, 2)).toBe(false);  
   });
 
@@ -70,12 +70,12 @@ describe('ownedBy', () => {
 
 describe('ownedByOpponent', () => {
   it('must return true if a piece is owned by the opponent', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(ownedByOpponent(point, 2)).toBe(true);  
   });
 
   it('must return false if a piece is not owned by the opponent', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(ownedByOpponent(point, 1)).toBe(false);  
   });
 
@@ -87,22 +87,22 @@ describe('ownedByOpponent', () => {
 
 describe('enemyBlot', () => {
   it('must return true if it is a blot owned by the opponent', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 2 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 2 } ], selected: false };
     expect(enemyBlot(point, 1)).toBe(true);  
   });
 
   it('must return false if it is not a blot owned by the opponent', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 2 }, { id: 1, player_number: 2 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 2 }, { id: 1, playerNumber: 2 } ], selected: false };
     expect(enemyBlot(point, 1)).toBe(false);  
   });
 
   it('must return false if it is a blot owned by the player', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(enemyBlot(point, 1)).toBe(false);  
   });
 
   it('must return false if it is not a blot owned by the player', () => {
-    let point = { number: 1, pieces: [ { id: 1, player_number: 1 }, { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 1, pieces: [ { id: 1, playerNumber: 1 }, { id: 1, playerNumber: 1 } ], selected: false };
     expect(enemyBlot(point, 1)).toBe(false);  
   });
 });
@@ -149,7 +149,7 @@ describe('distanceFromOffBoard', () => {
 
 describe('getPlayerNumber', () => {
   it('must return a pieces player number if it has pieces', () => {
-    let point = { number: 10, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+    let point = { number: 10, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
     expect(getPlayerNumber(point)).toEqual(1);
   });
 
@@ -177,10 +177,10 @@ describe('deselect', () => {
 
 describe('pop', () => {
   it('removes a piece and returns it if there are pieces', () => {
-    let point = { number: 10, pieces: [ { id: 1, player_number: 1 } ], selected: true };
+    let point = { number: 10, pieces: [ { id: 1, playerNumber: 1 } ], selected: true };
     let poppedPiece = pop(point);
     expect(point.pieces).toEqual([]);
-    expect(poppedPiece).toEqual({ id: 1, player_number: 1 });
+    expect(poppedPiece).toEqual({ id: 1, playerNumber: 1 });
   });
 
   it('returns undefined if there are no pieces', () => {
@@ -194,7 +194,7 @@ describe('pop', () => {
 describe('push', () => {
   it('adds a piece', () => {
     let point = { number: 10, pieces: [ ], selected: true };
-    let piece = { id: 1, player_number: 1 };
+    let piece = { id: 1, playerNumber: 1 };
     push(point, piece);
     expect(point.pieces).toEqual([piece]);
   });

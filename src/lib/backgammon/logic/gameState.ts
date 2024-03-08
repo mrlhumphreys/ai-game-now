@@ -52,8 +52,8 @@ export const findPoint = function(gameState: GameState, id: String | number): Po
   switch(id) {
     case 'bar':
       return gameState.bar;
-    case 'off_board':
-      return gameState.off_board;
+    case 'offBoard':
+      return gameState.offBoard;
     default:
       if (typeof id === 'number') {
         return findByNumber(gameState.points, id);
@@ -77,25 +77,25 @@ export const noMovesForPlayer = function(gameState: GameState, playerNumber: num
 };
 
 export const allPiecesOffBoard = function(gameState: GameState): boolean {
-  return piecesOwnedByPlayer(gameState.off_board, gameState.current_player_number).length === 15;
+  return piecesOwnedByPlayer(gameState.offBoard, gameState.currentPlayerNumber).length === 15;
 };
 
 export const playersTurn = function(gameState: GameState, playerNumber: number): boolean {
-  return gameState.current_player_number === playerNumber;
+  return gameState.currentPlayerNumber === playerNumber;
 };
 
 export const rollPhase = function(gameState: GameState): boolean {
-  return gameState.current_phase === 'roll';
+  return gameState.currentPhase === 'roll';
 };
 
 export const movePhase = function(gameState: GameState): boolean {
-  return gameState.current_phase === 'move';
+  return gameState.currentPhase === 'move';
 };
 
 export const winner = function(gameState: GameState): number | null {
-  if (hasAllOfPlayersPieces(gameState.off_board, 1)) {
+  if (hasAllOfPlayersPieces(gameState.offBoard, 1)) {
     return 1;
-  } else if (hasAllOfPlayersPieces(gameState.off_board, 2)) {
+  } else if (hasAllOfPlayersPieces(gameState.offBoard, 2)) {
     return 2;
   } else {
     return null;
@@ -164,7 +164,7 @@ export const move = function(gameState: GameState, fromId: string | number, toId
 };
 
 export const roll = function(gameState: GameState): boolean {
-  diceRoll(gameState.dice, !gameState.first_turn);
+  diceRoll(gameState.dice, !gameState.firstTurn);
   return true;
 };
 
@@ -178,19 +178,19 @@ export const useDie = function(gameState: GameState, number: number): boolean {
 };
 
 export const passTurn = function(gameState: GameState): boolean {
-  if (gameState.current_player_number === 1) {
-    gameState.current_player_number = 2;
+  if (gameState.currentPlayerNumber === 1) {
+    gameState.currentPlayerNumber = 2;
   } else {
-    gameState.current_player_number = 1;
+    gameState.currentPlayerNumber = 1;
   }
   return true;
 };
 
 export const stepPhase = function(gameState: GameState): boolean {
-  if (gameState.current_phase === 'roll') {
-    gameState.current_phase = 'move';
+  if (gameState.currentPhase === 'roll') {
+    gameState.currentPhase = 'move';
   } else {
-    gameState.current_phase = 'roll';
+    gameState.currentPhase = 'roll';
   }
   return true;
 };

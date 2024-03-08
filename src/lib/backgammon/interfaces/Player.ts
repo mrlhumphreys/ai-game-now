@@ -1,5 +1,5 @@
 interface Player {
-  player_number: number;
+  playerNumber: number;
   name: string;
   resigned: boolean;
 }

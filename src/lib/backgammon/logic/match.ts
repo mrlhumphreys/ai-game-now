@@ -1,7 +1,7 @@
 import type Move from '$lib/backgammon/interfaces/Move';
 import type Match from '$lib/backgammon/interfaces/Match';
 
-import { 
+import {
   winner as gameStateWinner,
   selectedPoint,
   roll,
@@ -13,13 +13,13 @@ import {
   stepPhase,
   clearDice
 } from '$lib/backgammon/logic/gameState';
-import { 
+import {
   getRollResult,
 } from '$lib/backgammon/logic/rollResult';
-import { 
+import {
   getPassResult,
 } from '$lib/backgammon/logic/passResult';
-import { 
+import {
   getMoveResult,
   dieNumber,
   completeMoveList,
@@ -29,9 +29,9 @@ import {
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;
   if (playerResigned) {
-    return match.players.find(function(p) { return !p.resigned; })?.player_number || null;
+    return match.players.find(function(p) { return !p.resigned; })?.playerNumber || null;
   } else {
-    return gameStateWinner(match.game_state);
+    return gameStateWinner(match.gameState);
   }
 };
 
@@ -47,8 +47,8 @@ export const touchDice = function(match: Match, playerNumber: number): boolean {
 
   switch(result.name) {
     case 'RollValid':
-      roll(match.game_state);
-      stepPhase(match.game_state);
+      roll(match.gameState);
+      stepPhase(match.gameState);
       addRollToLastAction(match);
       notify(match, result.message);
       return true;
@@ -63,24 +63,24 @@ export const touchPoint = function(match: Match, playerNumber: number, touchedId
 
   let result = getMoveResult(match, playerNumber, touchedId);
 
-  let fromPoint = selectedPoint(match.game_state);
+  let fromPoint = selectedPoint(match.gameState);
   let number = dieNumber(match, playerNumber, touchedId);
 
   switch(result.name) {
     case 'MoveComplete':
       if (fromPoint !== undefined && number !== undefined) {
         if ("number" in fromPoint) {
-          move(match.game_state, fromPoint.number, touchedId, playerNumber);
+          move(match.gameState, fromPoint.number, touchedId, playerNumber);
         } else {
-          move(match.game_state, 'bar', touchedId, playerNumber);
+          move(match.gameState, 'bar', touchedId, playerNumber);
         }
-        // useDie(match.game_state, number); will be cleared
-        clearDice(match.game_state);
-        stepPhase(match.game_state);
-        passTurn(match.game_state);
+        // useDie(match.gameState, number); will be cleared
+        clearDice(match.gameState);
+        stepPhase(match.gameState);
+        passTurn(match.gameState);
         addMoveToLastAction(match, completeMoveList(match, touchedId));
         clearMoveList(match);
-        deselect(match.game_state);
+        deselect(match.gameState);
         return true;
       } else {
         return false;
@@ -89,24 +89,24 @@ export const touchPoint = function(match: Match, playerNumber: number, touchedId
       let moveDetails = details(match, touchedId)
       if (fromPoint !== undefined && number !== undefined && moveDetails !== undefined) {
         if ("number" in fromPoint) {
-          move(match.game_state, fromPoint.number, touchedId, playerNumber);
+          move(match.gameState, fromPoint.number, touchedId, playerNumber);
         } else {
-          move(match.game_state, 'bar', touchedId, playerNumber);
+          move(match.gameState, 'bar', touchedId, playerNumber);
         }
-        useDie(match.game_state, number);
+        useDie(match.gameState, number);
         addMoveToList(match, moveDetails);
-        deselect(match.game_state);
+        deselect(match.gameState);
         notify(match, result.message);
         return false;
       } else {
         return false;
       }
     case 'MovePossible':
-      select(match.game_state, touchedId);
+      select(match.gameState, touchedId);
       notify(match, result.message);
       return false;
     default:
-      deselect(match.game_state);
+      deselect(match.gameState);
       notify(match, result.message);
       return false;
   }
@@ -116,10 +116,10 @@ export const touchPass = function(match: Match, playerNumber: number): boolean {
   let result = getPassResult(match, playerNumber);
   switch(result.name) {
     case 'PassValid':
-      passTurn(match.game_state); 
-      stepPhase(match.game_state);
-      clearDice(match.game_state);
-      addMoveToLastAction(match, match.move_list);
+      passTurn(match.gameState);
+      stepPhase(match.gameState);
+      clearDice(match.gameState);
+      addMoveToLastAction(match, match.moveList);
       clearMoveList(match);
       return true;
     default:
@@ -129,12 +129,12 @@ export const touchPass = function(match: Match, playerNumber: number): boolean {
 };
 
 export const addMoveToList = function(match: Match, move: Move): boolean {
-  match.move_list.push(move);
+  match.moveList.push(move);
   return true;
 };
 
 export const clearMoveList = function(match: Match): boolean {
-  match.move_list = []; 
+  match.moveList = [];
   return true;
 };
 
@@ -144,24 +144,24 @@ export const notify = function(match: Match, message: string): boolean {
 };
 
 export const addRollToLastAction = function(match: Match): boolean {
-  match.last_action = {
+  match.lastAction = {
     kind: 'roll',
-    data: null 
+    data: null
   };
   return true;
 };
 
 export const addMoveToLastAction = function(match: Match, moveList: Array<Move>): boolean {
-  match.last_action = {
+  match.lastAction = {
     kind: 'move',
     data: {
-      move_list: moveList
+      moveList: moveList
     }
   };
   return true;
 };
 
 export const clearLastAction = function(match: Match): boolean {
-  match.last_action = null;
+  match.lastAction = null;
   return true;
 };

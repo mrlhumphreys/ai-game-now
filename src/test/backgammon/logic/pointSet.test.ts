@@ -47,11 +47,11 @@ describe('ownedByPlayer', () => {
   it('must return points owned by player', () => {
     let points = [
       { number: 1, pieces: [], selected: false },
-      { number: 2, pieces: [ { id: 1, player_number: 1 } ], selected: false },
-      { number: 3, pieces: [ { id: 2, player_number: 2 } ], selected: false }
+      { number: 2, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
+      { number: 3, pieces: [ { id: 2, playerNumber: 2 } ], selected: false }
     ];
     let result = ownedByPlayer(points, 1);
-    let expected = [ { number: 2, pieces: [ { id: 1, player_number: 1 } ], selected: false } ];
+    let expected = [ { number: 2, pieces: [ { id: 1, playerNumber: 1 } ], selected: false } ];
     expect(result).toEqual(expected);
   });
 });
@@ -60,15 +60,15 @@ describe('backPointForPlayer', () => {
   describe('when player 1', () => {
     it('must return the first point owned by player', () => {
       let points = [
-        { number: 1, pieces: [ { id: 2, player_number: 2 } ], selected: false },
-        { number: 2, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+        { number: 1, pieces: [ { id: 2, playerNumber: 2 } ], selected: false },
+        { number: 2, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
         { number: 3, pieces: [ ], selected: false },
         { number: 22, pieces: [ ], selected: false },
-        { number: 23, pieces: [ { id: 3, player_number: 1 } ], selected: false },
+        { number: 23, pieces: [ { id: 3, playerNumber: 1 } ], selected: false },
         { number: 24, pieces: [ ], selected: false }
       ];
       let result = backPointForPlayer(points, 1);
-      let expected = { number: 2, pieces: [ { id: 1, player_number: 1 } ], selected: false };
+      let expected = { number: 2, pieces: [ { id: 1, playerNumber: 1 } ], selected: false };
       expect(result).toEqual(expected);
     });
   });
@@ -76,15 +76,15 @@ describe('backPointForPlayer', () => {
   describe('when player 2', () => {
     it('must return the last point owned by player', () => {
       let points = [
-        { number: 1, pieces: [ { id: 2, player_number: 2 } ], selected: false },
-        { number: 2, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+        { number: 1, pieces: [ { id: 2, playerNumber: 2 } ], selected: false },
+        { number: 2, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
         { number: 3, pieces: [ ], selected: false },
-        { number: 22, pieces: [ { id: 4, player_number: 2 } ], selected: false },
-        { number: 23, pieces: [ { id: 3, player_number: 1 } ], selected: false },
+        { number: 22, pieces: [ { id: 4, playerNumber: 2 } ], selected: false },
+        { number: 23, pieces: [ { id: 3, playerNumber: 1 } ], selected: false },
         { number: 24, pieces: [ ], selected: false }
       ];
       let result = backPointForPlayer(points, 2);
-      let expected = { number: 22, pieces: [ { id: 4, player_number: 2 } ], selected: false };
+      let expected = { number: 22, pieces: [ { id: 4, playerNumber: 2 } ], selected: false };
       expect(result).toEqual(expected);
     });
   });
@@ -92,11 +92,11 @@ describe('backPointForPlayer', () => {
   describe('default', () => {
     it('must return undefined', () => {
       let points = [
-        { number: 1, pieces: [ { id: 2, player_number: 2 } ], selected: false },
-        { number: 2, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+        { number: 1, pieces: [ { id: 2, playerNumber: 2 } ], selected: false },
+        { number: 2, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
         { number: 3, pieces: [ ], selected: false },
-        { number: 22, pieces: [ { id: 4, player_number: 2 } ], selected: false },
-        { number: 23, pieces: [ { id: 3, player_number: 1 } ], selected: false },
+        { number: 22, pieces: [ { id: 4, playerNumber: 2 } ], selected: false },
+        { number: 23, pieces: [ { id: 3, playerNumber: 1 } ], selected: false },
         { number: 24, pieces: [ ], selected: false }
       ];
       let result = backPointForPlayer(points, 3);
@@ -110,7 +110,7 @@ describe('somePiecesNotHome', () => {
     let points = [
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
-      { number: 3, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+      { number: 3, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
       { number: 22, pieces: [ ], selected: false },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
@@ -124,7 +124,7 @@ describe('somePiecesNotHome', () => {
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];
@@ -137,9 +137,9 @@ describe('cannotBearOff', () => {
   it('must return true if dice cannot be used to bear off', () => {
     let points = [
       { number: 1, pieces: [ ], selected: false },
-      { number: 2, pieces: [ { id: 2, player_number: 1 } ], selected: false },
+      { number: 2, pieces: [ { id: 2, playerNumber: 1 } ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];
@@ -156,7 +156,7 @@ describe('cannotBearOff', () => {
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];
@@ -175,12 +175,12 @@ describe('selected', () => {
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: true },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: true },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];
     let result = selected(points);
-    let expected = { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: true };
+    let expected = { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: true };
     expect(result).toEqual(expected);
   });
 
@@ -189,7 +189,7 @@ describe('selected', () => {
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];
@@ -321,7 +321,7 @@ describe('select', () => {
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: false },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: false },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];
@@ -344,7 +344,7 @@ describe('deselect', () => {
       { number: 1, pieces: [ ], selected: false },
       { number: 2, pieces: [ ], selected: false },
       { number: 3, pieces: [ ], selected: false },
-      { number: 22, pieces: [ { id: 1, player_number: 1 } ], selected: true },
+      { number: 22, pieces: [ { id: 1, playerNumber: 1 } ], selected: true },
       { number: 23, pieces: [ ], selected: false },
       { number: 24, pieces: [ ], selected: false }
     ];

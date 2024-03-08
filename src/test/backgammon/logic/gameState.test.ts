@@ -40,14 +40,14 @@ describe('selectedPoint', () => {
   it('returns the selected point if a point is selected', () => {
     let gameState = selectedPointGameState();
     let result = selectedPoint(gameState);
-    let expected = { number: 1, pieces: [{id: 1, player_number: 1}, {id: 2, player_number: 1}], selected: true };
+    let expected = { number: 1, pieces: [{id: 1, playerNumber: 1}, {id: 2, playerNumber: 1}], selected: true };
     expect(result).toEqual(expected);
   });
 
   it('returns the selected bar if the bar is selected', () => {
     let gameState = selectedBarGameState();
     let result = selectedPoint(gameState);
-    let expected = { pieces: [ {id: 1, player_number: 1}, { id: 3, player_number: 2 } ], selected: true };
+    let expected = { pieces: [ {id: 1, playerNumber: 1}, { id: 3, playerNumber: 2 } ], selected: true };
     expect(result).toEqual(expected);
   });
 
@@ -68,7 +68,7 @@ describe('findPoint', () => {
 
   it('returns off board if off board specified', () => {
     let gameState = defaultGameState();
-    let result = findPoint(gameState, 'off_board');
+    let result = findPoint(gameState, 'offBoard');
     let expected = { pieces: [], selected: false };
     expect(result).toEqual(expected);
   });
@@ -76,7 +76,7 @@ describe('findPoint', () => {
   it('returns the point if number', () => {
     let gameState = defaultGameState();
     let result = findPoint(gameState, 1);
-    let expected = { number: 1, pieces: [{id: 1, player_number: 1}, {id: 2, player_number: 1}], selected: false };
+    let expected = { number: 1, pieces: [{id: 1, playerNumber: 1}, {id: 2, playerNumber: 1}], selected: false };
     expect(result).toEqual(expected);
   });
 
@@ -351,7 +351,7 @@ describe('move', () => {
       if (toPoint !== undefined) {
         expect(toPoint.pieces.length).toEqual(1);   
         toPoint.pieces.forEach((p) => {
-          expect(p.player_number).toEqual(playerNumber);
+          expect(p.playerNumber).toEqual(playerNumber);
         });
       } else {
         expect(toPoint).not.toBe(undefined);
@@ -417,13 +417,13 @@ describe('passTurn', () => {
   it('sets the player number to 1 if the number is 2', () => {
     let gameState = defaultGameState();
     passTurn(gameState);    
-    expect(gameState.current_player_number).toEqual(2);
+    expect(gameState.currentPlayerNumber).toEqual(2);
   });
 
   it('sets the player number to 2 if the number is 1', () => {
     let gameState = playerTwoGameState();
     passTurn(gameState);    
-    expect(gameState.current_player_number).toEqual(1);
+    expect(gameState.currentPlayerNumber).toEqual(1);
   });
 });
 
@@ -431,13 +431,13 @@ describe('stepPhase', () => {
   it('sets the phase to move if the phase is roll', () => {
     let gameState = defaultGameState(); 
     stepPhase(gameState);
-    expect(gameState.current_phase).toEqual('move');
+    expect(gameState.currentPhase).toEqual('move');
   });
 
   it('sets the phase to roll if the phase is move', () => {
     let gameState = moveGameState();
     stepPhase(gameState);
-    expect(gameState.current_phase).toEqual('roll');
+    expect(gameState.currentPhase).toEqual('roll');
   });
 });
 

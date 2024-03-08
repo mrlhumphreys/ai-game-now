@@ -6,8 +6,8 @@ import type GameState from '$lib/backgammon/interfaces/GameState';
 import exists from '$lib/utils/exists';
 
 const pointToString = function(point: Point | Bar | OffBoard): string {
-  let playerOnePiecesCount = point.pieces.filter(function(p) { return p.player_number === 1; }).length.toString(16);
-  let playerTwoPiecesCount = point.pieces.filter(function(p) { return p.player_number === 2; }).length.toString(16);
+  let playerOnePiecesCount = point.pieces.filter(function(p) { return p.playerNumber === 1; }).length.toString(16);
+  let playerTwoPiecesCount = point.pieces.filter(function(p) { return p.playerNumber === 2; }).length.toString(16);
   return `${playerOnePiecesCount}${playerTwoPiecesCount}`;
 };
 
@@ -30,9 +30,9 @@ const diceToString = function(dice: Array<Die>): string {
 const backgammonStateSerializer = function(state: GameState): string {
   let bar = pointToString(state.bar);
   let points = pointsToString(state.points);
-  let offBoard = pointToString(state.off_board);
+  let offBoard = pointToString(state.offBoard);
   let dice = diceToString(state.dice);
-  let player = state.current_player_number;
+  let player = state.currentPlayerNumber;
   return `${bar}${points}${offBoard}${dice}${player}`;
 }
 

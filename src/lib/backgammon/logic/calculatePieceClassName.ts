@@ -42,11 +42,11 @@ const calculatePointClassName = function(pov: number, pointNumber: number, piece
   return `piece position_${povPointNumber}_${pieceIndex}`;
 };
 
-const calculatePieceClassName = function(pov: number, playerNumber: number, pointNumber: number | 'bar' | 'off_board', pieceIndex: number): string {
+const calculatePieceClassName = function(pov: number, playerNumber: number, pointNumber: number | 'bar' | 'offBoard', pieceIndex: number): string {
   switch (pointNumber) {
     case 'bar':
       return calculateBarClassName(pov, playerNumber, pieceIndex);
-    case 'off_board':
+    case 'offBoard':
       return calculateOffBoardClassName(pov, playerNumber, pieceIndex);
     default:
       return calculatePointClassName(pov, pointNumber, pieceIndex);
