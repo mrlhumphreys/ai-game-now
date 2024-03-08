@@ -16,15 +16,15 @@ export const unoccupied = function(square: Square): boolean {
 };
 
 export const occupiedByPlayer = function(square: Square, playerNumber: number): boolean {
-  return square.piece !== null && square.piece.player_number === playerNumber;
+  return square.piece !== null && square.piece.playerNumber === playerNumber;
 };
 
 export const occupiedByOpponentOf = function(square: Square, playerNumber: number): boolean {
-  return square.piece !== null && square.piece.player_number !== playerNumber;
+  return square.piece !== null && square.piece.playerNumber !== playerNumber;
 };
 
 export const unoccupiedOrOccupiedByOpponentOf = function(square: Square, playerNumber: number): boolean {
-  return square.piece === null || square.piece.player_number !== playerNumber;
+  return square.piece === null || square.piece.playerNumber !== playerNumber;
 };
 
 export const occupiedByPieceType = function(square: Square, pieceType: string): boolean {

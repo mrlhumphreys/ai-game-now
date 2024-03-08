@@ -1,8 +1,8 @@
 interface Piece {
   id: number;
-  player_number: number;
+  playerNumber: number;
   type: string;
-  has_moved: boolean;
+  hasMoved: boolean;
   selected: boolean;
 }
 

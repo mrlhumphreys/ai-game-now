@@ -74,7 +74,7 @@ export const gameOver = function(match: Match): boolean {
 };
 
 export const playersTurn = function(match: Match, playerNumber: number): boolean {
-  return gameStatePlayersTurn(match.game_state, playerNumber);  
+  return gameStatePlayersTurn(match.gameState, playerNumber);
 };
 
 export const selectedSquareExists = function(match: Match): boolean {
@@ -107,7 +107,7 @@ export const moveValid = function(match: Match, touchedSquareId: string): boolea
   let from = selectedSquare(match);
   let to = touchedSquare(match, touchedSquareId);
   if (from !== undefined && to !== undefined && from.piece !== null) {
-    return canMove(from.piece, from, to, match.game_state);
+    return canMove(from.piece, from, to, match.gameState);
   } else {
     return false;
   }
@@ -116,14 +116,14 @@ export const moveValid = function(match: Match, touchedSquareId: string): boolea
 export const movePossible = function(match: Match, touchedSquareId: string): boolean {
   let square = touchedSquare(match, touchedSquareId);
   if (square !== undefined && square.piece !== null) {
-    return canMoveFrom(square.piece, square, match.game_state);
+    return canMoveFrom(square.piece, square, match.gameState);
   } else {
     return false;
   }
 };
 
 export const putsKingInCheck = function(match: Match, playerNumber: number, touchedSquareId: string): boolean {
-  let newState = deepClone(match.game_state);
+  let newState = deepClone(match.gameState);
   let from = selectedSquare(match);
   let to = touchedSquare(match, touchedSquareId);
   if (from !== undefined && to !== undefined) {
@@ -138,16 +138,16 @@ export const pawnMoveToLastRank = function(match: Match, touchedSquareId: string
   let from = selectedSquare(match);
   let to = touchedSquare(match, touchedSquareId);
   if (from !== undefined && to !== undefined) {
-    return gameStatePawnMoveToLastRank(match.game_state, from, to);
+    return gameStatePawnMoveToLastRank(match.gameState, from, to);
   } else {
     return false;
   }
 };
 
 export const touchedSquare = function(match: Match, touchedSquareId: string): Square | undefined {
-  return findSquare(match.game_state, touchedSquareId);
+  return findSquare(match.gameState, touchedSquareId);
 };
 
 export const selectedSquare = function(match: Match): Square | undefined {
-  return gameStateSelectedSquare(match.game_state);
+  return gameStateSelectedSquare(match.gameState);
 };

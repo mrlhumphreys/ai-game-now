@@ -156,18 +156,18 @@ describe('findByCoordinate', () => {
 describe('findByPieceId', () => {
   it('returns the square with the piece matching the id', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
-    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } };
+    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
     let result = findByPieceId(squares, 0);
     expect(result).toEqual(expected);
   });
 
   it('returns undefined if there is no matching square', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = findByPieceId(squares, -1);
     expect(result).toBe(undefined);
@@ -177,18 +177,18 @@ describe('findByPieceId', () => {
 describe('findSelected', () => {
   it('returns the square with the piece selected', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
-    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } };
+    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } };
     let result = findSelected(squares);
     expect(result).toEqual(expected);
   });
 
   it('returns undefined if there is no square with piece selected', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = findSelected(squares);
     expect(result).toBe(undefined);
@@ -198,8 +198,8 @@ describe('findSelected', () => {
 describe('unoccupied', () => {
   it('returns unoccupied squares', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let expected = [
@@ -213,12 +213,12 @@ describe('unoccupied', () => {
 describe('occupiedByPlayer', () => {
   it('returns squares occupied by player', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } }
     ];
     let result = occupiedByPlayer(squares, 1);
     expect(result).toEqual(expected);
@@ -228,12 +228,12 @@ describe('occupiedByPlayer', () => {
 describe('occupiedByOpponentOf', () => {
   it('returns squares occupied by player', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let expected = [
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = occupiedByOpponentOf(squares, 1);
     expect(result).toEqual(expected);
@@ -243,12 +243,12 @@ describe('occupiedByOpponentOf', () => {
 describe('unoccupiedOrOccupiedByOpponentOf', () => {
   it('returns squares occupied by player', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let expected = [
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let result = unoccupiedOrOccupiedByOpponentOf(squares, 1);
@@ -259,12 +259,12 @@ describe('unoccupiedOrOccupiedByOpponentOf', () => {
 describe('occupiedByPieceType', () => {
   it('returns squares occupied by pieces matching type', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } }
     ];
     let result = occupiedByPieceType(squares, 'king');
     expect(result).toEqual(expected);
@@ -274,12 +274,12 @@ describe('occupiedByPieceType', () => {
 describe('notOccupiedByPieceType', () => {
   it('returns squares not occupied by pieces matching type', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
     let expected = [
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = notOccupiedByPieceType(squares, 'king');
     expect(result).toEqual(expected);
@@ -293,12 +293,12 @@ describe('unblocked', () => {
       { id: 'a5', x: 0, y: 3, piece: null }
     ];
     let board = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: false, hasMoved: false } },
       { id: 'a7', x: 0, y: 1, piece: null },
-      { id: 'a6', x: 0, y: 2, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a6', x: 0, y: 2, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a5', x: 0, y: 3, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: false, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: false, hasMoved: false } };
     let expected = [
       { id: 'a7', x: 0, y: 1, piece: null }
     ];
@@ -310,12 +310,12 @@ describe('unblocked', () => {
 describe('between', () => {
   it('returns squares between origin and destination', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: false, hasMoved: false } },
       { id: 'a7', x: 0, y: 1, piece: null },
-      { id: 'a6', x: 0, y: 2, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a6', x: 0, y: 2, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: false, has_moved: false } };
-    let destination = { id: 'a6', x: 0, y: 2, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: false, hasMoved: false } };
+    let destination = { id: 'a6', x: 0, y: 2, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
     let expected = [
       { id: 'a7', x: 0, y: 1, piece: null }
     ];
@@ -327,14 +327,14 @@ describe('between', () => {
 describe('inRange', () => {
   it('returns all squares that at the distance or less', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = inRange(squares, origin, 1);
     expect(result).toEqual(expected);
@@ -344,13 +344,13 @@ describe('inRange', () => {
 describe('atRange', () => {
   it('returns all squares that at the distance', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = atRange(squares, origin, 1);
     expect(result).toEqual(expected);
@@ -360,13 +360,13 @@ describe('atRange', () => {
 describe('inDirection', () => {
   it('returns squares where y is less than origin for player 1', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 2, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 1, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 1, type: 'pawn', selected: false, has_moved: false } };
+    let origin = { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 2, type: 'king', selected: true, has_moved: false } }
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'king', selected: true, hasMoved: false } }
     ];
     let result = inDirection(squares, origin, 1);
     expect(result).toEqual(expected);
@@ -374,11 +374,11 @@ describe('inDirection', () => {
 
   it('returns squares where y is less than origin for player 2', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
-      { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
+      { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a7', x: 0, y: 1, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } };
+    let origin = { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
     let expected = [
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
@@ -390,15 +390,15 @@ describe('inDirection', () => {
 describe('orthogonal', () => {
   it('returns all squares in the same rank or file as the origin', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'b7', x: 1, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null }
@@ -411,15 +411,15 @@ describe('orthogonal', () => {
 describe('diagonal', () => {
   it('returns all squares in diagonal from the origin', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'b7', x: 1, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b7', x: 1, y: 1, piece: null }
     ];
     let result = diagonal(squares, origin);
@@ -430,15 +430,15 @@ describe('diagonal', () => {
 describe('sideways', () => {
   it('returns squares in the same rank as origin', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'b7', x: 1, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null }
     ];
     let result = sideways(squares, origin);
@@ -449,15 +449,15 @@ describe('sideways', () => {
 describe('orthogonalOrDiagonal', () => {
   it('returns squares that are orthogonal or diagonal to origin', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'b7', x: 1, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'b7', x: 1, y: 1, piece: null },
@@ -471,7 +471,7 @@ describe('orthogonalOrDiagonal', () => {
 describe('notOrthogonalOrDiagonal', () => {
   it('returns squares that are not orthogonal or diagonal', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'b8', x: 1, y: 0, piece: null },
       { id: 'c8', x: 2, y: 0, piece: null },
       { id: 'a7', x: 0, y: 1, piece: null },
@@ -479,7 +479,7 @@ describe('notOrthogonalOrDiagonal', () => {
       { id: 'c7', x: 2, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null }
     ];
-    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let origin = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let expected = [
       { id: 'c7', x: 2, y: 1, piece: null }
     ];
@@ -493,11 +493,11 @@ describe('notOrthogonalOrDiagonal', () => {
 describe('findKingForPlayer', () => {
   it('returns the square containing the players king', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } },
       { id: 'a7', x: 0, y: 1, piece: null },
-      { id: 'a6', x: 0, y: 2, piece: { id: 1, player_number: 2, type: 'king', selected: false, has_moved: false } }
+      { id: 'a6', x: 0, y: 2, piece: { id: 1, playerNumber: 2, type: 'king', selected: false, hasMoved: false } }
     ];
-    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'king', selected: true, has_moved: false } };
+    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'king', selected: true, hasMoved: false } };
     let result = findKingForPlayer(squares, 1);
     expect(result).toEqual(expected);
   });
@@ -506,12 +506,12 @@ describe('findKingForPlayer', () => {
 describe('unmoved', () => {
   it('returns squares with unmoved pieces', () => {
     let squares = [
-      { id: 'a8', x: 0, y: 0, piece: { id: 0, player_number: 1, type: 'pawn', selected: false, has_moved: true } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: true } },
       { id: 'a7', x: 0, y: 1, piece: null },
-      { id: 'a6', x: 0, y: 2, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a6', x: 0, y: 2, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let expected = [
-      { id: 'a6', x: 0, y: 2, piece: { id: 1, player_number: 2, type: 'pawn', selected: false, has_moved: false } }
+      { id: 'a6', x: 0, y: 2, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } }
     ];
     let result = unmoved(squares);
     expect(result).toEqual(expected);
@@ -523,20 +523,20 @@ describe('threatenedBy', () => {
     let gameState = rookMoveGameState();
     let playerNumber = 1;
     let expected = [
-      { id: 'h8', x: 7, y: 0, piece: { id: 8, player_number: 2, type: 'rook', has_moved: false, selected: false } },
+      { id: 'h8', x: 7, y: 0, piece: { id: 8, playerNumber: 2, type: 'rook', hasMoved: false, selected: false } },
       { id: 'h7', x: 7, y: 1, piece: null },
       { id: 'h6', x: 7, y: 2, piece: null },
       { id: 'h5', x: 7, y: 3, piece: null },
       { id: 'h4', x: 7, y: 4, piece: null },
       { id: 'h3', x: 7, y: 5, piece: null },
-      { id: 'b2', x: 1, y: 6, piece: { id: 10, player_number: 2, type: 'pawn', has_moved: false, selected: false } },
+      { id: 'b2', x: 1, y: 6, piece: { id: 10, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
       { id: 'c2', x: 2, y: 6, piece: null },
       { id: 'd2', x: 3, y: 6, piece: null },
       { id: 'e2', x: 4, y: 6, piece: null },
       { id: 'f2', x: 5, y: 6, piece: null },
       { id: 'g2', x: 6, y: 6, piece: null },
       { id: 'h1', x: 7, y: 7, piece: null },
-      { id: 'a8', x: 0, y: 0, piece: { id: 1, player_number: 2, type: 'rook', has_moved: false, selected: false } },
+      { id: 'a8', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'rook', hasMoved: false, selected: false } },
       { id: 'a7', x: 0, y: 1, piece: null },
       { id: 'a6', x: 0, y: 2, piece: null },
       { id: 'a5', x: 0, y: 3, piece: null },

@@ -8,7 +8,7 @@ import promotionMatch from '../fixtures/promotionMatch';
 import putsKingInCheckMatch from '../fixtures/putsKingInCheckMatch';
 import winnerMatch from '../fixtures/winnerMatch';
 
-import { 
+import {
   winner,
   touchSquare,
   touchPromotionPiece,
@@ -37,9 +37,9 @@ describe('touchSquare', () => {
       let match = selectedMatch();
       let playerNumber = 1;
       let touchedSquareId = 'e4';
-      touchSquare(match, playerNumber, touchedSquareId); 
-      
-      let square = match.game_state.squares.find((s) => {
+      touchSquare(match, playerNumber, touchedSquareId);
+
+      let square = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
 
@@ -54,9 +54,9 @@ describe('touchSquare', () => {
       let match = selectedMatch();
       let playerNumber = 1;
       let touchedSquareId = 'e4';
-      touchSquare(match, playerNumber, touchedSquareId); 
+      touchSquare(match, playerNumber, touchedSquareId);
 
-      let fromSquare = match.game_state.squares.find((s) => {
+      let fromSquare = match.gameState.squares.find((s) => {
         return s.id === 'e2';
       });
 
@@ -66,12 +66,12 @@ describe('touchSquare', () => {
         expect(fromSquare).not.toBe(undefined);
       }
 
-      let toSquare = match.game_state.squares.find((s) => {
+      let toSquare = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
 
       if (toSquare !== undefined ) {
-        let movedPiece = { id: 21, player_number: 1, type: 'pawn', selected: false, has_moved: true };
+        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', selected: false, hasMoved: true };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
@@ -82,8 +82,8 @@ describe('touchSquare', () => {
       let match = selectedMatch();
       let playerNumber = 1;
       let touchedSquareId = 'e4';
-      touchSquare(match, playerNumber, touchedSquareId); 
-      expect(match.game_state.current_player_number).toEqual(2);
+      touchSquare(match, playerNumber, touchedSquareId);
+      expect(match.gameState.currentPlayerNumber).toEqual(2);
     });
 
     it('adds the move to last action', () => {
@@ -98,8 +98,8 @@ describe('touchSquare', () => {
           pieceType: null
         }
       };
-      touchSquare(match, playerNumber, touchedSquareId); 
-      expect(match.last_action).toEqual(expected);
+      touchSquare(match, playerNumber, touchedSquareId);
+      expect(match.lastAction).toEqual(expected);
     });
   });
 
@@ -110,7 +110,7 @@ describe('touchSquare', () => {
       let touchedSquareId = 'h8';
       touchSquare(match, playerNumber, touchedSquareId);
 
-      let toSquare = match.game_state.squares.find((s) => {
+      let toSquare = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
 
@@ -127,7 +127,7 @@ describe('touchSquare', () => {
       let touchedSquareId = 'h8';
       touchSquare(match, playerNumber, touchedSquareId);
 
-      let fromSquare = match.game_state.squares.find((s) => {
+      let fromSquare = match.gameState.squares.find((s) => {
         return s.id === 'h7';
       });
 
@@ -137,12 +137,12 @@ describe('touchSquare', () => {
         expect(fromSquare).not.toBe(undefined);
       }
 
-      let toSquare = match.game_state.squares.find((s) => {
+      let toSquare = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
 
       if (toSquare !== undefined ) {
-        let movedPiece = { id: 24, player_number: 1, type: 'pawn', selected: false, has_moved: true };
+        let movedPiece = { id: 24, playerNumber: 1, type: 'pawn', selected: false, hasMoved: true };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
@@ -165,7 +165,7 @@ describe('touchSquare', () => {
       let touchedSquareId = 'e2';
       touchSquare(match, playerNumber, touchedSquareId);
 
-      let fromSquare = match.game_state.squares.find((s) => {
+      let fromSquare = match.gameState.squares.find((s) => {
         return s.id === touchedSquareId;
       });
 
@@ -184,7 +184,7 @@ describe('touchSquare', () => {
       let touchedSquareId = 'd3';
       touchSquare(match, playerNumber, touchedSquareId);
 
-      let square = match.game_state.squares.find((s) => {
+      let square = match.gameState.squares.find((s) => {
         return s.id === 'e2';
       });
 
@@ -212,7 +212,7 @@ describe('touchSquare', () => {
       let touchedSquareId = 'e2';
       touchSquare(match, playerNumber, touchedSquareId);
 
-      let square = match.game_state.squares.find((s) => {
+      let square = match.gameState.squares.find((s) => {
         return s.id === 'e1';
       });
 
@@ -251,9 +251,9 @@ describe('touchPromotionPiece', () => {
       let match = promotionMatch();
       let playerNumber = 1;
       let pieceType = 'queen';
-      touchPromotionPiece(match, playerNumber, pieceType); 
+      touchPromotionPiece(match, playerNumber, pieceType);
 
-      let square = match.game_state.squares.find((s) => {
+      let square = match.gameState.squares.find((s) => {
         return s.id === 'h8';
       });
 
@@ -276,16 +276,16 @@ describe('touchPromotionPiece', () => {
           pieceType: pieceType
         }
       };
-      touchPromotionPiece(match, playerNumber, pieceType); 
-      expect(match.last_action).toEqual(expected);
+      touchPromotionPiece(match, playerNumber, pieceType);
+      expect(match.lastAction).toEqual(expected);
     });
 
     it('tearsdown promotion', () => {
       let match = promotionMatch();
       let playerNumber = 1;
       let pieceType = 'queen';
-      touchPromotionPiece(match, playerNumber, pieceType); 
-      expect(match.current_move).toBe(null);
+      touchPromotionPiece(match, playerNumber, pieceType);
+      expect(match.currentMove).toBe(null);
       expect(match.promotion).toBe(false);
     });
   });
@@ -296,7 +296,7 @@ describe('touchPromotionPiece', () => {
       let playerNumber = 1;
       let pieceType = 'king';
       let expected = 'Pawn cannot promote to that piece.';
-      touchPromotionPiece(match, playerNumber, pieceType); 
+      touchPromotionPiece(match, playerNumber, pieceType);
       expect(match.notification).toEqual(expected);
     });
   });
@@ -308,15 +308,15 @@ describe('setupPromotion', () => {
     let fromId = 'h7';
     let toId = 'h8';
     let expected = { fromId: fromId, toId: toId };
-    setupPromotion(match, fromId, toId); 
-    expect(match.current_move).toEqual(expected);
+    setupPromotion(match, fromId, toId);
+    expect(match.currentMove).toEqual(expected);
   });
 
   it('sets promotion to true', () => {
     let match = pawnMoveToLastRankMatch();
     let fromId = 'h7';
     let toId = 'h8';
-    setupPromotion(match, fromId, toId); 
+    setupPromotion(match, fromId, toId);
     expect(match.promotion).toBe(true);
   });
 });
@@ -325,13 +325,13 @@ describe('teardownPromotion', () => {
   it('sets current move to null', () => {
     let match = promotionMatch();
     teardownPromotion(match);
-    expect(match.current_move).toBe(null); 
+    expect(match.currentMove).toBe(null);
   });
 
   it('sets promotion to false', () => {
     let match = promotionMatch();
     teardownPromotion(match);
-    expect(match.promotion).toBe(false); 
+    expect(match.promotion).toBe(false);
   });
 });
 
@@ -350,7 +350,7 @@ describe('addMoveToLastAction', () => {
       }
     };
     addMoveToLastAction(match, fromId, toId, pieceType);
-    expect(match.last_action).toEqual(expected);
+    expect(match.lastAction).toEqual(expected);
   });
 
   it('sets the last action with pieceType', () => {
@@ -367,7 +367,7 @@ describe('addMoveToLastAction', () => {
       }
     }
     addMoveToLastAction(match, fromId, toId, pieceType);
-    expect(match.last_action).toEqual(expected);
+    expect(match.lastAction).toEqual(expected);
   });
 });
 
@@ -375,7 +375,7 @@ describe('clearLastAction', () => {
   it('sets the last action to null', () => {
     let match = lastActionMatch();
     clearLastAction(match);
-    expect(match.last_action).toBe(null);
+    expect(match.lastAction).toBe(null);
   });
 });
 

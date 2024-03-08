@@ -337,7 +337,7 @@ describe('touched', () => {
   it('returns the touched square if the id is matches', () => {
     let match = defaultMatch();
     let touchedSquareId = 'e2';
-    let expected = { id: 'e2', x: 4, y: 6, piece: { id: 21, player_number: 1, type: 'pawn', has_moved: false, selected: false } };
+    let expected = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
     let result = touchedSquare(match, touchedSquareId);
     expect(result).toEqual(expected);
   });
@@ -353,7 +353,7 @@ describe('touched', () => {
 describe('selectedSquare', () => {
   it('returns the selected square if selected', () => {
     let match = selectedMatch();
-    let expected = { id: 'e2', x: 4, y: 6, piece: { id: 21, player_number: 1, type: 'pawn', has_moved: false, selected: true } };
+    let expected = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: true } };
     let result = selectedSquare(match);
     expect(result).toEqual(expected);
   });

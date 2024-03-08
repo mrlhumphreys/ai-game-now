@@ -19,50 +19,50 @@ import {
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;
   if (playerResigned) {
-    return match.players.find(function(p) { return !p.resigned; })?.player_number || null;
+    return match.players.find(function(p) { return !p.resigned; })?.playerNumber || null;
   } else {
-    return gameStateWinner(match.game_state);
+    return gameStateWinner(match.gameState);
   }
 };
 
 export const touchSquare = function(match: Match, playerNumber: number, touchedSquareId: string): boolean {
-  let selected = selectedSquare(match.game_state);
+  let selected = selectedSquare(match.gameState);
   clearLastAction(match);
   let result = getMoveResult(match, playerNumber, touchedSquareId);
 
   switch (result.name) {
     case 'MoveValid':
-      deselectPiece(match.game_state);
+      deselectPiece(match.gameState);
       if (selected !== undefined) {
-        move(match.game_state, selected.id, touchedSquareId);
-        passTurn(match.game_state);
+        move(match.gameState, selected.id, touchedSquareId);
+        passTurn(match.gameState);
         addMoveToLastAction(match, selected.id, touchedSquareId, null);
         return true;
       } else {
         return false;
       }
     case 'PawnMovesToLastRank':
-      deselectPiece(match.game_state);
+      deselectPiece(match.gameState);
       if (selected !== undefined) {
-        move(match.game_state, selected.id, touchedSquareId);
+        move(match.gameState, selected.id, touchedSquareId);
         setupPromotion(match, selected.id, touchedSquareId);
         return true;
       } else {
         return false;
       }
     case 'MovePossible':
-      selectPiece(match.game_state, touchedSquareId);
+      selectPiece(match.gameState, touchedSquareId);
       return true;
     case 'MoveInvalid':
-      deselectPiece(match.game_state);
+      deselectPiece(match.gameState);
       notify(match, result.message);
       return false;
     case 'KingInCheck':
-      deselectPiece(match.game_state);
+      deselectPiece(match.gameState);
       notify(match, result.message);
       return false;
     default:
-      deselectPiece(match.game_state);
+      deselectPiece(match.gameState);
       notify(match, result.message);
       return false;
   }
@@ -73,9 +73,9 @@ export const touchPromotionPiece = function(match: Match, playerNumber: number, 
 
   switch(result.name) {
     case 'ValidPromotion':
-      if (match.current_move !== null) {
-        promote(match.game_state, match.current_move.toId, pieceType);
-        addMoveToLastAction(match, match.current_move.fromId, match.current_move.toId, pieceType);
+      if (match.currentMove !== null) {
+        promote(match.gameState, match.currentMove.toId, pieceType);
+        addMoveToLastAction(match, match.currentMove.fromId, match.currentMove.toId, pieceType);
         teardownPromotion(match);
         return true;
       } else {
@@ -89,19 +89,19 @@ export const touchPromotionPiece = function(match: Match, playerNumber: number, 
 };
 
 export const setupPromotion = function(match: Match, fromId: string, toId: string): boolean {
-  match.current_move = { fromId: fromId, toId: toId };
+  match.currentMove = { fromId: fromId, toId: toId };
   match.promotion = true;
   return true;
 };
 
 export const teardownPromotion = function(match: Match): boolean {
-  match.current_move = null;
+  match.currentMove = null;
   match.promotion = false;
   return true;
 };
 
 export const addMoveToLastAction = function(match: Match, fromId: string, toId: string, pieceType: string | null): boolean {
-  match.last_action = {
+  match.lastAction = {
     kind: 'move',
     data: {
       fromId: fromId,
@@ -113,7 +113,7 @@ export const addMoveToLastAction = function(match: Match, fromId: string, toId: 
 };
 
 export const clearLastAction = function(match: Match): boolean {
-  match.last_action = null;
+  match.lastAction = null;
   return true;
 };
 

@@ -1,5 +1,5 @@
 interface CastleMove {
-  player_number: number;
+  playerNumber: number;
   side: string;
 }
 

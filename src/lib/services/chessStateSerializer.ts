@@ -1,6 +1,5 @@
 import type GameState from '$lib/chess/interfaces/GameState';
 import type Piece from '$lib/chess/interfaces/Piece';
-import exists from '../utils/exists'
 
 function hasKey<O extends object>(obj: O, key: PropertyKey): key is keyof O {
   return key in obj;
@@ -29,7 +28,7 @@ const PIECE_TYPES = [
 // Example: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
 const chessStateSerializer = function(state: GameState): string {
   let boardState = generateBoardState(state);
-  let player = state.current_player_number === 1 ? 'w' : 'b';
+  let player = state.currentPlayerNumber === 1 ? 'w' : 'b';
   let castleMoves = generateCastleMoves(state);
   let enPassantTarget = generateEnPassantTarget(state);
 
@@ -37,7 +36,7 @@ const chessStateSerializer = function(state: GameState): string {
 };
 
 const pieceToChar = function(piece: Piece): string {
-  let pieceMapping = PIECE_TYPES[piece.player_number]
+  let pieceMapping = PIECE_TYPES[piece.playerNumber]
   if (pieceMapping !== undefined && hasKey(pieceMapping, piece.type)) {
     let mappedPiece = pieceMapping[piece.type];
     if (mappedPiece !== undefined) {
@@ -93,19 +92,19 @@ const generateCastleMoves = function(state: GameState): string {
   let castleMoves = '';
 
   let playerOneKingSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'king' && s.piece.player_number === 1; 
+    return s.piece !== null && s.piece.type === 'king' && s.piece.playerNumber === 1; 
   });
-  let playerOneKingHasMoved = playerOneKingSquare !== undefined && playerOneKingSquare.piece !== null && playerOneKingSquare.piece.has_moved;
+  let playerOneKingHasMoved = playerOneKingSquare !== undefined && playerOneKingSquare.piece !== null && playerOneKingSquare.piece.hasMoved;
 
   let playerOneKingSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.player_number === 1 && s.x === 7; 
+    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 1 && s.x === 7; 
   });
-  let playerOneKingSideRookHasMoved = playerOneKingSideRookSquare !== undefined && playerOneKingSideRookSquare.piece !== null && playerOneKingSideRookSquare.piece.has_moved;
+  let playerOneKingSideRookHasMoved = playerOneKingSideRookSquare !== undefined && playerOneKingSideRookSquare.piece !== null && playerOneKingSideRookSquare.piece.hasMoved;
 
   let playerOneQueenSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.player_number === 1 && s.x === 0; 
+    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 1 && s.x === 0; 
   });
-  let playerOneQueenSideRookHasMoved = playerOneQueenSideRookSquare !== undefined && playerOneQueenSideRookSquare.piece !== null && playerOneQueenSideRookSquare.piece.has_moved;
+  let playerOneQueenSideRookHasMoved = playerOneQueenSideRookSquare !== undefined && playerOneQueenSideRookSquare.piece !== null && playerOneQueenSideRookSquare.piece.hasMoved;
 
   // TODO: and no pieces in between
   let playerOneKingSideCastle = !playerOneKingHasMoved && !playerOneKingSideRookHasMoved; 
@@ -120,19 +119,19 @@ const generateCastleMoves = function(state: GameState): string {
   }
 
   let playerTwoKingSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'king' && s.piece.player_number === 2; 
+    return s.piece !== null && s.piece.type === 'king' && s.piece.playerNumber === 2; 
   });
-  let playerTwoKingHasMoved = playerTwoKingSquare !== undefined && playerTwoKingSquare.piece !== null && playerTwoKingSquare.piece.has_moved;
+  let playerTwoKingHasMoved = playerTwoKingSquare !== undefined && playerTwoKingSquare.piece !== null && playerTwoKingSquare.piece.hasMoved;
 
   let playerTwoKingSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.player_number === 2 && s.x === 7; 
+    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 2 && s.x === 7; 
   });
-  let playerTwoKingSideRookHasMoved = playerTwoKingSideRookSquare !== undefined && playerTwoKingSideRookSquare.piece !== null && playerTwoKingSideRookSquare.piece.has_moved;
+  let playerTwoKingSideRookHasMoved = playerTwoKingSideRookSquare !== undefined && playerTwoKingSideRookSquare.piece !== null && playerTwoKingSideRookSquare.piece.hasMoved;
 
   let playerTwoQueenSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.player_number === 2 && s.x === 0; 
+    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 2 && s.x === 0; 
   });
-  let playerTwoQueenSideRookHasMoved = playerTwoQueenSideRookSquare !== undefined && playerTwoQueenSideRookSquare.piece !== null && playerTwoQueenSideRookSquare.piece.has_moved;
+  let playerTwoQueenSideRookHasMoved = playerTwoQueenSideRookSquare !== undefined && playerTwoQueenSideRookSquare.piece !== null && playerTwoQueenSideRookSquare.piece.hasMoved;
 
   let playerTwoKingSideCastle = !playerTwoKingHasMoved && !playerTwoKingSideRookHasMoved; 
   let playerTwoQueenSideCastle = !playerTwoKingHasMoved && !playerTwoQueenSideRookHasMoved; 
@@ -149,12 +148,12 @@ const generateCastleMoves = function(state: GameState): string {
 };
 
 const generateEnPassantTarget = function(state: GameState): string {
-  let square = state.squares.find(function(s) { return s.piece !== null && s.piece.id === state.last_double_step_pawn_id; });
+  let square = state.squares.find(function(s) { return s.piece !== null && s.piece.id === state.lastDoubleStepPawnId; });
   if (square !== undefined) {
     let targetX = square.x;
     let targetY: number;
     
-    if (state.current_player_number === 1) {
+    if (state.currentPlayerNumber === 1) {
       targetY = square.y + 1;
     } else {
       targetY = square.y - 1;

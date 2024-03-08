@@ -53,19 +53,19 @@ export const destinations = function(piece: Piece, square: Square, gameState: Ga
       }
     case 'rook':
       let orthogonalSquares = orthogonal(gameState.squares, square);
-      let rookUnoccupiedOrOpponentSquares = unoccupiedOrOccupiedByOpponentOf(orthogonalSquares, piece.player_number);
+      let rookUnoccupiedOrOpponentSquares = unoccupiedOrOccupiedByOpponentOf(orthogonalSquares, piece.playerNumber);
       return unblocked(rookUnoccupiedOrOpponentSquares, square, gameState.squares);
     case 'knight':
       let notOrthogonalOrDiagonalSquares = notOrthogonalOrDiagonal(gameState.squares, square);
       let atRangeSquares = atRange(notOrthogonalOrDiagonalSquares, square, 2);
-      return unoccupiedOrOccupiedByOpponentOf(atRangeSquares, piece.player_number);
+      return unoccupiedOrOccupiedByOpponentOf(atRangeSquares, piece.playerNumber);
     case 'bishop':
       let diagonalSquares = diagonal(gameState.squares, square);
-      let bishopUnoccupiedOrOpponentSquares = unoccupiedOrOccupiedByOpponentOf(diagonalSquares, piece.player_number);
+      let bishopUnoccupiedOrOpponentSquares = unoccupiedOrOccupiedByOpponentOf(diagonalSquares, piece.playerNumber);
       return unblocked(bishopUnoccupiedOrOpponentSquares, square, gameState.squares);
     case 'queen':
       let orthogonalOrDiagonalSquares = orthogonalOrDiagonal(gameState.squares, square);
-      let queenUnoccupiedOrOpponentSquares = unoccupiedOrOccupiedByOpponentOf(orthogonalOrDiagonalSquares, piece.player_number);
+      let queenUnoccupiedOrOpponentSquares = unoccupiedOrOccupiedByOpponentOf(orthogonalOrDiagonalSquares, piece.playerNumber);
       return unblocked(queenUnoccupiedOrOpponentSquares, square, gameState.squares);
     case 'king':
       let base = kingBaseDestinations(piece, square, gameState);
@@ -80,7 +80,7 @@ export const moveSquares = function(piece: Piece, square: Square, gameState: Gam
   switch(piece.type) {
     case 'pawn':
       let inRangeSquares = inRange(gameState.squares, square, pawnMoveableDistance(piece, square));
-      let inDirectionSquares = inDirection(inRangeSquares, square, piece.player_number);
+      let inDirectionSquares = inDirection(inRangeSquares, square, piece.playerNumber);
       let orthogonalSquares = orthogonal(inDirectionSquares, square);
       let unoccupiedSquares = unoccupied(orthogonalSquares);
       return unblocked(unoccupiedSquares, square, gameState.squares);
@@ -93,9 +93,9 @@ export const captureSquares = function(piece: Piece, square: Square, gameState: 
   switch(piece.type) {
     case 'pawn':
       let inRangeSquares = inRange(gameState.squares, square, 1);
-      let inDirectionSquares = inDirection(inRangeSquares, square, piece.player_number);
+      let inDirectionSquares = inDirection(inRangeSquares, square, piece.playerNumber);
       let diagonalSquares = diagonal(inDirectionSquares, square);
-      return occupiedByOpponentOf(diagonalSquares, piece.player_number);  
+      return occupiedByOpponentOf(diagonalSquares, piece.playerNumber);
     case 'king':
       return kingBaseDestinations(piece, square, gameState);
     default:
@@ -106,9 +106,9 @@ export const captureSquares = function(piece: Piece, square: Square, gameState: 
 export const enPassantSquare = function(piece: Piece, square: Square, gameState: GameState): Square | undefined {
   switch(piece.type) {
     case 'pawn':
-      if (gameState.last_double_step_pawn_id !== null) {
-        let doubleStep = findByPieceId(gameState.squares, gameState.last_double_step_pawn_id);
-        if (rankNumber(square, piece.player_number) === 5 && doubleStep !== undefined) {
+      if (gameState.lastDoubleStepPawnId !== null) {
+        let doubleStep = findByPieceId(gameState.squares, gameState.lastDoubleStepPawnId);
+        if (rankNumber(square, piece.playerNumber) === 5 && doubleStep !== undefined) {
           let distance = vectorDistance(point(square), point(doubleStep));
           if (distance === 1) {
             let x = doubleStep.x;
@@ -129,11 +129,11 @@ export const enPassantSquare = function(piece: Piece, square: Square, gameState:
 }
 
 export const hasNotMoved = function(piece: Piece): boolean {
-  return !piece.has_moved;
+  return !piece.hasMoved;
 };
 
 export const opponent = function(piece: Piece): number {
-  return (piece.player_number === 1 ? 2 : 1);
+  return (piece.playerNumber === 1 ? 2 : 1);
 };
 
 export const select = function(piece: Piece): boolean {
@@ -147,11 +147,11 @@ export const deselect = function(piece: Piece): boolean {
 };
 
 export const pawnMoveableDistance = function(piece: Piece, square: Square): number {
-  return startingFor(square, piece.player_number) ? 2 : 1;
+  return startingFor(square, piece.playerNumber) ? 2 : 1;
 };
 
 export const pawnDirection = function(piece: Piece): number {
-  return piece.player_number === 1 ? -1 : 1;
+  return piece.playerNumber === 1 ? -1 : 1;
 };
 
 export const kingBaseDestinations = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {
@@ -160,7 +160,7 @@ export const kingBaseDestinations = function(piece: Piece, square: Square, gameS
 };
 
 export const kingCastle = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {
-  let rooks = unmoved(occupiedByPlayer(occupiedByPieceType(gameState.squares, 'rook'), piece.player_number));
+  let rooks = unmoved(occupiedByPlayer(occupiedByPieceType(gameState.squares, 'rook'), piece.playerNumber));
   if (hasNotMoved(piece) && rooks.length > 0) {
     let potentialSquares = compact(rooks.map((s) => {
       let directionX = vectorDirectionX(point(square), point(s));

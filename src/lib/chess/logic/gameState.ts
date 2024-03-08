@@ -47,7 +47,7 @@ export const winner = function(gameState: GameState): number | null {
 };
 
 export const playersTurn = function(gameState: GameState, playerNumber: number): boolean {
-  return gameState.current_player_number === playerNumber;
+  return gameState.currentPlayerNumber === playerNumber;
 };
 
 export const opponentOf = function(playerNumber: number): number {
@@ -55,7 +55,7 @@ export const opponentOf = function(playerNumber: number): number {
 };
 
 export const opponent = function(gameState: GameState): number {
-  return opponentOf(gameState.current_player_number);
+  return opponentOf(gameState.currentPlayerNumber);
 };
 
 export const selectedSquare = function(gameState: GameState): Square | undefined {
@@ -69,8 +69,8 @@ export const findSquare = function(gameState: GameState, id: string): Square | u
 export const capturedSquare = function(gameState: GameState, from: Square, to: Square): Square | undefined {
   if (occupied(to)) {
     return to;
-  } else if (gameState.last_double_step_pawn_id !== null && from.piece !== null && from.piece.type === 'pawn') {
-    let opposingSquare = findByPieceId(gameState.squares, gameState.last_double_step_pawn_id);
+  } else if (gameState.lastDoubleStepPawnId !== null && from.piece !== null && from.piece.type === 'pawn') {
+    let opposingSquare = findByPieceId(gameState.squares, gameState.lastDoubleStepPawnId);
     // moving from square in same rank as opposing piece
     // and moving to same file i.e. moving behind diagonally
     if (opposingSquare !== undefined && opposingSquare.x === to.x && opposingSquare.y === from.y) {
@@ -139,7 +139,7 @@ export const rookCastleMove = function(gameState: GameState, from: Square, to: S
 };
 
 export const pawnMoveToLastRank = function(gameState: GameState, from: Square, to: Square): boolean {
-  return from.piece !== null && from.piece.type === 'pawn' && lastRank(to, from.piece.player_number);
+  return from.piece !== null && from.piece.type === 'pawn' && lastRank(to, from.piece.playerNumber);
 };
 
 // simple move: a -> b
@@ -156,7 +156,7 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
       addPiece(to, from.piece);
       removePiece(from);
       if (to.piece !== null) {
-        to.piece.has_moved = true;
+        to.piece.hasMoved = true;
       }
       return true;
     } else {
@@ -186,9 +186,9 @@ export const move = function(gameState: GameState, fromId: string, toId: string)
 
     // set this after move so that it doesn't think en passant happened
     if (to.piece !== null && to.piece.type === 'pawn' && distance(point(from), point(to)) === 2) {
-      gameState.last_double_step_pawn_id = to.piece.id;
+      gameState.lastDoubleStepPawnId = to.piece.id;
     } else {
-      gameState.last_double_step_pawn_id = null;
+      gameState.lastDoubleStepPawnId = null;
     }
 
     return true;
@@ -225,10 +225,10 @@ export const promote = function(gameState: GameState, squareId: string, pieceTyp
 };
 
 export const passTurn = function(gameState: GameState): boolean {
-  if (gameState.current_player_number === 1) {
-    gameState.current_player_number = 2;
+  if (gameState.currentPlayerNumber === 1) {
+    gameState.currentPlayerNumber = 2;
   } else {
-    gameState.current_player_number = 1;
+    gameState.currentPlayerNumber = 1;
   }
   return true;
 };

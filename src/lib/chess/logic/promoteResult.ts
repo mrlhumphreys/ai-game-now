@@ -37,7 +37,7 @@ export const gameOver = function(match: Match): boolean {
 };
 
 export const playersTurn = function(match: Match, playerNumber: number): boolean {
-  return gameStatePlayersTurn(match.game_state, playerNumber);  
+  return gameStatePlayersTurn(match.gameState, playerNumber);
 };
 
 export const matchInPromotion = function(match: Match): boolean {
@@ -46,8 +46,8 @@ export const matchInPromotion = function(match: Match): boolean {
 
 export const validPromotionPiece = function(pieceType: string): boolean {
   let validPromotionPieces = ['queen', 'rook', 'bishop', 'knight'];
-  let found = validPromotionPieces.find((p) => { 
-    return p === pieceType; 
+  let found = validPromotionPieces.find((p) => {
+    return p === pieceType;
   });
   return found !== undefined;
 };

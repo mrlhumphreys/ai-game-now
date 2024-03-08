@@ -5,12 +5,12 @@ import type CurrentMove from '$lib/chess/interfaces/CurrentMove';
 
 interface Match {
   id: number;
-  game_state: GameState;
+  gameState: GameState;
   players: Array<Player>;
   winner: number | null;
-  current_move: CurrentMove | null;
+  currentMove: CurrentMove | null;
   promotion: boolean;
-  last_action: Action | null;
+  lastAction: Action | null;
   notification: string;
 }
 

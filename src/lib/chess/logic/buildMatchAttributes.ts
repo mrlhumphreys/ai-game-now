@@ -17,8 +17,8 @@ const buildMatchAttributes = function(playerNumber: number): Match {
   }
 
   matchAttributes.players = [
-    { player_number: 1, name: playerOneName, resigned: false },
-    { player_number: 2, name: playerTwoName, resigned: false }
+    { playerNumber: 1, name: playerOneName, resigned: false },
+    { playerNumber: 2, name: playerTwoName, resigned: false }
   ];
   matchAttributes.notification = `${playerOneName} to move`;
 

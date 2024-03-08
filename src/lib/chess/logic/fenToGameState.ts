@@ -9,29 +9,29 @@ const parsePiece = function(char: string, id: number): Piece | null {
 
   switch(char) {
     case 'p':
-      return { id: id, player_number: 2, type: 'pawn', has_moved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false };
     case 'P':
-      return { id: id, player_number: 1, type: 'pawn', has_moved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false };
     case 'r':
-      return { id: id, player_number: 2, type: 'rook', has_moved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'rook', hasMoved: false, selected: false };
     case 'R':
-      return { id: id, player_number: 1, type: 'rook', has_moved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'rook', hasMoved: false, selected: false };
     case 'n':
-      return { id: id, player_number: 2, type: 'knight', has_moved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'knight', hasMoved: false, selected: false };
     case 'N':
-      return { id: id, player_number: 1, type: 'knight', has_moved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'knight', hasMoved: false, selected: false };
     case 'b':
-      return { id: id, player_number: 2, type: 'bishop', has_moved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'bishop', hasMoved: false, selected: false };
     case 'B':
-      return { id: id, player_number: 1, type: 'bishop', has_moved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false };
     case 'q':
-      return { id: id, player_number: 2, type: 'queen', has_moved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'queen', hasMoved: false, selected: false };
     case 'Q':
-      return { id: id, player_number: 1, type: 'queen', has_moved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'queen', hasMoved: false, selected: false };
     case 'k':
-      return { id: id, player_number: 2, type: 'king', has_moved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'king', hasMoved: false, selected: false };
     case 'K':
-      return { id: id, player_number: 1, type: 'king', has_moved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'king', hasMoved: false, selected: false };
     default:
       return null;
   }
@@ -40,13 +40,13 @@ const parsePiece = function(char: string, id: number): Piece | null {
 const parseCastleMove = function(char: string): CastleMove | null {
   switch(char) {
     case 'K':
-      return { player_number: 1, side: 'king' };
+      return { playerNumber: 1, side: 'king' };
     case 'Q':
-      return { player_number: 1, side: 'queen' };
+      return { playerNumber: 1, side: 'queen' };
     case 'k':
-      return { player_number: 2, side: 'king' };
+      return { playerNumber: 2, side: 'king' };
     case 'q':
-      return { player_number: 2, side: 'queen' };
+      return { playerNumber: 2, side: 'queen' };
     default:
       return null;
   }
@@ -203,8 +203,8 @@ const fenToGameState = function(fen: string): GameState | null {
     return null;
   } else {
     return { 
-      current_player_number: currentPlayerNumber,
-      last_double_step_pawn_id: lastDoubleStepPawnId,
+      currentPlayerNumber: currentPlayerNumber,
+      lastDoubleStepPawnId: lastDoubleStepPawnId,
       squares: squares
     };
   }
