@@ -1,14 +1,18 @@
+<script>
+  import { base } from '$app/paths';
+</script>
+
 <div id="topbar">
   <nav>
-    <a href="/" class="logo">AI Game Now</a>
+    <a href="{base}/" class="logo">AI Game Now</a>
   </nav>
 </div>
 <slot></slot>
 <div id="bottombar" >
   <footer>
-    <a href="checkers">Checkers</a>
-    <a href="backgammon">Backgammon</a>
-    <a href="chess">Chess</a>
+    <a href="{base}/checkers">Checkers</a>
+    <a href="{base}/backgammon">Backgammon</a>
+    <a href="{base}/chess">Chess</a>
   </footer>
 </div>
 

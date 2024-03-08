@@ -1,5 +1,5 @@
 <script>
-
+  import { base } from '$app/paths';
 </script>
 
 <div id="content">
@@ -9,9 +9,9 @@
  
  <main>
    <ul class="games">
-     <li><a class="game" href="checkers">Checkers</a></li>
-     <li><a class="game" href="backgammon">Backgammon</a></li>
-     <li><a class="game" href="chess">Chess</a></li>
+     <li><a class="game" href="{base}/checkers">Checkers</a></li>
+     <li><a class="game" href="{base}/backgammon">Backgammon</a></li>
+     <li><a class="game" href="{base}/chess">Chess</a></li>
    </ul>
  </main>
 </div>
