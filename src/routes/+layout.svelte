@@ -6,9 +6,9 @@
 <slot></slot>
 <div id="bottombar" >
   <footer>
-    <a href="/checkers">Checkers</a>
-    <a href="/backgammon">Backgammon</a>
-    <a href="/chess">Chess</a>
+    <a href="checkers">Checkers</a>
+    <a href="backgammon">Backgammon</a>
+    <a href="chess">Chess</a>
   </footer>
 </div>
 
