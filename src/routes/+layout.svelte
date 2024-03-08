@@ -6,7 +6,9 @@
 <slot></slot>
 <div id="bottombar" >
   <footer>
-    <a href="https://boardgamenow.herokuapp.com">Board Game Now</a>
+    <a href="/checkers">Checkers</a>
+    <a href="/backgammon">Backgammon</a>
+    <a href="/chess">Chess</a>
   </footer>
 </div>
 
