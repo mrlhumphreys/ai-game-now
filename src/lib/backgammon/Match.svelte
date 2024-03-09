@@ -3,6 +3,7 @@
   // bug: off board: move does not match dice roll (ai)
   // bug: doubles not rolling
   // bug: add winner message
+  // bug: wait after player move and before ai roll
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 
@@ -42,34 +43,73 @@
   $: pieces = collatePieces(matchState);
   $: dice = matchState.gameState.dice;
 
-  // setup functions
-  function randomiseFirstPlayer() {
-    let result = tossCoin();
+  // state
+  function saveState(state) {
+    matchState = state;
+    if (browser) {
+      let data = JSON.stringify(state);
+      window.localStorage.setItem('backgammon', data);
+    }
+  };
 
-    if (result === 0) {
-      playerNumber = 1;
-      aiPlayerNumber = 2;
+  function getState() {
+    if (browser) {
+      let data = window.localStorage.getItem('backgammon');
+      return JSON.parse(data);
+    } else {
+      return null
+    }
+  };
+
+  // setup functions
+
+  function setPlayers(state) {
+    state.players.forEach((p) => {
+      if ( p.name === "Player") {
+        playerNumber = p.playerNumber;
+      };
+      if ( p.name === "Computer") {
+        aiPlayerNumber = p.playerNumber;
+      };
+    });
+
+    if (playerNumber === 1) {
       topLeft = [13, 14, 15, 16, 17, 18];
       topRight = [19, 20, 21, 22, 23, 24];
       bottomLeft = [12, 11, 10, 9, 8 , 7];
       bottomRight = [6, 5, 4, 3, 2, 1];
     } else {
-      playerNumber = 2;
-      aiPlayerNumber = 1;
       topLeft = [1, 2, 3, 4, 5, 6];
       topRight = [7, 8, 9, 10, 11, 12];
       bottomLeft = [24, 23, 22, 21, 20 , 19];
       bottomRight = [18, 17, 16, 15, 14, 13];
+    }
+  };
+
+  function setState(state) {
+    setPlayers(state);
+    saveState(state);
+  };
+
+  function setDefaultState() {
+    let state = buildMatchAttributes();
+    setState(state);
+    if (aiPlayerNumber === 1) {
       setTimeout(aiTurn, 2000);
+    }
+  };
+
+  function setInitialMatchState() {
+    let state = getState();
+
+    if (state !== null) {
+      setState(state);
+    } else {
+      setDefaultState();
     }
   }
 
-  function setInitialMatchState() {
-    matchState = buildMatchAttributes(playerNumber);
-  }
-
   // setup
-  randomiseFirstPlayer();
   setInitialMatchState();
 
   // ai action functions
@@ -95,7 +135,7 @@
 
   function aiRoll() {
     matchTouchDice(matchState, aiPlayerNumber);
-    matchState = matchState;
+    saveState(matchState);
   }
 
   function aiMove(moveList) {
@@ -103,7 +143,7 @@
       let legFunc = () => {
         matchTouchPoint(matchState, aiPlayerNumber, move[0]);
         matchTouchPoint(matchState, aiPlayerNumber, move[1]);
-        matchState = matchState;
+        saveState(matchState);
       };
       setTimeout(legFunc, index*1500);
     });
@@ -119,19 +159,19 @@
 
   function aiPass() {
     matchTouchPass(matchState, aiPlayerNumber);
-    matchState = matchState;
+    saveState(matchState);
   }
 
   function touchDice() {
     matchTouchDice(matchState, playerNumber);
-    matchState = matchState;
+    saveState(matchState);
   }
 
   // user action functions
 
   function touchPoint(pointNumber) {
     matchTouchPoint(matchState, playerNumber, pointNumber);
-    matchState = matchState;
+    saveState(matchState);
 
     let lastActionKind = exists(matchState.lastAction) && matchState.lastAction.kind;
     let winner = matchWinner(matchState);
@@ -143,14 +183,13 @@
 
   function touchPass() {
     matchTouchPass(matchState, playerNumber);
-    matchState = matchState;
+    saveState(matchState);
 
     aiTurn();
   }
 
   function touchReset() {
-    randomiseFirstPlayer();
-    setInitialMatchState();
+    setDefaultState();
   }
 </script>
 

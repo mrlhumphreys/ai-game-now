@@ -4,16 +4,10 @@
   export let display;
   export let touchPromotionPiece;
 
-  function displayClass() {
-    if (display) {
-      return 'promotion_select show';
-    } else {
-      return 'promotion_select hide';
-    }
-  }
+  $: displayClass = display ? 'promotion_select show' : 'promotion_select hide';;
 </script>
 
-<div class={displayClass()}>
+<div class={displayClass}>
   <div class="prompt">
     <span class="title">Promote pawn to:</span>
     <ul class="piece_types">

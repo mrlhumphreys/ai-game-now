@@ -1,14 +1,23 @@
 import type Match from '$lib/chess/interfaces/Match';
 import DEFAULT_MATCH_ATTRIBUTES from '$lib/chess/logic/DEFAULT_MATCH_ATTRIBUTES';
+import tossCoin from '$lib/utils/tossCoin';
 import deepClone from '$lib/utils/deepClone';
 
-const buildMatchAttributes = function(playerNumber: number): Match {
+const buildMatchAttributes = function(playerNumber?: number): Match {
   let matchAttributes = deepClone(DEFAULT_MATCH_ATTRIBUTES);
 
   let playerOneName = undefined;
   let playerTwoName = undefined;
 
-  if (playerNumber === 1) {
+  let result = 0;
+
+  if (playerNumber !== undefined) {
+    result = playerNumber === 1 ? 0 : 1;
+  } else {
+    result = tossCoin();
+  }
+
+  if (result === 0) {
     playerOneName = 'Player';
     playerTwoName = 'Computer';
   } else {

@@ -1,8 +1,8 @@
 <script>
+  import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 
   import exists from '$lib/utils/exists';
-  import tossCoin from '$lib/utils/tossCoin';
   import AiService from '$lib/services/AiService';
   import Notification from '$lib/shared/Notification.svelte';
   import ResetControl from '$lib/shared/ResetControl.svelte';
@@ -21,33 +21,67 @@
   $: notification = matchState.notification;
   $: squaresWithPieces = matchState.gameState.squares.filter((square) => square.piece != null).sort((a, b) => a.piece.id - b.piece.id);
 
-  // setup functions
-  function randomiseFirstPlayer() {
-    let result = tossCoin();
+  // state
+  function saveState(state) {
+    matchState = state;
+    if (browser) {
+      let data = JSON.stringify(state);
+      window.localStorage.setItem("checkers", data);
+    }
+  };
 
-    if (result === 0) {
-      playerNumber = 1;
-      aiPlayerNumber = 2;
+  function getState() {
+    if (browser) {
+      let data = window.localStorage.getItem('checkers');
+      return JSON.parse(data);
     } else {
-      playerNumber = 2;
-      aiPlayerNumber = 1;
+      return null
+    }
+  };
+
+  // setup functions
+  function setPlayers(state) {
+    state.players.forEach((p) => {
+      if ( p.name === "Player") {
+        playerNumber = p.playerNumber;
+      };
+      if ( p.name === "Computer") {
+        aiPlayerNumber = p.playerNumber;
+      };
+    });
+  };
+
+  function setState(state) {
+    setPlayers(state);
+    saveState(state);
+  };
+
+  function setDefaultState() {
+    let state = buildMatchAttributes();
+    setState(state);
+    if (aiPlayerNumber === 1) {
       setTimeout(fetchAndPerformAiMove, 2000);
     }
-  }
+  };
 
   function setInitialMatchState() {
-    matchState = buildMatchAttributes(playerNumber);
-  }
+    let state = getState();
+
+    if (state !== null) {
+      setState(state);
+    } else {
+      setDefaultState();
+    }
+  };
 
   // setup
-  randomiseFirstPlayer();
   setInitialMatchState();
 
   // ai action functions
   function performAiMove(move) {
     move.forEach((leg) => {
       matchTouchSquare(matchState, aiPlayerNumber, leg);
-      matchState = matchState;
+      saveState(matchState);
     });
   };
 
@@ -69,7 +103,7 @@
   // user action functions
   function touchSquare(squareId) {
     matchTouchSquare(matchState, playerNumber, squareId);
-    matchState = matchState;
+    saveState(matchState);
 
     let lastActionKind = exists(matchState.lastAction) && matchState.lastAction.kind
     let winnerPlayerNumber = winner(matchState);
@@ -80,8 +114,7 @@
   };
 
   function touchReset() {
-    randomiseFirstPlayer();
-    setInitialMatchState();
+    setDefaultState();
   };
 </script>
 
@@ -124,7 +157,7 @@
     }
 
     width: 100%;
-    cursor: pointer; 
+    cursor: pointer;
     background-size: 100% 100%;
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGhlaWdodD0iODAwIiB3aWR0aD0iODAwIj4KICA8ZGVmcz4KICAgIDxnIGlkPSJkYXJrX3NxdWFyZSI+CiAgICAgIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjNjA2MDYwIiAvPgogICAgPC9nPgoKICAgIDxnIGlkPSJvZGRfcm93Ij4KICAgICAgPHVzZSB4PSIxMDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgICAgPHVzZSB4PSIzMDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgICAgPHVzZSB4PSI1MDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgICAgPHVzZSB4PSI3MDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgIDwvZz4KCiAgICA8ZyBpZD0iZXZlbl9yb3ciPgogICAgICA8dXNlIHg9IjAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgICAgPHVzZSB4PSIyMDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgICAgPHVzZSB4PSI0MDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgICAgPHVzZSB4PSI2MDAiIHk9IjAiIHhsaW5rOmhyZWY9IiNkYXJrX3NxdWFyZSIgLz4KICAgIDwvZz4KICA8L2RlZnM+CgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiICBmaWxsPSIjZDBkMGQwIiAvPgoKICA8dXNlIHg9IjAiIHk9IjAiIHhsaW5rOmhyZWY9IiNvZGRfcm93IiAvPgogIDx1c2UgeD0iMCIgeT0iMTAwIiB4bGluazpocmVmPSIjZXZlbl9yb3ciIC8+CiAgPHVzZSB4PSIwIiB5PSIyMDAiIHhsaW5rOmhyZWY9IiNvZGRfcm93IiAvPgogIDx1c2UgeD0iMCIgeT0iMzAwIiB4bGluazpocmVmPSIjZXZlbl9yb3ciIC8+CiAgPHVzZSB4PSIwIiB5PSI0MDAiIHhsaW5rOmhyZWY9IiNvZGRfcm93IiAvPgogIDx1c2UgeD0iMCIgeT0iNTAwIiB4bGluazpocmVmPSIjZXZlbl9yb3ciIC8+CiAgPHVzZSB4PSIwIiB5PSI2MDAiIHhsaW5rOmhyZWY9IiNvZGRfcm93IiAvPgogIDx1c2UgeD0iMCIgeT0iNzAwIiB4bGluazpocmVmPSIjZXZlbl9yb3ciIC8+Cjwvc3ZnPgoK);
     position: relative;
