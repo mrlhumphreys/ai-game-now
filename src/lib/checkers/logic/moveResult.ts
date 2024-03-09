@@ -1,17 +1,17 @@
-import type Piece from '$lib/checkers/interfaces/Piece';
+<F5>import type Piece from '$lib/checkers/interfaces/Piece';
 import type Square from '$lib/checkers/interfaces/Square';
 import type Match from '$lib/checkers/interfaces/Match';
 
 import eachCons from '$lib/utils/eachCons';
 import { distance } from '$lib/checkers/logic/vector';
-import { 
-  selectable, 
-  point, 
+import {
+  selectable,
+  point,
   possibleJumps,
   actionable
 } from '$lib/checkers/logic/square';
 import { difference } from '$lib/checkers/logic/squareSet';
-import { 
+import {
   playersTurn,
   selectedSquare,
   findSquareById,
@@ -36,26 +36,26 @@ export const getMoveResult = function(match: Match, playerNumber: number, touche
   if (isSquareSelected(match)) {
     if (moveValid(match, touchedSquareId)) {
       if (moveComplete(match, touchedSquareId)) {
-        return { name: 'MoveComplete', message: defaultMessage(match) };  
+        return { name: 'MoveComplete', message: nextTurnMessage(match) };
       } else {
-        return { name: 'MoveIncomplete', message: 'Piece can still jump.' };  
+        return { name: 'MoveIncomplete', message: 'Piece can still jump.' };
       }
     } else {
-      return { name: 'MoveInvalid', message: 'Move is invalid.' };  
+      return { name: 'MoveInvalid', message: 'Move is invalid.' };
     }
   } else {
     if (emptySquare(match, touchedSquareId)) {
-      return { name: 'EmptySquare', message: 'That square is empty.' };  
+      return { name: 'EmptySquare', message: 'That square is empty.' };
     }
 
     if (notPlayersPiece(match, playerNumber, touchedSquareId)) {
-      return { name: 'NotPlayersPiece', message: 'That piece is not yours.' };  
+      return { name: 'NotPlayersPiece', message: 'That piece is not yours.' };
     }
 
     if (movePossible(match, touchedSquareId)) {
-      return { name: 'MovePossible', message: '' };  
+      return { name: 'MovePossible', message: '' };
     } else {
-      return { name: 'MoveImpossible', message: 'That piece cannot move.' };  
+      return { name: 'MoveImpossible', message: 'That piece cannot move.' };
     }
   }
 };
@@ -108,7 +108,7 @@ export const moveComplete = function(match: Match, touchedSquareId: number): boo
   let touchedSquare = getTouchedSquare(match, touchedSquareId);
   if (fromSquare !== undefined && fromSquare.piece !== null && touchedSquare !== undefined) {
     let toSquares = getTos(match);
-    let legs = getLegs(fromSquare, toSquares, touchedSquare); 
+    let legs = getLegs(fromSquare, toSquares, touchedSquare);
     let lastLeg = getLastLeg(legs);
 
     return (moveType(lastLeg) || jumpType(lastLeg) && lastLegEnd(match, fromSquare.piece, touchedSquare, toSquares));
@@ -122,7 +122,7 @@ export const moveValid = function(match: Match, touchedSquareId: number): boolea
   let toSquares = getTos(match);
   let touchedSquare = getTouchedSquare(match, touchedSquareId);
   if (fromSquare !== undefined && touchedSquare !== undefined) {
-    let legs = getLegs(fromSquare, toSquares, touchedSquare); 
+    let legs = getLegs(fromSquare, toSquares, touchedSquare);
     return eachCons(legs, 2).every((leg) => {
       if (fromSquare !== undefined && fromSquare.piece !== null) {
         return actionable(leg[0], fromSquare.piece, leg[1], match.gameState.squares);
@@ -149,7 +149,7 @@ export const getTos = function(match: Match): Array<Square> {
 
 export const lastLegEnd = function(match: Match, piece: Piece, lastSquare: Square, toSquares: Array<Square>): boolean {
   let jumps = possibleJumps(lastSquare, piece, match.gameState.squares);
-  let withoutToSquares = difference(jumps, toSquares); 
+  let withoutToSquares = difference(jumps, toSquares);
   return withoutToSquares.length === 0;
 };
 
@@ -174,14 +174,6 @@ export const jumpType = function(leg: Array<Square>): boolean {
     return distance(point(leg[0]), point(leg[1])) === 2;
   } else {
     return false;
-  }
-};
-
-export const defaultMessage = function(match: Match): string {
-  if (winner(match)) {
-    return winnerMessage(match);
-  } else {
-    return nextTurnMessage(match);
   }
 };
 

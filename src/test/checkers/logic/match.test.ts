@@ -37,6 +37,12 @@ describe('touchSquare', () => {
     expect(match.lastAction).toBe(null);
   });
 
+  it('notifies with a message', () => {
+    let match = lastActionMatch();
+    touchSquare(match, 1, 11);
+    expect(match.notification).toEqual('Move is invalid.');
+  });
+
   describe('when move is invalid', () => {
     it('must clears move', () => {
       let match = firstLegIncompleteMatch();

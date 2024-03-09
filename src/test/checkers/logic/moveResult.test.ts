@@ -27,7 +27,6 @@ import {
   moveType,
   jumpType,
   lastLegEnd,
-  defaultMessage,
   nextTurnMessage,
   winnerMessage
 } from '$lib/checkers/logic/moveResult';
@@ -359,18 +358,6 @@ describe('jumpType', () => {
   });
 });
 
-describe('defaultMessage', () => {
-  it('must return winner message if there is a winner', () => {
-    let match = winnerMatch();
-    expect(defaultMessage(match)).toEqual('Player wins.');
-  });
-
-  it('must return next tern message if there is no winner', () => {
-    let match = defaultMatch();
-    expect(defaultMessage(match)).toEqual('Computer to move.');
-  });
-});
-
 describe('nextTurnMessage', () => {
   it('must return a message with the next players name', () => {
     let match = defaultMatch();
@@ -384,5 +371,4 @@ describe('winnerMessage', () => {
     expect(winnerMessage(match)).toEqual('Player wins.');
   });
 });
-
 

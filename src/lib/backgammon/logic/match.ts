@@ -23,7 +23,8 @@ import {
   getMoveResult,
   dieNumber,
   completeMoveList,
-  details
+  details,
+  winnerMessage
 } from '$lib/backgammon/logic/moveResult';
 
 export const winner = function(match: Match): number | null {
@@ -74,17 +75,16 @@ export const touchPoint = function(match: Match, playerNumber: number, touchedId
         } else {
           move(match.gameState, 'bar', touchedId, playerNumber);
         }
-        // useDie(match.gameState, number); will be cleared
         clearDice(match.gameState);
         stepPhase(match.gameState);
         passTurn(match.gameState);
         addMoveToLastAction(match, completeMoveList(match, touchedId));
         clearMoveList(match);
         deselect(match.gameState);
-        return true;
       } else {
         return false;
       }
+      break;
     case 'MoveIncomplete':
       let moveDetails = details(match, touchedId)
       if (fromPoint !== undefined && number !== undefined && moveDetails !== undefined) {
@@ -96,20 +96,24 @@ export const touchPoint = function(match: Match, playerNumber: number, touchedId
         useDie(match.gameState, number);
         addMoveToList(match, moveDetails);
         deselect(match.gameState);
-        notify(match, result.message);
-        return false;
       } else {
         return false;
       }
+      break;
     case 'MovePossible':
       select(match.gameState, touchedId);
-      notify(match, result.message);
-      return false;
+      break;
     default:
       deselect(match.gameState);
-      notify(match, result.message);
-      return false;
   }
+
+  if (winner(match)) {
+    notify(match, winnerMessage(match));
+  } else {
+    notify(match, result.message);
+  }
+
+  return true;
 };
 
 export const touchPass = function(match: Match, playerNumber: number): boolean {

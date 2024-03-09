@@ -26,12 +26,10 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
     case 'MoveInvalid':
       clearMove(match);
       deselectSquares(match.gameState);
-      notify(match, result.message);
       break;
     case 'MoveIncomplete':
       markSquare(match.gameState, touchedSquareId);
       addToToCurrentMove(match, touchedSquareId);
-      notify(match, result.message);
       break;
     case 'MoveComplete':
       let fromId = match.currentMoveFromId;
@@ -40,11 +38,6 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
         move(match.gameState, fromId, toIds);
         addMoveToLastAction(match, fromId, toIds);
         clearMove(match);
-        if (winner(match)) {
-          notify(match, winnerMessage(match));
-        } else {
-          notify(match, result.message);
-        }
       } else {
         return false;
       }
@@ -55,7 +48,12 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
       break;
     default:
       clearMove(match);
-      notify(match, result.message);
+  }
+
+  if (winner(match)) {
+    notify(match, winnerMessage(match));
+  } else {
+    notify(match, result.message);
   }
 
   return true;

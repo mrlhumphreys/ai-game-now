@@ -1,6 +1,4 @@
 <script>
-  // bug: clear notification after valid moves?
-  // bug: add winner message
   // bug: promote doesn't pass turn
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';

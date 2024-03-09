@@ -183,6 +183,9 @@ export const passTurn = function(gameState: GameState): boolean {
   } else {
     gameState.currentPlayerNumber = 1;
   }
+  if (gameState.firstTurn) {
+    gameState.firstTurn = false;
+  }
   return true;
 };
 

@@ -365,3 +365,15 @@ export const numberOfMoves = function(match: Match): number {
 export const numberOfPiecesOnBoard = function(match: Match, playerNumber: number): number {
   return 15 - piecesOwnedByPlayer(match.gameState.offBoard, playerNumber).length;
 };
+
+export const winnerMessage = function(match: Match): string {
+  let winningPlayer = match.players.find((p) => {
+    return p.playerNumber === matchWinner(match);
+  });
+
+  if (winningPlayer !== undefined) {
+    return `${winningPlayer.name} wins.`;
+  } else {
+    return '';
+  }
+};

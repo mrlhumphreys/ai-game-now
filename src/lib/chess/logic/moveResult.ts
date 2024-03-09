@@ -151,3 +151,16 @@ export const touchedSquare = function(match: Match, touchedSquareId: string): Sq
 export const selectedSquare = function(match: Match): Square | undefined {
   return gameStateSelectedSquare(match.gameState);
 };
+
+export const winnerMessage = function(match: Match): string {
+  let winningPlayer = match.players.find((p) => {
+    return p.playerNumber === winner(match);
+  });
+
+  if (winningPlayer !== undefined) {
+    return `${winningPlayer.name} wins.`;
+  } else {
+    return '';
+  }
+};
+

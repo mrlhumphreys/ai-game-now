@@ -66,7 +66,8 @@ import {
   touchedPoint,
   numberOfPiecesOnBoard,
   numberOfMoves,
-  barHasNoPiecesOwnedByPlayer
+  barHasNoPiecesOwnedByPlayer,
+  winnerMessage
 } from '$lib/backgammon/logic/moveResult';
 
 describe('getMoveResult', () => {
@@ -957,5 +958,12 @@ describe('numberOfPiecesOnBoard', () => {
     let gameState = somePiecesOffBoardMatch();
     let result = numberOfPiecesOnBoard(gameState, 1);
     expect(result).toEqual(10);
+  });
+});
+
+describe('winnerMessage', () => {
+  it('must return a message with the next players name', () => {
+    let match = winnerMatch();
+    expect(winnerMessage(match)).toEqual('Player wins.');
   });
 });

@@ -107,6 +107,14 @@ describe('touchDice', () => {
 });
 
 describe('touchPoint', () => {
+  it('sets a notification message', () => {
+    let match = moveCompleteMatch();
+    let playerNumber = 1;
+    let touchedId = 4;
+    touchPoint(match, playerNumber, touchedId);
+    expect(match.notification).toEqual('');
+  });
+
   describe('when move is complete', () => {
     it('moves the piece', () => {
       let match = moveCompleteMatch();

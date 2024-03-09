@@ -1,9 +1,8 @@
 <script>
+  // bug: wait after player move and before ai roll
   // bug: when too many pieces on one point, piece is rendered in corner
   // bug: off board: move does not match dice roll (ai)
-  // bug: doubles not rolling
-  // bug: add winner message
-  // bug: wait after player move and before ai roll
+  // bug: double roll doesn't douplicate dice
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 

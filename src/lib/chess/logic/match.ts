@@ -10,7 +10,8 @@ import {
   promote
 } from '$lib/chess/logic/gameState';
 import { 
-  getMoveResult 
+  getMoveResult,
+  winnerMessage
 } from '$lib/chess/logic/moveResult';
 import { 
   getPromoteResult
@@ -37,35 +38,39 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
         move(match.gameState, selected.id, touchedSquareId);
         passTurn(match.gameState);
         addMoveToLastAction(match, selected.id, touchedSquareId, null);
-        return true;
       } else {
         return false;
       }
+      break;
     case 'PawnMovesToLastRank':
       deselectPiece(match.gameState);
       if (selected !== undefined) {
         move(match.gameState, selected.id, touchedSquareId);
         setupPromotion(match, selected.id, touchedSquareId);
-        return true;
       } else {
         return false;
       }
+      break;
     case 'MovePossible':
       selectPiece(match.gameState, touchedSquareId);
-      return true;
+      break;
     case 'MoveInvalid':
       deselectPiece(match.gameState);
-      notify(match, result.message);
-      return false;
+      break;
     case 'KingInCheck':
       deselectPiece(match.gameState);
-      notify(match, result.message);
-      return false;
+      break;
     default:
       deselectPiece(match.gameState);
-      notify(match, result.message);
-      return false;
   }
+
+  if (winner(match)) {
+    notify(match, winnerMessage(match));
+  } else {
+    notify(match, result.message);
+  }
+
+  return true;
 };
 
 export const touchPromotionPiece = function(match: Match, playerNumber: number, pieceType: string): boolean {

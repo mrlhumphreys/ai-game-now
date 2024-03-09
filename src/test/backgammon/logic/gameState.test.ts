@@ -228,7 +228,7 @@ describe('select', () => {
 
 describe('selectBar', () => {
   it('selects the bar', () => {
-    let gameState = moveBarGameState();  
+    let gameState = moveBarGameState();
     selectBar(gameState);
     expect(gameState.bar.selected).toBe(true);
   });
@@ -275,16 +275,16 @@ describe('move', () => {
     it('moves the piece', () => {
       let gameState = selectedPointGameState();
       let fromId = 1;
-      let toId = 4; 
+      let toId = 4;
       let playerNumber = 1;
 
-      move(gameState, fromId, toId, playerNumber); 
+      move(gameState, fromId, toId, playerNumber);
 
       let fromPoint = gameState.points.find((p) => {
         return p.number === fromId;
       });
       if (fromPoint !== undefined) {
-        expect(fromPoint.pieces.length).toEqual(1);   
+        expect(fromPoint.pieces.length).toEqual(1);
       } else {
         expect(fromPoint).not.toBe(undefined);
       }
@@ -294,7 +294,7 @@ describe('move', () => {
       });
 
       if (toPoint !== undefined) {
-        expect(toPoint.pieces.length).toEqual(1);   
+        expect(toPoint.pieces.length).toEqual(1);
       } else {
         expect(toPoint).not.toBe(undefined);
       }
@@ -305,16 +305,16 @@ describe('move', () => {
     it('moves the piece and moves the blot to the bar', () => {
       let gameState = blotGameState();
       let fromId = 1;
-      let toId = 4; 
+      let toId = 4;
       let playerNumber = 1;
 
-      move(gameState, fromId, toId, playerNumber); 
+      move(gameState, fromId, toId, playerNumber);
 
       let fromPoint = gameState.points.find((p) => {
         return p.number === fromId;
       });
       if (fromPoint !== undefined) {
-        expect(fromPoint.pieces.length).toEqual(1);   
+        expect(fromPoint.pieces.length).toEqual(1);
       } else {
         expect(fromPoint).not.toBe(undefined);
       }
@@ -323,7 +323,7 @@ describe('move', () => {
         return p.number === toId;
       });
       if (toPoint !== undefined) {
-        expect(toPoint.pieces.length).toEqual(1);   
+        expect(toPoint.pieces.length).toEqual(1);
       } else {
         expect(toPoint).not.toBe(undefined);
       }
@@ -336,10 +336,10 @@ describe('move', () => {
     it('moves the piece from bar onto a point on the board', () => {
       let gameState = selectedBarGameState();
       let fromId = 'bar';
-      let toId = 3; 
+      let toId = 3;
       let playerNumber = 1;
 
-      move(gameState, fromId, toId, playerNumber); 
+      move(gameState, fromId, toId, playerNumber);
 
       let fromPoint = gameState.bar;
       expect(fromPoint.pieces.length).toEqual(1);
@@ -349,7 +349,7 @@ describe('move', () => {
       });
 
       if (toPoint !== undefined) {
-        expect(toPoint.pieces.length).toEqual(1);   
+        expect(toPoint.pieces.length).toEqual(1);
         toPoint.pieces.forEach((p) => {
           expect(p.playerNumber).toEqual(playerNumber);
         });
@@ -363,16 +363,16 @@ describe('move', () => {
     it('does not move the piece', () => {
       let gameState = selectedPointGameState();
       let fromId = 1;
-      let toId = 25; 
+      let toId = 25;
       let playerNumber = 1;
 
-      move(gameState, fromId, toId, playerNumber); 
+      move(gameState, fromId, toId, playerNumber);
 
       let fromPoint = gameState.points.find((p) => {
         return p.number === fromId;
       });
       if (fromPoint !== undefined) {
-        expect(fromPoint.pieces.length).toEqual(2);   
+        expect(fromPoint.pieces.length).toEqual(2);
       } else {
         expect(fromPoint).not.toBe(undefined);
       }
@@ -401,7 +401,7 @@ describe('useDie', () => {
     ]
     expect(gameState.dice).toEqual(expected);
   });
-  
+
   it('uses the highest die if the number does not match', () => {
     let gameState = moveGameState();
     useDie(gameState, 5);
@@ -416,20 +416,26 @@ describe('useDie', () => {
 describe('passTurn', () => {
   it('sets the player number to 1 if the number is 2', () => {
     let gameState = defaultGameState();
-    passTurn(gameState);    
+    passTurn(gameState);
     expect(gameState.currentPlayerNumber).toEqual(2);
   });
 
   it('sets the player number to 2 if the number is 1', () => {
     let gameState = playerTwoGameState();
-    passTurn(gameState);    
+    passTurn(gameState);
     expect(gameState.currentPlayerNumber).toEqual(1);
+  });
+
+  it('sets firstTurn to false if ture', () => {
+    let gameState = defaultGameState();
+    passTurn(gameState);
+    expect(gameState.firstTurn).toBe(false);
   });
 });
 
 describe('stepPhase', () => {
   it('sets the phase to move if the phase is roll', () => {
-    let gameState = defaultGameState(); 
+    let gameState = defaultGameState();
     stepPhase(gameState);
     expect(gameState.currentPhase).toEqual('move');
   });
@@ -443,7 +449,7 @@ describe('stepPhase', () => {
 
 describe('clearDice', () => {
   it('clears the dice', () => {
-     let gameState = moveGameState(); 
+     let gameState = moveGameState();
      clearDice(gameState);
      let expected = [
        { id: 0, number: null, used: false },

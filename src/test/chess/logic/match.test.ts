@@ -32,6 +32,14 @@ describe('winner', () => {
 });
 
 describe('touchSquare', () => {
+  it('notifies with a message', () => {
+    let match = selectedMatch();
+    let playerNumber = 1;
+    let touchedSquareId = 'e4';
+    touchSquare(match, playerNumber, touchedSquareId);
+    expect(match.notification).toEqual('');
+  });
+
   describe('when move valid', () => {
     it('deselects the piece', () => {
       let match = selectedMatch();
@@ -238,7 +246,7 @@ describe('touchSquare', () => {
       let match = winnerMatch();
       let playerNumber = 1;
       let touchedSquareId = 'e2';
-      let expected = 'Game is over.';
+      let expected = 'Player wins.';
       touchSquare(match, playerNumber, touchedSquareId);
       expect(match.notification).toEqual(expected);
     });

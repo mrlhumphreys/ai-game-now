@@ -6,7 +6,7 @@ import winnerMatch from '../fixtures/winnerMatch';
 import pawnMoveToLastRankMatch from '../fixtures/pawnMoveToLastRankMatch';
 import putsKingInCheckMatch from '../fixtures/putsKingInCheckMatch';
 
-import { 
+import {
   getMoveResult,
   selectedResult,
   unselectedResult,
@@ -22,6 +22,7 @@ import {
   pawnMoveToLastRank,
   touchedSquare,
   selectedSquare,
+  winnerMessage
 } from '$lib/chess/logic/moveResult';
 
 describe('getMoveResult', () => {
@@ -123,7 +124,7 @@ describe('unselectedResult', () => {
       let playerNumber = 1;
       let touchedSquareId = 'xx';
       let expected = { name: 'SquareNotFound', message: 'Square does not exist.' };
-      let result = unselectedResult(match, playerNumber, touchedSquareId); 
+      let result = unselectedResult(match, playerNumber, touchedSquareId);
       expect(result).toEqual(expected);
     });
   });
@@ -134,7 +135,7 @@ describe('unselectedResult', () => {
       let playerNumber = 1;
       let touchedSquareId = 'e3';
       let expected = { name: 'EmptySquare', message: 'Square is empty.' };
-      let result = unselectedResult(match, playerNumber, touchedSquareId); 
+      let result = unselectedResult(match, playerNumber, touchedSquareId);
       expect(result).toEqual(expected);
     });
   });
@@ -145,7 +146,7 @@ describe('unselectedResult', () => {
       let playerNumber = 1;
       let touchedSquareId = 'e7';
       let expected = { name: 'PieceOwnershipMismatch', message: 'Piece is owned by opponent.' };
-      let result = unselectedResult(match, playerNumber, touchedSquareId); 
+      let result = unselectedResult(match, playerNumber, touchedSquareId);
       expect(result).toEqual(expected);
     });
   });
@@ -156,7 +157,7 @@ describe('unselectedResult', () => {
       let playerNumber = 1;
       let touchedSquareId = 'h1';
       let expected = { name: 'MoveImpossible', message: 'Piece cannot move.' };
-      let result = unselectedResult(match, playerNumber, touchedSquareId); 
+      let result = unselectedResult(match, playerNumber, touchedSquareId);
       expect(result).toEqual(expected);
     });
   });
@@ -167,7 +168,7 @@ describe('unselectedResult', () => {
       let playerNumber = 1;
       let touchedSquareId = 'e2';
       let expected = { name: 'MovePossible', message: '' };
-      let result = unselectedResult(match, playerNumber, touchedSquareId); 
+      let result = unselectedResult(match, playerNumber, touchedSquareId);
       expect(result).toEqual(expected);
     });
   });
@@ -249,7 +250,7 @@ describe('touchedSquareEmpty', () => {
   });
 });
 
-describe('touchedSquareOccupiedByPlayer', () => { 
+describe('touchedSquareOccupiedByPlayer', () => {
   it('returns true if occupied by player', () => {
     let match = defaultMatch();
     let playerNumber = 1;
@@ -364,3 +365,11 @@ describe('selectedSquare', () => {
     expect(result).toBe(undefined);
   });
 });
+
+describe('winnerMessage', () => {
+  it('must return a message with the next players name', () => {
+    let match = winnerMatch();
+    expect(winnerMessage(match)).toEqual('Player wins.');
+  });
+});
+
