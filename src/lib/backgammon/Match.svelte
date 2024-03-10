@@ -2,7 +2,6 @@
   // bug: when too many pieces on one point, piece is rendered in corner
   // bug: off board: move does not match dice roll (ai)
   // bug: off board: move last piece to home + bear off. bear off doesnt work (ai)
-  // bug: double roll doesn't douplicate dice
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 

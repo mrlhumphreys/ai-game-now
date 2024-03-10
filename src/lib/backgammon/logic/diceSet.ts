@@ -68,7 +68,9 @@ export const roll = function(dice: Array<Die>, allowDoubles: boolean = true): bo
         let dupDice = dice.map((d) => {
           return { id: d.id + 2, number: d.number, used: false };
         });
-        dice = dice.concat(dupDice);
+        dupDice.forEach((d) => {
+          dice.push(d);
+        });
       } else {
         // roll until we don't have doubles
         roll(dice, allowDoubles);
