@@ -1,7 +1,7 @@
 <script>
-  // bug: wait after player move and before ai roll
   // bug: when too many pieces on one point, piece is rendered in corner
   // bug: off board: move does not match dice roll (ai)
+  // bug: off board: move last piece to home + bear off. bear off doesnt work (ai)
   // bug: double roll doesn't douplicate dice
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
@@ -113,23 +113,27 @@
 
   // ai action functions
   function aiTurn() {
-    aiRoll();
-    if (matchPassable(matchState, aiPlayerNumber)) {
-      aiPass();
-    } else {
-      let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
-      let game = 'backgammon';
-      aiService.postMove(game, matchState.gameState, (moveList) => {
-        if (exists(moveList)) {
-          let moveFunc = () => aiMove(moveList);
-          setTimeout(moveFunc, 1500);
-        }
-      }, (_) => {
-        if (browser) {
-          alert("Something went wrong. Please try again later.");
-        }
-      });
-    }
+    let rollFunc = () => aiRoll();
+    setTimeout(rollFunc, 1500); // delay so that rolling doesn't happen straight after player move
+
+    let afterRollFunc = () => {
+      if (matchPassable(matchState, aiPlayerNumber)) {
+        aiPass();
+      } else {
+        let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
+        let game = 'backgammon';
+        aiService.postMove(game, matchState.gameState, (moveList) => {
+          if (exists(moveList)) {
+            aiMove(moveList);
+          }
+        }, (_) => {
+          if (browser) {
+            alert("Something went wrong. Please try again later.");
+          }
+        });
+      }
+    };
+    setTimeout(afterRollFunc, 3000); // delay so that moving pieces doesn't happen straight after rolling dice
   }
 
   function aiRoll() {
@@ -144,7 +148,7 @@
         matchTouchPoint(matchState, aiPlayerNumber, move[1]);
         saveState(matchState);
       };
-      setTimeout(legFunc, index*1500);
+      setTimeout(legFunc, index*1500); // delay so that it looks like it moves one piece at a time instead of both
     });
 
     let passFunc = () => {

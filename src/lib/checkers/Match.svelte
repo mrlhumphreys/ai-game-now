@@ -91,7 +91,7 @@
     aiService.postMove(game, matchState.gameState, (move) => {
       if (exists(move)) {
         let func = () => aiMove(move);
-        setTimeout(func, 1500);
+        setTimeout(func, 1500); // delay so that it doesn't move straight after player moves
       }
     }, (_) => {
       if (browser) {
