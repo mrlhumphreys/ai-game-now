@@ -296,6 +296,14 @@ describe('touchPromotionPiece', () => {
       expect(match.currentMove).toBe(null);
       expect(match.promotion).toBe(false);
     });
+
+    it('passes the turn', () => {
+      let match = promotionMatch();
+      let playerNumber = 1;
+      let pieceType = 'queen';
+      touchPromotionPiece(match, playerNumber, pieceType);
+      expect(match.gameState.currentPlayerNumber).toEqual(2);
+    });
   });
 
   describe('when promotion invalid', () => {

@@ -82,6 +82,7 @@ export const touchPromotionPiece = function(match: Match, playerNumber: number, 
         promote(match.gameState, match.currentMove.toId, pieceType);
         addMoveToLastAction(match, match.currentMove.fromId, match.currentMove.toId, pieceType);
         teardownPromotion(match);
+        passTurn(match.gameState);
         return true;
       } else {
         notify(match, result.message);
