@@ -64,7 +64,7 @@ let gameState = {
     { id: 'c2', x: 2, y: 6, piece: null },
     { id: 'd2', x: 3, y: 6, piece: null },
     { id: 'e2', x: 4, y: 6, piece: { id: 13, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
-    { id: 'f2', x: 5, y: 6, piece: null },
+    { id: 'f2', x: 5, y: 6, piece: { id: 22, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } },
     { id: 'g2', x: 6, y: 6, piece: null },
     { id: 'h2', x: 7, y: 6, piece: null },
 

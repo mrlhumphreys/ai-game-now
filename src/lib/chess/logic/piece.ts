@@ -156,7 +156,7 @@ export const pawnDirection = function(piece: Piece): number {
 
 export const kingBaseDestinations = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {
   let atRangeSquares = atRange(gameState.squares, square, 1);
-  return atRangeSquares;
+  return unoccupiedOrOccupiedByOpponentOf(atRangeSquares, piece.playerNumber);
 };
 
 export const kingCastle = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {

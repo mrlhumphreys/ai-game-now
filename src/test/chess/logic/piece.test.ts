@@ -184,7 +184,6 @@ describe('destinations', () => {
       let expected = [
         { id: 'd2', x: 3, y: 6, piece: null },
         { id: 'e2', x: 4, y: 6, piece: { id: 13, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
-        { id: 'f2', x: 5, y: 6, piece: null },
         { id: 'd1', x: 3, y: 7, piece: null },
         { id: 'f1', x: 5, y: 7, piece: null },
         { id: 'c1', x: 2, y: 7, piece: null },
@@ -274,7 +273,6 @@ describe('captureSquares', () => {
       let expected = [
         { id: 'd2', x: 3, y: 6, piece: null },
         { id: 'e2', x: 4, y: 6, piece: { id: 13, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
-        { id: 'f2', x: 5, y: 6, piece: null },
         { id: 'd1', x: 3, y: 7, piece: null },
         { id: 'f1', x: 5, y: 7, piece: null }
       ];
@@ -433,7 +431,6 @@ describe('kingBaseDestinations', () => {
     let expected = [
       { id: 'd2', x: 3, y: 6, piece: null },
       { id: 'e2', x: 4, y: 6, piece: { id: 13, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
-      { id: 'f2', x: 5, y: 6, piece: null },
       { id: 'd1', x: 3, y: 7, piece: null },
       { id: 'f1', x: 5, y: 7, piece: null }
     ];
