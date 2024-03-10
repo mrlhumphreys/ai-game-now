@@ -69,7 +69,7 @@
     let state = buildMatchAttributes();
     setState(state);
     if (aiPlayerNumber === 1) {
-      setTimeout(fetchAndPerformAiMove, 2000);
+      setTimeout(aiTurn, 2000);
     }
   };
 
@@ -87,7 +87,7 @@
   setInitialMatchState();
 
   // ai action functions
-  function performAiMove(move) {
+  function aiMove(move) {
     matchTouchSquare(matchState, aiPlayerNumber, move.fromId);
     matchTouchSquare(matchState, aiPlayerNumber, move.toId);
     if (exists(move.promotionPieceType)) {
@@ -97,12 +97,12 @@
     saveState(matchState);
   };
 
-  function fetchAndPerformAiMove() {
+  function aiTurn() {
     let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
     let game = 'chess';
     aiService.postMove(game, matchState.gameState, (move) => {
       if (exists(move)) {
-        let func = () => performAiMove(move);
+        let func = () => aiMove(move);
         setTimeout(func, 1500);
       }
     }, (_) => {
@@ -120,7 +120,7 @@
     let winnerPlayerNumber = winner(matchState);
 
     if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
-      fetchAndPerformAiMove();
+      aiTurn();
     }
   };
 
@@ -133,7 +133,7 @@
     let winnerPlayerNumber = winner(matchState);
 
     if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
-      fetchAndPerformAiMove();
+      aiTurn();
     }
   }
 

@@ -1,4 +1,4 @@
-<F5>import type Piece from '$lib/checkers/interfaces/Piece';
+import type Piece from '$lib/checkers/interfaces/Piece';
 import type Square from '$lib/checkers/interfaces/Square';
 import type Match from '$lib/checkers/interfaces/Match';
 

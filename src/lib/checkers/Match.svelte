@@ -60,7 +60,7 @@
     let state = buildMatchAttributes();
     setState(state);
     if (aiPlayerNumber === 1) {
-      setTimeout(fetchAndPerformAiMove, 2000);
+      setTimeout(aiTurn, 2000);
     }
   };
 
@@ -78,19 +78,19 @@
   setInitialMatchState();
 
   // ai action functions
-  function performAiMove(move) {
+  function aiMove(move) {
     move.forEach((leg) => {
       matchTouchSquare(matchState, aiPlayerNumber, leg);
       saveState(matchState);
     });
   };
 
-  function fetchAndPerformAiMove() {
+  function aiTurn() {
     let aiService = new AiService(PUBLIC_AI_SERVICE_URL);
     let game = 'checkers';
     aiService.postMove(game, matchState.gameState, (move) => {
       if (exists(move)) {
-        let func = () => performAiMove(move);
+        let func = () => aiMove(move);
         setTimeout(func, 1500);
       }
     }, (_) => {
@@ -109,7 +109,7 @@
     let winnerPlayerNumber = winner(matchState);
 
     if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
-      fetchAndPerformAiMove();
+      aiTurn();
     }
   };
 
