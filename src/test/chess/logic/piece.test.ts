@@ -10,6 +10,7 @@ import knightMoveGameState from '../fixtures/knightMoveGameState';
 import bishopMoveGameState from '../fixtures/bishopMoveGameState';
 import queenMoveGameState from '../fixtures/queenMoveGameState';
 import kingMoveGameState from '../fixtures/kingMoveGameState';
+import kingMoveBlockedGameState from '../fixtures/kingMoveBlockedGameState';
 import rooksHaveMovedGameState from '../fixtures/rooksHaveMovedGameState';
 import kingHasMovedGameState from '../fixtures/kingHasMovedGameState';
 
@@ -187,6 +188,22 @@ describe('destinations', () => {
         { id: 'd1', x: 3, y: 7, piece: null },
         { id: 'f1', x: 5, y: 7, piece: null },
         { id: 'c1', x: 2, y: 7, piece: null },
+        { id: 'g1', x: 6, y: 7, piece: null }
+      ];
+      let result = destinations(king, square, gameState);
+      expect(result).toEqual(expected);
+    });
+
+    it('returns unblocked castle squares', () => {
+      let gameState = kingMoveBlockedGameState();
+      let king = { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false };
+      let square = { id: 'e1', x: 4, y: 7, piece: king };
+      let expected = [
+        { id: 'd2', x: 3, y: 6, piece: null },
+        { id: 'e2', x: 4, y: 6, piece: { id: 13, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
+        { id: 'f2', x: 5, y: 6, piece: null },
+        { id: 'd1', x: 3, y: 7, piece: null },
+        { id: 'f1', x: 5, y: 7, piece: null },
         { id: 'g1', x: 6, y: 7, piece: null }
       ];
       let result = destinations(king, square, gameState);

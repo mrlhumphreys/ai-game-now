@@ -161,9 +161,10 @@ export const kingBaseDestinations = function(piece: Piece, square: Square, gameS
 
 export const kingCastle = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {
   let rooks = unmoved(occupiedByPlayer(occupiedByPieceType(gameState.squares, 'rook'), piece.playerNumber));
-  if (hasNotMoved(piece) && rooks.length > 0) {
-    let potentialSquares = compact(rooks.map((s) => {
-      let directionX = vectorDirectionX(point(square), point(s));
+  let unblockedRooks = unblocked(rooks, square, gameState.squares);
+  if (hasNotMoved(piece) && unblockedRooks.length > 0) {
+    let potentialSquares = compact(unblockedRooks.map((rs) => {
+      let directionX = vectorDirectionX(point(square), point(rs));
       let x = square.x + 2 * directionX;
       let y = square.y;
       return findByCoordinate(gameState.squares, x, y);
