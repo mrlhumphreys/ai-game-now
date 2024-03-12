@@ -7,9 +7,12 @@ import pawnMoveToLastRankMatch from '../fixtures/pawnMoveToLastRankMatch';
 import promotionMatch from '../fixtures/promotionMatch';
 import putsKingInCheckMatch from '../fixtures/putsKingInCheckMatch';
 import winnerMatch from '../fixtures/winnerMatch';
+import inCheckmateMatch from '../fixtures/inCheckmateMatch';
+import inStalemateMatch from '../fixtures/inStalemateMatch';
 
 import {
   winner,
+  gameOver,
   touchSquare,
   touchPromotionPiece,
   setupPromotion,
@@ -28,6 +31,26 @@ describe('winner', () => {
   it('returns null if there is no winner', () => {
     let match = defaultMatch();
     expect(winner(match)).toBe(null);
+  });
+});
+
+describe('gameOver', () => {
+  it('returns true if checkmate', () => {
+    let match = inCheckmateMatch();
+    let result = gameOver(match);
+    expect(result).toBe(true);
+  });
+
+  it('returns true if stalemate', () => {
+    let match = inStalemateMatch();
+    let result = gameOver(match);
+    expect(result).toBe(true);
+  });
+
+  it('returns false if not in checkmate or stalemate', () => {
+    let match = defaultMatch();
+    let result = gameOver(match);
+    expect(result).toBe(false);
   });
 });
 

@@ -1,5 +1,4 @@
 <script>
-  // bug: handle stalemate
   import { browser } from '$app/environment';
   import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
 
@@ -12,7 +11,7 @@
   import {
     touchSquare as matchTouchSquare,
     touchPromotionPiece as matchTouchPromotionPiece,
-    winner
+    gameOver
   } from '$lib/chess/logic/match';
 
   import PieceImage from '$lib/chess/PieceImage.svelte';
@@ -117,9 +116,8 @@
     saveState(matchState);
 
     let lastActionKind = exists(matchState.lastAction) && matchState.lastAction.kind
-    let winnerPlayerNumber = winner(matchState);
 
-    if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
+    if (lastActionKind === 'move' && !gameOver(matchState)) {
       aiTurn();
     }
   };
@@ -130,9 +128,8 @@
     saveState(matchState);
 
     let lastActionKind = exists(matchState.lastAction) && matchState.lastAction.kind
-    let winnerPlayerNumber = winner(matchState);
 
-    if (lastActionKind === 'move' && !exists(winnerPlayerNumber)) {
+    if (lastActionKind === 'move' && !gameOver(matchState)) {
       aiTurn();
     }
   }

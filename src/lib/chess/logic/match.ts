@@ -1,6 +1,7 @@
 import type Match from '$lib/chess/interfaces/Match';
 
 import { 
+  gameOver as gameStateGameOver,
   winner as gameStateWinner,
   selectedSquare,
   selectPiece,
@@ -24,6 +25,10 @@ export const winner = function(match: Match): number | null {
   } else {
     return gameStateWinner(match.gameState);
   }
+};
+
+export const gameOver = function(match: Match): boolean {
+  return gameStateGameOver(match.gameState);
 };
 
 export const touchSquare = function(match: Match, playerNumber: number, touchedSquareId: string): boolean {

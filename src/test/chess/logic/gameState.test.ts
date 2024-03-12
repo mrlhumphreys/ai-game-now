@@ -9,11 +9,14 @@ import pawnPromoteMoveGameState from '../fixtures/pawnPromoteMoveGameState';
 import kingMoveGameState from '../fixtures/kingMoveGameState';
 import inCheckGameState from '../fixtures/inCheckGameState';
 import notInCheckGameState from '../fixtures/notInCheckGameState';
+import inStalemateGameState from '../fixtures/inStalemateGameState';
+import playerTwoInStalemateGameState from '../fixtures/playerTwoInStalemateGameState';
 import inCheckmateGameState from '../fixtures/inCheckmateGameState';
 import inCheckAndOtherPieceCanStopCheckmateGameState from '../fixtures/inCheckAndOtherPieceCanStopCheckmateGameState';
 import playerTwoInCheckmateGameState from '../fixtures/playerTwoInCheckmateGameState';
 
 import {
+  gameOver,
   winner,
   playersTurn,
   opponentOf,
@@ -22,6 +25,7 @@ import {
   findSquare,
   capturedSquare,
   capturedSquareId,
+  inStalemate,
   inCheckmate,
   inCheck,
   rookCastleMove,
@@ -33,6 +37,38 @@ import {
   promote,
   passTurn
 } from '$lib/chess/logic/gameState';
+
+describe('gameOver', () => {
+  it('returns true if player 1 is in checkmate', () => {
+    let gameState = inCheckmateGameState();
+    let result = gameOver(gameState);
+    expect(result).toEqual(true);
+  });
+
+  it('returns true if player 2 is in checkmate', () => {
+    let gameState = playerTwoInCheckmateGameState();
+    let result = gameOver(gameState);
+    expect(result).toEqual(true);
+  });
+
+  it('returns true if player 1 is in stalemate', () => {
+    let gameState = inStalemateGameState();
+    let result = gameOver(gameState);
+    expect(result).toEqual(true);
+  });
+
+  it('returns true if player 2 is in stalemate', () => {
+    let gameState = playerTwoInStalemateGameState();
+    let result = gameOver(gameState);
+    expect(result).toEqual(true);
+  });
+
+  it('returns false if no one in checkmate and no one in stalemnate', () => {
+    let gameState = defaultGameState();
+    let result = gameOver(gameState);
+    expect(result).toEqual(false);
+  });
+});
 
 describe('winner', () => {
   it('returns player 2 if player 1 is in checkmate', () => {
@@ -186,6 +222,29 @@ describe('capturedSquareId', () => {
     let to = { id: 'e4', x: 4, y: 4, piece: null };
     let result = capturedSquareId(gameState, from, to);
     expect(result).toBe(undefined);
+  });
+});
+
+describe('inStalemate', () => {
+  it('returns true if king is not in check and no move gets it out of check', () => {
+    let gameState = inStalemateGameState();
+    let playerNumber = 1;
+    let result = inStalemate(gameState, playerNumber);
+    expect(result).toBe(true);
+  });
+
+  it('returns false if king is in check and no moves get it out of check', () => {
+    let gameState = inCheckmateGameState();
+    let playerNumber = 1;
+    let result = inStalemate(gameState, playerNumber);
+    expect(result).toBe(false);
+  });
+
+  it('returns false if it is not in check and other moves do not lead to check', () => {
+    let gameState = defaultGameState();
+    let playerNumber = 1;
+    let result = inStalemate(gameState, playerNumber);
+    expect(result).toBe(false);
   });
 });
 

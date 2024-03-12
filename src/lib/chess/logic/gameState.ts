@@ -36,6 +36,10 @@ interface Move {
   toId: string;
 }
 
+export const gameOver = function(gameState: GameState): boolean {
+  return inCheckmate(gameState, 1) || inCheckmate(gameState, 2) || inStalemate(gameState, 1) || inStalemate(gameState, 2);
+};
+
 export const winner = function(gameState: GameState): number | null {
   if (inCheckmate(gameState, 1)) {
     return 2;
@@ -90,6 +94,20 @@ export const capturedSquareId = function(gameState: GameState, from: Square, to:
   } else {
     return undefined;
   }
+};
+
+export const inStalemate = function(gameState: GameState, playerNumber: number): boolean {
+  return !inCheck(gameState, playerNumber) && occupiedByPlayer(gameState.squares, playerNumber).every((from) => {
+    if (from.piece !== null) {
+      return destinations(from.piece, from, gameState).every((to) => {
+        let newState = deepClone(gameState);
+        move(newState, from.id, to.id);
+        return inCheck(newState, playerNumber);
+      });
+    } else {
+      return false;
+    }
+  });
 };
 
 export const inCheckmate = function(gameState: GameState, playerNumber: number): boolean {
