@@ -31,13 +31,26 @@ import {
   findByPieceId,
   findByCoordinate
 } from '$lib/chess/logic/squareSet';
+import {
+  inCheck
+} from '$lib/chess/logic/gameState';
 
 export const canMoveFrom = function(piece: Piece, square: Square, gameState: GameState): boolean {
-  return destinations(piece, square, gameState).length > 0;
+  // king exclude castle move if in check
+  if (piece.type === 'king' && inCheck(gameState, piece.playerNumber)) {
+    return kingBaseDestinations(piece, square, gameState).length > 0;
+  } else {
+    return destinations(piece, square, gameState).length > 0;
+  }
 };
 
 export const canMove = function(piece: Piece, from: Square, to: Square, gameState: GameState): boolean {
-  return includes(destinations(piece, from, gameState), to);
+  // king exclude castle move if in check
+  if (piece.type === 'king' && inCheck(gameState, piece.playerNumber)) {
+    return includes(kingBaseDestinations(piece, from, gameState), to);
+  } else {
+    return includes(destinations(piece, from, gameState), to);
+  }
 };
 
 export const destinations = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {

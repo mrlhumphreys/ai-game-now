@@ -13,6 +13,7 @@ import kingMoveGameState from '../fixtures/kingMoveGameState';
 import kingMoveBlockedGameState from '../fixtures/kingMoveBlockedGameState';
 import rooksHaveMovedGameState from '../fixtures/rooksHaveMovedGameState';
 import kingHasMovedGameState from '../fixtures/kingHasMovedGameState';
+import inCheckmateGameState from '../fixtures/inCheckmateGameState';
 
 import {
   canMoveFrom,
@@ -47,6 +48,14 @@ describe('canMoveFrom', () => {
     let result = canMoveFrom(piece, from, gameState);
     expect(result).toBe(false);
   });
+
+  it('returns true and excludes castle moves if king could castle but is in check', () => {
+    let gameState = inCheckmateGameState();
+    let piece = { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false };
+    let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } };
+    let result = canMoveFrom(piece, from, gameState);
+    expect(result).toBe(true);
+  });
 });
 
 describe('canMove', () => {
@@ -64,6 +73,15 @@ describe('canMove', () => {
     let piece = { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false };
     let from = { id: 'e4', x: 4, y: 4, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
     let to = { id: 'f5', x: 5, y: 3, piece: null };
+    let result = canMove(piece, from, to, gameState);
+    expect(result).toBe(false);
+  });
+
+  it('returns false if king could castle but is in check', () => {
+    let gameState = inCheckmateGameState();
+    let piece = { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false };
+    let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } };
+    let to = { id: 'c1', x: 2, y: 7, piece: null };
     let result = canMove(piece, from, to, gameState);
     expect(result).toBe(false);
   });
