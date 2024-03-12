@@ -8,6 +8,7 @@ import {
 } from '$lib/chess/logic/vector';
 import {
   kingCastle,
+  kingBaseDestinations,
   destinations
 } from '$lib/chess/logic/piece';
 import {
@@ -113,7 +114,14 @@ export const inStalemate = function(gameState: GameState, playerNumber: number):
 export const inCheckmate = function(gameState: GameState, playerNumber: number): boolean {
   return inCheck(gameState, playerNumber) && occupiedByPlayer(gameState.squares, playerNumber).every((from) => {
     if (from.piece !== null) {
-      return destinations(from.piece, from, gameState).every((to) => {
+      let moves: Array<Square> = [];
+      if (from.piece.type === 'king') {
+        // exclude king castle - can't get out of check with castle
+        moves = kingBaseDestinations(from.piece, from, gameState);
+      } else {
+        moves = destinations(from.piece, from, gameState);
+      }
+      return moves.every((to) => {
         let newState = deepClone(gameState);
         move(newState, from.id, to.id);
         return inCheck(newState, playerNumber);

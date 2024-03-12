@@ -68,7 +68,7 @@ let gameState = {
     { id: 'g2', x: 6, y: 6, piece: null },
     { id: 'h2', x: 7, y: 6, piece: null },
 
-    { id: 'a1', x: 0, y: 7, piece: null },
+    { id: 'a1', x: 0, y: 7, piece: { id: 32, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } },
     { id: 'b1', x: 1, y: 7, piece: null },
     { id: 'c1', x: 2, y: 7, piece: null },
     { id: 'd1', x: 3, y: 7, piece: null },
