@@ -155,7 +155,8 @@ const generateEnPassantTarget = function(state: GameState): string {
     let targetX = square.x;
     let targetY: number;
     
-    if (state.currentPlayerNumber === 1) {
+    // this is reversed as the player has already moved and passed the turn
+    if (state.currentPlayerNumber === 2) {
       targetY = square.y + 1;
     } else {
       targetY = square.y - 1;
