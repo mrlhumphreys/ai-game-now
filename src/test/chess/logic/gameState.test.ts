@@ -556,7 +556,7 @@ describe('move', () => {
       move(gameState, fromId, toId);
       expect(gameState.lastDoubleStepPawnId).toBe(null);
     });
-    
+
   });
 
   describe('when pawn moves 2 spaces', () => {
@@ -575,7 +575,7 @@ describe('move', () => {
       let fromId = 'e1';
       let toId = 'g1';
       move(gameState, fromId, toId);
-      
+
       let rookFromSquare = gameState.squares.find((s) => {
         return s.id === 'h1';
       });
@@ -638,6 +638,36 @@ describe('move', () => {
       }
     });
   });
+
+  describe('when capture', () => {
+    it('resets the halfmove', () => {
+      let gameState = pawnCaptureGameState();
+      let fromId = 'e4';
+      let toId = 'd5';
+      move(gameState, fromId, toId);
+      expect(gameState.halfmove).toEqual(0);
+    });
+  });
+
+  describe('when pawn', () => {
+    it('resets the halfmove', () => {
+      let gameState = pawnCaptureGameState();
+      let fromId = 'e4';
+      let toId = 'e5';
+      move(gameState, fromId, toId);
+      expect(gameState.halfmove).toEqual(0);
+    });
+  });
+
+  describe('when non-pawn', () => {
+    it('increments the halfmove', () => {
+      let gameState = kingMoveGameState();
+      let fromId = 'e1';
+      let toId = 'd2';
+      move(gameState, fromId, toId);
+      expect(gameState.halfmove).toEqual(1);
+    });
+  });
 });
 
 describe('selectPiece', () => {
@@ -680,7 +710,7 @@ describe('promote', () => {
     let gameState = pawnPromoteMoveGameState();
     let id = 'h7';
     let pieceType = 'queen';
-    promote(gameState, id, pieceType); 
+    promote(gameState, id, pieceType);
 
     let square = gameState.squares.find((s) => {
       return s.id === id;
@@ -701,9 +731,21 @@ describe('passTurn', () => {
     expect(gameState.currentPlayerNumber).toEqual(1);
   });
 
+  it('increments the full move if player number is 2', () => {
+    let gameState = playerTwoGameState();
+    passTurn(gameState);
+    expect(gameState.fullmove).toEqual(2);
+  });
+
   it('sets the current player number to 2 if 1', () => {
     let gameState = defaultGameState();
     passTurn(gameState);
     expect(gameState.currentPlayerNumber).toEqual(2);
+  });
+
+  it('does not increment the full move if player number is 1', () => {
+    let gameState = defaultGameState();
+    passTurn(gameState);
+    expect(gameState.fullmove).toEqual(1);
   });
 });

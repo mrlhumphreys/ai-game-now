@@ -31,8 +31,10 @@ const chessStateSerializer = function(state: GameState): string {
   let player = state.currentPlayerNumber === 1 ? 'w' : 'b';
   let castleMoves = generateCastleMoves(state);
   let enPassantTarget = generateEnPassantTarget(state);
+  let halfmove = state.halfmove;
+  let fullmove = state.fullmove;
 
-  return `${boardState} ${player} ${castleMoves} ${enPassantTarget} 0 1`;
+  return `${boardState} ${player} ${castleMoves} ${enPassantTarget} ${halfmove} ${fullmove}`;
 };
 
 const pieceToChar = function(piece: Piece): string {

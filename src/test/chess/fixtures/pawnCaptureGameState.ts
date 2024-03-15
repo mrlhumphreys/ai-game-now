@@ -76,7 +76,9 @@ let gameState = {
     { id: 'f1', x: 5, y: 7, piece: { id: 30, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false } },
     { id: 'g1', x: 6, y: 7, piece: { id: 31, playerNumber: 1, type: 'knight', hasMoved: false, selected: false } },
     { id: 'h1', x: 7, y: 7, piece: { id: 32, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } }
-  ]
+  ],
+  halfmove: 1,
+  fullmove: 1
 };
 
 const generateGameState = function(): GameState {

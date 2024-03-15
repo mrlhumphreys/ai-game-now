@@ -53,7 +53,7 @@ describe('default fen', () => {
         { id: 'f4', x: 5, y: 4, piece: null },
         { id: 'g4', x: 6, y: 4, piece: null },
         { id: 'h4', x: 7, y: 4, piece: null },
-        
+
         { id: 'a3', x: 0, y: 5, piece: null },
         { id: 'b3', x: 1, y: 5, piece: null },
         { id: 'c3', x: 2, y: 5, piece: null },
@@ -80,7 +80,9 @@ describe('default fen', () => {
         { id: 'f1', x: 5, y: 7, piece: { id: 40, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false } },
         { id: 'g1', x: 6, y: 7, piece: { id: 41, playerNumber: 1, type: 'knight', hasMoved: false, selected: false } },
         { id: 'h1', x: 7, y: 7, piece: { id: 42, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } }
-      ]
+      ],
+      halfmove: 0,
+      fullmove: 1
     };
     expect(result).toEqual(expected);
   });

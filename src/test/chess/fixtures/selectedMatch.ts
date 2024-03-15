@@ -78,7 +78,9 @@ let match = {
       { id: 'f1', x: 5, y: 7, piece: { id: 30, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false } },
       { id: 'g1', x: 6, y: 7, piece: { id: 31, playerNumber: 1, type: 'knight', hasMoved: false, selected: false } },
       { id: 'h1', x: 7, y: 7, piece: { id: 32, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } }
-    ]
+    ],
+    halfmove: 0,
+    fullmove: 0
   },
   players: [
     { playerNumber: 1, name: 'Player', resigned: false },

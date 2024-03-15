@@ -4,9 +4,6 @@ import type Piece from '$lib/chess/interfaces/Piece';
 import type CastleMove from '$lib/chess/interfaces/CastleMove';
 
 const parsePiece = function(char: string, id: number): Piece | null {
-  let playerNumber = 0;
-  let type = 'pawn';
-
   switch(char) {
     case 'p':
       return { id: id, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false };
@@ -52,19 +49,21 @@ const parseCastleMove = function(char: string): CastleMove | null {
   }
 };
 
-const X_TO_FILE = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']; 
+const X_TO_FILE = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 const Y_TO_RANK = ['8', '7', '6', '5', '4', '3', '2', '1'];
 
 const calculateSquareId = function(x: number, y: number): string {
-  return `${X_TO_FILE[x]}${Y_TO_RANK[y]}`;  
+  return `${X_TO_FILE[x]}${Y_TO_RANK[y]}`;
 };
-  
+
 // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
 const fenToGameState = function(fen: string): GameState | null {
   let readBoard = true;
   let readPlayerNumber = false;
   let readCastleMoves = false;
   let readEnPassant = false;
+  let readHalfmove = false;
+  let readFullmove = false;
   let parseError = false;
 
   let y = 0;
@@ -75,6 +74,8 @@ const fenToGameState = function(fen: string): GameState | null {
   let enPassantTarget: Point | null = null;
   let enPassantX = 0;
   let lastDoubleStepPawnId = null;
+  let halfmove = '';
+  let fullmove = '';
 
   for (let i = 0; i < fen.length; i++) {
     let c = fen.charAt(i);
@@ -82,7 +83,7 @@ const fenToGameState = function(fen: string): GameState | null {
       if (readBoard) {
         let piece = parsePiece(c, i);
         if (piece !== null) {
-          let square = { id: calculateSquareId(x, y), x: x, y: y, piece: piece };  
+          let square = { id: calculateSquareId(x, y), x: x, y: y, piece: piece };
           squares.push(square);
         } else {
           parseError = true;
@@ -93,14 +94,14 @@ const fenToGameState = function(fen: string): GameState | null {
       if (readBoard) {
         let piece = parsePiece(c, i);
         if (piece !== null) {
-          let square = { id: calculateSquareId(x, y), x: x, y: y, piece: piece };  
+          let square = { id: calculateSquareId(x, y), x: x, y: y, piece: piece };
           squares.push(square);
         } else {
           parseError = true;
         }
         x += 1; // increment column
       } else if (readCastleMoves) {
-        let castleMove = parseCastleMove(c);       
+        let castleMove = parseCastleMove(c);
         if (castleMove !== null) {
           castleMoves.push(castleMove);
         }
@@ -117,8 +118,12 @@ const fenToGameState = function(fen: string): GameState | null {
           }
        } else if (readEnPassant) {
          let digit = parseInt(c);
-         let enPassantY = 8 - digit; 
+         let enPassantY = 8 - digit;
          enPassantTarget = { x: enPassantX, y: enPassantY };
+       } else if (readHalfmove) {
+         halfmove += c;
+       } else if (readFullmove) {
+         fullmove += c;
        }
     } else if (c === '/') {
       if (readBoard) {
@@ -140,10 +145,14 @@ const fenToGameState = function(fen: string): GameState | null {
         readEnPassant = true;
       } else if (readEnPassant) {
         readEnPassant = false;
+        readHalfmove = true;
+      } else if (readHalfmove) {
+        readHalfmove = false;
+        readFullmove = true;
       }
     } else if (c === 'w') {
       if (readPlayerNumber) {
-        currentPlayerNumber = 1; 
+        currentPlayerNumber = 1;
       }
     } else if (c === 'b') {
       if (readBoard) {
@@ -172,8 +181,12 @@ const fenToGameState = function(fen: string): GameState | null {
       } else if (readEnPassant) {
         enPassantTarget = null;
       }
-    } else if (c === '0') {
-        null; // do nothing
+    } else if (['9','0'].includes(c)) {
+      if (readHalfmove) {
+        halfmove += c;
+      } else if (readFullmove) {
+        fullmove += c;
+      }
     } else {
       parseError = true;
     }
@@ -181,31 +194,33 @@ const fenToGameState = function(fen: string): GameState | null {
 
   if (enPassantTarget !== null) {
     // enPassantTarget is space behind pawn that last moved
-    let square = squares.find(function(s) { 
+    let square = squares.find(function(s) {
       let doubleStepY = 0;
 
       if (currentPlayerNumber === 1) {
         // other player is 2, double step y is 3
         doubleStepY = 3;
       } else {
-        // other player is 1, double step y is 4 
+        // other player is 1, double step y is 4
         doubleStepY = 4;
       }
       return s.x === enPassantTarget?.x && s.y === doubleStepY;
     });
 
     if (square !== undefined && square.piece !== null) {
-       lastDoubleStepPawnId = square.piece.id; 
+       lastDoubleStepPawnId = square.piece.id;
     }
   }
 
   if (parseError) {
     return null;
   } else {
-    return { 
+    return {
       currentPlayerNumber: currentPlayerNumber,
       lastDoubleStepPawnId: lastDoubleStepPawnId,
-      squares: squares
+      squares: squares,
+      halfmove: parseInt(halfmove),
+      fullmove: parseInt(fullmove)
     };
   }
 };

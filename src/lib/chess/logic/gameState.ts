@@ -210,6 +210,13 @@ export const move = function(gameState: GameState, fromId: string, toId: string)
     let capturedId = capturedSquareId(gameState, from, to);
     performMove(gameState, fromId, toId, capturedId);
 
+    // if there is a capture, or the piece that moved is pawn, reset the halfmove
+    if (capturedId !== undefined || (to.piece !== null && to.piece.type === 'pawn')) {
+      gameState.halfmove = 0;
+    } else {
+      gameState.halfmove += 1;
+    }
+
     // set this after move so that it doesn't think en passant happened
     if (to.piece !== null && to.piece.type === 'pawn' && distance(point(from), point(to)) === 2) {
       gameState.lastDoubleStepPawnId = to.piece.id;
@@ -254,6 +261,7 @@ export const passTurn = function(gameState: GameState): boolean {
   if (gameState.currentPlayerNumber === 1) {
     gameState.currentPlayerNumber = 2;
   } else {
+    gameState.fullmove += 1;
     gameState.currentPlayerNumber = 1;
   }
   return true;
