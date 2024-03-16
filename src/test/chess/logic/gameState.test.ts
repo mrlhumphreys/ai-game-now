@@ -578,7 +578,7 @@ describe('move', () => {
       let fromId = 'e2';
       let toId = 'e4';
       move(gameState, fromId, toId);
-      expect(gameState.enPassantTarget).toEqual('e5');
+      expect(gameState.enPassantTarget).toEqual('e3');
     });
   });
 

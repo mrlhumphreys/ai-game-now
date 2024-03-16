@@ -263,7 +263,7 @@ export const move = function(gameState: GameState, fromId: string, toId: string)
 
     // set this after move so that it doesn't think en passant happened
     if (to.piece !== null && to.piece.type === 'pawn' && distance(point(from), point(to)) === 2) {
-      let targetY = to.piece.playerNumber === 1 ? to.y - 1 : to.y + 1;
+      let targetY = to.piece.playerNumber === 1 ? to.y + 1 : to.y - 1;
       let targetX = to.x;
       let target = findByCoordinate(gameState.squares, targetX, targetY);
       if (target !== undefined) {
