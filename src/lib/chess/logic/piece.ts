@@ -27,7 +27,6 @@ import {
   occupiedByOpponentOf,
   unoccupiedOrOccupiedByOpponentOf,
   occupiedByPieceType,
-  unmoved,
   findByPieceId,
   findByCoordinate
 } from '$lib/chess/logic/squareSet';
@@ -141,10 +140,6 @@ export const enPassantSquare = function(piece: Piece, square: Square, gameState:
   }
 }
 
-export const hasNotMoved = function(piece: Piece): boolean {
-  return !piece.hasMoved;
-};
-
 export const opponent = function(piece: Piece): number {
   return (piece.playerNumber === 1 ? 2 : 1);
 };
@@ -173,9 +168,25 @@ export const kingBaseDestinations = function(piece: Piece, square: Square, gameS
 };
 
 export const kingCastle = function(piece: Piece, square: Square, gameState: GameState): Array<Square> {
-  let rooks = unmoved(occupiedByPlayer(occupiedByPieceType(gameState.squares, 'rook'), piece.playerNumber));
+  let castleMovesAvailable = gameState.castleMoves.filter((cm) => {
+    return cm.playerNumber === piece.playerNumber;
+  });
+
+  let rooks = castleMovesAvailable.map((cm) => {
+    if (cm.side == 'king') {
+      return gameState.squares.find((s) => {
+        return s.piece !== null && s.piece.playerNumber === piece.playerNumber && s.piece.type === 'rook' && s.x === 7;
+      });
+    } else {
+      return gameState.squares.find((s) => {
+        return s.piece !== null && s.piece.playerNumber === piece.playerNumber && s.piece.type === 'rook' && s.x === 0;
+      });
+    }
+  }).filter((s): s is Square => !!s);
+
   let unblockedRooks = unblocked(rooks, square, gameState.squares);
-  if (hasNotMoved(piece) && unblockedRooks.length > 0) {
+
+  if (castleMovesAvailable.length > 0) {
     let potentialSquares = compact(unblockedRooks.map((rs) => {
       let directionX = vectorDirectionX(point(square), point(rs));
       let x = square.x + 2 * directionX;

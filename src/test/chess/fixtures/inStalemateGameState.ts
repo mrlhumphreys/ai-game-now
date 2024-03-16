@@ -9,7 +9,7 @@ let gameState = {
     { id: 'b8', x: 1, y: 0, piece: null },
     { id: 'c8', x: 2, y: 0, piece: null },
     { id: 'd8', x: 3, y: 0, piece: null },
-    { id: 'e8', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'king', hasMoved: false, selected: false } },
+    { id: 'e8', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'king', selected: false } },
     { id: 'f8', x: 5, y: 0, piece: null },
     { id: 'g8', x: 6, y: 0, piece: null },
     { id: 'h8', x: 7, y: 0, piece: null },
@@ -61,14 +61,14 @@ let gameState = {
 
     { id: 'a2', x: 0, y: 6, piece: null },
     { id: 'b2', x: 1, y: 6, piece: null },
-    { id: 'c2', x: 2, y: 6, piece: { id: 4, playerNumber: 2, type: 'queen', hasMoved: false, selected: false } },
+    { id: 'c2', x: 2, y: 6, piece: { id: 4, playerNumber: 2, type: 'queen', selected: false } },
     { id: 'd2', x: 3, y: 6, piece: null },
     { id: 'e2', x: 4, y: 6, piece: null },
     { id: 'f2', x: 5, y: 6, piece: null },
     { id: 'g2', x: 6, y: 6, piece: null },
     { id: 'h2', x: 7, y: 6, piece: null },
 
-    { id: 'a1', x: 0, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } },
+    { id: 'a1', x: 0, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', selected: false } },
     { id: 'b1', x: 1, y: 7, piece: null },
     { id: 'c1', x: 2, y: 7, piece: null },
     { id: 'd1', x: 3, y: 7, piece: null },
@@ -76,6 +76,12 @@ let gameState = {
     { id: 'f1', x: 5, y: 7, piece: null },
     { id: 'g1', x: 6, y: 7, piece: null },
     { id: 'h1', x: 7, y: 7, piece: null }
+  ],
+  castleMoves: [
+    { playerNumber: 1, side: 'king' },
+    { playerNumber: 2, side: 'king' },
+    { playerNumber: 1, side: 'queen' },
+    { playerNumber: 2, side: 'queen' }
   ],
   halfmove: 0,
   fullmove: 0

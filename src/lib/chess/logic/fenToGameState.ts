@@ -6,29 +6,29 @@ import type CastleMove from '$lib/chess/interfaces/CastleMove';
 const parsePiece = function(char: string, id: number): Piece | null {
   switch(char) {
     case 'p':
-      return { id: id, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'pawn', selected: false };
     case 'P':
-      return { id: id, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'pawn', selected: false };
     case 'r':
-      return { id: id, playerNumber: 2, type: 'rook', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'rook', selected: false };
     case 'R':
-      return { id: id, playerNumber: 1, type: 'rook', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'rook', selected: false };
     case 'n':
-      return { id: id, playerNumber: 2, type: 'knight', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'knight', selected: false };
     case 'N':
-      return { id: id, playerNumber: 1, type: 'knight', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'knight', selected: false };
     case 'b':
-      return { id: id, playerNumber: 2, type: 'bishop', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'bishop', selected: false };
     case 'B':
-      return { id: id, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'bishop', selected: false };
     case 'q':
-      return { id: id, playerNumber: 2, type: 'queen', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'queen', selected: false };
     case 'Q':
-      return { id: id, playerNumber: 1, type: 'queen', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'queen', selected: false };
     case 'k':
-      return { id: id, playerNumber: 2, type: 'king', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 2, type: 'king', selected: false };
     case 'K':
-      return { id: id, playerNumber: 1, type: 'king', hasMoved: false, selected: false };
+      return { id: id, playerNumber: 1, type: 'king', selected: false };
     default:
       return null;
   }
@@ -219,6 +219,7 @@ const fenToGameState = function(fen: string): GameState | null {
       currentPlayerNumber: currentPlayerNumber,
       lastDoubleStepPawnId: lastDoubleStepPawnId,
       squares: squares,
+      castleMoves: castleMoves,
       halfmove: parseInt(halfmove),
       fullmove: parseInt(fullmove)
     };

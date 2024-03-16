@@ -102,7 +102,7 @@ describe('touchSquare', () => {
       });
 
       if (toSquare !== undefined ) {
-        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', selected: false, hasMoved: true };
+        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
@@ -173,7 +173,7 @@ describe('touchSquare', () => {
       });
 
       if (toSquare !== undefined ) {
-        let movedPiece = { id: 24, playerNumber: 1, type: 'pawn', selected: false, hasMoved: true };
+        let movedPiece = { id: 24, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);

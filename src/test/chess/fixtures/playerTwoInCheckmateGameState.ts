@@ -5,16 +5,16 @@ let gameState = {
   currentPlayerNumber: 1,
   lastDoubleStepPawnId: null,
   squares: [
-    { id: 'a8', x: 0, y: 0, piece: { id: 25, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } },
+    { id: 'a8', x: 0, y: 0, piece: { id: 25, playerNumber: 1, type: 'rook', selected: false } },
     { id: 'b8', x: 1, y: 0, piece: null },
     { id: 'c8', x: 2, y: 0, piece: null },
     { id: 'd8', x: 3, y: 0, piece: null },
-    { id: 'e8', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'king', hasMoved: false, selected: false } },
+    { id: 'e8', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'king', selected: false } },
     { id: 'f8', x: 5, y: 0, piece: null },
     { id: 'g8', x: 6, y: 0, piece: null },
     { id: 'h8', x: 7, y: 0, piece: null },
 
-    { id: 'a7', x: 0, y: 1, piece: { id: 32, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } },
+    { id: 'a7', x: 0, y: 1, piece: { id: 32, playerNumber: 1, type: 'rook', selected: false } },
     { id: 'b7', x: 1, y: 1, piece: null },
     { id: 'c7', x: 2, y: 1, piece: null },
     { id: 'd7', x: 3, y: 1, piece: null },
@@ -72,10 +72,16 @@ let gameState = {
     { id: 'b1', x: 1, y: 7, piece: null },
     { id: 'c1', x: 2, y: 7, piece: null },
     { id: 'd1', x: 3, y: 7, piece: null },
-    { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } },
+    { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', selected: false } },
     { id: 'f1', x: 5, y: 7, piece: null },
     { id: 'g1', x: 6, y: 7, piece: null },
     { id: 'h1', x: 7, y: 7, piece: null }
+  ],
+  castleMoves: [
+    { playerNumber: 1, side: 'king' },
+    { playerNumber: 2, side: 'king' },
+    { playerNumber: 1, side: 'queen' },
+    { playerNumber: 2, side: 'queen' }
   ],
   halfmove: 0,
   fullmove: 0

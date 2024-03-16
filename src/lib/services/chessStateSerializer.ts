@@ -91,62 +91,19 @@ const generateBoardState = function(state: GameState): string {
 };
 
 const generateCastleMoves = function(state: GameState): string {
-  let castleMoves = '';
-
-  let playerOneKingSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'king' && s.piece.playerNumber === 1; 
-  });
-  let playerOneKingHasMoved = playerOneKingSquare !== undefined && playerOneKingSquare.piece !== null && playerOneKingSquare.piece.hasMoved;
-
-  let playerOneKingSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 1 && s.x === 7; 
-  });
-  let playerOneKingSideRookHasMoved = playerOneKingSideRookSquare !== undefined && playerOneKingSideRookSquare.piece !== null && playerOneKingSideRookSquare.piece.hasMoved;
-
-  let playerOneQueenSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 1 && s.x === 0; 
-  });
-  let playerOneQueenSideRookHasMoved = playerOneQueenSideRookSquare !== undefined && playerOneQueenSideRookSquare.piece !== null && playerOneQueenSideRookSquare.piece.hasMoved;
-
-  // TODO: and no pieces in between
-  let playerOneKingSideCastle = !playerOneKingHasMoved && !playerOneKingSideRookHasMoved; 
-  let playerOneQueenSideCastle = !playerOneKingHasMoved && !playerOneQueenSideRookHasMoved; 
-
-  if (playerOneKingSideCastle) {
-    castleMoves = castleMoves + 'K'; 
-  }
-
-  if (playerOneQueenSideCastle) {
-    castleMoves = castleMoves + 'Q'; 
-  }
-
-  let playerTwoKingSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'king' && s.piece.playerNumber === 2; 
-  });
-  let playerTwoKingHasMoved = playerTwoKingSquare !== undefined && playerTwoKingSquare.piece !== null && playerTwoKingSquare.piece.hasMoved;
-
-  let playerTwoKingSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 2 && s.x === 7; 
-  });
-  let playerTwoKingSideRookHasMoved = playerTwoKingSideRookSquare !== undefined && playerTwoKingSideRookSquare.piece !== null && playerTwoKingSideRookSquare.piece.hasMoved;
-
-  let playerTwoQueenSideRookSquare = state.squares.find(function(s) { 
-    return s.piece !== null && s.piece.type === 'rook' && s.piece.playerNumber === 2 && s.x === 0; 
-  });
-  let playerTwoQueenSideRookHasMoved = playerTwoQueenSideRookSquare !== undefined && playerTwoQueenSideRookSquare.piece !== null && playerTwoQueenSideRookSquare.piece.hasMoved;
-
-  let playerTwoKingSideCastle = !playerTwoKingHasMoved && !playerTwoKingSideRookHasMoved; 
-  let playerTwoQueenSideCastle = !playerTwoKingHasMoved && !playerTwoQueenSideRookHasMoved; 
-
-  if (playerTwoKingSideCastle) {
-    castleMoves = castleMoves + 'k'; 
-  }
-
-  if (playerTwoQueenSideCastle) {
-    castleMoves = castleMoves + 'q'; 
-  }
-
-  return castleMoves;
+  return state.castleMoves.map((cm) => {
+    if (cm.playerNumber === 1 && cm.side === 'king') {
+      return 'K';
+    } else if (cm.playerNumber === 1 && cm.side === 'queen') {
+      return 'Q';
+    } else if (cm.playerNumber === 2 && cm.side === 'king') {
+      return 'k';
+    } else if (cm.playerNumber === 2 && cm.side === 'queen') {
+      return 'q';
+    } else {
+      return '';
+    }
+  }).sort().join('');
 };
 
 const generateEnPassantTarget = function(state: GameState): string {

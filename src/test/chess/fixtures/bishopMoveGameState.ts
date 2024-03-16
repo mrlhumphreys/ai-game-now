@@ -7,10 +7,10 @@ let gameState = {
   squares: [
     { id: 'a8', x: 0, y: 0, piece: null },
     { id: 'b8', x: 1, y: 0, piece: null },
-    { id: 'c8', x: 2, y: 0, piece: { id: 3, playerNumber: 2, type: 'bishop', hasMoved: false, selected: false } },
+    { id: 'c8', x: 2, y: 0, piece: { id: 3, playerNumber: 2, type: 'bishop', selected: false } },
     { id: 'd8', x: 3, y: 0, piece: null },
-    { id: 'e8', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'king', hasMoved: false, selected: false } },
-    { id: 'f8', x: 5, y: 0, piece: { id: 6, playerNumber: 2, type: 'bishop', hasMoved: false, selected: false } },
+    { id: 'e8', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'king', selected: false } },
+    { id: 'f8', x: 5, y: 0, piece: { id: 6, playerNumber: 2, type: 'bishop', selected: false } },
     { id: 'g8', x: 6, y: 0, piece: null },
     { id: 'h8', x: 7, y: 0, piece: null },
 
@@ -53,7 +53,7 @@ let gameState = {
     { id: 'a3', x: 0, y: 5, piece: null },
     { id: 'b3', x: 1, y: 5, piece: null },
     { id: 'c3', x: 2, y: 5, piece: null },
-    { id: 'd3', x: 3, y: 5, piece: { id: 12, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } },
+    { id: 'd3', x: 3, y: 5, piece: { id: 12, playerNumber: 2, type: 'pawn', selected: false } },
     { id: 'e3', x: 4, y: 5, piece: null },
     { id: 'f3', x: 5, y: 5, piece: null },
     { id: 'g3', x: 6, y: 5, piece: null },
@@ -70,12 +70,18 @@ let gameState = {
 
     { id: 'a1', x: 0, y: 7, piece: null },
     { id: 'b1', x: 1, y: 7, piece: null },
-    { id: 'c1', x: 2, y: 7, piece: { id: 27, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false } },
+    { id: 'c1', x: 2, y: 7, piece: { id: 27, playerNumber: 1, type: 'bishop', selected: false } },
     { id: 'd1', x: 3, y: 7, piece: null },
-    { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } },
-    { id: 'f1', x: 5, y: 7, piece: { id: 30, playerNumber: 1, type: 'bishop', hasMoved: false, selected: false } },
+    { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', selected: false } },
+    { id: 'f1', x: 5, y: 7, piece: { id: 30, playerNumber: 1, type: 'bishop', selected: false } },
     { id: 'g1', x: 6, y: 7, piece: null },
     { id: 'h1', x: 7, y: 7, piece: null }
+  ],
+  castleMoves: [
+    { playerNumber: 1, side: 'king' },
+    { playerNumber: 2, side: 'king' },
+    { playerNumber: 1, side: 'queen' },
+    { playerNumber: 2, side: 'queen' }
   ],
   halfmove: 0,
   fullmove: 0

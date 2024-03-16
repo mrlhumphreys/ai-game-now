@@ -181,8 +181,45 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
     if (from.piece !== null) {
       addPiece(to, from.piece);
       removePiece(from);
-      if (to.piece !== null) {
-        to.piece.hasMoved = true;
+
+      if (to.piece !== null && to.piece.type === 'king') {
+        let kingSideIndex = gameState.castleMoves.findIndex((cm) => {
+          return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'king';
+        });
+
+        if (kingSideIndex !== undefined) {
+          gameState.castleMoves.splice(kingSideIndex, 1);
+        }
+
+        let queenSideIndex = gameState.castleMoves.findIndex((cm) => {
+          return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'queen';
+        });
+
+        if (queenSideIndex !== undefined) {
+          gameState.castleMoves.splice(queenSideIndex, 1);
+        }
+      }
+
+      if (to.piece !== null && to.piece.type === 'rook') {
+        if (from.x === 0) {
+          let queenSideIndex = gameState.castleMoves.findIndex((cm) => {
+            return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'queen';
+          });
+
+          if (queenSideIndex !== undefined) {
+            gameState.castleMoves.splice(queenSideIndex, 1);
+          }
+        }
+
+        if (from.x === 7) {
+          let kingSideIndex = gameState.castleMoves.findIndex((cm) => {
+            return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'king';
+          });
+
+          if (kingSideIndex !== undefined) {
+            gameState.castleMoves.splice(kingSideIndex, 1);
+          }
+        }
       }
       return true;
     } else {
@@ -195,8 +232,8 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
 
 // complete move: handle en passant, castle, etc
 export const move = function(gameState: GameState, fromId: string, toId: string): boolean {
-  let from = findById(gameState.squares, fromId); 
-  let to = findById(gameState.squares, toId); 
+  let from = findById(gameState.squares, fromId);
+  let to = findById(gameState.squares, toId);
 
   if (from !== undefined && to !== undefined) {
 

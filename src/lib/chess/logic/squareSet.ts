@@ -15,7 +15,6 @@ import {
   orthogonalOrDiagonal as vectorOrthogonalOrDiagonal
 } from '$lib/chess/logic/vector';
 import {
-  hasNotMoved,
   captureSquares
 } from '$lib/chess/logic/piece';
 import {
@@ -214,12 +213,6 @@ export const notOrthogonalOrDiagonal = function(squares: Array<Square>, from: Sq
 
 export const findKingForPlayer = function(squares: Array<Square>, playerNumber: number): Square | undefined {
   return occupiedByPlayer(occupiedByPieceType(squares, 'king'), playerNumber)[0];
-};
-
-export const unmoved = function(squares: Array<Square>): Array<Square> {
-  return squares.filter((s) => {
-    return s.piece !== null && hasNotMoved(s.piece);
-  });
 };
 
 export const threatenedBy = function(squares: Array<Square>, playerNumber: number, gameState: GameState): Array<Square> {

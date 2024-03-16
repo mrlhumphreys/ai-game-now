@@ -21,7 +21,7 @@ import {
 
 describe('occupied', () => {
   it('returns true if piece is present', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false } };
     expect(occupied(square)).toBe(true);
   });
 
@@ -38,19 +38,19 @@ describe('unoccupied', () => {
   });
 
   it('returns false if piece is present', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false } };
     expect(unoccupied(square)).toBe(false);
   });
 });
 
 describe('occupiedByPlayer', () => {
   it('returns true if occupied by player', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false } };
     expect(occupiedByPlayer(square, 1)).toBe(true);
   });
 
   it('returns false if occupied by opponent', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false } };
     expect(occupiedByPlayer(square, 1)).toBe(false);
   });
 
@@ -62,12 +62,12 @@ describe('occupiedByPlayer', () => {
 
 describe('occupiedByOpponentOf', () => {
   it('returns true if occupied by opponent', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false } };
     expect(occupiedByOpponentOf(square, 1)).toBe(true);
   });
 
   it('returns false if occupied by player', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false } };
     expect(occupiedByOpponentOf(square, 1)).toBe(false);
   });
 
@@ -79,12 +79,12 @@ describe('occupiedByOpponentOf', () => {
 
 describe('unoccupiedOrOccupiedByOpponentOf', () => {
   it('returns true if occupied by opponent', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false } };
     expect(unoccupiedOrOccupiedByOpponentOf(square, 1)).toBe(true);
   });
 
   it('returns false if occupied by player', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: false } };
     expect(unoccupiedOrOccupiedByOpponentOf(square, 1)).toBe(false);
   });
 
@@ -96,12 +96,12 @@ describe('unoccupiedOrOccupiedByOpponentOf', () => {
 
 describe('occupiedByPieceType', () => {
   it('returns true if occupied by pieceType', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false } };
     expect(occupiedByPieceType(square, 'pawn')).toBe(true);
   });
 
   it('returns false if occupied by a different pieceType', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'king', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'king', selected: false } };
     expect(occupiedByPieceType(square, 'pawn')).toBe(false);
   });
 
@@ -113,12 +113,12 @@ describe('occupiedByPieceType', () => {
 
 describe('notOccupiedByPieceType', () => {
   it('returns true if not occupied by pieceType', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'king', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'king', selected: false } };
     expect(notOccupiedByPieceType(square, 'pawn')).toBe(true);
   });
 
   it('returns false if not occupied by a different pieceType', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false } };
     expect(notOccupiedByPieceType(square, 'pawn')).toBe(false);
   });
 
@@ -138,7 +138,7 @@ describe('point', () => {
 
 describe('select', () => {
   it('selects the piece', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: false } };
     select(square);
     expect(square.piece.selected).toBe(true);
   });
@@ -146,7 +146,7 @@ describe('select', () => {
 
 describe('deselect', () => {
   it('selects the piece', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: true, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: true } };
     deselect(square);
     expect(square.piece.selected).toBe(false);
   });
@@ -155,7 +155,7 @@ describe('deselect', () => {
 describe('addPiece', () => {
   it('adds the piece to the square', () => {
     let square = { id: 'a8', x: 0, y: 0, piece: null };
-    let piece =  { id: 0, playerNumber: 2, type: 'pawn', selected: true, hasMoved: false };
+    let piece =  { id: 0, playerNumber: 2, type: 'pawn', selected: true };
     addPiece(square, piece);
     expect(square.piece).toEqual(piece);
   });
@@ -163,7 +163,7 @@ describe('addPiece', () => {
 
 describe('removePiece', () => {
   it('removes the piece to the square', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: true, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'pawn', selected: true } };
     removePiece(square);
     expect(square.piece).toBe(null);
   });
@@ -215,7 +215,7 @@ describe('lastRank', () => {
 
 describe('promote', () => {
   it('sets the piece type if there is a piece', () => {
-    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true, hasMoved: false } };
+    let square = { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true } };
     let pieceType = 'queen';
     promote(square, pieceType);
     expect(square.piece.type).toEqual(pieceType);

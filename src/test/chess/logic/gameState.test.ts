@@ -130,7 +130,7 @@ describe('selectedSquare', () => {
 
   it('returns undefined if the square is not selected', () => {
     let gameState = selectedGameState();
-    let expected = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: true } };
+    let expected = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: true } };
     let result = selectedSquare(gameState);
     expect(result).toEqual(expected);
   });
@@ -139,7 +139,7 @@ describe('selectedSquare', () => {
 describe('findSquare', () => {
   it('returns the square matching the id if found', () => {
     let gameState = defaultGameState();
-    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'rook', hasMoved: false, selected: false } };
+    let expected = { id: 'a8', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'rook', selected: false } };
     let result = findSquare(gameState, 'a8');
     expect(result).toEqual(expected);
   });
@@ -155,8 +155,8 @@ describe('capturedSquare', () => {
   describe('when to is occupied', () => {
     it('returns to', () => {
       let gameState = pawnCaptureGameState();
-      let from = { id: 'e4', x: 4, y: 4, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
-      let to = { id: 'd5', x: 3, y: 3, piece: { id: 12, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } };
+      let from = { id: 'e4', x: 4, y: 4, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: false } };
+      let to = { id: 'd5', x: 3, y: 3, piece: { id: 12, playerNumber: 2, type: 'pawn', selected: false } };
       let result = capturedSquare(gameState, from, to);
       expect(result).toEqual(to);
     });
@@ -166,9 +166,9 @@ describe('capturedSquare', () => {
     describe('and pawn has moved diagonally behind opposing pawn', () => {
       it('returns the opposing pawns square', () => {
         let gameState = enPassantGameState();
-        let from = { id: 'e5', x: 4, y: 3, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+        let from = { id: 'e5', x: 4, y: 3, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: false } };
         let to = { id: 'd6', x: 3, y: 2, piece: null };
-        let expected = { id: 'd5', x: 3, y: 3, piece: { id: 12, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false } };
+        let expected = { id: 'd5', x: 3, y: 3, piece: { id: 12, playerNumber: 2, type: 'pawn', selected: false } };
         let result = capturedSquare(gameState, from, to);
         expect(result).toEqual(expected);
       });
@@ -177,7 +177,7 @@ describe('capturedSquare', () => {
     describe('and pawn has moved in front of opposing pawn', () => {
       it('returns undefined', () => {
         let gameState = enPassantGameState();
-        let from = { id: 'd2', x: 3, y: 6, piece: { id: 20, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+        let from = { id: 'd2', x: 3, y: 6, piece: { id: 20, playerNumber: 1, type: 'pawn', selected: false } };
         let to = { id: 'd3', x: 3, y: 5, piece: null };
         let result = capturedSquare(gameState, from, to);
         expect(result).toBe(undefined);
@@ -187,7 +187,7 @@ describe('capturedSquare', () => {
     describe('and pawn has moved far away from opposing pawn', () => {
       it('returns undefined', () => {
         let gameState = enPassantGameState();
-        let from = { id: 'h5', x: 7, y: 3, piece: { id: 24, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+        let from = { id: 'h5', x: 7, y: 3, piece: { id: 24, playerNumber: 1, type: 'pawn', selected: false } };
         let to = { id: 'h6', x: 7, y: 2, piece: null };
         let result = capturedSquare(gameState, from, to);
         expect(result).toBe(undefined);
@@ -198,7 +198,7 @@ describe('capturedSquare', () => {
   describe('default', () => {
     it('returns undefined', () => {
       let gameState = defaultGameState();
-      let from = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+      let from = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: false } };
       let to = { id: 'e4', x: 4, y: 4, piece: null };
       let result = capturedSquare(gameState, from, to);
       expect(result).toBe(undefined);
@@ -209,7 +209,7 @@ describe('capturedSquare', () => {
 describe('capturedSquareId', () => {
   it('returns the captured square id if there is one', () => {
     let gameState = enPassantGameState();
-    let from = { id: 'e5', x: 4, y: 3, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+    let from = { id: 'e5', x: 4, y: 3, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: false } };
     let to = { id: 'd6', x: 3, y: 2, piece: null };
     let expected = 'd5';
     let result = capturedSquareId(gameState, from, to);
@@ -218,7 +218,7 @@ describe('capturedSquareId', () => {
 
   it('returns undefined if there is no captured square', () => {
     let gameState = defaultGameState();
-    let from = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+    let from = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: false } };
     let to = { id: 'e4', x: 4, y: 4, piece: null };
     let result = capturedSquareId(gameState, from, to);
     expect(result).toBe(undefined);
@@ -298,7 +298,7 @@ describe('rookCastleMove', () => {
   describe('when king and making a king side castle move', () => {
     it('returns the rooks move', () => {
       let gameState = kingMoveGameState();
-      let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } };
+      let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', selected: false } };
       let to = { id: 'g1', x: 6, y: 7, piece: null };
       let expected = { fromId: 'h1', toId: 'f1' };
       let result = rookCastleMove(gameState, from, to);
@@ -309,7 +309,7 @@ describe('rookCastleMove', () => {
   describe('when king and making a queen side castle move', () => {
     it('returns the rooks move', () => {
       let gameState = kingMoveGameState();
-      let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } };
+      let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', selected: false } };
       let to = { id: 'c1', x: 2, y: 7, piece: null };
       let expected = { fromId: 'a1', toId: 'd1' };
       let result = rookCastleMove(gameState, from, to);
@@ -320,7 +320,7 @@ describe('rookCastleMove', () => {
   describe('when king and making a normal move', () => {
     it('returns null', () => {
       let gameState = kingMoveGameState();
-      let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', hasMoved: false, selected: false } };
+      let from = { id: 'e1', x: 4, y: 7, piece: { id: 29, playerNumber: 1, type: 'king', selected: false } };
       let to = { id: 'f1', x: 5, y: 7, piece: null };
       let result = rookCastleMove(gameState, from, to);
       expect(result).toBe(null);
@@ -330,7 +330,7 @@ describe('rookCastleMove', () => {
   describe('when not king', () => {
     it('returns null', () => {
       let gameState = defaultGameState();
-      let from = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+      let from = { id: 'e2', x: 4, y: 6, piece: { id: 21, playerNumber: 1, type: 'pawn', selected: false } };
       let to = { id: 'e4', x: 4, y: 4, piece: null };
       let result = rookCastleMove(gameState, from, to);
       expect(result).toBe(null);
@@ -341,7 +341,7 @@ describe('rookCastleMove', () => {
 describe('pawnMoveToLastRank', () => {
   it('returns true if pawn and moving to last rank', () => {
     let gameState = pawnPromoteMoveGameState();
-    let from = { id: 'h7', x: 7, y: 1, piece: { id: 24, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+    let from = { id: 'h7', x: 7, y: 1, piece: { id: 24, playerNumber: 1, type: 'pawn', selected: false } };
     let to = { id: 'h8', x: 7, y: 0, piece: null };
     let result = pawnMoveToLastRank(gameState, from, to);
     expect(result).toBe(true);
@@ -349,7 +349,7 @@ describe('pawnMoveToLastRank', () => {
 
   it('returns false if pawn and not moving to last rank', () => {
     let gameState = pawnPromoteMoveGameState();
-    let from = { id: 'g6', x: 6, y: 2, piece: { id: 23, playerNumber: 1, type: 'pawn', hasMoved: false, selected: false } };
+    let from = { id: 'g6', x: 6, y: 2, piece: { id: 23, playerNumber: 1, type: 'pawn', selected: false } };
     let to = { id: 'g7', x: 6, y: 1, piece: null };
     let result = pawnMoveToLastRank(gameState, from, to);
     expect(result).toBe(false);
@@ -357,7 +357,7 @@ describe('pawnMoveToLastRank', () => {
 
   it('returns false if not pawn', () => {
     let gameState = pawnPromoteMoveGameState();
-    let from = { id: 'a7', x: 0, y: 1, piece: { id: 25, playerNumber: 1, type: 'rook', hasMoved: false, selected: false } };
+    let from = { id: 'a7', x: 0, y: 1, piece: { id: 25, playerNumber: 1, type: 'rook', selected: false } };
     let to = { id: 'a8', x: 0, y: 0, piece: null };
     let result = pawnMoveToLastRank(gameState, from, to);
     expect(result).toBe(false);
@@ -388,25 +388,8 @@ describe('performMove', () => {
       });
 
       if (toSquare !== undefined) {
-        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', hasMoved: true, selected: false };
+        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(movedPiece);
-      } else {
-        expect(toSquare).not.toBe(undefined);
-      }
-    });
-
-    it('marks the piece as has moved', () => {
-      let gameState = enPassantGameState();
-      let fromId = 'd2';
-      let toId = 'd3';
-      let capturedId = undefined;
-      performMove(gameState, fromId, toId, capturedId);
-      let toSquare = gameState.squares.find((s) => {
-        return s.id === toId;
-      });
-
-      if (toSquare !== undefined && toSquare.piece !== null) {
-        expect(toSquare.piece.hasMoved).toBe(true);
       } else {
         expect(toSquare).not.toBe(undefined);
       }
@@ -436,7 +419,7 @@ describe('performMove', () => {
       });
 
       if (toSquare !== undefined) {
-        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', hasMoved: true, selected: false };
+        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
@@ -467,7 +450,7 @@ describe('performMove', () => {
       });
 
       if (toSquare !== undefined) {
-        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', hasMoved: true, selected: false };
+        let movedPiece = { id: 21, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
@@ -508,11 +491,42 @@ describe('performMove', () => {
       });
 
       if (toSquare !== undefined) {
-        let existingPiece = { id: 16, playerNumber: 2, type: 'pawn', hasMoved: false, selected: false };
+        let existingPiece = { id: 16, playerNumber: 2, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(existingPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
       }
+    });
+  });
+
+  describe('when king', () => {
+    it('removes the players castle moves', () => {
+      let gameState = kingMoveGameState();
+      let fromId = 'e1';
+      let toId = 'e2';
+      let capturedId = undefined;
+      let expected = [
+        { playerNumber: 2, side: 'king' },
+        { playerNumber: 2, side: 'queen' }
+      ];
+      performMove(gameState, fromId, toId, capturedId);
+      expect(gameState.castleMoves).toEqual(expected);
+    });
+  });
+
+  describe('when rook', () => {
+    it('removes its side castle moves', () => {
+      let gameState = kingMoveGameState();
+      let fromId = 'h1';
+      let toId = 'h2';
+      let capturedId = undefined;
+      let expected = [
+        { playerNumber: 2, side: 'king' },
+        { playerNumber: 1, side: 'queen' },
+        { playerNumber: 2, side: 'queen' }
+      ];
+      performMove(gameState, fromId, toId, capturedId);
+      expect(gameState.castleMoves).toEqual(expected);
     });
   });
 });
@@ -540,7 +554,7 @@ describe('move', () => {
       });
 
       if (toSquare !== undefined) {
-        let movedPiece = { id: 20, playerNumber: 1, type: 'pawn', hasMoved: true, selected: false };
+        let movedPiece = { id: 20, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(movedPiece);
       } else {
         expect(toSquare).not.toBe(undefined);
@@ -591,7 +605,7 @@ describe('move', () => {
       });
 
       if (rookToSquare !== undefined) {
-        let expected = { id: 32, playerNumber: 1, type: 'rook', hasMoved: true, selected: false };
+        let expected = { id: 32, playerNumber: 1, type: 'rook', selected: false };
         expect(rookToSquare.piece).toEqual(expected);
       } else {
         expect(rookToSquare).not.toBe(undefined);
@@ -621,7 +635,7 @@ describe('move', () => {
       });
 
       if (toSquare !== undefined) {
-        let expected = { id: 21, playerNumber: 1, type: 'pawn', hasMoved: true, selected: false };
+        let expected = { id: 21, playerNumber: 1, type: 'pawn', selected: false };
         expect(toSquare.piece).toEqual(expected);
       } else {
         expect(toSquare).not.toBe(undefined);
