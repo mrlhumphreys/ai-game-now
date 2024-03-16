@@ -83,6 +83,7 @@ let gameState = {
     { playerNumber: 1, side: 'queen' },
     { playerNumber: 2, side: 'queen' }
   ],
+  enPassantTarget: 'd6',
   halfmove: 0,
   fullmove: 0
 };

@@ -23,10 +23,9 @@ import {
   notOrthogonalOrDiagonal,
   unoccupied,
   unblocked,
-  occupiedByPlayer,
   occupiedByOpponentOf,
   unoccupiedOrOccupiedByOpponentOf,
-  occupiedByPieceType,
+  findById,
   findByPieceId,
   findByCoordinate
 } from '$lib/chess/logic/squareSet';
@@ -118,20 +117,18 @@ export const captureSquares = function(piece: Piece, square: Square, gameState: 
 export const enPassantSquare = function(piece: Piece, square: Square, gameState: GameState): Square | undefined {
   switch(piece.type) {
     case 'pawn':
-      if (gameState.lastDoubleStepPawnId !== null) {
-        let doubleStep = findByPieceId(gameState.squares, gameState.lastDoubleStepPawnId);
-        if (rankNumber(square, piece.playerNumber) === 5 && doubleStep !== undefined) {
-          let distance = vectorDistance(point(square), point(doubleStep));
-          if (distance === 1) {
-            let x = doubleStep.x;
-            let y = square.y + pawnDirection(piece);
-            return findByCoordinate(gameState.squares, x, y);
-          } else {
-            return undefined;
-          }
-        } else {
-          return undefined;
-        }
+      if (gameState.enPassantTarget !== null) {
+         let enPassantTargetSquare = findById(gameState.squares, gameState.enPassantTarget);
+         if (enPassantTargetSquare !== undefined) {
+           let opposingY = piece.playerNumber === 1 ? enPassantTargetSquare.y + 1 : enPassantTargetSquare.y - 1;
+             if (square.y === opposingY && (square.x == enPassantTargetSquare.x + 1 || square.x === enPassantTargetSquare.x - 1)) {
+               return enPassantTargetSquare;
+             } else {
+               return undefined;
+             }
+         } else {
+           return undefined;
+         }
       } else {
         return undefined;
       }

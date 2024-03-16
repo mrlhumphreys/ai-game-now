@@ -560,7 +560,7 @@ describe('move', () => {
         expect(toSquare).not.toBe(undefined);
       }
 
-      expect(gameState.lastDoubleStepPawnId).toBe(null);
+      expect(gameState.enPassantTarget).toBe(null);
     });
 
     it('clears last double step pawn id', () => {
@@ -568,9 +568,8 @@ describe('move', () => {
       let fromId = 'd2';
       let toId = 'd3';
       move(gameState, fromId, toId);
-      expect(gameState.lastDoubleStepPawnId).toBe(null);
+      expect(gameState.enPassantTarget).toBe(null);
     });
-
   });
 
   describe('when pawn moves 2 spaces', () => {
@@ -579,7 +578,7 @@ describe('move', () => {
       let fromId = 'e2';
       let toId = 'e4';
       move(gameState, fromId, toId);
-      expect(gameState.lastDoubleStepPawnId).toEqual(21);
+      expect(gameState.enPassantTarget).toEqual('e5');
     });
   });
 

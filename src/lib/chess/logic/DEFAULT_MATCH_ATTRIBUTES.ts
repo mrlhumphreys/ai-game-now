@@ -82,6 +82,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
       { playerNumber: 2, side: 'king' },
       { playerNumber: 2, side: 'queen' }
     ],
+    enPassantTarget: null,
     halfmove: 0,
     fullmove: 1
   },

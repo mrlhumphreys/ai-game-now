@@ -71,9 +71,7 @@ const fenToGameState = function(fen: string): GameState | null {
   let squares = [];
   let currentPlayerNumber = 1;
   let castleMoves = [];
-  let enPassantTarget: Point | null = null;
-  let enPassantX = 0;
-  let lastDoubleStepPawnId = null;
+  let enPassantTarget: string | null = null;
   let halfmove = '';
   let fullmove = '';
 
@@ -117,9 +115,7 @@ const fenToGameState = function(fen: string): GameState | null {
             emptyCounter += 1;
           }
        } else if (readEnPassant) {
-         let digit = parseInt(c);
-         let enPassantY = 8 - digit;
-         enPassantTarget = { x: enPassantX, y: enPassantY };
+         enPassantTarget += c;
        } else if (readHalfmove) {
          halfmove += c;
        } else if (readFullmove) {
@@ -167,13 +163,11 @@ const fenToGameState = function(fen: string): GameState | null {
       } else if (readPlayerNumber) {
         currentPlayerNumber = 2;
       } else if (readEnPassant) {
-        let integer = c.charCodeAt(0);  // column/x
-        enPassantX = integer - 97;
+        enPassantTarget = c;
       }
     } else if (['a','c','d','e','f','g','h'].includes(c)) {
       if (readEnPassant) {
-        let integer = c.charCodeAt(0);  // column/x
-        enPassantX = integer - 97;
+        enPassantTarget = c;
       }
     } else if (c === '-') {
       if (readCastleMoves) {
@@ -192,34 +186,14 @@ const fenToGameState = function(fen: string): GameState | null {
     }
   }
 
-  if (enPassantTarget !== null) {
-    // enPassantTarget is space behind pawn that last moved
-    let square = squares.find(function(s) {
-      let doubleStepY = 0;
-
-      if (currentPlayerNumber === 1) {
-        // other player is 2, double step y is 3
-        doubleStepY = 3;
-      } else {
-        // other player is 1, double step y is 4
-        doubleStepY = 4;
-      }
-      return s.x === enPassantTarget?.x && s.y === doubleStepY;
-    });
-
-    if (square !== undefined && square.piece !== null) {
-       lastDoubleStepPawnId = square.piece.id;
-    }
-  }
-
   if (parseError) {
     return null;
   } else {
     return {
       currentPlayerNumber: currentPlayerNumber,
-      lastDoubleStepPawnId: lastDoubleStepPawnId,
       squares: squares,
       castleMoves: castleMoves,
+      enPassantTarget: enPassantTarget,
       halfmove: parseInt(halfmove),
       fullmove: parseInt(fullmove)
     };

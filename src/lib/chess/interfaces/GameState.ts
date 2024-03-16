@@ -3,9 +3,9 @@ import type CastleMove from '$lib/chess/interfaces/CastleMove';
 
 interface GameState {
   currentPlayerNumber: number;
-  lastDoubleStepPawnId: number | null;
   squares: Array<Square>;
   castleMoves: Array<CastleMove>;
+  enPassantTarget: string | null;
   halfmove: number;
   fullmove: number;
 }

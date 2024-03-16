@@ -85,6 +85,7 @@ let match = {
       { playerNumber: 1, side: 'queen' },
       { playerNumber: 2, side: 'queen' }
     ],
+    enPassantTarget: null,
     halfmove: 0,
     fullmove: 0
   },

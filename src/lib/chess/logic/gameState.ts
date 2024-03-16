@@ -74,12 +74,19 @@ export const findSquare = function(gameState: GameState, id: string): Square | u
 export const capturedSquare = function(gameState: GameState, from: Square, to: Square): Square | undefined {
   if (occupied(to)) {
     return to;
-  } else if (gameState.lastDoubleStepPawnId !== null && from.piece !== null && from.piece.type === 'pawn') {
-    let opposingSquare = findByPieceId(gameState.squares, gameState.lastDoubleStepPawnId);
-    // moving from square in same rank as opposing piece
-    // and moving to same file i.e. moving behind diagonally
-    if (opposingSquare !== undefined && opposingSquare.x === to.x && opposingSquare.y === from.y) {
-      return opposingSquare;
+  } else if (gameState.enPassantTarget !== null && from.piece !== null && from.piece.type === 'pawn') {
+    let enPassantTargetSquare = findById(gameState.squares, gameState.enPassantTarget);
+    if (enPassantTargetSquare !== undefined) {
+      let opposingX = enPassantTargetSquare.x;
+      let opposingY = from.piece.playerNumber === 1 ? enPassantTargetSquare.y + 1 : enPassantTargetSquare.y - 1;
+      let opposingSquare = findByCoordinate(gameState.squares, opposingX, opposingY);
+      // moving from square in same rank as opposing piece
+      // and moving to same file i.e. moving behind diagonally
+      if (opposingSquare !== undefined && opposingSquare.x === to.x && opposingSquare.y === from.y) {
+        return opposingSquare;
+      } else {
+        return undefined;
+      }
     } else {
       return undefined;
     }
@@ -256,9 +263,16 @@ export const move = function(gameState: GameState, fromId: string, toId: string)
 
     // set this after move so that it doesn't think en passant happened
     if (to.piece !== null && to.piece.type === 'pawn' && distance(point(from), point(to)) === 2) {
-      gameState.lastDoubleStepPawnId = to.piece.id;
+      let targetY = to.piece.playerNumber === 1 ? to.y - 1 : to.y + 1;
+      let targetX = to.x;
+      let target = findByCoordinate(gameState.squares, targetX, targetY);
+      if (target !== undefined) {
+        gameState.enPassantTarget = target.id;
+      } else {
+        gameState.enPassantTarget = null;
+      }
     } else {
-      gameState.lastDoubleStepPawnId = null;
+      gameState.enPassantTarget = null;
     }
 
     return true;

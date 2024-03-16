@@ -91,43 +91,30 @@ const generateBoardState = function(state: GameState): string {
 };
 
 const generateCastleMoves = function(state: GameState): string {
-  return state.castleMoves.map((cm) => {
-    if (cm.playerNumber === 1 && cm.side === 'king') {
-      return 'K';
-    } else if (cm.playerNumber === 1 && cm.side === 'queen') {
-      return 'Q';
-    } else if (cm.playerNumber === 2 && cm.side === 'king') {
-      return 'k';
-    } else if (cm.playerNumber === 2 && cm.side === 'queen') {
-      return 'q';
-    } else {
-      return '';
-    }
-  }).sort().join('');
+  if (state.castleMoves.length === 0) {
+    return '-';
+  } else {
+    return state.castleMoves.map((cm) => {
+      if (cm.playerNumber === 1 && cm.side === 'king') {
+        return 'K';
+      } else if (cm.playerNumber === 1 && cm.side === 'queen') {
+        return 'Q';
+      } else if (cm.playerNumber === 2 && cm.side === 'king') {
+        return 'k';
+      } else if (cm.playerNumber === 2 && cm.side === 'queen') {
+        return 'q';
+      } else {
+        return '';
+      }
+    }).sort().join('');
+  }
 };
 
 const generateEnPassantTarget = function(state: GameState): string {
-  let square = state.squares.find(function(s) { return s.piece !== null && s.piece.id === state.lastDoubleStepPawnId; });
-  if (square !== undefined) {
-    let targetX = square.x;
-    let targetY: number;
-    
-    // this is reversed as the player has already moved and passed the turn
-    if (state.currentPlayerNumber === 2) {
-      targetY = square.y + 1;
-    } else {
-      targetY = square.y - 1;
-    }
-
-    let target = state.squares.find(function(s) { return s.x === targetX && s.y === targetY; });
-
-    if (target !== undefined) {
-      return target.id;
-    } else {
-      return '-';
-    }
-  } else {
+  if (state.enPassantTarget === null) {
     return '-';
+  } else {
+    return state.enPassantTarget;
   }
 };
 

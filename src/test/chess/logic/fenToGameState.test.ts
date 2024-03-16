@@ -3,11 +3,10 @@ import fenToGameState from '$lib/chess/logic/fenToGameState';
 
 describe('default fen', () => {
   it('should return default game state', () => {
-    let fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    let fen = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1';
     let result = fenToGameState(fen);
     let expected = {
-      currentPlayerNumber: 1,
-      lastDoubleStepPawnId: null,
+      currentPlayerNumber: 2,
       squares: [
         { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 2, type: 'rook', selected: false } },
         { id: 'b8', x: 1, y: 0, piece: { id: 1, playerNumber: 2, type: 'knight', selected: false } },
@@ -49,7 +48,7 @@ describe('default fen', () => {
         { id: 'b4', x: 1, y: 4, piece: null },
         { id: 'c4', x: 2, y: 4, piece: null },
         { id: 'd4', x: 3, y: 4, piece: null },
-        { id: 'e4', x: 4, y: 4, piece: null },
+        { id: 'e4', x: 4, y: 4, piece: { id: 23, playerNumber: 1, selected: false, type: 'pawn' } },
         { id: 'f4', x: 5, y: 4, piece: null },
         { id: 'g4', x: 6, y: 4, piece: null },
         { id: 'h4', x: 7, y: 4, piece: null },
@@ -63,23 +62,23 @@ describe('default fen', () => {
         { id: 'g3', x: 6, y: 5, piece: null },
         { id: 'h3', x: 7, y: 5, piece: null },
 
-        { id: 'a2', x: 0, y: 6, piece: { id: 26, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'b2', x: 1, y: 6, piece: { id: 27, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'c2', x: 2, y: 6, piece: { id: 28, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'd2', x: 3, y: 6, piece: { id: 29, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'e2', x: 4, y: 6, piece: { id: 30, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'f2', x: 5, y: 6, piece: { id: 31, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'g2', x: 6, y: 6, piece: { id: 32, playerNumber: 1, type: 'pawn', selected: false } },
-        { id: 'h2', x: 7, y: 6, piece: { id: 33, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'a2', x: 0, y: 6, piece: { id: 28, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'b2', x: 1, y: 6, piece: { id: 29, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'c2', x: 2, y: 6, piece: { id: 30, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'd2', x: 3, y: 6, piece: { id: 31, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'e2', x: 4, y: 6, piece: null },
+        { id: 'f2', x: 5, y: 6, piece: { id: 33, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'g2', x: 6, y: 6, piece: { id: 34, playerNumber: 1, type: 'pawn', selected: false } },
+        { id: 'h2', x: 7, y: 6, piece: { id: 35, playerNumber: 1, type: 'pawn', selected: false } },
 
-        { id: 'a1', x: 0, y: 7, piece: { id: 35, playerNumber: 1, type: 'rook', selected: false } },
-        { id: 'b1', x: 1, y: 7, piece: { id: 36, playerNumber: 1, type: 'knight', selected: false } },
-        { id: 'c1', x: 2, y: 7, piece: { id: 37, playerNumber: 1, type: 'bishop', selected: false } },
-        { id: 'd1', x: 3, y: 7, piece: { id: 38, playerNumber: 1, type: 'queen', selected: false } },
-        { id: 'e1', x: 4, y: 7, piece: { id: 39, playerNumber: 1, type: 'king', selected: false } },
-        { id: 'f1', x: 5, y: 7, piece: { id: 40, playerNumber: 1, type: 'bishop', selected: false } },
-        { id: 'g1', x: 6, y: 7, piece: { id: 41, playerNumber: 1, type: 'knight', selected: false } },
-        { id: 'h1', x: 7, y: 7, piece: { id: 42, playerNumber: 1, type: 'rook', selected: false } }
+        { id: 'a1', x: 0, y: 7, piece: { id: 37, playerNumber: 1, type: 'rook', selected: false } },
+        { id: 'b1', x: 1, y: 7, piece: { id: 38, playerNumber: 1, type: 'knight', selected: false } },
+        { id: 'c1', x: 2, y: 7, piece: { id: 39, playerNumber: 1, type: 'bishop', selected: false } },
+        { id: 'd1', x: 3, y: 7, piece: { id: 40, playerNumber: 1, type: 'queen', selected: false } },
+        { id: 'e1', x: 4, y: 7, piece: { id: 41, playerNumber: 1, type: 'king', selected: false } },
+        { id: 'f1', x: 5, y: 7, piece: { id: 42, playerNumber: 1, type: 'bishop', selected: false } },
+        { id: 'g1', x: 6, y: 7, piece: { id: 43, playerNumber: 1, type: 'knight', selected: false } },
+        { id: 'h1', x: 7, y: 7, piece: { id: 44, playerNumber: 1, type: 'rook', selected: false } }
       ],
       castleMoves: [
         { playerNumber: 1, side: 'king' },
@@ -87,6 +86,7 @@ describe('default fen', () => {
         { playerNumber: 2, side: 'king' },
         { playerNumber: 2, side: 'queen' }
       ],
+      enPassantTarget: 'e3',
       halfmove: 0,
       fullmove: 1
     };
