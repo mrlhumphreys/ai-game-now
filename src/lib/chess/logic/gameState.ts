@@ -194,7 +194,7 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
           return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'king';
         });
 
-        if (kingSideIndex !== undefined) {
+        if (kingSideIndex !== -1) {
           gameState.castleMoves.splice(kingSideIndex, 1);
         }
 
@@ -202,7 +202,7 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
           return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'queen';
         });
 
-        if (queenSideIndex !== undefined) {
+        if (queenSideIndex !== -1) {
           gameState.castleMoves.splice(queenSideIndex, 1);
         }
       }
@@ -213,7 +213,7 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
             return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'queen';
           });
 
-          if (queenSideIndex !== undefined) {
+          if (queenSideIndex !== -1) {
             gameState.castleMoves.splice(queenSideIndex, 1);
           }
         }
@@ -223,7 +223,7 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
             return to !== undefined && to.piece !== null && cm.playerNumber === to.piece.playerNumber && cm.side === 'king';
           });
 
-          if (kingSideIndex !== undefined) {
+          if (kingSideIndex !== -1) {
             gameState.castleMoves.splice(kingSideIndex, 1);
           }
         }
