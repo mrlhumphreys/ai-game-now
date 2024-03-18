@@ -2,31 +2,33 @@ import exists from '../utils/exists'
 import type GameState from '$lib/checkers/interfaces/GameState';
 
 const checkersStateSerializer = function(state: GameState) {
-  let board = state.squares.map((s) => {
-    if (exists(s.piece)) {
-      let playerNumber = s.piece?.playerNumber;
-      let king = s.piece?.king;
-      if (playerNumber === 1) {
-        if (king) {
-          return 'B';
-        } else {
-          return 'b';
-        }
-      } else {
-        if (king) {
-          return 'W';
-        } else {
-          return 'w';
-        }
-      }
+  let player = state.currentPlayerNumber === 1 ? 'B' : 'W';
+
+  let playerTwoPieces = state.squares.filter((s) => {
+    return s.piece !== null && s.piece.playerNumber === 2;
+  }).sort((a, b) => {
+    return a.id - b.id;
+  }).map((s) => {
+    if (s.piece !== null && s.piece.king) {
+      return `K${s.id}`;
     } else {
-      return '-';
+      return `${s.id}`;
     }
-  }).join('');
+  }).join(',');
 
-  let player = state.currentPlayerNumber === 1 ? 'b' : 'w';
+  let playerOnePieces = state.squares.filter((s) => {
+    return s.piece !== null && s.piece.playerNumber === 1;
+  }).sort((a, b) => {
+    return a.id - b.id;
+  }).map((s) => {
+    if (s.piece !== null && s.piece.king) {
+      return `K${s.id}`;
+    } else {
+      return `${s.id}`;
+    }
+  }).join(',');
 
-  return board + player;
+  return `${player}:W${playerTwoPieces}:B${playerOnePieces}`;
 }
 
 export default checkersStateSerializer
