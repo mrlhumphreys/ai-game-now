@@ -17,6 +17,21 @@ describe('pawn move', () => {
   });
 });
 
+describe('double pawn move', () => {
+  it('must parse out the details', () => {
+    let fen = 'rnbqkbnr/ppp1pppp/8/8/3Pp3/8/PPP2PPP/RNBQKBNR b KQkq - 0 3';
+    let gameState = fenToGameState(fen);
+    let move = 'e3';
+    if (gameState !== null) {
+      let result = chessMoveParser(move, gameState);
+      let expected = { fromId: 'e4', toId: 'e3', promotionPieceType: null };
+      expect(result).toEqual(expected);
+    } else {
+      expect(gameState).not.toBeNull();
+    }
+  });
+});
+
 describe('pawn capture', () => {
   it('must parse out the details', () => {
     let fen = 'rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1';

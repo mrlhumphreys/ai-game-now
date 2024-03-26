@@ -1,4 +1,5 @@
 import type GameState from '$lib/chess/interfaces/GameState';
+import type Square from '$lib/chess/interfaces/Square';
 import exists from '$lib/utils/exists';
 
 function hasKey<O extends object>(obj: O, key: PropertyKey): key is keyof O {
@@ -211,13 +212,42 @@ const chessMoveParser = function(move: string, state: GameState) {
         fromX = toX;
       }
 
+      let toY: number;
+      if (components.toRank !== undefined && hasKey(RANK_TO_Y, components.toRank)) {
+        toY = RANK_TO_Y[components.toRank];
+      } else {
+        toY = 0;
+      }
+
+      let reverseDirectionY = state.currentPlayerNumber === 1 ? 1 : -1;
+
       if (components.fromRank !== undefined && hasKey(RANK_TO_Y, components.fromRank)) {
         fromY = RANK_TO_Y[components.fromRank];
       } else {
-        let square = state.squares.find(function(s) {
+        let squares = state.squares.filter((s) => {
           // square with pawn owned by current player and in above matched file
           return s.piece !== null && s.piece.type === 'pawn' && s.piece.playerNumber === state.currentPlayerNumber && s.x === fromX;
         });
+
+        let square: Square | undefined;
+        if ((squares).length > 1) {
+          // there are two pawns in the same file. Work our way backwards until we find the first pawn.
+          let counter = toY + reverseDirectionY;
+          while (counter < 8 && counter > -1) {
+            let s = squares.find((s) => {
+              return s.y === counter;
+            });
+
+            if (s !== undefined) {
+              square = s;
+              break;
+            }
+
+            counter = counter + reverseDirectionY;
+          }
+        } else {
+          square = squares[0];
+        }
 
         if (square !== undefined) {
           fromY = square.y;
