@@ -27,11 +27,13 @@
       padding-bottom: $backgammon-pixel-unit;
     }
 
-    width: 66.66%;
-    padding-left: 16.66%;
-    padding-right: 16.66%;
-    display: flex;
-    flex-direction: row;
+    & {
+      width: 66.66%;
+      padding-left: 16.66%;
+      padding-right: 16.66%;
+      display: flex;
+      flex-direction: row;
+    }
   }
 </style>
 

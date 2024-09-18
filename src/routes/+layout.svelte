@@ -22,7 +22,9 @@
 
   #topbar {
     @include responsive-full-width;
-    background-color: $gray-20;
+    & {
+      background-color: $gray-20;
+    }
 
     nav {
       display: flex;
@@ -45,7 +47,7 @@
       }
     }
   }
-  
+
   #bottombar {
     background-color: $gray-80;
     position: absolute;

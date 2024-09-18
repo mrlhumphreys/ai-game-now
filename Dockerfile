@@ -1,6 +1,6 @@
 # https://truesparrow.com/blog/setup-local-development-environment-with-docker-compose/
 
-FROM node:21.4.0 as builder
+FROM node:22.9.0 as builder
 
 WORKDIR /src
 

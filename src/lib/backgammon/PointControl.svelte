@@ -28,9 +28,11 @@
       height: 5*$backgammon-pixel-unit;
     }
 
-    width: 16.66%;
-    display: flex;
-    flex-direction: column;
+    & {
+      width: 16.66%;
+      display: flex;
+      flex-direction: column;
+    }
 
     &.bottom {
       justify-content: flex-end;

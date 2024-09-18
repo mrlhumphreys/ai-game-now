@@ -27,9 +27,11 @@
       padding-bottom: $backgammon-pixel-unit;
     }
 
-    width: 66.66%;
-    padding-left: 16.66%;
-    padding-right: 16.66%;
+    & {
+      width: 66.66%;
+      padding-left: 16.66%;
+      padding-right: 16.66%;
+    }
   }
 
   .pass {
@@ -42,11 +44,13 @@
         font-size: math.div($backgammon-pixel-unit, 2);
       }
 
-      text-align: center;
-      padding: 0.25em 0;
-      border: solid 1px white;
-      background-color: $gray-20;
-      color: white;
+      & {
+        text-align: center;
+        padding: 0.25em 0;
+        border: solid 1px white;
+        background-color: $gray-20;
+        color: white;
+      }
     }
   }
 </style>
