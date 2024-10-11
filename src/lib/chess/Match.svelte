@@ -42,7 +42,7 @@
       let data = window.localStorage.getItem('chess');
       return JSON.parse(data);
     } else {
-      return null
+      return null;
     }
   }
 

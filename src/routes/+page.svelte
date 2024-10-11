@@ -6,12 +6,13 @@
  <header>
    <h1>AI Game Now</h1>
  </header>
- 
+
  <main>
    <ul class="games">
      <li><a class="game" href="{base}/checkers">Checkers</a></li>
      <li><a class="game" href="{base}/backgammon">Backgammon</a></li>
      <li><a class="game" href="{base}/chess">Chess</a></li>
+     <li><a class="game" href="{base}/go">Go</a></li>
    </ul>
  </main>
 </div>
@@ -43,7 +44,7 @@
 
       .game {
         display: block;
-        padding: 1em 0em; 
+        padding: 1em 0em;
         margin: 0.5em 10px;
         width: 300px;
         text-align: center;

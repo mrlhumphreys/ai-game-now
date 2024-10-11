@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect  } from 'vitest';
 import chessMoveParser from '$lib/services/chessMoveParser';
 import fenToGameState from '$lib/chess/logic/fenToGameState';
 

@@ -13,6 +13,7 @@ https://mrlhumphreys.github.io/ai-game-now/
 * Checkers
 * Backgammon
 * Chess
+* Go
 
 ## Environment Variables 
 
