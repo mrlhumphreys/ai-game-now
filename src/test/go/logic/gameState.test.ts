@@ -61,6 +61,15 @@ describe('move', () => {
     }
   });
 
+  it('updates the previous state', () => {
+    let gameState = captureGameState();
+    let playerNumber = 2;
+    let pointId = 74;
+    move(gameState, playerNumber, pointId);
+    let expected = "-----------------------------------2-----------------212-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+    expect(gameState.previousState).toEqual(expected);
+  });
+
   it('updates the prisoner count if there are captures', () => {
     let gameState = captureGameState();
     let playerNumber = 2;

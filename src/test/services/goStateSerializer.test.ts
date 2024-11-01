@@ -10,4 +10,13 @@ describe('goStateSerializer', () => {
     let expected = 'PL[B]ABAWXB[0]XW[0]XS';
     expect(result).toEqual(expected);
   });
+
+  it('serializes state with pervious captures', () => {
+    let match = buildMatchAttributes(1);
+    let gameState = match.gameState;
+    gameState.previousState = "-2-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+    let result = goStateSerializer(gameState);
+    let expected = 'PL[B]ABAWXB[0]XW[0]XS[ba]';
+    expect(result).toEqual(expected);
+  });
 });
