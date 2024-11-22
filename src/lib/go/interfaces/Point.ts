@@ -1,7 +1,7 @@
 import type Stone from '$lib/go/interfaces/Stone';
 
 interface Point {
-  id: number;
+  id: string;
   x: number;
   y: number;
   stone: Stone | null;

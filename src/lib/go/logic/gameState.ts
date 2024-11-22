@@ -23,7 +23,7 @@ interface PlayerScore {
   score: number;
 }
 
-export const move = function(gameState: GameState, playerNumber: number, pointId: number): boolean {
+export const move = function(gameState: GameState, playerNumber: number, pointId: string): boolean {
   let point = findById(gameState.points, pointId);
 
   if (point !== undefined && playerNumber === gameState.currentPlayerNumber) {

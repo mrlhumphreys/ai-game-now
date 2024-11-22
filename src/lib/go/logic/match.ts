@@ -45,7 +45,7 @@ export const canPass = function(match: Match, playerNumber: number): boolean {
   }
 };
 
-export const touchPoint = function(match: Match, playerNumber: number, pointId: number): boolean {
+export const touchPoint = function(match: Match, playerNumber: number, pointId: string): boolean {
   clearLastAction(match);
 
   let result = getMoveResult(match, playerNumber, pointId);
@@ -97,7 +97,7 @@ export const notify = function(match: Match, message: string): boolean {
   return true;
 }
 
-export const addMoveToLastAction = function(match: Match, pointId: number): boolean {
+export const addMoveToLastAction = function(match: Match, pointId: string): boolean {
   match.lastAction = { kind: 'move', data: { pointId: pointId } };
   return true;
 }

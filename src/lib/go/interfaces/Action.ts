@@ -1,5 +1,5 @@
 interface ActionData {
-  pointId: number;
+  pointId: string;
 }
 
 interface Action {

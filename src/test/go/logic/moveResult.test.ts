@@ -25,7 +25,7 @@ describe('getMoveResult', () => {
     it('returns a GameOver result', () => {
       let match = winnerMatch();
       let playerNumber = 1;
-      let pointId = 55;
+      let pointId = 'qc';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'GameOver', message: 'Game is over.' };
       expect(result).toEqual(expected);
@@ -36,7 +36,7 @@ describe('getMoveResult', () => {
     it('returns a NotPlayersTurn result', () => {
       let match = defaultMatch();
       let playerNumber = 2;
-      let pointId = 55;
+      let pointId = 'qc';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'NotPlayersTurn', message: 'It is not your turn.' };
       expect(result).toEqual(expected);
@@ -47,7 +47,7 @@ describe('getMoveResult', () => {
     it('returns a PointNotFound result', () => {
       let match = defaultMatch();
       let playerNumber = 1;
-      let pointId = 455;
+      let pointId = 'ddd';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'PointNotFound', message: 'Point does not exist.' };
       expect(result).toEqual(expected);
@@ -58,7 +58,7 @@ describe('getMoveResult', () => {
     it('returns a PointOccupied result', () => {
       let match = endMatch();
       let playerNumber = 1;
-      let pointId = 2;
+      let pointId = 'ba';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'PointOccupied', message: 'Point is already occupied.' };
       expect(result).toEqual(expected);
@@ -69,7 +69,7 @@ describe('getMoveResult', () => {
     it('returns a NoLiberties result', () => {
       let match = noLibertiesMatch();
       let playerNumber = 1;
-      let pointId = 1;
+      let pointId = 'aa';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'NoLiberties', message: 'Point has no liberties.' };
       expect(result).toEqual(expected);
@@ -80,7 +80,7 @@ describe('getMoveResult', () => {
     it('returns a KoRuleViolation result', () => {
       let match = koRuleMatch();
       let playerNumber = 2;
-      let pointId = 21;
+      let pointId = 'bb';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'KoRuleViolation', message: 'Move would return board to previous state.' };
       expect(result).toEqual(expected);
@@ -91,7 +91,7 @@ describe('getMoveResult', () => {
     it('returns a MoveValid result', () => {
       let match = defaultMatch();
       let playerNumber = 1;
-      let pointId = 55;
+      let pointId = 'qc';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'MoveValid', message: '' };
       expect(result).toEqual(expected);
@@ -102,7 +102,7 @@ describe('getMoveResult', () => {
     it('returns a MoveValid result', () => {
       let match = connectingChainsMatch();
       let playerNumber = 1;
-      let pointId = 77;
+      let pointId = 'ae';
       let result = getMoveResult(match, playerNumber, pointId);
       let expected = { name: 'MoveValid', message: '' };
       expect(result).toEqual(expected);
@@ -113,9 +113,9 @@ describe('getMoveResult', () => {
 describe('proposedPoint', () => {
   it('returns the point matching the id', () => {
     let match = defaultMatch();
-    let pointId = 55;
+    let pointId = 'qc';
     let result = proposedPoint(match, pointId);
-    let expected = { id: 55, x: 16, y: 2, stone: null, territoryId: null };
+    let expected = { id: 'qc', x: 16, y: 2, stone: null, territoryId: null };
     expect(result).toEqual(expected);
   });
 });
@@ -123,7 +123,7 @@ describe('proposedPoint', () => {
 describe('noLiberties', () => {
   it('returns true if the point has no liberties', () => {
     let match = noLibertiesMatch();
-    let pointId = 1;
+    let pointId = 'aa';
     let result = noLiberties(match, pointId);
     let expected = true;
     expect(result).toEqual(expected);
@@ -131,7 +131,7 @@ describe('noLiberties', () => {
 
   it('returns false if the point has one or more liberties', () => {
     let match = defaultMatch();
-    let pointId = 1;
+    let pointId = 'aa';
     let result = noLiberties(match, pointId);
     let expected = false;
     expect(result).toEqual(expected);
@@ -139,7 +139,7 @@ describe('noLiberties', () => {
 
   it('returns true if the point is not found', () => {
     let match = defaultMatch();
-    let pointId = 1000;
+    let pointId = 'aaaa';
     let result = noLiberties(match, pointId);
     let expected = true;
     expect(result).toEqual(expected);
@@ -149,7 +149,7 @@ describe('noLiberties', () => {
 describe('surroundedByEnemies', () => {
   it('returns true if the point is surrounded by enemy stones', () => {
     let match = noLibertiesMatch();
-    let pointId = 1;
+    let pointId = 'aa';
     let playerNumber = 1;
     let result = surroundedByEnemies(match, pointId, playerNumber);
     expect(result).toBe(true);
@@ -157,7 +157,7 @@ describe('surroundedByEnemies', () => {
 
   it('returns false if not completely surrounded by enemy stones', () => {
     let match = defaultMatch();
-    let pointId = 1;
+    let pointId = 'aa';
     let playerNumber = 1;
     let result = surroundedByEnemies(match, pointId, playerNumber);
     expect(result).toBe(false);
@@ -167,7 +167,7 @@ describe('surroundedByEnemies', () => {
 describe('deprivesLiberties', () => {
   it('returns true if the move would deprive the players liberties', () => {
     let match = deprivesLibertiesMatch();
-    let pointId = 2;
+    let pointId = 'ba';
     let playerNumber = 1;
     let result = deprivesLiberties(match, pointId, playerNumber);
     let expected = true;
@@ -176,7 +176,7 @@ describe('deprivesLiberties', () => {
 
   it('returns false if it does not deprive players liberties', () => {
     let match = defaultMatch();
-    let pointId = 2;
+    let pointId = 'ba';
     let playerNumber = 1;
     let result = deprivesLiberties(match, pointId, playerNumber);
     let expected = false;
@@ -185,7 +185,7 @@ describe('deprivesLiberties', () => {
 
   it('returns false if the point does not exist', () => {
     let match = defaultMatch();
-    let pointId = 2000;
+    let pointId = 'bbbb';
     let playerNumber = 1;
     let result = deprivesLiberties(match, pointId, playerNumber);
     let expected = false;
@@ -196,7 +196,7 @@ describe('deprivesLiberties', () => {
 describe('deprivesOpponentsLiberties', () => {
   it('returns true if it deprives opponents liberties', () => {
     let match = deprivesOpponentsLibertiesMatch();
-    let pointId = 2;
+    let pointId = 'ba';
     let playerNumber = 1;
     let result = deprivesOpponentsLiberties(match, pointId, playerNumber);
     let expected = true;
@@ -205,7 +205,7 @@ describe('deprivesOpponentsLiberties', () => {
 
   it('returns false if it does not deprive opponents liberties', () => {
     let match = deprivesOpponentsLibertiesMatch();
-    let pointId = 6;
+    let pointId = 'fa';
     let playerNumber = 1;
     let result = deprivesOpponentsLiberties(match, pointId, playerNumber);
     let expected = false;
@@ -214,7 +214,7 @@ describe('deprivesOpponentsLiberties', () => {
 
   it('returns false if the point does not exist ', () => {
     let match = deprivesOpponentsLibertiesMatch();
-    let pointId = 600;
+    let pointId = 'fff';
     let playerNumber = 1;
     let result = deprivesOpponentsLiberties(match, pointId, playerNumber);
     let expected = false;
@@ -225,7 +225,7 @@ describe('deprivesOpponentsLiberties', () => {
 describe('koRuleViolation', () => {
   it('returns true if the board returns to a previous state', () => {
     let match = koRuleMatch();
-    let pointId = 21;
+    let pointId = 'bb';
     let playerNumber = 2;
     let result = koRuleViolation(match, pointId, playerNumber);
     let expected = true;
@@ -234,7 +234,7 @@ describe('koRuleViolation', () => {
 
   it('returns false if the board does not return to a previous state', () => {
     let match = koRuleMatch();
-    let pointId = 23;
+    let pointId = 'db';
     let playerNumber = 2;
     let result = koRuleViolation(match, pointId, playerNumber);
     let expected = false;

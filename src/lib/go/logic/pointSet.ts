@@ -44,7 +44,7 @@ export const playerNumber = function(points: Array<Point>): number | null {
   }
 };
 
-export const findById = function(points: Array<Point>, pointId: number): Point | undefined {
+export const findById = function(points: Array<Point>, pointId: string): Point | undefined {
   return points.find(function(p: Point) {
     return p.id == pointId;
   });
@@ -181,7 +181,7 @@ export const deprivesOpponentsLiberties = function(points: Array<Point>, point: 
   return thisChains.some((c) => { return libertiesFor(points, c) === 1; });
 };
 
-export const updateJoinedChains = function(points: Array<Point>, pointId: number, playerNumber: number): boolean {
+export const updateJoinedChains = function(points: Array<Point>, pointId: string, playerNumber: number): boolean {
   let point = findById(points, pointId);
   if (point !== undefined) {
     let existingChainIds: Array<number> = [];
@@ -230,7 +230,7 @@ export const minify = function(points: Array<Point>): string {
   }).join('');
 };
 
-export const place = function(points: Array<Point>, pointId: number, stone: Stone): boolean {
+export const place = function(points: Array<Point>, pointId: string, stone: Stone): boolean {
   let point = findById(points, pointId);
   if (point !== undefined) {
     return pointPlace(point, stone);
@@ -321,19 +321,19 @@ export const markTerritories = function(points: Array<Point>): boolean {
           addTerritoryId = territoryIds[0];
           break;
         default:
-          let minId = min(territoryIds);
-          let otherIds = reject(territoryIds, function(p) {
-            return p === minId;
+          let minTerritoryId = min(territoryIds);
+          let otherTerritoryIds = reject(territoryIds, function(p) {
+            return p === minTerritoryId;
           });
           let otherPoints = points.filter(function(p) {
-            return otherIds.includes(p.id);
+            return p.territoryId !== null && otherTerritoryIds.includes(p.territoryId);
           });
           otherPoints.forEach(function(otherPoint) {
-            if (minId !== null) {
-              addToTerritory(otherPoint, minId);
+            if (minTerritoryId !== null) {
+              addToTerritory(otherPoint, minTerritoryId);
             }
           });
-          addTerritoryId = minId;
+          addTerritoryId = minTerritoryId;
       }
 
       if (addTerritoryId !== undefined && addTerritoryId !== null) {

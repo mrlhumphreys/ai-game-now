@@ -25,7 +25,7 @@ interface Result {
   message: string;
 }
 
-export const getMoveResult = function(match: Match, playerNumber: number, proposedPointId: number): Result {
+export const getMoveResult = function(match: Match, playerNumber: number, proposedPointId: string): Result {
   if (exists(winner(match))) {
     return { name: 'GameOver', message: 'Game is over.' };
   }
@@ -65,11 +65,11 @@ export const getMoveResult = function(match: Match, playerNumber: number, propos
   return { name: 'MoveValid', message: '' };
 };
 
-export const proposedPoint = function(match: Match, proposedPointId: number): Point | undefined {
+export const proposedPoint = function(match: Match, proposedPointId: string): Point | undefined {
   return findById(match.gameState.points, proposedPointId);
 };
 
-export const noLiberties = function(match: Match, proposedPointId: number): boolean {
+export const noLiberties = function(match: Match, proposedPointId: string): boolean {
   let point = proposedPoint(match, proposedPointId);
   if (point !== undefined) {
     return libertiesFor(match.gameState.points, point) === 0;
@@ -78,7 +78,7 @@ export const noLiberties = function(match: Match, proposedPointId: number): bool
   }
 };
 
-export const surroundedByEnemies = function(match: Match, proposedPointId: number, playerNumber: number): boolean {
+export const surroundedByEnemies = function(match: Match, proposedPointId: string, playerNumber: number): boolean {
   let point = proposedPoint(match, proposedPointId);
   if (point !== undefined) {
     return pointSetSurroundedByEnemies(match.gameState.points, point, playerNumber);
@@ -87,7 +87,7 @@ export const surroundedByEnemies = function(match: Match, proposedPointId: numbe
   }
 };
 
-export const deprivesLiberties = function(match: Match, proposedPointId: number, playerNumber: number): boolean {
+export const deprivesLiberties = function(match: Match, proposedPointId: string, playerNumber: number): boolean {
   let point = proposedPoint(match, proposedPointId);
   if (point !== undefined) {
     return pointSetDeprivesLiberties(match.gameState.points, point, playerNumber);
@@ -96,7 +96,7 @@ export const deprivesLiberties = function(match: Match, proposedPointId: number,
   }
 }
 
-export const deprivesOpponentsLiberties = function(match: Match, proposedPointId: number, playerNumber: number): boolean {
+export const deprivesOpponentsLiberties = function(match: Match, proposedPointId: string, playerNumber: number): boolean {
   let point = proposedPoint(match, proposedPointId);
   if (point !== undefined) {
     return pointSetDeprivesOpponentsLiberties(match.gameState.points, point, playerNumber);
@@ -105,7 +105,7 @@ export const deprivesOpponentsLiberties = function(match: Match, proposedPointId
   }
 }
 
-export const koRuleViolation = function(match: Match, proposedPointId: number, playerNumber: number): boolean {
+export const koRuleViolation = function(match: Match, proposedPointId: string, playerNumber: number): boolean {
   let point = proposedPoint(match, proposedPointId);
   if (point !== undefined) {
     let dupped = deepClone(match.gameState.points);

@@ -83,7 +83,7 @@ describe('touchPoint', () => {
   describe('when move valid', () => {
     it('adds a stone to the point', () => {
       let match = defaultMatch();
-      let pointId = 55;
+      let pointId = 'qc';
       let playerNumber = 1;
       touchPoint(match, playerNumber, pointId);
       let point = match.gameState.points.find(function(p) { return p.id === pointId });
@@ -97,7 +97,7 @@ describe('touchPoint', () => {
 
     it('adds move details to last action', () => {
       let match = defaultMatch();
-      let pointId = 55;
+      let pointId = 'qc';
       let playerNumber = 1;
       touchPoint(match, playerNumber, pointId);
       let expected = { kind: 'move', data: { pointId: pointId } };
@@ -106,7 +106,7 @@ describe('touchPoint', () => {
 
     it('notifies of winner if there is a winner', () => {
       let match = winnerMatch();
-      let pointId = 55;
+      let pointId = 'qc';
       let playerNumber = 1;
       touchPoint(match, playerNumber, pointId);
       let expected = 'Game is over.';
@@ -115,7 +115,7 @@ describe('touchPoint', () => {
 
     it('notifies blank if there is no winner', () => {
       let match = defaultMatch();
-      let pointId = 55;
+      let pointId = 'qc';
       let playerNumber = 1;
       touchPoint(match, playerNumber, pointId);
       let expected = '';
@@ -126,11 +126,11 @@ describe('touchPoint', () => {
   describe('when move is not valid', () => {
     it('does not place stone', () => {
       let match = endMatch();
-      let pointId = 21;
+      let pointId = 'ab';
       let playerNumber = 1;
       touchPoint(match, playerNumber, pointId);
       let point = match.gameState.points.find(function(p) { return p.id === pointId });
-      let stone = { id: 3, playerNumber: 2, chainId: 3 };
+      let stone = { id: 2, playerNumber: 1, chainId: 2 };
       if (point !== undefined) {
         expect(point.stone).toEqual(stone);
       } else {
@@ -140,7 +140,7 @@ describe('touchPoint', () => {
 
     it('notifies of invalid move', () => {
       let match = endMatch();
-      let pointId = 21;
+      let pointId = 'ab';
       let playerNumber = 1;
       touchPoint(match, playerNumber, pointId);
       let expected = 'Point is already occupied.';
@@ -231,7 +231,7 @@ describe('notify', () => {
 describe('addMoveToLastAction', () => {
   it('sets the lastAction to a move with details', () => {
     let match = defaultMatch();
-    let pointId = 55;
+    let pointId = 'qc';
     addMoveToLastAction(match, pointId);
     let expected = { kind: 'move', data: { pointId: pointId } };
     expect(match.lastAction).toEqual(expected);

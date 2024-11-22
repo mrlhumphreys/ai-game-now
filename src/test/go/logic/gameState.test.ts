@@ -24,7 +24,7 @@ describe('move', () => {
   it('places a stone at the point for player', () => {
     let gameState = defaultGameState();
     let playerNumber = 1;
-    let pointId = 74;
+    let pointId = 'qd';
     move(gameState, playerNumber, pointId);
     let point = gameState.points.find(function(p) { return p.id === pointId; });
     let stone = { id: 1, playerNumber: 1, chainId: 1 };
@@ -38,7 +38,7 @@ describe('move', () => {
   it('marks the passed player as continuing', () => {
     let gameState = playerPassedGameState();
     let playerNumber = 1;
-    let pointId = 74;
+    let pointId = 'qd';
     move(gameState, playerNumber, pointId);
     let playerStat = gameState.playerStats.find(function(ps) { return ps.playerNumber === 2; });
     if (playerStat !== undefined) {
@@ -51,9 +51,9 @@ describe('move', () => {
   it('captures stones if possible', () => {
     let gameState = captureGameState();
     let playerNumber = 2;
-    let pointId = 74;
+    let pointId = 'qd';
     move(gameState, playerNumber, pointId);
-    let capturedPoint = gameState.points.find(function(p) { return p.id === 55; });
+    let capturedPoint = gameState.points.find(function(p) { return p.id === 'qc'; });
     if (capturedPoint !== undefined) {
       expect(capturedPoint.stone).toBe(null);
     } else {
@@ -64,7 +64,7 @@ describe('move', () => {
   it('updates the previous state', () => {
     let gameState = captureGameState();
     let playerNumber = 2;
-    let pointId = 74;
+    let pointId = 'qd';
     move(gameState, playerNumber, pointId);
     let expected = "-----------------------------------2-----------------212-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
     expect(gameState.previousState).toEqual(expected);
@@ -73,7 +73,7 @@ describe('move', () => {
   it('updates the prisoner count if there are captures', () => {
     let gameState = captureGameState();
     let playerNumber = 2;
-    let pointId = 74;
+    let pointId = 'qd';
     move(gameState, playerNumber, pointId);
     let playerStat = gameState.playerStats.find(function(ps) { return ps.playerNumber === 2; });
     if (playerStat !== undefined) {
@@ -86,7 +86,7 @@ describe('move', () => {
   it('passes the turn', () => {
     let gameState = defaultGameState();
     let playerNumber = 1;
-    let pointId = 74;
+    let pointId = 'qd';
     move(gameState, playerNumber, pointId);
     expect(gameState.currentPlayerNumber).toEqual(2);
   });
@@ -107,7 +107,7 @@ describe('pass', () => {
   it('marks territories if both players have passed', () => {
     let gameState = endGameState();
     pass(gameState, 1);
-    let point = gameState.points.find(function(p) { return p.id === 1; });
+    let point = gameState.points.find(function(p) { return p.id === 'aa'; });
     if (point !== undefined) {
       expect(point.territoryId).toEqual(1);
     } else {
