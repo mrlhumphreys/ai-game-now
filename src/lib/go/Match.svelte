@@ -93,7 +93,11 @@
 
   // ai action functions
   function aiMove(move) {
-    matchTouchPoint(matchState, aiPlayerNumber, move.pointId);
+    if (move.pointId === 'tt') {
+      matchTouchPass(matchState, aiPlayerNumber);
+    } else {
+      matchTouchPoint(matchState, aiPlayerNumber, move.pointId);
+    }
     saveState(matchState);
   };
 
