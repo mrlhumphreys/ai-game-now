@@ -6,6 +6,7 @@ import type Point from '$lib/go/interfaces/Point';
 // AB[bb:ee]AW[bb][ee][dc][cd][cb][bc][be][eb][ed][de] - Setup board
 // XS[ab][cd]  - Previously Captured Pieces
 // XW[0] XB[0] - Number of stones captured
+// AB[tt] - pass
 const goStateSerializer = function(state: GameState): string {
   let currentPlayerCode = (state.currentPlayerNumber === 2 ? 'W' : 'B');
 
@@ -22,8 +23,10 @@ const goStateSerializer = function(state: GameState): string {
 
   let blackPlayerStat = state.playerStats.find(function(ps) { return ps.playerNumber === 1; });
   let blackPrisonerCount = (blackPlayerStat !== undefined ? blackPlayerStat.prisonerCount : 0);
+  let blackPass = (blackPlayerStat !== undefined && blackPlayerStat.passed ? '[tt]' : '');
   let whitePlayerStat = state.playerStats.find(function(ps) { return ps.playerNumber === 2; });
   let whitePrisonerCount = (whitePlayerStat !== undefined ? whitePlayerStat.prisonerCount : 0);
+  let whitePass = (whitePlayerStat !== undefined && whitePlayerStat.passed ? '[tt]' : '');
 
   let capturedPoints: Array<string> = [];
 
@@ -42,7 +45,7 @@ const goStateSerializer = function(state: GameState): string {
 
   let capturedPointsString = capturedPoints.map(function(p) { return `[${p}]`; }).join('');
 
-  return `PL[${currentPlayerCode}]AB${blackStones}AW${whiteStones}XB[${blackPrisonerCount}]XW[${whitePrisonerCount}]XS${capturedPointsString}`;
+  return `PL[${currentPlayerCode}]AB${blackStones}${blackPass}AW${whiteStones}${whitePass}XB[${blackPrisonerCount}]XW[${whitePrisonerCount}]XS${capturedPointsString}`;
 };
 
 export default goStateSerializer
