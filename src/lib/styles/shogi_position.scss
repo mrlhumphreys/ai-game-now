@@ -1,0 +1,78 @@
+@for $x from 0 through 9 {
+  @for $y from 0 through 9 {
+    .position_#{$x}_#{$y} {
+      top: $y*8.4% + 12.45%;
+      left: $x*10% + 5%;
+    }
+  }
+}
+
+.position_hand_top_fuhyou {
+  top: 0%;
+  left: 0*10% + 5%;
+}
+
+.position_hand_bottom_fuhyou {
+  top: 91.6%;
+  left: 85% - 0*10%;
+}
+
+.position_hand_top_kyousha {
+  top: 0%;
+  left: 1*10% + 5%;
+}
+
+.position_hand_bottom_kyousha {
+  top: 91.6%;
+  left: 85% - 1*10%;
+}
+
+.position_hand_top_keima {
+  top: 0%;
+  left: 2*10% + 5%;
+}
+
+.position_hand_bottom_keima {
+  top: 91.6%;
+  left: 85% - 2*10%;
+}
+
+.position_hand_top_ginshou {
+  top: 0%;
+  left: 3*10% + 5%;
+}
+
+.position_hand_bottom_ginshou {
+  top: 91.6%;
+  left: 85% - 3*10%;
+}
+
+.position_hand_top_kinshou {
+  top: 0%;
+  left: 4*10% + 5%;
+}
+
+.position_hand_bottom_kinshou {
+  top: 91.6%;
+  left: 85% - 4*10%;
+}
+
+.position_hand_top_kakugyou {
+  top: 0%;
+  left: 5*10% + 5%;
+}
+
+.position_hand_bottom_kakugyou {
+  top: 91.6%;
+  left: 85% - 5*10%;
+}
+
+.position_hand_top_hisha {
+  top: 0%;
+  left: 6*10% + 5%;
+}
+
+.position_hand_bottom_hisha {
+  top: 91.6%;
+  left: 85% - 6*10%;
+}

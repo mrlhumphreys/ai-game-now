@@ -1,5 +1,4 @@
 import type GameState from '$lib/chess/interfaces/GameState';
-import type Point from '$lib/chess/interfaces/Point';
 import type Piece from '$lib/chess/interfaces/Piece';
 import type CastleMove from '$lib/chess/interfaces/CastleMove';
 

@@ -16,6 +16,7 @@ const FILE_TO_X = {
   'g': 6,
   'h': 7
 };
+
 const RANK_TO_Y = {
   '1': 7,
   '2': 6,

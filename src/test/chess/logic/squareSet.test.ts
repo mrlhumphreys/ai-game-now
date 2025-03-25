@@ -225,7 +225,7 @@ describe('occupiedByPlayer', () => {
 });
 
 describe('occupiedByOpponentOf', () => {
-  it('returns squares occupied by player', () => {
+  it('returns squares occupied by opponent of player', () => {
     let squares = [
       { id: 'a8', x: 0, y: 0, piece: { id: 0, playerNumber: 1, type: 'pawn', selected: true } },
       { id: 'a7', x: 0, y: 1, piece: { id: 1, playerNumber: 2, type: 'pawn', selected: false } },
