@@ -26,11 +26,15 @@ import {
 } from '$lib/shogi/logic/pickupResult';
 
 export const winner = function(match: Match): number | null {
-  let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;
-  if (playerResigned) {
-    return match.players.find(function(p) { return !p.resigned; })?.playerNumber || null;
+  if (match.promotion) {
+    return null;
   } else {
-    return gameStateWinner(match.gameState);
+    let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;
+    if (playerResigned) {
+      return match.players.find(function(p) { return !p.resigned; })?.playerNumber || null;
+    } else {
+      return gameStateWinner(match.gameState);
+    }
   }
 };
 
@@ -62,6 +66,16 @@ export const touchSquare = function(match: Match, playerNumber: number, touchedS
         drop(match.gameState, selectedPiece.id, touchedSquareId);
         passTurn(match.gameState);
         addDropToLastAction(match, selectedPiece.id, touchedSquareId);
+        success = true;
+      }
+      break;
+    case 'PieceMovedToCompulsoryPromotionZone':
+      if (selected !== undefined) {
+        deselectPiece(match.gameState, selected.id);
+        move(match.gameState, selected.id, touchedSquareId);
+        promote(match.gameState, touchedSquareId);
+        passTurn(match.gameState);
+        addMoveToLastAction(match, selected.id, touchedSquareId, true);
         success = true;
       }
       break;

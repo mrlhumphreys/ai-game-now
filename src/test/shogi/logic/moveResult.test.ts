@@ -6,6 +6,7 @@ import selectedMatch from '../fixtures/selectedMatch';
 import selectedPieceMatch from '../fixtures/selectedPieceMatch';
 import putsOuInCheckMatch from '../fixtures/putsOuInCheckMatch';
 import moveToPromotionZoneMatch from '../fixtures/moveToPromotionZoneMatch';
+import moveToCompulsoryPromotionZoneMatch from '../fixtures/moveToCompulsoryPromotionZoneMatch';
 import selectedPieceInHandMatch from '../fixtures/selectedPieceInHandMatch';
 import fuhyouDropCausesCheckmateMatch from '../fixtures/fuhyouDropCausesCheckmateMatch';
 import pieceInHandMatch from '../fixtures/pieceInHandMatch';
@@ -36,6 +37,7 @@ import {
   moveValid,
   movePossible,
   pieceCanPromote,
+  pieceMustPromote,
   winnerMessage
 } from '$lib/shogi/logic/moveResult';
 
@@ -114,6 +116,17 @@ describe('selectedResult', () => {
       let playerNumber = 1;
       let touchedSquareId = '55';
       let expected = { name: 'MoveInvalid', message: 'Piece cannot move.' };
+      let result = selectedResult(match, playerNumber, touchedSquareId);
+      expect(result).toEqual(expected);
+    });
+  });
+
+  describe('when a move puts the piece in the compulsory promotion zone', () => {
+    it('returns a PieceMovedToCompulsoryPromotionZone result', () => {
+      let match = moveToCompulsoryPromotionZoneMatch();
+      let playerNumber = 1;
+      let touchedSquareId = '51';
+      let expected = { name: 'PieceMovedToCompulsoryPromotionZone', message: 'Piece must promote.' };
       let result = selectedResult(match, playerNumber, touchedSquareId);
       expect(result).toEqual(expected);
     });
@@ -611,6 +624,22 @@ describe('pieceCanPromote', () => {
     let match = selectedMatch();
     let touchedSquareId = '56';
     let result = pieceCanPromote(match, touchedSquareId);
+    expect(result).toBe(false);
+  });
+});
+
+describe('pieceMustPromote', () => {
+  it('returns true if the piece must promote at the destination', () => {
+    let match = moveToCompulsoryPromotionZoneMatch();
+    let touchedSquareId = '51';
+    let result = pieceMustPromote(match, touchedSquareId);
+    expect(result).toBe(true);
+  });
+
+  it('returns false if the piece can optionally promote at the destionation', () => {
+    let match = moveToPromotionZoneMatch();
+    let touchedSquareId = '53';
+    let result = pieceMustPromote(match, touchedSquareId);
     expect(result).toBe(false);
   });
 });

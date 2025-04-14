@@ -14,6 +14,7 @@ import {
 import {
   occupied,
   promotionZone,
+  compulsoryPromotionZone,
   addPiece,
   removePiece,
   select,
@@ -43,7 +44,7 @@ export const gameOver = function(gameState: GameState): boolean {
 };
 
 export const selectedSquare = function(gameState: GameState): Square | undefined {
-  return findSelected(gameState.squares); 
+  return findSelected(gameState.squares);
 };
 
 export const selectedPieceInHand = function(gameState: GameState): Piece | undefined {
@@ -99,6 +100,16 @@ export const pieceMovedToPromotionZone = function(from: Square, to: Square): boo
   }
 };
 
+export const pieceMovedToCompulsoryPromotionZone = function(from: Square, to: Square): boolean {
+  let piece = from.piece;
+
+  if (piece !== null) {
+    return compulsoryPromotionZone(to, piece, piece.playerNumber);
+  } else {
+    return false;
+  }
+};
+
 export const inCheckmate = function(gameState: GameState, playerNumber: number): boolean {
   return inCheck(gameState, playerNumber) && (ouCannotMove(gameState, playerNumber) && !threatsToOuCanBeCaptured(gameState, playerNumber) && !threatsToOuCanBeBlocked(gameState, playerNumber));
 };
@@ -121,7 +132,7 @@ export const threatsToOuCanBeCaptured = function(gameState: GameState, playerNum
     let threatsToOu = threatsToSquare(gameState.squares, ouSquare, playerNumber, gameState);
     let pinnedToOu = pinnedToSquare(gameState.squares, ouSquare, playerNumber, gameState);
     return threatsToOu.every((threat) => {
-      // can any threat be captured by player number    
+      // can any threat be captured by player number
       let threatsToThreats = threatsToSquare(gameState.squares, threat, opposingPlayer, gameState);
       // exclude threat to threats that are pinned
       return diff(threatsToThreats, pinnedToOu).length > 0;
@@ -136,14 +147,14 @@ export const threatsToOuCanBeBlocked = function(gameState: GameState, playerNumb
   let opposingPlayer = playerNumber === 2 ? 1 : 2;
   let ouSquare = findOuForPlayer(gameState.squares, playerNumber);
   let playerHand = gameState.hands.find((h) => {
-    return h.playerNumber === playerNumber; 
+    return h.playerNumber === playerNumber;
   });
   if (ouSquare !== undefined) {
     let threatsToOu = threatsToSquare(gameState.squares, ouSquare, playerNumber, gameState);
     let pinnedToOu = pinnedToSquare(gameState.squares, ouSquare, playerNumber, gameState);
     return threatsToOu.every((threat) => {
-      // check if threat can be blocked 
-      if (ouSquare !== undefined) { 
+      // check if threat can be blocked
+      if (ouSquare !== undefined) {
         let betweenSquares = between(gameState.squares, threat, ouSquare);
         return betweenSquares.some((b) => {
           if (playerHand !== undefined) {
@@ -170,7 +181,7 @@ export const threatsToOuCanBeBlocked = function(gameState: GameState, playerNumb
 export const ouCannotMove = function(gameState: GameState, playerNumber: number): boolean {
   let ouSquare = findOuForPlayer(gameState.squares, playerNumber);
   if (ouSquare !== undefined && ouSquare.piece !== null) {
-    let ouDestinations = destinations(ouSquare.piece, ouSquare, gameState); 
+    let ouDestinations = destinations(ouSquare.piece, ouSquare, gameState);
     return ouDestinations.every((d: Square) => {
       if (ouSquare !== undefined) {
         let duplicate = deepClone(gameState);
@@ -245,7 +256,7 @@ export const performMove = function(gameState: GameState, fromId: string, toId: 
 
 export const drop = function(gameState: GameState, pieceId: number, squareId: string): boolean {
   let hand = gameState.hands.find((h) => {
-    return h.playerNumber === gameState.currentPlayerNumber; 
+    return h.playerNumber === gameState.currentPlayerNumber;
   });
   let square = findById(gameState.squares, squareId);
 
@@ -282,7 +293,7 @@ export const deselectPiece = function(gameState: GameState, squareId: string): b
 
 export const selectPieceInHand = function(gameState: GameState, pieceId: number): boolean {
   let hand = gameState.hands.find((h) => {
-    return h.playerNumber === gameState.currentPlayerNumber; 
+    return h.playerNumber === gameState.currentPlayerNumber;
   });
 
   if (hand !== undefined) {
@@ -294,7 +305,7 @@ export const selectPieceInHand = function(gameState: GameState, pieceId: number)
 
 export const deselectPieceInHand = function(gameState: GameState, pieceId: number): boolean {
   let hand = gameState.hands.find((h) => {
-    return h.playerNumber === gameState.currentPlayerNumber; 
+    return h.playerNumber === gameState.currentPlayerNumber;
   });
 
   if (hand !== undefined) {
@@ -309,7 +320,7 @@ export const promote = function(gameState: GameState, squareId: string): boolean
 
   if (square !== undefined && square.piece !== null) {
     if (promotable(square.piece)) {
-      return piecePromote(square.piece); 
+      return piecePromote(square.piece);
     } else {
       return false;
     }
@@ -320,9 +331,9 @@ export const promote = function(gameState: GameState, squareId: string): boolean
 
 export const passTurn = function(gameState: GameState): boolean {
   if (gameState.currentPlayerNumber === 1) {
-    gameState.currentPlayerNumber = 2; 
+    gameState.currentPlayerNumber = 2;
   } else {
-    gameState.currentPlayerNumber = 1; 
+    gameState.currentPlayerNumber = 1;
   }
   return true;
 };

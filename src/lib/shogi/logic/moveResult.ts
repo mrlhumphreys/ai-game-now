@@ -24,6 +24,7 @@ import {
   selectedSquare as gameStateSelectedSquare,
   selectedPieceInHand as gameStateSelectedPieceInHand,
   pieceMovedToPromotionZone,
+  pieceMovedToCompulsoryPromotionZone,
   move,
   drop,
   inCheck,
@@ -62,6 +63,8 @@ export const selectedResult = function(match: Match, playerNumber: number, touch
     return { name: 'OuInCheck', message: 'Move puts ou in check.' };
   } else if (!moveValid(match, touchedSquareId)) {
     return { name: 'MoveInvalid', message: 'Piece cannot move.' };
+  } else if (pieceMustPromote(match, touchedSquareId)) {
+    return { name: 'PieceMovedToCompulsoryPromotionZone', message: 'Piece must promote.' };
   } else if (pieceCanPromote(match, touchedSquareId)) {
     return { name: 'PieceMovedToPromotionZone', message: 'Piece can promote.' };
   } else {
@@ -228,6 +231,12 @@ export const pieceCanPromote = function(match: Match, touchedSquareId: string): 
   let from = selectedSquare(match);
   let to = touchedSquare(match, touchedSquareId);
   return from !== undefined && to !== undefined && from.piece !== null && promotable(from.piece) && pieceMovedToPromotionZone(from, to);
+};
+
+export const pieceMustPromote = function(match: Match, touchedSquareId: string): boolean {
+  let from = selectedSquare(match);
+  let to = touchedSquare(match, touchedSquareId);
+  return from !== undefined && to !== undefined && from.piece !== null && promotable(from.piece) && pieceMovedToCompulsoryPromotionZone(from, to);
 };
 
 export const winnerMessage = function(match: Match): string {

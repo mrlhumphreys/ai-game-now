@@ -23,6 +23,31 @@ export const promotionZone = function(square: Square, playerNumber: number): boo
   }
 };
 
+export const compulsoryPromotionZone = function(square: Square, piece: Piece, playerNumber: number): boolean {
+  switch (piece.type) {
+    case 'fuhyou':
+      if (playerNumber === 2) {
+        return square.y === 8;
+      } else {
+        return square.y === 0;
+      }
+    case 'kyousha':
+      if (playerNumber === 2) {
+        return square.y === 8;
+      } else {
+        return square.y === 0;
+      }
+    case 'keima':
+      if (playerNumber === 2) {
+        return square.y === 8 || square.y === 7;
+      } else {
+        return square.y === 0 || square.y === 1;
+      }
+    default:
+      return false;
+  }
+};
+
 export const occupiedByPieceType = function(square: Square, pieceType: Array<string>): boolean {
   return square.piece !== null && pieceType.includes(square.piece.type);
 };

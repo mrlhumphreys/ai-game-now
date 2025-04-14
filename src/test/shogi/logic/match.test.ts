@@ -5,8 +5,10 @@ import winnerMatch from '../fixtures/winnerMatch';
 import selectedMatch from '../fixtures/selectedMatch';
 import selectedPieceInHandMatch from '../fixtures/selectedPieceInHandMatch';
 import moveToPromotionZoneMatch from '../fixtures/moveToPromotionZoneMatch';
+import moveToCompulsoryPromotionZoneMatch from '../fixtures/moveToCompulsoryPromotionZoneMatch';
 import putsOuInCheckMatch from '../fixtures/putsOuInCheckMatch';
 import promoteMatch from '../fixtures/promoteMatch';
+import lastMovePromoteMatch from '../fixtures/lastMovePromoteMatch';
 import pieceInHandMatch from '../fixtures/pieceInHandMatch';
 import lastActionMatch from '../fixtures/lastActionMatch';
 
@@ -31,6 +33,11 @@ describe('winner', () => {
 
   it('returns null if there is no winner', () => {
     let match = defaultMatch();
+    expect(winner(match)).toBe(null);
+  });
+
+  it('returns null if awaiting promotion response', () => {
+    let match = lastMovePromoteMatch();
     expect(winner(match)).toBe(null);
   });
 });
@@ -173,6 +180,95 @@ describe('touchSquare', () => {
           pieceId: 17,
           toId: '17',
           promote: false
+        }
+      };
+      touchSquare(match, playerNumber, touchedSquareId);
+      expect(match.lastAction).toEqual(expected);
+    });
+  });
+
+  describe('when piece moves to compulsory promotion zone', () => {
+    it('deselects the piece', () => {
+      let match = moveToCompulsoryPromotionZoneMatch();
+      let playerNumber = 1;
+      let touchedSquareId = '51';
+      touchSquare(match, playerNumber, touchedSquareId);
+
+      let square = match.gameState.squares.find((s) => {
+        return s.id === touchedSquareId;
+      });
+
+      if (square !== undefined && square.piece !== null) {
+        expect(square.piece.selected).toBe(false);
+      } else {
+        expect(square).not.toBe(undefined);
+      }
+    });
+
+    it('moves the piece', () => {
+      let match = moveToCompulsoryPromotionZoneMatch();
+      let playerNumber = 1;
+      let touchedSquareId = '51';
+      touchSquare(match, playerNumber, touchedSquareId);
+
+      let fromSquare = match.gameState.squares.find((s) => {
+        return s.id === '52';
+      });
+
+      if (fromSquare !== undefined ) {
+        expect(fromSquare.piece).toBe(null);
+      } else {
+        expect(fromSquare).not.toBe(undefined);
+      }
+
+      let toSquare = match.gameState.squares.find((s) => {
+        return s.id === touchedSquareId;
+      });
+
+      if (toSquare !== undefined ) {
+        let movedPiece = { id: 25, playerNumber: 1, type: 'tokin', selected: false };
+        expect(toSquare.piece).toEqual(movedPiece);
+      } else {
+        expect(toSquare).not.toBe(undefined);
+      }
+    });
+
+    it('promotes the piece', () => {
+      let match = moveToCompulsoryPromotionZoneMatch();
+      let playerNumber = 1;
+      let touchedSquareId = '51';
+      touchSquare(match, playerNumber, touchedSquareId);
+
+      let square = match.gameState.squares.find((s) => {
+        return s.id === touchedSquareId;
+      });
+
+      if (square !== undefined && square.piece !== null) {
+        expect(square.piece.type).toEqual('tokin');
+      } else {
+        expect(square).not.toBe(undefined);
+      }
+    });
+
+    it('passes the turn', () => {
+      let match = moveToCompulsoryPromotionZoneMatch();
+      let playerNumber = 1;
+      let touchedSquareId = '51';
+      touchSquare(match, playerNumber, touchedSquareId);
+      expect(match.gameState.currentPlayerNumber).toEqual(2);
+    });
+
+    it('add moves to last action', () => {
+      let match = moveToCompulsoryPromotionZoneMatch();
+      let playerNumber = 1;
+      let touchedSquareId = '51';
+      let expected = {
+        kind: 'move',
+        data: {
+          fromId: '52',
+          pieceId: null,
+          toId: '51',
+          promote: true
         }
       };
       touchSquare(match, playerNumber, touchedSquareId);

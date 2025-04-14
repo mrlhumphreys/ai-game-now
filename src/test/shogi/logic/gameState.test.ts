@@ -15,7 +15,6 @@ import playerTwoGameState from '../fixtures/playerTwoGameState';
 import captureGameState from '../fixtures/captureGameState';
 import pieceInHandGameState from '../fixtures/pieceInHandGameState';
 import fuhyouPromoteMoveGameState from '../fixtures/fuhyouPromoteMoveGameState';
-import fenToGameState from '$lib/shogi/logic/fenToGameState';
 
 import {
   gameOver,
@@ -27,6 +26,7 @@ import {
   capturedSquare,
   capturedSquareId,
   pieceMovedToPromotionZone,
+  pieceMovedToCompulsoryPromotionZone,
   inCheckmate,
   inCheck,
   threatsToOuCanBeCaptured,
@@ -191,6 +191,37 @@ describe('pieceMovedToPromotionZone', () => {
       let from = { id: '94', x: 0, y: 3, piece: null };
       let to = { id: '93', x: 0, y: 2, piece: null };
       let result = pieceMovedToPromotionZone(from, to);
+      expect(result).toBe(false);
+    });
+  });
+});
+
+describe('pieceMovedToCompulsoryPromotionZone', () => {
+  describe('when piece exists', () => {
+    describe('and piece moves to compulsory promotion zone', () => {
+      it('return true', () => {
+        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+        let to = { id: '91', x: 0, y: 0, piece: null };
+        let result = pieceMovedToCompulsoryPromotionZone(from, to);
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('and piece does not move to compulsory promotion zone', () => {
+      it('returns false', () => {
+        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+        let to = { id: '92', x: 0, y: 1, piece: null };
+        let result = pieceMovedToCompulsoryPromotionZone(from, to);
+        expect(result).toBe(false);
+      });
+    });
+  });
+
+  describe('when piece does not exist', () => {
+    it('returns false', () => {
+      let from = { id: '95', x: 0, y: 4, piece: null };
+      let to = { id: '94', x: 0, y: 3, piece: null };
+      let result = pieceMovedToCompulsoryPromotionZone(from, to);
       expect(result).toBe(false);
     });
   });
