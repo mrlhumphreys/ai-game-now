@@ -3,6 +3,7 @@ import type GameState from '$lib/shogi/interfaces/GameState';
 
 import uniqArr from '$lib/utils/uniq';
 
+import opposingPlayer from '$lib/shogi/logic/opposingPlayer';
 import {
   add
 } from '$lib/shogi/logic/point';
@@ -185,8 +186,8 @@ export const findOuForPlayer = function(squares: Array<Square>, playerNumber: nu
 };
 
 export const threatsToSquare = function(squares: Array<Square>, square: Square, playerNumber: number, gameState: GameState): Array<Square> {
-  let opposingPlayer = playerNumber === 2 ? 1 : 2;
-  let opposingSquares = excludingPieceType(occupiedByPlayer(squares, opposingPlayer), ['gyokushou', 'oushou']);
+  let otherPlayer = opposingPlayer(playerNumber);
+  let opposingSquares = excludingPieceType(occupiedByPlayer(squares, otherPlayer), ['gyokushou', 'oushou']);
   return opposingSquares.filter((s) => {
     if (s.piece !== null) {
       let threatenedSquares = captureSquares(s.piece, s, gameState);
@@ -198,8 +199,8 @@ export const threatsToSquare = function(squares: Array<Square>, square: Square, 
 };
 
 export const pinThreatsToSquare = function(squares: Array<Square>, square: Square, playerNumber: number, gameState: GameState): Array<Square> {
-  let opposingPlayer = playerNumber === 2 ? 1 : 2;
-  let opposingSquares = occupiedByPieceType(occupiedByPlayer(squares, opposingPlayer), ['hisha', 'ryuuou', 'kakugyou', 'ryouma', 'kyousha']);
+  let otherPlayer = opposingPlayer(playerNumber);
+  let opposingSquares = occupiedByPieceType(occupiedByPlayer(squares, otherPlayer), ['hisha', 'ryuuou', 'kakugyou', 'ryouma', 'kyousha']);
   // opposing squares have between squares occupied by player. i.e. pin
   return opposingSquares.filter((opposingSquare) => {
     if (opposingSquare.piece !== null) {
