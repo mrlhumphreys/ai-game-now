@@ -1,7 +1,9 @@
+import type PieceType from '$lib/shogi/types/PieceType';
+
 interface Piece {
   id: number;
   playerNumber: number;
-  type: string;
+  type: PieceType;
   selected: boolean;
 }
 

@@ -1,5 +1,5 @@
-import type Point from '$lib/chess/interfaces/Point';
-import type Piece from '$lib/chess/interfaces/Piece';
+import type Point from '$lib/shogi/interfaces/Point';
+import type Piece from '$lib/shogi/interfaces/Piece';
 import type Square from '$lib/shogi/interfaces/Square';
 
 import {

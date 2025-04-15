@@ -12,13 +12,13 @@ import {
 
 describe('hasPiece', () => {
   it('returns true if there is a piece matching the id', () => {
-    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } ] };
+    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } ] };
     let result = hasPiece(hand, 12);
     expect(result).toBe(true);
   });
 
   it('returns false if there is no piece matching the id', () => {
-    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } ] };
+    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } ] };
     let result = hasPiece(hand, 13);
     expect(result).toBe(false);
   });
@@ -26,14 +26,14 @@ describe('hasPiece', () => {
 
 describe('findById', () => {
   it('returns true if there is a piece matching the id', () => {
-    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } ] };
+    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } ] };
     let expected = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
     let result = findById(hand, 12);
     expect(result).toEqual(expected);
   });
 
   it('returns false if there is no piece matching the id', () => {
-    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } ] };
+    let hand = { playerNumber: 1, pieces: [ { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } ] };
     let result = findById(hand, 13);
     expect(result).toBe(undefined);
   });
@@ -44,8 +44,8 @@ describe('selectedPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: true },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: true },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expected = { id: 12, playerNumber: 2, type: 'fuhyou', selected: true };
@@ -57,8 +57,8 @@ describe('selectedPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: false },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let result = selectedPiece(hand);
@@ -69,7 +69,7 @@ describe('selectedPiece', () => {
 describe('pushPiece', () => {
   it('adds the piece in the hand, demotes and switches the player', () => {
     let hand = { playerNumber: 1, pieces: [ ] };
-    let piece = { id: 12, playerNumber: 2, type: 'tokin', selected: false };
+    let piece = { id: 12, playerNumber: 2, type: 'tokin' as const, selected: false };
     let result = pushPiece(hand, piece);
     let expectedPiece = { id: 12, playerNumber: 1, type: 'fuhyou', selected: false };
     expect(hand.pieces[0]).toEqual(expectedPiece);
@@ -82,8 +82,8 @@ describe('popPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: false },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expectedHand = {
@@ -102,8 +102,8 @@ describe('popPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: false },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expected_hand = {
@@ -124,8 +124,8 @@ describe('selectPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: false },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expectedHand = {
@@ -144,8 +144,8 @@ describe('selectPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: false },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expectedHand = {
@@ -166,8 +166,8 @@ describe('deselectPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: true },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: true },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expectedHand = {
@@ -186,8 +186,8 @@ describe('deselectPiece', () => {
     let hand = {
       playerNumber: 1,
       pieces: [
-        { id: 12, playerNumber: 2, type: 'fuhyou', selected: true },
-        { id: 13, playerNumber: 2, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: true },
+        { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false }
       ]
     };
     let expectedHand = {

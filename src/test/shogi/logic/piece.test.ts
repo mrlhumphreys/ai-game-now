@@ -31,16 +31,16 @@ import {
 describe('canMoveFrom', () => {
   it('returns true if there is at least one destination', () => {
     let gameState = defaultGameState();
-    let piece = { id: 23, playerNumber: 1, type: 'fuhyou', selected: false };
-    let from = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let piece = { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false };
+    let from = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     let result = canMoveFrom(piece, from, gameState);
     expect(result).toBe(true);
   });
 
   it('returns false if there is no destinations', () => {
     let gameState = defaultGameState();
-    let piece = { id: 30, playerNumber: 1, type: 'kakugyou', selected: false };
-    let from = { id: '88', x: 1, y: 7, piece: { id: 30, playerNumber: 1, type: 'kakugyou', selected: false } };
+    let piece = { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false };
+    let from = { id: '88', x: 1, y: 7, piece: { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false } };
     let result = canMoveFrom(piece, from, gameState);
     expect(result).toBe(false);
   });
@@ -49,8 +49,8 @@ describe('canMoveFrom', () => {
 describe('canMove', () => {
   it('returns true if the square is one of the destinations', () => {
     let gameState = defaultGameState();
-    let piece = { id: 23, playerNumber: 1, type: 'fuhyou', selected: false };
-    let from = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let piece = { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false };
+    let from = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     let to = { id: '76', x: 2, y: 5, piece: null };
     let result = canMove(piece, from, to, gameState);
     expect(result).toBe(true);
@@ -58,8 +58,8 @@ describe('canMove', () => {
 
   it('returns false if the square is not one of the destinations', () => {
     let gameState = defaultGameState();
-    let piece = { id: 23, playerNumber: 1, type: 'fuhyou', selected: false };
-    let from = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let piece = { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false };
+    let from = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     let to = { id: '66', x: 3, y: 5, piece: null };
     let result = canMove(piece, from, to, gameState);
     expect(result).toBe(false);
@@ -70,14 +70,14 @@ describe('hasLegalMovesFromY', () => {
   describe('when fuhyou', () => {
     describe('when player 1', () => {
       it('returns true if y is not 0', () => {
-        let piece = { id: 1, type: 'fuhyou', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'fuhyou' as const, playerNumber: 1, selected: false };
         let y = 1;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(true);
       });
 
       it('returns false if y is 0', () => {
-        let piece = { id: 1, type: 'fuhyou', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'fuhyou' as const, playerNumber: 1, selected: false };
         let y = 0;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
@@ -86,14 +86,14 @@ describe('hasLegalMovesFromY', () => {
 
     describe('when player 2', () => {
       it('returns true if y is not 8', () => {
-        let piece = { id: 1, type: 'fuhyou', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'fuhyou' as const, playerNumber: 2, selected: false };
         let y = 7;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(true);
       });
 
       it('returns false if y is 8', () => {
-        let piece = { id: 1, type: 'fuhyou', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'fuhyou' as const, playerNumber: 2, selected: false };
         let y = 8;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
@@ -104,14 +104,14 @@ describe('hasLegalMovesFromY', () => {
   describe('when kyousha', () => {
     describe('when player 1', () => {
       it('returns true if y is not 0', () => {
-        let piece = { id: 1, type: 'kyousha', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'kyousha' as const, playerNumber: 1, selected: false };
         let y = 1;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(true);
       });
 
       it('returns false if y is 0', () => {
-        let piece = { id: 1, type: 'kyousha', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'kyousha' as const, playerNumber: 1, selected: false };
         let y = 0;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
@@ -120,14 +120,14 @@ describe('hasLegalMovesFromY', () => {
 
     describe('when player 2', () => {
       it('returns true if y is not 8', () => {
-        let piece = { id: 1, type: 'kyousha', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'kyousha' as const, playerNumber: 2, selected: false };
         let y = 7;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(true);
       });
 
       it('returns false if y is 8', () => {
-        let piece = { id: 1, type: 'kyousha', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'kyousha' as const, playerNumber: 2, selected: false };
         let y = 8;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
@@ -138,21 +138,21 @@ describe('hasLegalMovesFromY', () => {
   describe('when keima', () => {
     describe('when player 1', () => {
       it('returns true if y is not 0 and is not 1', () => {
-        let piece = { id: 1, type: 'keima', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'keima' as const, playerNumber: 1, selected: false };
         let y = 2;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(true);
       });
 
       it('returns false if y is 0', () => {
-        let piece = { id: 1, type: 'keima', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'keima' as const, playerNumber: 1, selected: false };
         let y = 0;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
       });
 
       it('returns false if y is 1', () => {
-        let piece = { id: 1, type: 'keima', playerNumber: 1, selected: false };
+        let piece = { id: 1, type: 'keima' as const, playerNumber: 1, selected: false };
         let y = 1;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
@@ -161,21 +161,21 @@ describe('hasLegalMovesFromY', () => {
 
     describe('when player 2', () => {
       it('returns true if y is not 8 and is not 7', () => {
-        let piece = { id: 1, type: 'keima', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'keima' as const, playerNumber: 2, selected: false };
         let y = 6;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(true);
       });
 
       it('returns false if y is 8', () => {
-        let piece = { id: 1, type: 'keima', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'keima' as const, playerNumber: 2, selected: false };
         let y = 8;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
       });
 
       it('returns false if y is 7', () => {
-        let piece = { id: 1, type: 'keima', playerNumber: 2, selected: false };
+        let piece = { id: 1, type: 'keima' as const, playerNumber: 2, selected: false };
         let y = 7;
         let result = hasLegalMovesFromY(piece, y);
         expect(result).toBe(false);
@@ -185,7 +185,7 @@ describe('hasLegalMovesFromY', () => {
 
   describe('default', () => {
     it('returns true', () => {
-      let piece = { id: 1, type: 'ginshou', playerNumber: 1, selected: false };
+      let piece = { id: 1, type: 'ginshou' as const, playerNumber: 1, selected: false };
       let y = 0;
       let result = hasLegalMovesFromY(piece, y);
       expect(result).toBe(true);
@@ -197,8 +197,8 @@ describe('destinations', () => {
   describe('when fuhyou', () => {
     it('returns the square in front', () => {
       let gameState = defaultGameState();
-      let pawn = { id: 23, playerNumber: 1, type: 'fuhyou', selected: false };
-      let square = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou', selected: false } };
+      let pawn = { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false };
+      let square = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
       let expected = [
         { id: '76', x: 2, y: 5, piece: null }
       ];
@@ -210,8 +210,8 @@ describe('destinations', () => {
   describe('when kyousha', () => {
     it('returns the unblocked squares in front', () => {
       let gameState = defaultGameState();
-      let kyousha = { id: 40, playerNumber: 1, type: 'kyousha', selected: false };
-      let square = { id: '19', x: 8, y: 8, piece: { id: 40, playerNumber: 1, type: 'kyousha', selected: false } };
+      let kyousha = { id: 40, playerNumber: 1, type: 'kyousha' as const, selected: false };
+      let square = { id: '19', x: 8, y: 8, piece: { id: 40, playerNumber: 1, type: 'kyousha' as const, selected: false } };
       let expected = [
         { id: '18', x: 8, y: 7, piece: null }
       ];
@@ -221,8 +221,8 @@ describe('destinations', () => {
 
     it('returns the squares in from ignoring blocks if ignoreBlocks is set', () => {
       let gameState = defaultGameState();
-      let kyousha = { id: 40, playerNumber: 1, type: 'kyousha', selected: false };
-      let square = { id: '19', x: 8, y: 8, piece: { id: 40, playerNumber: 1, type: 'kyousha', selected: false } };
+      let kyousha = { id: 40, playerNumber: 1, type: 'kyousha' as const, selected: false };
+      let square = { id: '19', x: 8, y: 8, piece: { id: 40, playerNumber: 1, type: 'kyousha' as const, selected: false } };
       let expected = [
         { id: '11', x: 8, y: 0, piece: { id: 9, playerNumber: 2, type: 'kyousha', selected: false } },
         { id: '12', x: 8, y: 1, piece: null },
@@ -240,8 +240,8 @@ describe('destinations', () => {
   describe('when keima', () => {
     it('returns the two squares in l shape forwards', () => {
       let gameState = firstRankGameState();
-      let keima = { id: 39, playerNumber: 1, type: 'keima', selected: false };
-      let square = { id: '29', x: 7, y: 8, piece: { id: 39, playerNumber: 1, type: 'keima', selected: false } };
+      let keima = { id: 39, playerNumber: 1, type: 'keima' as const, selected: false };
+      let square = { id: '29', x: 7, y: 8, piece: { id: 39, playerNumber: 1, type: 'keima' as const, selected: false } };
       let expected = [
         { id: '37', x: 6, y: 6, piece: null },
         { id: '17', x: 8, y: 6, piece: null }
@@ -254,8 +254,8 @@ describe('destinations', () => {
   describe('when ginshou', () => {
     it('returns diagonal and forward steps', () => {
       let gameState = ginshouGameState();
-      let ginshou = { id: 38, playerNumber: 1, type: 'ginshou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 38, playerNumber: 1, type: 'ginshou', selected: false } };
+      let ginshou = { id: 38, playerNumber: 1, type: 'ginshou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 38, playerNumber: 1, type: 'ginshou' as const, selected: false } };
       let expected = [
         { id: '64', x: 3, y: 3, piece: null },
         { id: '44', x: 5, y: 3, piece: null },
@@ -271,8 +271,8 @@ describe('destinations', () => {
   describe('when kinshou', () => {
     it('returns orthogonal and forward steps', () => {
       let gameState = kinshouGameState();
-      let ginshou = { id: 37, playerNumber: 1, type: 'kinshou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 37, playerNumber: 1, type: 'kinshou', selected: false } };
+      let ginshou = { id: 37, playerNumber: 1, type: 'kinshou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 37, playerNumber: 1, type: 'kinshou' as const, selected: false } };
       let expected = [
         { id: '54', x: 4, y: 3, piece: null },
         { id: '65', x: 3, y: 4, piece: null },
@@ -289,8 +289,8 @@ describe('destinations', () => {
   describe('when oushou', () => {
     it('returns 1 step away squares', () => {
       let gameState = oushouGameState();
-      let oushou = { id: 36, playerNumber: 1, type: 'oushou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 36, playerNumber: 1, type: 'oushou', selected: false } };
+      let oushou = { id: 36, playerNumber: 1, type: 'oushou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 36, playerNumber: 1, type: 'oushou' as const, selected: false } };
       let expected = [
         { id: '64', x: 3, y: 3, piece: null },
         { id: '54', x: 4, y: 3, piece: null },
@@ -309,8 +309,8 @@ describe('destinations', () => {
   describe('when gyokushou', () => {
     it('returns 1 step away squares', () => {
       let gameState = oushouGameState();
-      let gyokushou = { id: 5, playerNumber: 2, type: 'gyokushou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } };
+      let gyokushou = { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } };
       let expected = [
         { id: '64', x: 3, y: 3, piece: null },
         { id: '54', x: 4, y: 3, piece: null },
@@ -329,8 +329,8 @@ describe('destinations', () => {
   describe('when hisha', () => {
     it('returns orthgonal squares', () => {
       let gameState = hishaGameState();
-      let hisha = { id: 31, playerNumber: 1, type: 'hisha', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'hisha', selected: false } };
+      let hisha = { id: 31, playerNumber: 1, type: 'hisha' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'hisha' as const, selected: false } };
       let expected = [
         { id: '53', x: 4, y: 2, piece: { id: 16, playerNumber: 2, type: 'fuhyou', selected: false } },
         { id: '54', x: 4, y: 3, piece: null },
@@ -350,8 +350,8 @@ describe('destinations', () => {
 
     it('returns orthgonal squares ignoring blocks if ignoreBlocks is set', () => {
       let gameState = hishaGameState();
-      let hisha = { id: 31, playerNumber: 1, type: 'hisha', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'hisha', selected: false } };
+      let hisha = { id: 31, playerNumber: 1, type: 'hisha' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'hisha' as const, selected: false } };
       let expected = [
         { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
         { id: '52', x: 4, y: 1, piece: null },
@@ -376,8 +376,8 @@ describe('destinations', () => {
   describe('when kakugyou', () => {
     it('returns diagonal squares', () => {
       let gameState = kakugyouGameState();
-      let kakugyou = { id: 30, playerNumber: 1, type: 'kakugyou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'kakugyou', selected: false } };
+      let kakugyou = { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false } };
       let expected = [
         { id: '73', x: 2, y: 2, piece: { id: 14, playerNumber: 2, type: 'fuhyou', selected: false } },
         { id: '33', x: 6, y: 2, piece: { id: 18, playerNumber: 2, type: 'fuhyou', selected: false } },
@@ -392,8 +392,8 @@ describe('destinations', () => {
 
     it('returns diagonal squares ignoring blocks if ignoreBlocks is set', () => {
       let gameState = kakugyouGameState();
-      let kakugyou = { id: 30, playerNumber: 1, type: 'kakugyou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'kakugyou', selected: false } };
+      let kakugyou = { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false } };
       let expected = [
         { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha', selected: false } },
         { id: '11', x: 8, y: 0, piece: { id: 9, playerNumber: 2, type: 'kyousha', selected: false } },
@@ -415,8 +415,8 @@ describe('destinations', () => {
   describe('when tokin', () => {
     it('returns orthogonal and forward steps', () => {
       let gameState = tokinGameState();
-      let tokin = { id: 25, playerNumber: 1, type: 'tokin', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 25, playerNumber: 1, type: 'tokin', selected: false } };
+      let tokin = { id: 25, playerNumber: 1, type: 'tokin' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 25, playerNumber: 1, type: 'tokin' as const, selected: false } };
       let expected = [
         { id: '54', x: 4, y: 3, piece: null },
         { id: '65', x: 3, y: 4, piece: null },
@@ -433,8 +433,8 @@ describe('destinations', () => {
   describe('when narikyou', () => {
     it('returns orthogonal and forward steps', () => {
       let gameState = narikyouGameState();
-      let narikyou = { id: 40, playerNumber: 1, type: 'narikyou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 40, playerNumber: 1, type: 'narikyou', selected: false } };
+      let narikyou = { id: 40, playerNumber: 1, type: 'narikyou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 40, playerNumber: 1, type: 'narikyou' as const, selected: false } };
       let expected = [
         { id: '54', x: 4, y: 3, piece: null },
         { id: '65', x: 3, y: 4, piece: null },
@@ -451,8 +451,8 @@ describe('destinations', () => {
   describe('when narikei', () => {
     it('returns orthogonal and forward steps', () => {
       let gameState = narikeiGameState();
-      let narikei = { id: 39, playerNumber: 1, type: 'narikei', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 39, playerNumber: 1, type: 'narikei', selected: false } };
+      let narikei = { id: 39, playerNumber: 1, type: 'narikei' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 39, playerNumber: 1, type: 'narikei' as const, selected: false } };
       let expected = [
         { id: '54', x: 4, y: 3, piece: null },
         { id: '65', x: 3, y: 4, piece: null },
@@ -469,8 +469,8 @@ describe('destinations', () => {
   describe('when narigin', () => {
     it('returns orthogonal and forward steps', () => {
       let gameState = nariginGameState();
-      let narigin = { id: 38, playerNumber: 1, type: 'narigin', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 38, playerNumber: 1, type: 'narigin', selected: false } };
+      let narigin = { id: 38, playerNumber: 1, type: 'narigin' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 38, playerNumber: 1, type: 'narigin' as const, selected: false } };
       let expected = [
         { id: '54', x: 4, y: 3, piece: null },
         { id: '65', x: 3, y: 4, piece: null },
@@ -487,8 +487,8 @@ describe('destinations', () => {
   describe('when ryuuou', () => {
     it('returns orthgonal squares and diagonal steps', () => {
       let gameState = ryuuouGameState();
-      let ryuuou = { id: 31, playerNumber: 1, type: 'ryuuou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'ryuuou', selected: false } };
+      let ryuuou = { id: 31, playerNumber: 1, type: 'ryuuou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'ryuuou' as const, selected: false } };
       let expected = [
         { id: '53', x: 4, y: 2, piece: { id: 16, playerNumber: 2, type: 'fuhyou', selected: false } },
         { id: '54', x: 4, y: 3, piece: null },
@@ -512,8 +512,8 @@ describe('destinations', () => {
 
     it('returns orthgonal squares and diagonal steps ignoring blocks if ignoreBlocks is set', () => {
       let gameState = ryuuouGameState();
-      let ryuuou = { id: 31, playerNumber: 1, type: 'ryuuou', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'ryuuou', selected: false } };
+      let ryuuou = { id: 31, playerNumber: 1, type: 'ryuuou' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 31, playerNumber: 1, type: 'ryuuou' as const, selected: false } };
       let expected = [
         { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
         { id: '52', x: 4, y: 1, piece: null },
@@ -542,8 +542,8 @@ describe('destinations', () => {
   describe('when ryuuma', () => {
     it('returns diagonal squares and orthogonal steps', () => {
       let gameState = ryuumaGameState();
-      let ryuuma = { id: 30, playerNumber: 1, type: 'ryuuma', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'ryuuma', selected: false } };
+      let ryuuma = { id: 30, playerNumber: 1, type: 'ryuuma' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'ryuuma' as const, selected: false } };
       let expected = [
         { id: '73', x: 2, y: 2, piece: { id: 14, playerNumber: 2, type: 'fuhyou', selected: false } },
         { id: '33', x: 6, y: 2, piece: { id: 18, playerNumber: 2, type: 'fuhyou', selected: false } },
@@ -562,8 +562,8 @@ describe('destinations', () => {
 
     it('returns diagonal squares and orthogonal steps ignoring blocks if ignoreBlocks is set', () => {
       let gameState = ryuumaGameState();
-      let ryuuma = { id: 30, playerNumber: 1, type: 'ryuuma', selected: false };
-      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'ryuuma', selected: false } };
+      let ryuuma = { id: 30, playerNumber: 1, type: 'ryuuma' as const, selected: false };
+      let square = { id: '55', x: 4, y: 4, piece: { id: 30, playerNumber: 1, type: 'ryuuma' as const, selected: false } };
       let expected = [
         { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha', selected: false } },
         { id: '11', x: 8, y: 0, piece: { id: 9, playerNumber: 2, type: 'kyousha', selected: false } },
@@ -590,8 +590,8 @@ describe('destinations', () => {
 describe('captureSquares', () => {
   it('returns destinations', () => {
       let gameState = defaultGameState();
-      let pawn = { id: 23, playerNumber: 1, type: 'fuhyou', selected: false };
-      let square = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou', selected: false } };
+      let pawn = { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false };
+      let square = { id: '77', x: 2, y: 6, piece: { id: 23, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
       let expected = [
         { id: '76', x: 2, y: 5, piece: null }
       ];
@@ -603,7 +603,7 @@ describe('captureSquares', () => {
 describe('promotable', () => {
   describe('when fuhyou', () => {
     it('returns true', () => {
-      let piece = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
+      let piece = { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(true);
     });
@@ -611,7 +611,7 @@ describe('promotable', () => {
 
   describe('when kyousha', () => {
     it('returns true', () => {
-      let piece = { id: 1, playerNumber: 2, type: 'kyousha', selected: false };
+      let piece = { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(true);
     });
@@ -619,7 +619,7 @@ describe('promotable', () => {
 
   describe('when keima', () => {
     it('returns true', () => {
-      let piece = { id: 2, playerNumber: 2, type: 'keima', selected: false };
+      let piece = { id: 2, playerNumber: 2, type: 'keima' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(true);
     });
@@ -627,7 +627,7 @@ describe('promotable', () => {
 
   describe('when ginshou', () => {
     it('returns true', () => {
-      let piece = { id: 3, playerNumber: 2, type: 'ginshou', selected: false };
+      let piece = { id: 3, playerNumber: 2, type: 'ginshou' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(true);
     });
@@ -635,7 +635,7 @@ describe('promotable', () => {
 
   describe('when hisha', () => {
     it('returns true', () => {
-      let piece = { id: 10, playerNumber: 2, type: 'hisha', selected: false };
+      let piece = { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(true);
     });
@@ -643,7 +643,7 @@ describe('promotable', () => {
 
   describe('when kakugyou', () => {
     it('returns true', () => {
-      let piece = { id: 11, playerNumber: 2, type: 'kakugyou', selected: false };
+      let piece = { id: 11, playerNumber: 2, type: 'kakugyou' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(true);
     });
@@ -651,7 +651,7 @@ describe('promotable', () => {
 
   describe('when other', () => {
     it('returns false', () => {
-      let piece = { id: 4, playerNumber: 2, type: 'kinshou', selected: false };
+      let piece = { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false };
       let result = promotable(piece);
       expect(result).toBe(false);
     });
@@ -661,7 +661,7 @@ describe('promotable', () => {
 describe('promote', () => {
   describe('when fuhyou', () => {
     it('promotes to tokin', () => {
-      let piece = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
+      let piece = { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false };
       let expected = { id: 12, playerNumber: 2, type: 'tokin', selected: false };
       let result = promote(piece);
       expect(result).toBe(true);
@@ -671,7 +671,7 @@ describe('promote', () => {
 
   describe('when kyousha', () => {
     it('promotes to narikyou', () => {
-      let piece = { id: 1, playerNumber: 2, type: 'kyousha', selected: false };
+      let piece = { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false };
       let expected = { id: 1, playerNumber: 2, type: 'narikyou', selected: false };
       let result = promote(piece);
       expect(result).toBe(true);
@@ -681,7 +681,7 @@ describe('promote', () => {
 
   describe('when keima', () => {
     it('promotes to narikei', () => {
-      let piece = { id: 2, playerNumber: 2, type: 'keima', selected: false };
+      let piece = { id: 2, playerNumber: 2, type: 'keima' as const, selected: false };
       let expected = { id: 2, playerNumber: 2, type: 'narikei', selected: false };
       let result = promote(piece);
       expect(result).toBe(true);
@@ -691,7 +691,7 @@ describe('promote', () => {
 
   describe('when ginshou', () => {
     it('promotes to narigin', () => {
-      let piece = { id: 3, playerNumber: 2, type: 'ginshou', selected: false };
+      let piece = { id: 3, playerNumber: 2, type: 'ginshou' as const, selected: false };
       let expected = { id: 3, playerNumber: 2, type: 'narigin', selected: false };
       let result = promote(piece);
       expect(result).toBe(true);
@@ -701,7 +701,7 @@ describe('promote', () => {
 
   describe('when hisha', () => {
     it('promotes to ryuuou', () => {
-      let piece = { id: 10, playerNumber: 2, type: 'hisha', selected: false };
+      let piece = { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false };
       let expected = { id: 10, playerNumber: 2, type: 'ryuuou', selected: false };
       let result = promote(piece);
       expect(result).toBe(true);
@@ -711,7 +711,7 @@ describe('promote', () => {
 
   describe('when kakugyou', () => {
     it('promotes to ryuuma', () => {
-      let piece = { id: 11, playerNumber: 2, type: 'kakugyou', selected: false };
+      let piece = { id: 11, playerNumber: 2, type: 'kakugyou' as const, selected: false };
       let expected = { id: 11, playerNumber: 2, type: 'ryuuma', selected: false };
       let result = promote(piece);
       expect(result).toBe(true);
@@ -721,7 +721,7 @@ describe('promote', () => {
 
   describe('when other', () => {
     it('does not promote', () => {
-      let piece = { id: 4, playerNumber: 2, type: 'kinshou', selected: false };
+      let piece = { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false };
       let expected = { id: 4, playerNumber: 2, type: 'kinshou', selected: false };
       let result = promote(piece);
       expect(result).toBe(false);
@@ -733,7 +733,7 @@ describe('promote', () => {
 describe('demote', () => {
   describe('when tokin', () => {
     it('demotes to fuhyou', () => {
-      let piece = { id: 12, playerNumber: 2, type: 'tokin', selected: false };
+      let piece = { id: 12, playerNumber: 2, type: 'tokin' as const, selected: false };
       let expected = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -743,7 +743,7 @@ describe('demote', () => {
 
   describe('when narikyou', () => {
     it('demotes to kyousha', () => {
-      let piece = { id: 1, playerNumber: 2, type: 'narikyou', selected: false };
+      let piece = { id: 1, playerNumber: 2, type: 'narikyou' as const, selected: false };
       let expected = { id: 1, playerNumber: 2, type: 'kyousha', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -753,7 +753,7 @@ describe('demote', () => {
 
   describe('when narikei', () => {
     it('demotes to keima', () => {
-      let piece = { id: 2, playerNumber: 2, type: 'narikei', selected: false };
+      let piece = { id: 2, playerNumber: 2, type: 'narikei' as const, selected: false };
       let expected = { id: 2, playerNumber: 2, type: 'keima', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -763,7 +763,7 @@ describe('demote', () => {
 
   describe('when narigin', () => {
     it('demotes to ginshou', () => {
-      let piece = { id: 3, playerNumber: 2, type: 'narigin', selected: false };
+      let piece = { id: 3, playerNumber: 2, type: 'narigin' as const, selected: false };
       let expected = { id: 3, playerNumber: 2, type: 'ginshou', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -773,7 +773,7 @@ describe('demote', () => {
 
   describe('when ryuuou', () => {
     it('demotes to hisha', () => {
-      let piece = { id: 10, playerNumber: 2, type: 'ryuuou', selected: false };
+      let piece = { id: 10, playerNumber: 2, type: 'ryuuou' as const, selected: false };
       let expected = { id: 10, playerNumber: 2, type: 'hisha', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -783,7 +783,7 @@ describe('demote', () => {
 
   describe('when ryuuma', () => {
     it('demotes to kakugyou', () => {
-      let piece = { id: 11, playerNumber: 2, type: 'ryuuma', selected: false };
+      let piece = { id: 11, playerNumber: 2, type: 'ryuuma' as const, selected: false };
       let expected = { id: 11, playerNumber: 2, type: 'kakugyou', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -793,7 +793,7 @@ describe('demote', () => {
 
   describe('when other', () => {
     it('does not demote', () => {
-      let piece = { id: 4, playerNumber: 2, type: 'kinshou', selected: false };
+      let piece = { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false };
       let expected = { id: 4, playerNumber: 2, type: 'kinshou', selected: false };
       let result = demote(piece);
       expect(result).toBe(true);
@@ -805,7 +805,7 @@ describe('demote', () => {
 describe('switchPlayer', () => {
   describe('when player 1', () => {
     it('switches to player 2', () => {
-      let piece = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
+      let piece = { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false };
       let result = switchPlayer(piece);
       expect(result).toBe(true);
       expect(piece.playerNumber).toEqual(1);
@@ -814,7 +814,7 @@ describe('switchPlayer', () => {
 
   describe('when player 2', () => {
     it('switches to player 1', () => {
-      let piece = { id: 21, playerNumber: 1, type: 'fuhyou', selected: false };
+      let piece = { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false };
       let result = switchPlayer(piece);
       expect(result).toBe(true);
       expect(piece.playerNumber).toEqual(2);
@@ -824,7 +824,7 @@ describe('switchPlayer', () => {
 
 describe('select', () => {
   it('marks the piece as selected', () => {
-      let piece = { id: 21, playerNumber: 1, type: 'fuhyou', selected: false };
+      let piece = { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false };
       let result = select(piece);
       expect(result).toBe(true);
       expect(piece.selected).toBe(true);
@@ -833,7 +833,7 @@ describe('select', () => {
 
 describe('deselect', () => {
   it('unmarks the piece as selected', () => {
-      let piece = { id: 21, playerNumber: 1, type: 'fuhyou', selected: true };
+      let piece = { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: true };
       let result = deselect(piece);
       expect(result).toBe(true);
       expect(piece.selected).toBe(false);

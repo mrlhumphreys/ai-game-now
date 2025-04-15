@@ -18,7 +18,7 @@ import {
 
 describe('occupied', () => {
   it('returns true if piece is present', () => {
-    let square = { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha', selected: false } };
+    let square = { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false } };
     expect(occupied(square)).toBe(true);
   });
 
@@ -35,7 +35,7 @@ describe('unoccupied', () => {
   });
 
   it('returns false if piece is present', () => {
-    let square = { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha', selected: false } };
+    let square = { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false } };
     expect(unoccupied(square)).toBe(false);
   });
 });
@@ -79,7 +79,7 @@ describe('compulsoryPromotionZone', () => {
     describe('and player 1', () => {
       it('returns true if last rank', () => {
         let square = { id: '91', x: 0, y: 0, piece: null };
-        let piece =  { id: 21, playerNumber: 1, type: 'fuhyou', selected: false };
+        let piece =  { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -88,7 +88,7 @@ describe('compulsoryPromotionZone', () => {
 
       it('returns false if not last rank', () => {
         let square = { id: '92', x: 0, y: 1, piece: null };
-        let piece =  { id: 21, playerNumber: 1, type: 'fuhyou', selected: false };
+        let piece =  { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -99,7 +99,7 @@ describe('compulsoryPromotionZone', () => {
     describe('and player 2', () => {
       it('returns true if last rank', () => {
         let square = { id: '99', x: 0, y: 8, piece: null };
-        let piece = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
+        let piece = { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false };
         let playerNumber = 2;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -108,7 +108,7 @@ describe('compulsoryPromotionZone', () => {
 
       it('returns false if not last rank', () => {
         let square = { id: '98', x: 0, y: 7, piece: null };
-        let piece = { id: 12, playerNumber: 2, type: 'fuhyou', selected: false };
+        let piece = { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false };
         let playerNumber = 2;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -121,7 +121,7 @@ describe('compulsoryPromotionZone', () => {
     describe('and player 1', () => {
       it('returns true if last rank', () => {
         let square = { id: '91', x: 0, y: 0, piece: null };
-        let piece = { id: 32, playerNumber: 1, type: 'kyousha', selected: false };
+        let piece = { id: 32, playerNumber: 1, type: 'kyousha' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -130,7 +130,7 @@ describe('compulsoryPromotionZone', () => {
 
       it('returns false if not last rank', () => {
         let square = { id: '92', x: 0, y: 1, piece: null };
-        let piece = { id: 32, playerNumber: 1, type: 'kyousha', selected: false };
+        let piece = { id: 32, playerNumber: 1, type: 'kyousha' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -141,7 +141,7 @@ describe('compulsoryPromotionZone', () => {
     describe('and player 2', () => {
       it('returns true if last rank', () => {
         let square = { id: '99', x: 0, y: 8, piece: null };
-        let piece = { id: 1, playerNumber: 2, type: 'kyousha', selected: false };
+        let piece = { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false };
         let playerNumber = 2;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -150,7 +150,7 @@ describe('compulsoryPromotionZone', () => {
 
       it('returns false if not last rank', () => {
         let square = { id: '98', x: 0, y: 7, piece: null };
-        let piece = { id: 1, playerNumber: 2, type: 'kyousha', selected: false };
+        let piece = { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false };
         let playerNumber = 2;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -163,7 +163,7 @@ describe('compulsoryPromotionZone', () => {
     describe('and player 1', () => {
       it('returns true if last two ranks', () => {
         let square = { id: '92', x: 0, y: 1, piece: null };
-        let piece = { id: 33, playerNumber: 1, type: 'keima', selected: false };
+        let piece = { id: 33, playerNumber: 1, type: 'keima' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -172,7 +172,7 @@ describe('compulsoryPromotionZone', () => {
 
       it('returns false if not last two ranks', () => {
         let square = { id: '93', x: 0, y: 2, piece: null };
-        let piece = { id: 33, playerNumber: 1, type: 'keima', selected: false };
+        let piece = { id: 33, playerNumber: 1, type: 'keima' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -183,7 +183,7 @@ describe('compulsoryPromotionZone', () => {
     describe('and player 2', () => {
       it('returns true if last two ranks', () => {
         let square = { id: '98', x: 0, y: 7, piece: null };
-        let piece = { id: 33, playerNumber: 1, type: 'keima', selected: false };
+        let piece = { id: 33, playerNumber: 1, type: 'keima' as const, selected: false };
         let playerNumber = 2;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -192,7 +192,7 @@ describe('compulsoryPromotionZone', () => {
 
       it('returns false if not last two ranks', () => {
         let square = { id: '97', x: 0, y: 6, piece: null };
-        let piece = { id: 33, playerNumber: 1, type: 'keima', selected: false };
+        let piece = { id: 33, playerNumber: 1, type: 'keima' as const, selected: false };
         let playerNumber = 2;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -204,7 +204,7 @@ describe('compulsoryPromotionZone', () => {
   describe('when other piece', () => {
     it('returns false', () => {
         let square = { id: '91', x: 0, y: 0, piece: null };
-        let piece = { id: 30, playerNumber: 1, type: 'kakugyou', selected: false };
+        let piece = { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false };
         let playerNumber = 1;
 
         let result = compulsoryPromotionZone(square, piece, playerNumber);
@@ -215,12 +215,12 @@ describe('compulsoryPromotionZone', () => {
 
 describe('occupiedByPieceType', () => {
   it('returns true if occupied by pieceType', () => {
-    let square = { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } };
+    let square = { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } };
     expect(occupiedByPieceType(square, ['oushou', 'gyokushou'])).toBe(true);
   });
 
   it('returns false if occupied by a different pieceType', () => {
-    let square = { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou', selected: false } };
+    let square = { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false } };
     expect(occupiedByPieceType(square, ['oushou', 'gyokushou'])).toBe(false);
   });
 
@@ -232,12 +232,12 @@ describe('occupiedByPieceType', () => {
 
 describe('notOccupiedByPieceType', () => {
   it('returns true if not occupied by pieceType', () => {
-    let square = { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou', selected: false } };
+    let square = { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false } };
     expect(notOccupiedByPieceType(square, ['oushou', 'gyokushou'])).toBe(true);
   });
 
   it('returns false if not occupied by a different pieceType', () => {
-    let square = { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } };
+    let square = { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } };
     expect(notOccupiedByPieceType(square, ['oushou', 'gyokushou'])).toBe(false);
   });
 
@@ -249,12 +249,12 @@ describe('notOccupiedByPieceType', () => {
 
 describe('occupiedByPlayer', () => {
   it('returns true if occupied by player', () => {
-    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     expect(occupiedByPlayer(square, 1)).toBe(true);
   });
 
   it('returns false if occupied by opponent', () => {
-    let square = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } };
+    let square = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou' as const, selected: false } };
     expect(occupiedByPlayer(square, 1)).toBe(false);
   });
 
@@ -266,12 +266,12 @@ describe('occupiedByPlayer', () => {
 
 describe('unoccupiedOrOccupiedByOpponentOf', () => {
   it('returns true if occupied by opponent', () => {
-    let square = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } };
+    let square = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou' as const, selected: false } };
     expect(unoccupiedOrOccupiedByOpponentOf(square, 1)).toBe(true);
   });
 
   it('returns false if occupied by player', () => {
-    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     expect(unoccupiedOrOccupiedByOpponentOf(square, 1)).toBe(false);
   });
 
@@ -292,7 +292,7 @@ describe('point', () => {
 describe('addPiece', () => {
   it('adds the piece to the square', () => {
     let square = { id: '97', x: 0, y: 6, piece: null };
-    let piece = { id: 21, playerNumber: 1, type: 'fuhyou', selected: false };
+    let piece = { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false };
     addPiece(square, piece);
     expect(square.piece).toEqual(piece);
   });
@@ -300,7 +300,7 @@ describe('addPiece', () => {
 
 describe('removePiece', () => {
   it('removes the piece to the square', () => {
-    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } }
+    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } }
     removePiece(square);
     expect(square.piece).toBe(null);
   });
@@ -308,7 +308,7 @@ describe('removePiece', () => {
 
 describe('select', () => {
   it('selects the piece', () => {
-    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     select(square);
     expect(square.piece.selected).toBe(true);
   });
@@ -316,7 +316,7 @@ describe('select', () => {
 
 describe('deselect', () => {
   it('selects the piece', () => {
-    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: true } };
+    let square = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: true } };
     deselect(square);
     expect(square.piece.selected).toBe(false);
   });

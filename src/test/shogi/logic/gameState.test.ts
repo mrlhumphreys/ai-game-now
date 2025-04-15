@@ -136,7 +136,7 @@ describe('playersTurn', () => {
 describe('capturedSquare', () => {
   describe('when to is occupied', () => {
     it('returns to', () => {
-      let to = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } };
+      let to = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou' as const, selected: false } };
       let result = capturedSquare(to);
       expect(result).toEqual(to);
     });
@@ -153,7 +153,7 @@ describe('capturedSquare', () => {
 
 describe('catpuredSquareId', () => {
   it('returns the captured square id if there is one', () => {
-      let to = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } };
+      let to = { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou' as const, selected: false } };
       let result = capturedSquareId(to);
       expect(result).toEqual(to.id);
   });
@@ -169,7 +169,7 @@ describe('pieceMovedToPromotionZone', () => {
   describe('when piece exists', () => {
     describe('and piece moves to promotion zone', () => {
       it('returns true', () => {
-        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
         let to = { id: '93', x: 0, y: 2, piece: null };
         let result = pieceMovedToPromotionZone(from, to);
         expect(result).toBe(true);
@@ -178,7 +178,7 @@ describe('pieceMovedToPromotionZone', () => {
 
     describe('and piece does not move to promotion zone', () => {
       it('returns false', () => {
-        let from = { id: '95', x: 0, y: 4, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+        let from = { id: '95', x: 0, y: 4, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
         let to = { id: '94', x: 0, y: 3, piece: null };
         let result = pieceMovedToPromotionZone(from, to);
         expect(result).toBe(false);
@@ -200,7 +200,7 @@ describe('pieceMovedToCompulsoryPromotionZone', () => {
   describe('when piece exists', () => {
     describe('and piece moves to compulsory promotion zone', () => {
       it('return true', () => {
-        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
         let to = { id: '91', x: 0, y: 0, piece: null };
         let result = pieceMovedToCompulsoryPromotionZone(from, to);
         expect(result).toBe(true);
@@ -209,7 +209,7 @@ describe('pieceMovedToCompulsoryPromotionZone', () => {
 
     describe('and piece does not move to compulsory promotion zone', () => {
       it('returns false', () => {
-        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+        let from = { id: '94', x: 0, y: 3, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
         let to = { id: '92', x: 0, y: 1, piece: null };
         let result = pieceMovedToCompulsoryPromotionZone(from, to);
         expect(result).toBe(false);

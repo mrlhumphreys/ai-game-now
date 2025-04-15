@@ -4,7 +4,7 @@ import deepClone from '$lib/utils/deepClone';
 let gameState = {
   currentPlayerNumber: 1,
   squares: [
-    { id: '91', x: 0, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
+    { id: '91', x: 0, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } },
     { id: '81', x: 1, y: 0, piece: null },
     { id: '71', x: 2, y: 0, piece: null },
     { id: '61', x: 3, y: 0, piece: null },
@@ -32,7 +32,7 @@ let gameState = {
     { id: '43', x: 5, y: 2, piece: null },
     { id: '33', x: 6, y: 2, piece: null },
     { id: '23', x: 7, y: 2, piece: null },
-    { id: '13', x: 8, y: 2, piece: { id: 31, playerNumber: 1, type: 'hisha', selected: false } },
+    { id: '13', x: 8, y: 2, piece: { id: 31, playerNumber: 1, type: 'hisha' as const, selected: false } },
 
     { id: '94', x: 0, y: 3, piece: null },
     { id: '84', x: 1, y: 3, piece: null },
@@ -71,7 +71,7 @@ let gameState = {
     { id: '57', x: 4, y: 6, piece: null },
     { id: '47', x: 5, y: 6, piece: null },
     { id: '37', x: 6, y: 6, piece: null },
-    { id: '27', x: 7, y: 6, piece: { id: 30, playerNumber: 1, type: 'kakugyou', selected: false } },
+    { id: '27', x: 7, y: 6, piece: { id: 30, playerNumber: 1, type: 'kakugyou' as const, selected: false } },
     { id: '17', x: 8, y: 6, piece: null },
 
     { id: '98', x: 0, y: 7, piece: null },
@@ -80,7 +80,7 @@ let gameState = {
     { id: '68', x: 3, y: 7, piece: null },
     { id: '58', x: 4, y: 7, piece: null },
     { id: '48', x: 5, y: 7, piece: null },
-    { id: '38', x: 6, y: 7, piece: { id: 6, playerNumber: 2, type: 'kinshou', selected: false } },
+    { id: '38', x: 6, y: 7, piece: { id: 6, playerNumber: 2, type: 'kinshou' as const, selected: false } },
     { id: '28', x: 7, y: 7, piece: null },
     { id: '18', x: 8, y: 7, piece: null },
 
@@ -92,13 +92,13 @@ let gameState = {
     { id: '49', x: 5, y: 8, piece: null },
     { id: '39', x: 6, y: 8, piece: null },
     { id: '29', x: 7, y: 8, piece: null },
-    { id: '19', x: 8, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou', selected: false } }
+    { id: '19', x: 8, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou' as const, selected: false } }
   ],
   hands: [
     { 
       playerNumber: 1, 
       pieces: [
-        { id: 12, playerNumber: 1, type: 'fuhyou', selected: false }
+        { id: 12, playerNumber: 1, type: 'fuhyou' as const, selected: false }
       ] 
     },
     { playerNumber: 2, pieces: [] }

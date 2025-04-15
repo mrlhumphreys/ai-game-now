@@ -96,8 +96,8 @@ describe('union', () => {
 describe('findSelected', () => {
   it('returns the square with the piece selected', () => {
     let squares = [
-      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
-      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou', selected: true } }
+      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
+      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: true } }
     ];
     let expected = { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou', selected: true } };
     let result = findSelected(squares);
@@ -106,8 +106,8 @@ describe('findSelected', () => {
 
   it('returns undefined if there is no square with piece selected', () => {
     let squares = [
-      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
-      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou', selected: false } }
+      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
+      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false } }
     ];
     let result = findSelected(squares);
     expect(result).toBe(undefined);
@@ -138,9 +138,9 @@ describe('findById', () => {
 describe('occupiedByPieceType', () => {
   it('returns squares occupied by pieces matching type', () => {
     let squares = [
-      { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou', selected: false } },
-      { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
-      { id: '41', x: 5, y: 0, piece: { id: 6, playerNumber: 2, type: 'kinshou', selected: false } }
+      { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false } },
+      { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } },
+      { id: '41', x: 5, y: 0, piece: { id: 6, playerNumber: 2, type: 'kinshou' as const, selected: false } }
     ];
     let expected = [
       { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } }
@@ -153,9 +153,9 @@ describe('occupiedByPieceType', () => {
 describe('occupiedByPlayer', () => {
   it('returns squares occupied by player', () => {
     let squares = [
-      { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } },
+      { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
       { id: '16', x: 8, y: 5, piece: null },
-      { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } }
+      { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } }
     ];
     let expected = [
       { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } }
@@ -168,9 +168,9 @@ describe('occupiedByPlayer', () => {
 describe('unoccupiedOrOccupiedByOpponentOf', () => {
   it('returns squares unoccupied or occupied by opponent of player', () => {
     let squares = [
-      { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } },
+      { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
       { id: '16', x: 8, y: 5, piece: null },
-      { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } }
+      { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } }
     ];
     let expected = [
       { id: '13', x: 8, y: 2, piece: { id: 20, playerNumber: 2, type: 'fuhyou', selected: false } },
@@ -184,9 +184,9 @@ describe('unoccupiedOrOccupiedByOpponentOf', () => {
 describe('excludingPieceType', () => {
   it('returns squares not occupied by pieces matching type', () => {
     let squares = [
-      { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou', selected: false } },
-      { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
-      { id: '41', x: 5, y: 0, piece: { id: 6, playerNumber: 2, type: 'kinshou', selected: false } }
+      { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou' as const, selected: false } },
+      { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } },
+      { id: '41', x: 5, y: 0, piece: { id: 6, playerNumber: 2, type: 'kinshou' as const, selected: false } }
     ];
     let expected = [
       { id: '61', x: 3, y: 0, piece: { id: 4, playerNumber: 2, type: 'kinshou', selected: false } },
@@ -200,12 +200,12 @@ describe('excludingPieceType', () => {
 describe('atRange', () => {
   it('returns all squares that at the distance', () => {
     let squares = [
-      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } },
+      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
       { id: '62', x: 3, y: 1, piece: null },
       { id: '52', x: 4, y: 1, piece: null }
     ];
-    let origin = { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } };
+    let origin = { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } };
     let expected = [
       { id: '62', x: 3, y: 1, piece: null }
     ];
@@ -217,12 +217,12 @@ describe('atRange', () => {
 describe('inRange', () => {
   it('returns all squares that at the distance or less', () => {
     let squares = [
-      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } },
+      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
       { id: '62', x: 3, y: 1, piece: null },
       { id: '52', x: 4, y: 1, piece: null }
     ];
-    let origin = { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } };
+    let origin = { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } };
     let expected = [
       { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
@@ -237,10 +237,10 @@ describe('inDirection', () => {
   it('returns squares where y is less than origin for player 1', () => {
     let squares = [
       { id: '96', x: 0, y: 5, piece: null },
-      { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } },
+      { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } },
       { id: '98', x: 0, y: 7, piece: null },
     ];
-    let origin = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } };
+    let origin = { id: '97', x: 0, y: 6, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } };
     let expected = [
       { id: '96', x: 0, y: 5, piece: null }
     ];
@@ -252,14 +252,14 @@ describe('inDirection', () => {
 describe('ranksAway', () => {
   it('returns squares in the rank that is distance away', () => {
     let squares = [
-      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
-      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou', selected: false } },
+      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
+      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
       { id: '94', x: 0, y: 3, piece: null },
       { id: '84', x: 1, y: 3, piece: null },
       { id: '95', x: 0, y: 4, piece: null },
       { id: '85', x: 1, y: 4, piece: null },
     ];
-    let origin = { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } };
+    let origin = { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } };
     let expected = [
       { id: '94', x: 0, y: 3, piece: null },
       { id: '84', x: 1, y: 3, piece: null }
@@ -273,14 +273,14 @@ describe('ranksAway', () => {
 describe('filesAway', () => {
   it('returns squares in the rank that is distance away', () => {
     let squares = [
-      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
-      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou', selected: false } },
-      { id: '73', x: 2, y: 2, piece: { id: 14, playerNumber: 2, type: 'fuhyou', selected: false } },
+      { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
+      { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
+      { id: '73', x: 2, y: 2, piece: { id: 14, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
       { id: '94', x: 0, y: 3, piece: null },
       { id: '84', x: 1, y: 3, piece: null },
       { id: '74', x: 2, y: 3, piece: null }
     ];
-    let origin = { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } };
+    let origin = { id: '93', x: 0, y: 2, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } };
     let expected = [
       { id: '83', x: 1, y: 2, piece: { id: 13, playerNumber: 2, type: 'fuhyou', selected: false } },
       { id: '84', x: 1, y: 3, piece: null }
@@ -333,23 +333,23 @@ describe('unblocked', () => {
   it('returns squares that are unblocked', () => {
     let squares = [
       { id: '92', x: 0, y: 1, piece: null },
-      { id: '82', x: 1, y: 1, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
+      { id: '82', x: 1, y: 1, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
-      { id: '62', x: 3, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } },
+      { id: '62', x: 3, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } },
       { id: '52', x: 4, y: 1, piece: null },
-      { id: '42', x: 5, y: 1, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } },
+      { id: '42', x: 5, y: 1, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } },
       { id: '32', x: 6, y: 1, piece: null }
     ];
     let board = [
       { id: '92', x: 0, y: 1, piece: null },
-      { id: '82', x: 1, y: 1, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
+      { id: '82', x: 1, y: 1, piece: { id: 12, playerNumber: 2, type: 'fuhyou' as const, selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
-      { id: '62', x: 3, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } },
+      { id: '62', x: 3, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } },
       { id: '52', x: 4, y: 1, piece: null },
-      { id: '42', x: 5, y: 1, piece: { id: 21, playerNumber: 1, type: 'fuhyou', selected: false } },
+      { id: '42', x: 5, y: 1, piece: { id: 21, playerNumber: 1, type: 'fuhyou' as const, selected: false } },
       { id: '32', x: 6, y: 1, piece: null }
     ];
-    let origin = { id: '62', x: 3, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } };
+    let origin = { id: '62', x: 3, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } };
     let expected = [
       { id: '82', x: 1, y: 1, piece: { id: 12, playerNumber: 2, type: 'fuhyou', selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
@@ -365,12 +365,12 @@ describe('unblocked', () => {
 describe('between', () => {
   it('returns squares between origin and destination', () => {
     let squares = [
-      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } },
+      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } },
       { id: '72', x: 2, y: 1, piece: null },
       { id: '62', x: 3, y: 1, piece: null },
       { id: '52', x: 4, y: 1, piece: null },
     ];
-    let origin = { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } };
+    let origin = { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } };
     let destination = { id: '62', x: 3, y: 1, piece: null };
     let expected = [
       { id: '72', x: 2, y: 1, piece: null }
@@ -383,10 +383,10 @@ describe('between', () => {
 describe('whereX', () => {
   it('returns squares matching x', () => {
     let squares = [
-      { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha', selected: false } },
-      { id: '81', x: 1, y: 0, piece: { id: 2, playerNumber: 2, type: 'keima', selected: false } },
+      { id: '91', x: 0, y: 0, piece: { id: 1, playerNumber: 2, type: 'kyousha' as const, selected: false } },
+      { id: '81', x: 1, y: 0, piece: { id: 2, playerNumber: 2, type: 'keima' as const, selected: false } },
       { id: '92', x: 0, y: 1, piece: null },
-      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha', selected: false } }
+      { id: '82', x: 1, y: 1, piece: { id: 10, playerNumber: 2, type: 'hisha' as const, selected: false } }
     ];
     let expected = [
       { id: '81', x: 1, y: 0, piece: { id: 2, playerNumber: 2, type: 'keima', selected: false } },
@@ -400,8 +400,8 @@ describe('whereX', () => {
 describe('findOuForPlayer', () => {
   it('returns squares occupied by oushou or gyokushou', () => {
     let squares = [
-      { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
-      { id: '59', x: 4, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou', selected: false } }
+      { id: '51', x: 4, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } },
+      { id: '59', x: 4, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou' as const, selected: false } }
     ];
     let expected = { id: '59', x: 4, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou', selected: false } };
     let result = findOuForPlayer(squares, 1);
@@ -412,7 +412,7 @@ describe('findOuForPlayer', () => {
 describe('threatsToSquare', () => {
   it('returns squares that have pieces that could capture a piece on target square', () => {
     let gameState = inCheckGameState();
-    let square = { id: '59', x: 4, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou', selected: false } };
+    let square = { id: '59', x: 4, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou' as const, selected: false } };
     let playerNumber = 1;
     let expected = [
       { id: '58', x: 4, y: 7, piece: { id: 6, playerNumber: 2, type: 'kinshou', selected: false } }
@@ -425,7 +425,7 @@ describe('threatsToSquare', () => {
 describe('pinThreatsToSquare', () => {
   it('returns squares that have pinned a piece to target square', () => {
     let gameState = inCheckmatePinnedGameState();
-    let square = { id: '11', x: 8, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } };
+    let square = { id: '11', x: 8, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } };
     let playerNumber = 2;
     let expected = [
       { id: '31', x: 6, y: 0, piece: { id: 31, playerNumber: 1, type: 'hisha', selected: false } }
@@ -438,7 +438,7 @@ describe('pinThreatsToSquare', () => {
 describe('pinnedToSquare', () => {
   it('returns squares that have been pinned to a target square', () => {
     let gameState = inCheckmatePinnedGameState();
-    let square = { id: '11', x: 8, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } };
+    let square = { id: '11', x: 8, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } };
     let playerNumber = 2;
     let expected = [
       { id: '21', x: 7, y: 0, piece: { id: 11, playerNumber: 2, type: 'kakugyou', selected: false } }

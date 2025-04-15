@@ -10,9 +10,9 @@ let gameState = {
     { id: '61', x: 3, y: 0, piece: null },
     { id: '51', x: 4, y: 0, piece: null },
     { id: '41', x: 5, y: 0, piece: null },
-    { id: '31', x: 6, y: 0, piece: { id: 31, playerNumber: 1, type: 'hisha', selected: false } },
-    { id: '21', x: 7, y: 0, piece: { id: 11, playerNumber: 2, type: 'kakugyou', selected: false } },
-    { id: '11', x: 8, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou', selected: false } },
+    { id: '31', x: 6, y: 0, piece: { id: 31, playerNumber: 1, type: 'hisha' as const, selected: false } },
+    { id: '21', x: 7, y: 0, piece: { id: 11, playerNumber: 2, type: 'kakugyou' as const, selected: false } },
+    { id: '11', x: 8, y: 0, piece: { id: 5, playerNumber: 2, type: 'gyokushou' as const, selected: false } },
 
     { id: '92', x: 0, y: 1, piece: null },
     { id: '82', x: 1, y: 1, piece: null },
@@ -22,7 +22,7 @@ let gameState = {
     { id: '42', x: 5, y: 1, piece: null },
     { id: '32', x: 6, y: 1, piece: null },
     { id: '22', x: 7, y: 1, piece: null },
-    { id: '12', x: 8, y: 1, piece: { id: 21, playerNumber: 1, type: 'tokin', selected: false } },
+    { id: '12', x: 8, y: 1, piece: { id: 21, playerNumber: 1, type: 'tokin' as const, selected: false } },
 
     { id: '93', x: 0, y: 2, piece: null },
     { id: '83', x: 1, y: 2, piece: null },
@@ -82,7 +82,7 @@ let gameState = {
     { id: '48', x: 5, y: 7, piece: null },
     { id: '38', x: 6, y: 7, piece: null },
     { id: '28', x: 7, y: 7, piece: null },
-    { id: '18', x: 8, y: 7, piece: { id: 10, playerNumber: 1, type: 'hisha', selected: false } },
+    { id: '18', x: 8, y: 7, piece: { id: 10, playerNumber: 1, type: 'hisha' as const, selected: false } },
 
     { id: '99', x: 0, y: 8, piece: null },
     { id: '89', x: 1, y: 8, piece: null },
@@ -92,7 +92,7 @@ let gameState = {
     { id: '49', x: 5, y: 8, piece: null },
     { id: '39', x: 6, y: 8, piece: null },
     { id: '29', x: 7, y: 8, piece: null },
-    { id: '19', x: 8, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou', selected: false } }
+    { id: '19', x: 8, y: 8, piece: { id: 36, playerNumber: 1, type: 'oushou' as const, selected: false } }
   ],
   hands: [
     { playerNumber: 1, pieces: [] },
