@@ -1,9 +1,19 @@
 import type GameState from '$lib/shogi/interfaces/GameState';
-import type Piece from '$lib/shogi/interfaces/Piece';
+import type PieceType from '$lib/shogi/types/PieceType';
 
 function hasKey<O extends object>(obj: O, key: PropertyKey): key is keyof O {
   return key in obj;
 }
+
+const HAND_ORDER: Array<PieceType> = [
+  'hisha',
+  'kakugyou',
+  'kinshou',
+  'ginshou',
+  'keima',
+  'kyousha',
+  'fuhyou'
+];
 
 const PIECE_TYPES = [
   {},
@@ -56,10 +66,10 @@ const shogiStateSerializer = function(state: GameState): string {
   }
 };
 
-const pieceToChar = function(piece: Piece): string {
-  let pieceMapping = PIECE_TYPES[piece.playerNumber]
-  if (pieceMapping !== undefined && hasKey(pieceMapping, piece.type)) {
-    let mappedPiece = pieceMapping[piece.type];
+const pieceToChar = function(pieceType: PieceType, playerNumber: number): string {
+  let pieceMapping = PIECE_TYPES[playerNumber]
+  if (pieceMapping !== undefined && hasKey(pieceMapping, pieceType)) {
+    let mappedPiece = pieceMapping[pieceType];
     if (mappedPiece !== undefined) {
       return mappedPiece;
     } else {
@@ -84,7 +94,7 @@ const generateBoardState = function(state: GameState): string {
         if (blankCounter !== 0) {
           boardState = boardState + blankCounter;
         }
-        let char = pieceToChar(square.piece);
+        let char = pieceToChar(square.piece.type, square.piece.playerNumber);
         boardState = boardState + char;
         blankCounter = 0;
       } else {
@@ -112,9 +122,23 @@ const generateBoardState = function(state: GameState): string {
 
 const generateHand = function(state: GameState): string {
   return state.hands.map((h) => {
-    return h.pieces.map((p) => {
-      return pieceToChar(p);
-    }).join('');
+    let handString = '';
+    HAND_ORDER.forEach((pieceType) => {
+      let pieceCount = h.pieces.filter((p) => { return p.type === pieceType; }).length;
+      switch (pieceCount) {
+        case 0:
+          // do nothing
+          break;
+        case 1:
+          handString += pieceToChar(pieceType, h.playerNumber);
+          break;
+        default:
+          handString += pieceCount;
+          handString += pieceToChar(pieceType, h.playerNumber);
+          break;
+      }
+    });
+    return handString;
   }).join('');
 };
 
