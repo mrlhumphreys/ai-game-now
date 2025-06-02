@@ -3,12 +3,24 @@ import shogiMoveParser from '$lib/services/shogiMoveParser';
 import fenToGameState from '$lib/shogi/logic/fenToGameState';
 
 describe('move', () => {
-  it('parses the correct details', () => {
+  it('parses the correct details - gold', () => {
     let move = 'G69-58';
     let gameState = fenToGameState('lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b -');
     if (gameState !== null) {
       let result = shogiMoveParser(move, gameState);
       let expected = { kind: 'move', fromId: '69', pieceId: null, toId: '58', promotionPossible: false, promotionAccepted: false };
+      expect(result).toEqual(expected);
+    } else {
+      expect(gameState).not.toBeNull();
+    }
+  });
+
+  it('parses the correct details - silver', () => {
+    let move = 'S42-53';
+    let gameState = fenToGameState('ln3g1nl/1r1sgskb1/p1pp1p1pp/4p1p2/1p7/2PP5/PPBSPPPPP/1R4SK1/LN1G1G1NL w -');
+    if (gameState !== null) {
+      let result = shogiMoveParser(move, gameState);
+      let expected = { kind: 'move', fromId: '42', pieceId: null, toId: '53', promotionPossible: false, promotionAccepted: false };
       expect(result).toEqual(expected);
     } else {
       expect(gameState).not.toBeNull();

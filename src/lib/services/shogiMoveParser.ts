@@ -470,14 +470,13 @@ const shogiMoveParser = function(move: string, state: GameState): Move | null {
       movingPiece = '';
     }
 
-
     let promotionPossible = components.promotion === '+' || components.promotion === '=';
     let promotionAccepted = components.promotion === '+';
 
     // if moveType is move or capture
     if (components.moveType === '-' || components.moveType === 'x') {
       // if we are missing one co-ordinate
-      let id = fromId !== null ? fromId : getFromId(toX, toY, movingPiece, state);
+      let id = components.fromId !== undefined ? components.fromId : getFromId(toX, toY, movingPiece, state);
       if (id !== undefined) {
         return { kind: 'move', fromId: id, pieceId: null, toId: toId, promotionPossible: promotionPossible, promotionAccepted: promotionAccepted };
       } else {
