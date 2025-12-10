@@ -155,7 +155,7 @@
 
   .xiangqi_board {
     @media only screen and (max-device-width: 480px) {
-      height: 130vw;
+      height: 110vw;
     }
 
     @media only screen and (min-device-width: 481px) {
