@@ -14,6 +14,7 @@
      <li><a class="game" href="{base}/chess">Chess</a></li>
      <li><a class="game" href="{base}/go">Go</a></li>
      <li><a class="game" href="{base}/shogi">Shogi</a></li>
+     <li><a class="game" href="{base}/xiangqi">Xiangqi</a></li>
    </ul>
  </main>
 </div>

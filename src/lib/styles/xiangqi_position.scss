@@ -1,0 +1,9 @@
+@for $x from 0 through 9 {
+  @for $y from 0 through 10 {
+    .position_#{$x}_#{$y} {
+      top: $y*9.1% + 4.5%;
+      left: $x*10% + 5%;
+    }
+  }
+}
+

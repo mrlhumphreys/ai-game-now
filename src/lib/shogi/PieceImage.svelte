@@ -46,7 +46,7 @@
 
   let strokeColour = '#303030';
 
-  $: positionClass = context === 'square' ? calculatePositionClass(square, pov, 9) : calculatePieceInHandPositionClass(piece, pov);
+  $: positionClass = context === 'square' ? calculatePositionClass(square, pov, 9, 9) : calculatePieceInHandPositionClass(piece, pov);
   $: backgroundColour = piece.selected ? '#ffffff' : '#3cc5de';
   $: pointsString = calculatePointsString(piece.type, piece.playerNumber, pov);
   $: character = PIECE_CHARACTERS[piece.type];

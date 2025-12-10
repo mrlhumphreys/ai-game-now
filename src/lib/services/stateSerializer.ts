@@ -3,6 +3,7 @@ import checkersStateSerializer from './checkersStateSerializer'
 import chessStateSerializer from './chessStateSerializer'
 import goStateSerializer from './goStateSerializer'
 import shogiStateSerializer from './shogiStateSerializer'
+import xiangqiStateSerializer from './xiangqiStateSerializer'
 
 const stateSerializer = function(game: string) {
   switch(game) {
@@ -16,6 +17,8 @@ const stateSerializer = function(game: string) {
       return goStateSerializer;
     case 'shogi':
       return shogiStateSerializer;
+    case 'xiangqi':
+      return xiangqiStateSerializer;
     default:
       throw new Error('Invalid Game');
   }

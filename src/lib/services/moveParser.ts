@@ -3,6 +3,7 @@ import checkersMoveParser from './checkersMoveParser'
 import chessMoveParser from './chessMoveParser'
 import goMoveParser from './goMoveParser'
 import shogiMoveParser from './shogiMoveParser'
+import xiangqiMoveParser from './xiangqiMoveParser'
 
 const moveParser = function(game: string): Function {
   switch(game) {
@@ -16,6 +17,8 @@ const moveParser = function(game: string): Function {
       return goMoveParser;
     case 'shogi':
       return shogiMoveParser;
+    case 'xiangqi':
+      return xiangqiMoveParser;
     default:
       throw new Error('Invalid Game');
   }

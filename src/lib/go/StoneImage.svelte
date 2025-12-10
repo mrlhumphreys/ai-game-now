@@ -7,7 +7,7 @@
   export let pov;
 
   let colour = calculateStrokeColour(point.stone.playerNumber);
-  let positionClass = calculatePositionClass(point, pov, 19);
+  let positionClass = calculatePositionClass(point, pov, 19, 19);
   let background = calculateBackgroundColour(point.stone.playerNumber, false);
 </script>
 

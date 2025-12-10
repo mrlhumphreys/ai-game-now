@@ -4,7 +4,7 @@
   export let pov;
   export let touchPoint;
 
-  $: positionClass = calculatePositionClass(point, pov, 19);
+  $: positionClass = calculatePositionClass(point, pov, 19, 19);
 </script>
 
 <div class={'point ' + positionClass } role="button" on:click={() => touchPoint(point.id)}>

@@ -4,7 +4,7 @@
   export let pov;
   export let touchSquare;
 
-  $: positionClass = calculatePositionClass(square, pov, 9, 9);
+  $: positionClass = calculatePositionClass(square, pov, 9, 10);
 </script>
 
 <div class={'square ' + positionClass} role="button" on:click={() => touchSquare(square.id)}>
@@ -12,12 +12,12 @@
 
 <style lang="scss">
   @import '$lib/styles/colors.scss';
-  @import '$lib/styles/shogi_position.scss';
+  @import '$lib/styles/xiangqi_position.scss';
 
   .square {
     position: absolute;
     width: 10%;
-    height: 8.3%;
+    height: 9.1%;
     z-index: 2;
   }
 </style>

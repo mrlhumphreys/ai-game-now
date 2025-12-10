@@ -13,6 +13,9 @@
     <a href="{base}/checkers">Checkers</a>
     <a href="{base}/backgammon">Backgammon</a>
     <a href="{base}/chess">Chess</a>
+    <a href="{base}/go">Go</a>
+    <a href="{base}/shogi">Shogi</a>
+    <a href="{base}/xiangqi">Xiangqi</a>
   </footer>
 </div>
 

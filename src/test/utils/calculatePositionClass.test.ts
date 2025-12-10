@@ -18,13 +18,13 @@ describe('pov 2 with default size', () => {
 describe('pov 1 with custom size', () => {
   it('returns the position from player 1 perspective', () => {
     let square = { x: 0, y: 0 };
-    expect(calculatePositionClass(square, 1, 19)).toEqual('position_0_0');
+    expect(calculatePositionClass(square, 1, 19, 19)).toEqual('position_0_0');
   });
 });
 
 describe('pov 2 with custom size', () => {
   it('returns the position from player 2 perspective', () => {
     let square = { x: 0, y: 0 };
-    expect(calculatePositionClass(square, 2, 19)).toEqual('position_18_18');
+    expect(calculatePositionClass(square, 2, 19, 19)).toEqual('position_18_18');
   });
 });
