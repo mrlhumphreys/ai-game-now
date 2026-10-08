@@ -10,11 +10,11 @@
  <main>
    <ul class="games">
      <li><a class="game" href="{resolve('checkers')}">Checkers</a></li>
-     <li><a class="game" href="{resolve('/backgammon')}">Backgammon</a></li>
-     <li><a class="game" href="{resolve('/chess')}">Chess</a></li>
-     <li><a class="game" href="{resolve('/go')}">Go</a></li>
-     <li><a class="game" href="{resolve('/shogi')}">Shogi</a></li>
-     <li><a class="game" href="{resolve('/xiangqi')}">Xiangqi</a></li>
+     <li><a class="game" href="{resolve('backgammon')}">Backgammon</a></li>
+     <li><a class="game" href="{resolve('chess')}">Chess</a></li>
+     <li><a class="game" href="{resolve('go')}">Go</a></li>
+     <li><a class="game" href="{resolve('shogi')}">Shogi</a></li>
+     <li><a class="game" href="{resolve('xiangqi')}">Xiangqi</a></li>
    </ul>
  </main>
 </div>
