@@ -1,4 +1,5 @@
 <script>
+  import { resolve } from '$app/paths';
 </script>
 
 <div id="content">
@@ -8,12 +9,12 @@
 
  <main>
    <ul class="games">
-     <li><a class="game" href="/checkers">Checkers</a></li>
-     <li><a class="game" href="/backgammon">Backgammon</a></li>
-     <li><a class="game" href="/chess">Chess</a></li>
-     <li><a class="game" href="/go">Go</a></li>
-     <li><a class="game" href="/shogi">Shogi</a></li>
-     <li><a class="game" href="/xiangqi">Xiangqi</a></li>
+     <li><a class="game" href="{resolve('checkers')}">Checkers</a></li>
+     <li><a class="game" href="{resolve('/backgammon')}">Backgammon</a></li>
+     <li><a class="game" href="{resolve('/chess')}">Chess</a></li>
+     <li><a class="game" href="{resolve('/go')}">Go</a></li>
+     <li><a class="game" href="{resolve('/shogi')}">Shogi</a></li>
+     <li><a class="game" href="{resolve('/xiangqi')}">Xiangqi</a></li>
    </ul>
  </main>
 </div>

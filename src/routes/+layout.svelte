@@ -1,20 +1,21 @@
 <script>
+  import { resolve } from '$app/paths';
 </script>
 
 <div id="topbar">
   <nav>
-    <a href="/" class="logo">AI Game Now</a>
+    <a href="{resolve('')}" class="logo">AI Game Now</a>
   </nav>
 </div>
 <slot></slot>
 <div id="bottombar" >
   <footer>
-    <a href="/checkers">Checkers</a>
-    <a href="/backgammon">Backgammon</a>
-    <a href="/chess">Chess</a>
-    <a href="/go">Go</a>
-    <a href="/shogi">Shogi</a>
-    <a href="/xiangqi">Xiangqi</a>
+    <a href="{resolve('checkers')}">Checkers</a>
+    <a href="{resolve('backgammon')}">Backgammon</a>
+    <a href="{resolve('chess')}">Chess</a>
+    <a href="{resolve('go')}">Go</a>
+    <a href="{resolve('shogi')}">Shogi</a>
+    <a href="{resolve('xiangqi')}">Xiangqi</a>
   </footer>
 </div>
 
