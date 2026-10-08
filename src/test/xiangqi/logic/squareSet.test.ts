@@ -38,7 +38,7 @@ import {
   pinThreatsToSquare,
   pinnedToSquare,
   threatenedBy
-} from '$lib/xiangqi/logic/squareSet';
+} from '#lib/xiangqi/logic/squareSet';
 
 describe('includes', () => {
   it('returns true if the square is in the set', () => {

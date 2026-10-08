@@ -1,13 +1,13 @@
-import type Point from '$lib/backgammon/interfaces/Point';
-import type Bar from '$lib/backgammon/interfaces/Bar';
-import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
-import type Die from '$lib/backgammon/interfaces/Die';
+import type Point from '#lib/backgammon/interfaces/Point';
+import type Bar from '#lib/backgammon/interfaces/Bar';
+import type OffBoard from '#lib/backgammon/interfaces/OffBoard';
+import type Die from '#lib/backgammon/interfaces/Die';
 
 import {
   unused,
   filterGreaterThanOrEqualToNumber,
   filterEqualToNumber
-} from '$lib/backgammon/logic/diceSet';
+} from '#lib/backgammon/logic/diceSet';
 import {
   empty,
   ownedBy,
@@ -16,7 +16,7 @@ import {
   distanceFromOffBoard,
   deselect as pointDeselect,
   select as pointSelect
-} from '$lib/backgammon/logic/point';
+} from '#lib/backgammon/logic/point';
 
 export const sort = function(points: Array<Point>): Array<Point> {
   return points.sort((a, b) => {

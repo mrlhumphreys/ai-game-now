@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 import {
   joinChain
-} from '$lib/go/logic/stone';
+} from '#lib/go/logic/stone';
 
 describe('joinChain', () => {
   it('updates the stones chainid', () => {

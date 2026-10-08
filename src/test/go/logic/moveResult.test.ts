@@ -18,7 +18,7 @@ import {
   deprivesOpponentsLiberties,
   koRuleViolation,
   winnerMessage
-} from '$lib/go/logic/moveResult';
+} from '#lib/go/logic/moveResult';
 
 describe('getMoveResult', () => {
   describe('when there is a winner', () => {

@@ -1,7 +1,7 @@
 <script>
-  import calculatePositionClass from '$lib/utils/calculatePositionClass';
-  import calculateStrokeColour from '$lib/utils/calculateStrokeColour';
-  import calculateBackgroundColour from '$lib/utils/calculateBackgroundColour';
+  import calculatePositionClass from '#lib/utils/calculatePositionClass';
+  import calculateStrokeColour from '#lib/utils/calculateStrokeColour';
+  import calculateBackgroundColour from '#lib/utils/calculateBackgroundColour';
   export let square;
   export let pov;
 
@@ -158,7 +158,7 @@
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/chess_position.scss';
+  @use '#lib/styles/chess_position.scss' as chess-position;
 
   .piece {
     position: absolute;

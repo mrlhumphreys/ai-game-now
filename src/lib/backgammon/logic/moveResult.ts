@@ -1,39 +1,39 @@
-import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
-import type Bar from '$lib/backgammon/interfaces/Bar';
-import type Point from '$lib/backgammon/interfaces/Point';
-import type Move from '$lib/backgammon/interfaces/Move';
-import type Match from '$lib/backgammon/interfaces/Match';
+import type OffBoard from '#lib/backgammon/interfaces/OffBoard';
+import type Bar from '#lib/backgammon/interfaces/Bar';
+import type Point from '#lib/backgammon/interfaces/Point';
+import type Move from '#lib/backgammon/interfaces/Move';
+import type Match from '#lib/backgammon/interfaces/Match';
 
 import {
   piecesOwnedByPlayer
-} from '$lib/backgammon/logic/offBoard';
+} from '#lib/backgammon/logic/offBoard';
 import {
   ownedByOpponent as pointOwnedByOpponent,
   blocked,
   distanceFromOffBoard,
   empty
-} from '$lib/backgammon/logic/point';
+} from '#lib/backgammon/logic/point';
 import {
   unused,
   filterGreaterThanOrEqualToNumber,
   filterEqualToNumber,
   findByNumber,
   highestUnused
-} from '$lib/backgammon/logic/diceSet';
+} from '#lib/backgammon/logic/diceSet';
 import {
   backPointForPlayer,
   somePiecesNotHome,
   destinations
-} from '$lib/backgammon/logic/pointSet';
+} from '#lib/backgammon/logic/pointSet';
 import {
   selectedPoint as gameStateSelectedPoint,
   findPoint,
   playersTurn as gameStatePlayersTurn,
   rollPhase as gameStateRollPhase
-} from '$lib/backgammon/logic/gameState';
+} from '#lib/backgammon/logic/gameState';
 import {
   winner as matchWinner
-} from '$lib/backgammon/logic/match';
+} from '#lib/backgammon/logic/match';
 import {noPiecesOwnedByPlayer} from './bar';
 
 interface Result {

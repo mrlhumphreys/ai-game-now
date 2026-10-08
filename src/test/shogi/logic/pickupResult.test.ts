@@ -12,7 +12,7 @@ import {
   selectedPieceInHandExists,
   selectedPieceInHand,
   pieceNotFound
-} from '$lib/shogi/logic/pickupResult';
+} from '#lib/shogi/logic/pickupResult';
 
 describe('getPickupResult', () => {
   describe('when game is over', () => {

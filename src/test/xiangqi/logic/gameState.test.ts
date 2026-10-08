@@ -35,7 +35,7 @@ import {
   selectPiece,
   deselectPiece,
   passTurn
-} from '$lib/xiangqi/logic/gameState';
+} from '#lib/xiangqi/logic/gameState';
 
 describe('gameOver', () => {
   it('returns true if player 1 is in checkmate', () => {

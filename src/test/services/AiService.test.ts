@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import AiService from '$lib/services/AiService';
-import buildMatchAttributes from '$lib/checkers/logic/buildMatchAttributes';
+import AiService from '#lib/services/AiService';
+import buildMatchAttributes from '#lib/checkers/logic/buildMatchAttributes';
 
 // @ts-ignore
 global.fetch = vi.fn();

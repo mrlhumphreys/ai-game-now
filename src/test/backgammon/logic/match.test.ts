@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import type Move from '$lib/backgammon/interfaces/Move';
+import type Move from '#lib/backgammon/interfaces/Move';
 
 import defaultMatch from '../fixtures/defaultMatch';
 import winnerMatch from '../fixtures/winnerMatch';
@@ -25,7 +25,7 @@ import {
   addRollToLastAction,
   addMoveToLastAction,
   clearLastAction
-} from '$lib/backgammon/logic/match';
+} from '#lib/backgammon/logic/match';
 
 describe('winner', () => {
   it('must return winner if player has resigned', () => {

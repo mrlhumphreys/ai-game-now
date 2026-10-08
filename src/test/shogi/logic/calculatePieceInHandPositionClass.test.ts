@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import calculatePieceInHandPositionClass from '$lib/shogi/logic/calculatePieceInHandPositionClass';
+import calculatePieceInHandPositionClass from '#lib/shogi/logic/calculatePieceInHandPositionClass';
 
 describe('calculatePieceInHandPositionClass', () => {
   describe('when player is 1 and pov is 1', () => {

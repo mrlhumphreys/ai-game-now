@@ -1,9 +1,9 @@
-import type Match from '$lib/go/interfaces/Match';
+import type Match from '#lib/go/interfaces/Match';
 
-import exists from '$lib/utils/exists';
+import exists from '#lib/utils/exists';
 import {
   winner
-} from '$lib/go/logic/match';
+} from '#lib/go/logic/match';
 
 interface Result {
   name: string;

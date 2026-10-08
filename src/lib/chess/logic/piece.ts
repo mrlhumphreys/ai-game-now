@@ -1,17 +1,17 @@
-import type Piece from '$lib/chess/interfaces/Piece';
-import type Square from '$lib/chess/interfaces/Square';
-import type GameState from '$lib/chess/interfaces/GameState';
+import type Piece from '#lib/chess/interfaces/Piece';
+import type Square from '#lib/chess/interfaces/Square';
+import type GameState from '#lib/chess/interfaces/GameState';
 
-import compact from '$lib/utils/compact';
+import compact from '#lib/utils/compact';
 import {
   distance as vectorDistance,
   directionX as vectorDirectionX
-} from '$lib/chess/logic/vector';
+} from '#lib/chess/logic/vector';
 import {
   rankNumber,
   point,
   startingFor
-} from '$lib/chess/logic/square';
+} from '#lib/chess/logic/square';
 import {
   includes,
   inRange,
@@ -28,10 +28,10 @@ import {
   findById,
   findByPieceId,
   findByCoordinate
-} from '$lib/chess/logic/squareSet';
+} from '#lib/chess/logic/squareSet';
 import {
   inCheck
-} from '$lib/chess/logic/gameState';
+} from '#lib/chess/logic/gameState';
 
 export const canMoveFrom = function(piece: Piece, square: Square, gameState: GameState): boolean {
   // king exclude castle move if in check

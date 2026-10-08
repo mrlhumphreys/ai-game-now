@@ -5,7 +5,7 @@ import {
   orthogonal,
   dx,
   dy
-} from '$lib/go/logic/vector';
+} from '#lib/go/logic/vector';
 
 describe('magnitude', () => {
   it('returns abs max y if x is the same', () => {

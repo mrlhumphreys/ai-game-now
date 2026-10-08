@@ -19,7 +19,7 @@ import {
   switchPlayer,
   select,
   deselect
-} from '$lib/xiangqi/logic/piece';
+} from '#lib/xiangqi/logic/piece';
 
 describe('canMoveFrom', () => {
   it('returns true if there is at least one destination', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import empty from '$lib/utils/empty';
+import empty from '#lib/utils/empty';
 
 describe('empty string', () => {
   it('must return true', () => {

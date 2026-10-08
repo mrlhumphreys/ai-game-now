@@ -1,12 +1,13 @@
 <script>
-  import { browser } from '$app/environment';
-  import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
+  import { browser } from '$app/env';
+  import { PUBLIC_AI_SERVICE_URL } from '$app/env/public';
 
-  import exists from '$lib/utils/exists';
-  import tossCoin from '$lib/utils/tossCoin';
-  import AiService from '$lib/services/AiService';
-  import Notification from '$lib/shared/Notification.svelte';
-  import ResetControl from '$lib/shared/ResetControl.svelte';
+  import exists from '#lib/utils/exists';
+  import tossCoin from '#lib/utils/tossCoin';
+  import AiService from '#lib/services/AiService';
+  import MatchBar from '#lib/shared/MatchBar.svelte';
+  import Notification from '#lib/shared/Notification.svelte';
+  import ResetControl from '#lib/shared/ResetControl.svelte';
 
   import {
     touchPoint as matchTouchPoint,
@@ -14,13 +15,13 @@
     canPass,
     gameOver,
     playerScore
-  } from '$lib/go/logic/match';
+  } from '#lib/go/logic/match';
 
-  import StoneImage from '$lib/go/StoneImage.svelte';
-  import PointControl from '$lib/go/PointControl.svelte';
-  import PassControl from '$lib/go/PassControl.svelte';
-  import PlayerStats from '$lib/go/PlayerStats.svelte';
-  import buildMatchAttributes from '$lib/go/logic/buildMatchAttributes';
+  import StoneImage from '#lib/go/StoneImage.svelte';
+  import PointControl from '#lib/go/PointControl.svelte';
+  import PassControl from '#lib/go/PassControl.svelte';
+  import PlayerStats from '#lib/go/PlayerStats.svelte';
+  import buildMatchAttributes from '#lib/go/logic/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
@@ -152,15 +153,14 @@
   </div>
   <PlayerStats playerStats={playerStats} playerOneScore={playerOneScore} playerTwoScore={playerTwoScore}/>
   <Notification notification={notification} />
-  <div class="match_bar">
+  <MatchBar>
     <ResetControl touchReset={touchReset} />
     <PassControl touchPass={touchPass} canPass={canPassState} />
-  </div>
+  </MatchBar>
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
-  @import '$lib/styles/match.scss';
+  @use '#lib/styles/match.scss' as match;
 
   .go_match {
     @media only screen and (max-device-width: 480px) {

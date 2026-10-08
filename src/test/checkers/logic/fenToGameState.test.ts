@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import fenToGameState from '$lib/checkers/logic/fenToGameState';
+import fenToGameState from '#lib/checkers/logic/fenToGameState';
 
 describe('default fen', () => {
   it('should return the default game state', () => {

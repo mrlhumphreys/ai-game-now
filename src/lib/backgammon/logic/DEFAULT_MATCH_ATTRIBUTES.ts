@@ -49,7 +49,7 @@ const DEFAULT_MATCH_ATTRIBUTES = {
   players: [
     { playerNumber: 1, name: 'Player', resigned: false },
     { playerNumber: 2, name: 'Computer', resigned: false }
-  ], 
+  ],
   winner: null,
   moveList: [],
   lastAction: null,

@@ -1,4 +1,4 @@
-import type Match from '$lib/backgammon/interfaces/Match';
+import type Match from '#lib/backgammon/interfaces/Match';
 
 interface Result {
   name: string;
@@ -8,10 +8,10 @@ interface Result {
 import {
   playersTurn as gameStatePlayersTurn ,
   movePhase as gameStateMovePhase
-} from '$lib/backgammon/logic/gameState';
+} from '#lib/backgammon/logic/gameState';
 import {
   winner as matchWinner
-} from '$lib/backgammon/logic/match';
+} from '#lib/backgammon/logic/match';
 
 export const getRollResult = function(match: Match, playerNumber: number): Result {
   if (winner(match)) {

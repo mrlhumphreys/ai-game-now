@@ -17,7 +17,7 @@ import {
   rankNumber,
   lastRank,
   promote
-} from '$lib/chess/logic/square';
+} from '#lib/chess/logic/square';
 
 describe('occupied', () => {
   it('returns true if piece is present', () => {

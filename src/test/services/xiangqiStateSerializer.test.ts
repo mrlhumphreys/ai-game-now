@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import xiangqiStateSerializer from '$lib/services/xiangqiStateSerializer';
-import buildMatchAttributes from '$lib/xiangqi/logic/buildMatchAttributes';
+import xiangqiStateSerializer from '#lib/services/xiangqiStateSerializer';
+import buildMatchAttributes from '#lib/xiangqi/logic/buildMatchAttributes';
 
 describe('state', () => {
   it('must be serialized', () => {

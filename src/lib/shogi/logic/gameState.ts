@@ -1,16 +1,16 @@
-import type Piece from '$lib/shogi/interfaces/Piece';
-import type Square from '$lib/shogi/interfaces/Square';
-import type GameState from '$lib/shogi/interfaces/GameState';
+import type Piece from '#lib/shogi/interfaces/Piece';
+import type Square from '#lib/shogi/interfaces/Square';
+import type GameState from '#lib/shogi/interfaces/GameState';
 
-import diff from '$lib/utils/diff';
-import deepClone from '$lib/utils/deepClone';
+import diff from '#lib/utils/diff';
+import deepClone from '#lib/utils/deepClone';
 
 import {
   destinations,
   promotable,
   promote as piecePromote,
   hasLegalMovesFromY
-} from '$lib/shogi/logic/piece';
+} from '#lib/shogi/logic/piece';
 import {
   occupied,
   promotionZone,
@@ -19,7 +19,7 @@ import {
   removePiece,
   select,
   deselect
-} from '$lib/shogi/logic/square';
+} from '#lib/shogi/logic/square';
 import {
   findSelected,
   findById,
@@ -30,14 +30,14 @@ import {
   between,
   occupiedByPlayer,
   excludingPieceType
-} from '$lib/shogi/logic/squareSet';
+} from '#lib/shogi/logic/squareSet';
 import {
   findById as handFindById,
   pushPiece,
   popPiece,
   selectPiece as handSelectPiece,
   deselectPiece as handDeselectPiece
-} from '$lib/shogi/logic/hand';
+} from '#lib/shogi/logic/hand';
 
 export const gameOver = function(gameState: GameState): boolean {
   return inCheckmate(gameState, 1) || inCheckmate(gameState, 2);

@@ -1,4 +1,4 @@
-import type Match from '$lib/go/interfaces/Match';
+import type Match from '#lib/go/interfaces/Match';
 
 import {
   gameOver as gameStateGameOver,
@@ -6,14 +6,14 @@ import {
   move,
   pass,
   playerScore as gameStatePlayerScore
-} from '$lib/go/logic/gameState';
+} from '#lib/go/logic/gameState';
 import {
   getMoveResult,
   winnerMessage
-} from '$lib/go/logic/moveResult';
+} from '#lib/go/logic/moveResult';
 import {
   getPassResult
-} from '$lib/go/logic/passResult';
+} from '#lib/go/logic/passResult';
 
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;

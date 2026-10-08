@@ -18,7 +18,7 @@ import {
   territoryCount,
   passTurn,
   nextPlayerNumber
-} from '$lib/go/logic/gameState';
+} from '#lib/go/logic/gameState';
 
 describe('move', () => {
   it('places a stone at the point for player', () => {

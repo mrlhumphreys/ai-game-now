@@ -34,7 +34,7 @@ import {
   passTurn,
   stepPhase,
   clearDice
-} from '$lib/backgammon/logic/gameState';
+} from '#lib/backgammon/logic/gameState';
 
 describe('selectedPoint', () => {
   it('returns the selected point if a point is selected', () => {

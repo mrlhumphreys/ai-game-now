@@ -1,5 +1,5 @@
 <script>
-  import ChessMatch from '$lib/chess/Match.svelte';
+  import ChessMatch from '#lib/chess/Match.svelte';
 </script>
 
 <div id="content">
@@ -15,11 +15,10 @@
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
-  @import '$lib/styles/responsive_full_width.scss';
+  @use '#lib/styles/responsive_full_width.scss' as responsive-full-width;
 
   header {
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
 
     h1 {
       font-size: 3em;
@@ -30,6 +29,6 @@
   }
 
   main {
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
   }
 </style>

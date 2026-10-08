@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import goStateSerializer from '$lib/services/goStateSerializer';
-import buildMatchAttributes from '$lib/go/logic/buildMatchAttributes';
+import goStateSerializer from '#lib/services/goStateSerializer';
+import buildMatchAttributes from '#lib/go/logic/buildMatchAttributes';
 import koRuleMatchTwo from '../go/fixtures/koRuleMatchTwo';
 import passedMatch from '../go/fixtures/passedMatch';
 

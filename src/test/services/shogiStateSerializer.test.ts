@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import shogiStateSerializer from '$lib/services/shogiStateSerializer';
-import buildMatchAttributes from '$lib/shogi/logic/buildMatchAttributes';
+import shogiStateSerializer from '#lib/services/shogiStateSerializer';
+import buildMatchAttributes from '#lib/shogi/logic/buildMatchAttributes';
 import populatedHandMatch from '../shogi/fixtures/populatedHandMatch';
 
 describe('state', () => {

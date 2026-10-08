@@ -1,4 +1,4 @@
-import type Point from '$lib/chess/interfaces/Point';
+import type Point from '#lib/chess/interfaces/Point';
 
 export const add = function(a: Point, b: Point): Point {
   return {

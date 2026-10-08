@@ -1,5 +1,5 @@
 <script>
-  import PromotionOption from '$lib/chess/PromotionOption.svelte';
+  import PromotionOption from '#lib/chess/PromotionOption.svelte';
 
   export let display;
   export let touchPromotionPiece;
@@ -20,7 +20,7 @@
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
+  @use '#lib/styles/colors.scss' as colors;
 
   .promotion_select {
     position: absolute;
@@ -37,7 +37,7 @@
     .prompt {
       width: 66%;
       height: 33%;
-      background-color: $gray-80;
+      background-color: colors.$gray-80;
       display: flex;
       flex-direction: column;
 
@@ -45,7 +45,7 @@
         display: block;
         text-align: center;
         font-size: 2em;
-        color: $gray-20;
+        color: colors.$gray-20;
         padding: 0.5em;
       }
 

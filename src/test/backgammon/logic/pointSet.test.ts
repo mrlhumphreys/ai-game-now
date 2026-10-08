@@ -11,7 +11,7 @@ import {
   destination,
   deselect,
   select
-} from '$lib/backgammon/logic/pointSet';
+} from '#lib/backgammon/logic/pointSet';
 
 describe('sort', () => {
   it('sorts the points by number', () => {

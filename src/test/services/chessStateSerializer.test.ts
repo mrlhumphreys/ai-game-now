@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import chessStateSerializer from '$lib/services/chessStateSerializer';
-import buildMatchAttributes from '$lib/chess/logic/buildMatchAttributes';
+import chessStateSerializer from '#lib/services/chessStateSerializer';
+import buildMatchAttributes from '#lib/chess/logic/buildMatchAttributes';
 
 describe('state', () => {
   it('must be serialized', () => {

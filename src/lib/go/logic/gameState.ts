@@ -1,9 +1,9 @@
-import type GameState from '$lib/go/interfaces/GameState';
-import type PlayerStat from '$lib/go/interfaces/PlayerStat';
-import type Point from '$lib/go/interfaces/Point';
+import type GameState from '#lib/go/interfaces/GameState';
+import type PlayerStat from '#lib/go/interfaces/PlayerStat';
+import type Point from '#lib/go/interfaces/Point';
 
-import maxBy from '$lib/utils/maxBy';
-import sum from '$lib/utils/sum';
+import maxBy from '#lib/utils/maxBy';
+import sum from '#lib/utils/sum';
 
 import {
   findById,
@@ -11,12 +11,12 @@ import {
   performMove,
   markTerritories,
   territoriesFor
-} from '$lib/go/logic/pointSet';
+} from '#lib/go/logic/pointSet';
 import {
   markAsContinuing,
   addToPrisonerCount,
   markAsPassed
-} from '$lib/go/logic/playerStat';
+} from '#lib/go/logic/playerStat';
 
 interface PlayerScore {
   playerNumber: number;

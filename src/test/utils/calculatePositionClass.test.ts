@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import calculatePositionClass from '$lib/utils/calculatePositionClass';
+import calculatePositionClass from '#lib/utils/calculatePositionClass';
 
 describe('pov 1 with default size', () => {
   it('returns the position from player 1 perspective', () => {

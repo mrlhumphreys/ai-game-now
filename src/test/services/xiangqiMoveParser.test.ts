@@ -1,6 +1,6 @@
 import { describe, it, expect  } from 'vitest';
-import xiangqiMoveParser from '$lib/services/xiangqiMoveParser';
-import fenToGameState from '$lib/xiangqi/logic/fenToGameState';
+import xiangqiMoveParser from '#lib/services/xiangqiMoveParser';
+import fenToGameState from '#lib/xiangqi/logic/fenToGameState';
 
 describe('move', () => {
   it('parses the correct details - piece', () => {

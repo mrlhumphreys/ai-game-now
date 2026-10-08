@@ -1,12 +1,12 @@
-import type Piece from '$lib/shogi/interfaces/Piece';
-import type Hand from '$lib/shogi/interfaces/Hand';
+import type Piece from '#lib/shogi/interfaces/Piece';
+import type Hand from '#lib/shogi/interfaces/Hand';
 
 import {
   demote,
   switchPlayer,
   select,
   deselect
-} from '$lib/shogi/logic/piece';
+} from '#lib/shogi/logic/piece';
 
 export const hasPiece = function(hand: Hand, id: number): boolean {
   let piece = findById(hand, id);

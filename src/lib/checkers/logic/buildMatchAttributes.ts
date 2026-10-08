@@ -1,7 +1,7 @@
-import type Match from '$lib/checkers/interfaces/Match';
-import DEFAULT_MATCH_ATTRIBUTES from '$lib/checkers/logic/DEFAULT_MATCH_ATTRIBUTES';
-import tossCoin from '$lib/utils/tossCoin';
-import deepClone from '$lib/utils/deepClone';
+import type Match from '#lib/checkers/interfaces/Match';
+import DEFAULT_MATCH_ATTRIBUTES from '#lib/checkers/logic/DEFAULT_MATCH_ATTRIBUTES';
+import tossCoin from '#lib/utils/tossCoin';
+import deepClone from '#lib/utils/deepClone';
 
 const buildMatchAttributes = function(playerNumber?: number): Match {
   let matchAttributes = deepClone(DEFAULT_MATCH_ATTRIBUTES);

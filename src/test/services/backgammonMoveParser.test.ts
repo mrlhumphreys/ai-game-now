@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import backgammonMoveParser from '$lib/services/backgammonMoveParser';
+import backgammonMoveParser from '#lib/services/backgammonMoveParser';
 
 describe('a standard move', () => {
   it('must parse out the details', () => {

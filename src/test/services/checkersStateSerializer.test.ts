@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import checkersStateSerializer from '$lib/services/checkersStateSerializer';
-import buildMatchAttributes from '$lib/checkers/logic/buildMatchAttributes';
+import checkersStateSerializer from '#lib/services/checkersStateSerializer';
+import buildMatchAttributes from '#lib/checkers/logic/buildMatchAttributes';
 
 describe('state', () => {
   it('must be serialized', () => {

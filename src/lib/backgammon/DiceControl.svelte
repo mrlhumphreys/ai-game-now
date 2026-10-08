@@ -1,30 +1,30 @@
 <script>
-  import DieImage from '$lib/backgammon/DieImage.svelte'
+  import DieImage from '#lib/backgammon/DieImage.svelte'
 
   export let dice;
   export let touchDice;
 </script>
 
-<div class="dice" role="button" on:click={() => touchDice()}>
+<div class="dice" role="button" onclick={() => touchDice()}>
   {#each dice as die (die.id)}
     <DieImage number={die.number} used={die.used} />
   {/each}
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/backgammon_units.scss';
+  @use '#lib/styles/backgammon_units.scss' as backgammon-units;
 
   .dice {
     @media only screen and (max-device-width: 480px) {
-      height: $backgammon-vertical-unit;
-      padding-top: $backgammon-vertical-unit;
-      padding-bottom: $backgammon-vertical-unit;
+      height: backgammon-units.$backgammon-vertical-unit;
+      padding-top: backgammon-units.$backgammon-vertical-unit;
+      padding-bottom: backgammon-units.$backgammon-vertical-unit;
     }
 
     @media only screen and (min-device-width: 481px) {
-      height: $backgammon-pixel-unit;
-      padding-top: $backgammon-pixel-unit;
-      padding-bottom: $backgammon-pixel-unit;
+      height: backgammon-units.$backgammon-pixel-unit;
+      padding-top: backgammon-units.$backgammon-pixel-unit;
+      padding-bottom: backgammon-units.$backgammon-pixel-unit;
     }
 
     & {

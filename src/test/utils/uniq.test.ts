@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import uniq from '$lib/utils/uniq';
+import uniq from '#lib/utils/uniq';
 
 describe('uniq', () => {
   it('must return uniq elements', () => {

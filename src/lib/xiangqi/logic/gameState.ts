@@ -1,19 +1,19 @@
-import type Square from '$lib/xiangqi/interfaces/Square';
-import type GameState from '$lib/xiangqi/interfaces/GameState';
+import type Square from '#lib/xiangqi/interfaces/Square';
+import type GameState from '#lib/xiangqi/interfaces/GameState';
 
-import diff from '$lib/utils/diff';
-import deepClone from '$lib/utils/deepClone';
+import diff from '#lib/utils/diff';
+import deepClone from '#lib/utils/deepClone';
 
 import {
   destinations,
-} from '$lib/xiangqi/logic/piece';
+} from '#lib/xiangqi/logic/piece';
 import {
   occupied,
   addPiece,
   removePiece,
   select,
   deselect
-} from '$lib/xiangqi/logic/square';
+} from '#lib/xiangqi/logic/square';
 import {
   findSelected,
   findById,
@@ -24,7 +24,7 @@ import {
   between,
   occupiedByPlayer,
   excludingPieceType
-} from '$lib/xiangqi/logic/squareSet';
+} from '#lib/xiangqi/logic/squareSet';
 
 export const gameOver = function(gameState: GameState): boolean {
   return inCheckmate(gameState, 1) || inCheckmate(gameState, 2) || inStalemate(gameState, 1) || inStalemate(gameState, 2);

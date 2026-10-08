@@ -13,7 +13,7 @@ import {
   removePiece,
   select,
   deselect
-} from '$lib/xiangqi/logic/square';
+} from '#lib/xiangqi/logic/square';
 
 describe('occupied', () => {
   it('returns true if piece is present', () => {

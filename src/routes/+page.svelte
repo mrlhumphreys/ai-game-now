@@ -1,5 +1,4 @@
 <script>
-  import { base } from '$app/paths';
 </script>
 
 <div id="content">
@@ -9,22 +8,22 @@
 
  <main>
    <ul class="games">
-     <li><a class="game" href="{base}/checkers">Checkers</a></li>
-     <li><a class="game" href="{base}/backgammon">Backgammon</a></li>
-     <li><a class="game" href="{base}/chess">Chess</a></li>
-     <li><a class="game" href="{base}/go">Go</a></li>
-     <li><a class="game" href="{base}/shogi">Shogi</a></li>
-     <li><a class="game" href="{base}/xiangqi">Xiangqi</a></li>
+     <li><a class="game" href="/checkers">Checkers</a></li>
+     <li><a class="game" href="/backgammon">Backgammon</a></li>
+     <li><a class="game" href="/chess">Chess</a></li>
+     <li><a class="game" href="/go">Go</a></li>
+     <li><a class="game" href="/shogi">Shogi</a></li>
+     <li><a class="game" href="/xiangqi">Xiangqi</a></li>
    </ul>
  </main>
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
-  @import '$lib/styles/responsive_full_width.scss';
+  @use '#lib/styles/colors.scss' as colors;
+  @use '#lib/styles/responsive_full_width.scss' as responsive-full-width;
 
   header {
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
 
     h1 {
       font-size: 3em;
@@ -35,14 +34,13 @@
   }
 
   main {
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
 
     .games {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
-      width: 100%;
 
       .game {
         display: block;
@@ -52,12 +50,12 @@
         text-align: center;
         text-decoration: none;
         font-size: 3em;
-        color: $gray-20;
-        background-color: $spot-colour;
+        color: colors.$gray-20;
+        background-color: colors.$spot-colour;
 
         &:hover {
-          color: $spot-colour;
-          background-color: $gray-20;
+          color: colors.$spot-colour;
+          background-color: colors.$gray-20;
         }
       }
     }

@@ -17,7 +17,7 @@ import {
   notify,
   addMoveToLastAction,
   addPassToLastAction
-} from '$lib/go/logic/match';
+} from '#lib/go/logic/match';
 
 describe('winner', () => {
   it('returns game state winner if no player has resigned', () => {

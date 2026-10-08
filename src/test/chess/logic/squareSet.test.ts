@@ -29,7 +29,7 @@ import {
   notOrthogonalOrDiagonal,
   findKingForPlayer,
   threatenedBy
-} from '$lib/chess/logic/squareSet';
+} from '#lib/chess/logic/squareSet';
 
 // set operations
 describe('difference', () => {

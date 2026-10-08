@@ -8,7 +8,7 @@ import {
   popPiece,
   selectPiece,
   deselectPiece
-} from '$lib/shogi/logic/hand';
+} from '#lib/shogi/logic/hand';
 
 describe('hasPiece', () => {
   it('returns true if there is a piece matching the id', () => {

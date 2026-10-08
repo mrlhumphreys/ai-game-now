@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import diff from '$lib/utils/diff';
+import diff from '#lib/utils/diff';
 
 describe('diff', () => {
   it('returns an arrray with elements in a that are not in b', () => {

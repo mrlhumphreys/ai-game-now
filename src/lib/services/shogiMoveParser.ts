@@ -1,8 +1,8 @@
-import type GameState from '$lib/shogi/interfaces/GameState';
-import type Square from '$lib/shogi/interfaces/Square';
-import type Point from '$lib/shogi/interfaces/Point';
+import type GameState from '#lib/shogi/interfaces/GameState';
+import type Square from '#lib/shogi/interfaces/Square';
+import type Point from '#lib/shogi/interfaces/Point';
 
-import exists from '$lib/utils/exists';
+import exists from '#lib/utils/exists';
 
 function hasKey<O extends object>(obj: O, key: PropertyKey): key is keyof O {
   return key in obj;

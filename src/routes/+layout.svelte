@@ -1,32 +1,31 @@
 <script>
-  import { base } from '$app/paths';
 </script>
 
 <div id="topbar">
   <nav>
-    <a href="{base}/" class="logo">AI Game Now</a>
+    <a href="/" class="logo">AI Game Now</a>
   </nav>
 </div>
 <slot></slot>
 <div id="bottombar" >
   <footer>
-    <a href="{base}/checkers">Checkers</a>
-    <a href="{base}/backgammon">Backgammon</a>
-    <a href="{base}/chess">Chess</a>
-    <a href="{base}/go">Go</a>
-    <a href="{base}/shogi">Shogi</a>
-    <a href="{base}/xiangqi">Xiangqi</a>
+    <a href="/checkers">Checkers</a>
+    <a href="/backgammon">Backgammon</a>
+    <a href="/chess">Chess</a>
+    <a href="/go">Go</a>
+    <a href="/shogi">Shogi</a>
+    <a href="/xiangqi">Xiangqi</a>
   </footer>
 </div>
 
 <style lang="scss">
-  @import "$lib/styles/colors.scss";
-  @import "$lib/styles/responsive_full_width.scss";
+  @use "#lib/styles/colors.scss" as colors;
+  @use "#lib/styles/responsive_full_width.scss" as responsive-full-width;
 
   #topbar {
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
     & {
-      background-color: $gray-20;
+      background-color: colors.$gray-20;
     }
 
     nav {
@@ -34,14 +33,14 @@
       flex-direction: row;
 
       a {
-        color: $spot-colour;
+        color: colors.$spot-colour;
         display: block;
         padding: 1em 10px;
         text-decoration: none;
 
         &:hover {
           color: white;
-          background-color: $spot-colour;
+          background-color: colors.$spot-colour;
         }
 
         &.logo {
@@ -52,12 +51,12 @@
   }
 
   #bottombar {
-    background-color: $gray-80;
+    background-color: colors.$gray-80;
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 3;
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
 
     footer {
       display: flex;
@@ -67,10 +66,10 @@
         display: block;
         padding: 1em 10px;
         text-decoration: none;
-        color: $gray-20;
+        color: colors.$gray-20;
 
         &:hover {
-          color: $gray-60;
+          color: colors.$gray-60;
         }
       }
     }

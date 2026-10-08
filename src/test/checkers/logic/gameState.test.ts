@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type Square from '$lib/checkers/interfaces/Square';
+import type Square from '#lib/checkers/interfaces/Square';
 import selectedGameState from '../fixtures/selectedGameState';
 import defaultGameState from '../fixtures/defaultGameState';
 import playerOneNoMovesGameState from '../fixtures/playerOneNoMovesGameState';
@@ -21,7 +21,7 @@ import {
   move,
   movePieces,
   passTurn
-} from '$lib/checkers/logic/gameState';
+} from '#lib/checkers/logic/gameState';
 
 describe('selectedSquare', () => {
   it('returns a square if it is selected', () => {

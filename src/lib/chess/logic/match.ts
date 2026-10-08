@@ -1,4 +1,4 @@
-import type Match from '$lib/chess/interfaces/Match';
+import type Match from '#lib/chess/interfaces/Match';
 
 import { 
   gameOver as gameStateGameOver,
@@ -9,14 +9,14 @@ import {
   move,
   passTurn,
   promote
-} from '$lib/chess/logic/gameState';
+} from '#lib/chess/logic/gameState';
 import { 
   getMoveResult,
   winnerMessage
-} from '$lib/chess/logic/moveResult';
+} from '#lib/chess/logic/moveResult';
 import { 
   getPromoteResult
-} from '$lib/chess/logic/promoteResult';
+} from '#lib/chess/logic/promoteResult';
 
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;

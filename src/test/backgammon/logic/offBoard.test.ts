@@ -4,7 +4,7 @@ import {
   push,
   emptyBlot,
   hasAllOfPlayersPieces
-} from '$lib/backgammon/logic/offBoard';
+} from '#lib/backgammon/logic/offBoard';
 
 describe('piecesOwnedByPlayer', () => {
   it('returns pieces owned by the player', () => {

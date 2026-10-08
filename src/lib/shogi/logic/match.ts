@@ -1,4 +1,4 @@
-import type Match from '$lib/shogi/interfaces/Match';
+import type Match from '#lib/shogi/interfaces/Match';
 
 import {
   gameOver as gameStateGameOver,
@@ -13,17 +13,17 @@ import {
   promote,
   selectPiece,
   passTurn
-} from '$lib/shogi/logic/gameState';
+} from '#lib/shogi/logic/gameState';
 import {
   getMoveResult,
   winnerMessage
-} from '$lib/shogi/logic/moveResult';
+} from '#lib/shogi/logic/moveResult';
 import {
   getPromoteResult
-} from '$lib/shogi/logic/promoteResult';
+} from '#lib/shogi/logic/promoteResult';
 import {
   getPickupResult
-} from '$lib/shogi/logic/pickupResult';
+} from '#lib/shogi/logic/pickupResult';
 
 export const winner = function(match: Match): number | null {
   if (match.promotion) {

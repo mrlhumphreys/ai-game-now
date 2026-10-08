@@ -10,7 +10,7 @@ import {
   playersTurn,
   matchInPromotion,
   validPromotionPiece
-} from '$lib/chess/logic/promoteResult';
+} from '#lib/chess/logic/promoteResult';
 
 describe('getPromoteResult', () => {
   describe('when game is over', () => {

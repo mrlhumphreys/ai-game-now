@@ -1,12 +1,12 @@
-import type Square from '$lib/shogi/interfaces/Square';
-import type GameState from '$lib/shogi/interfaces/GameState';
+import type Square from '#lib/shogi/interfaces/Square';
+import type GameState from '#lib/shogi/interfaces/GameState';
 
-import uniqArr from '$lib/utils/uniq';
+import uniqArr from '#lib/utils/uniq';
 
-import opposingPlayer from '$lib/shogi/logic/opposingPlayer';
+import opposingPlayer from '#lib/shogi/logic/opposingPlayer';
 import {
   add
-} from '$lib/shogi/logic/point';
+} from '#lib/shogi/logic/point';
 import {
   distance as vectorDistance,
   direction as vectorDirection,
@@ -16,11 +16,11 @@ import {
   diagonal as vectorDiagonal,
   orthogonal as vectorOrthogonal,
   orthogonalOrDiagonal as vectorOrthogonalOrDiagonal
-} from '$lib/shogi/logic/vector';
+} from '#lib/shogi/logic/vector';
 import {
   destinations,
   captureSquares
-} from '$lib/shogi/logic/piece';
+} from '#lib/shogi/logic/piece';
 import {
   occupiedByPieceType as squareOccupiedByPieceType,
   notOccupiedByPieceType as squareNotOccupiedByPieceType,
@@ -28,7 +28,7 @@ import {
   unoccupied as squareUnoccupied,
   unoccupiedOrOccupiedByOpponentOf as squareUnoccupiedOrOccupiedByOpponentOf,
   point
-} from '$lib/shogi/logic/square';
+} from '#lib/shogi/logic/square';
 
 // operators
 

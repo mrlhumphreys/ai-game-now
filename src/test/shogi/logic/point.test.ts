@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { add } from '$lib/shogi/logic/point';
+import { add } from '#lib/shogi/logic/point';
 
 describe('add', () => {
   it('must return the sum of two points', () => {

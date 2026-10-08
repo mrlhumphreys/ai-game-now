@@ -1,16 +1,16 @@
-import type Square from '$lib/chess/interfaces/Square';
-import type GameState from '$lib/chess/interfaces/GameState';
+import type Square from '#lib/chess/interfaces/Square';
+import type GameState from '#lib/chess/interfaces/GameState';
 
-import deepClone from '$lib/utils/deepClone';
+import deepClone from '#lib/utils/deepClone';
 import {
   directionX,
   distance
-} from '$lib/chess/logic/vector';
+} from '#lib/chess/logic/vector';
 import {
   kingCastle,
   kingBaseDestinations,
   destinations
-} from '$lib/chess/logic/piece';
+} from '#lib/chess/logic/piece';
 import {
   occupied,
   point,
@@ -20,7 +20,7 @@ import {
   select,
   deselect,
   promote as squarePromote
-} from '$lib/chess/logic/square';
+} from '#lib/chess/logic/square';
 import {
   includes,
   findSelected,
@@ -30,7 +30,7 @@ import {
   findKingForPlayer,
   threatenedBy,
   occupiedByPlayer
-} from '$lib/chess/logic/squareSet';
+} from '#lib/chess/logic/squareSet';
 
 interface Move {
   fromId: string;

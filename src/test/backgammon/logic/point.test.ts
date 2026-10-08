@@ -13,7 +13,7 @@ import {
   deselect,
   pop,
   push
-} from '$lib/backgammon/logic/point';
+} from '#lib/backgammon/logic/point';
 
 describe('blocked', () => {
   it('must return true if the number of pieces is 2 or more', () => {

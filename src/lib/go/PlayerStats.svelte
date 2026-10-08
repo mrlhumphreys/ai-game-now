@@ -1,5 +1,5 @@
 <script>
-  import exists from '$lib/utils/exists';
+  import exists from '#lib/utils/exists';
 
   function getPlayerPrisonerCount(playerStats, playerNumber) {
     var ps = playerStats.find(function(p) { return p.playerNumber === playerNumber; });
@@ -73,20 +73,20 @@
 </table>
 
 <style lang="scss">
-  .go_player_stats {
-    @import '$lib/styles/colors.scss';
+  @use '#lib/styles/colors.scss' as colors;
 
+  .go_player_stats {
     width: 100%;
-    border-top: solid 1px $gray-20;
+    border-top: solid 1px colors.$gray-20;
 
     .go_player_one {
-      color: $gray-90;
-      background-color: $gray-20;
+      color: colors.$gray-90;
+      background-color: colors.$gray-20;
     }
 
     .go_player_two {
-      color: $gray-20;
-      background-color: $spot-colour;
+      color: colors.$gray-20;
+      background-color: colors.$spot-colour;
     }
 
     td {

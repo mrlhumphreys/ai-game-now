@@ -10,7 +10,7 @@ import {
   captureStone,
   addToTerritory,
   clearTerritory
-} from '$lib/go/logic/point';
+} from '#lib/go/logic/point';
 
 describe('occupied', () => {
   it('returns true if point has stone', () => {

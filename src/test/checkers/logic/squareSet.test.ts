@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import type Square from '$lib/checkers/interfaces/Square';
+import type Square from '#lib/checkers/interfaces/Square';
 import { 
   findById,
   findByCoordinate,
@@ -21,7 +21,7 @@ import {
   deselectSquares,
   unmarkSquares,
   filterByIds
-} from '$lib/checkers/logic/squareSet';
+} from '#lib/checkers/logic/squareSet';
 
 describe('findById', () => {
   it('must return the square matching the id', () => {

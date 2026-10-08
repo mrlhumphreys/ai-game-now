@@ -1,6 +1,6 @@
 import { describe, it, expect  } from 'vitest';
-import chessMoveParser from '$lib/services/chessMoveParser';
-import fenToGameState from '$lib/chess/logic/fenToGameState';
+import chessMoveParser from '#lib/services/chessMoveParser';
+import fenToGameState from '#lib/chess/logic/fenToGameState';
 
 describe('pawn move', () => {
   it('must parse out the details', () => {

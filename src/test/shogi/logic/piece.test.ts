@@ -26,7 +26,7 @@ import {
   switchPlayer,
   select,
   deselect
-} from '$lib/shogi/logic/piece';
+} from '#lib/shogi/logic/piece';
 
 describe('canMoveFrom', () => {
   it('returns true if there is at least one destination', () => {

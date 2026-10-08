@@ -12,7 +12,7 @@ import {
   orthogonal,
   diagonal,
   direction
-} from '$lib/shogi/logic/vector';
+} from '#lib/shogi/logic/vector';
 
 describe('distance', () => {
   it('should return the distance between the two points', () => {

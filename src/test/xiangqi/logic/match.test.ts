@@ -12,7 +12,7 @@ import {
   clearLastAction,
   addMoveToLastAction,
   notify
-} from '$lib/xiangqi/logic/match';
+} from '#lib/xiangqi/logic/match';
 
 describe('winner', () => {
   it('returns the winner if there is one', () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect  } from 'vitest';
-import shogiMoveParser from '$lib/services/shogiMoveParser';
-import fenToGameState from '$lib/shogi/logic/fenToGameState';
+import shogiMoveParser from '#lib/services/shogiMoveParser';
+import fenToGameState from '#lib/shogi/logic/fenToGameState';
 
 describe('move', () => {
   it('parses the correct details - gold', () => {

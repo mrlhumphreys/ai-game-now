@@ -1,12 +1,9 @@
 <script>
+  import MatchBarButton from '#lib/shared/MatchBarButton.svelte';
+
   export let touchReset;
 </script>
 
-<div class="match_bar_button reset_control" role="button" on:click={() => touchReset()}>
-  <p>Reset</p>
-</div>
+<MatchBarButton label="Reset" onclick={() => touchReset()} />
 
-<style lang="scss">
-  @import '$lib/styles/match_bar_button.scss';
-</style>
 

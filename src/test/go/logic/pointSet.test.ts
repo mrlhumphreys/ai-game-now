@@ -26,7 +26,7 @@ import {
   buildStone,
   performMove,
   markTerritories,
-} from '$lib/go/logic/pointSet';
+} from '#lib/go/logic/pointSet';
 
 describe('includes', () => {
   it('returns true if point is included', () => {

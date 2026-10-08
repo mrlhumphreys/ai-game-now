@@ -1,4 +1,4 @@
-import type Match from '$lib/xiangqi/interfaces/Match';
+import type Match from '#lib/xiangqi/interfaces/Match';
 
 import {
   gameOver as gameStateGameOver,
@@ -8,11 +8,11 @@ import {
   move,
   selectPiece,
   passTurn
-} from '$lib/xiangqi/logic/gameState';
+} from '#lib/xiangqi/logic/gameState';
 import {
   getMoveResult,
   winnerMessage
-} from '$lib/xiangqi/logic/moveResult';
+} from '#lib/xiangqi/logic/moveResult';
 
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;

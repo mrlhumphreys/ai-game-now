@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import fenToGameState from '$lib/shogi/logic/fenToGameState';
+import fenToGameState from '#lib/shogi/logic/fenToGameState';
 
 describe('default fen', () => {
   it('should return default game state', () => {

@@ -1,11 +1,11 @@
 <script>
-  import DieFaceOne from '$lib/backgammon/DieFaceOne.svelte'
-  import DieFaceTwo from '$lib/backgammon/DieFaceTwo.svelte'
-  import DieFaceThree from '$lib/backgammon/DieFaceThree.svelte'
-  import DieFaceFour from '$lib/backgammon/DieFaceFour.svelte'
-  import DieFaceFive from '$lib/backgammon/DieFaceFive.svelte'
-  import DieFaceSix from '$lib/backgammon/DieFaceSix.svelte'
-  import DieFaceDefault from '$lib/backgammon/DieFaceDefault.svelte'
+  import DieFaceOne from '#lib/backgammon/DieFaceOne.svelte'
+  import DieFaceTwo from '#lib/backgammon/DieFaceTwo.svelte'
+  import DieFaceThree from '#lib/backgammon/DieFaceThree.svelte'
+  import DieFaceFour from '#lib/backgammon/DieFaceFour.svelte'
+  import DieFaceFive from '#lib/backgammon/DieFaceFive.svelte'
+  import DieFaceSix from '#lib/backgammon/DieFaceSix.svelte'
+  import DieFaceDefault from '#lib/backgammon/DieFaceDefault.svelte'
 
   export let number;
   export let used;

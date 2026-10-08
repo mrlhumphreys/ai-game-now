@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import checkersMoveParser from '$lib/services/checkersMoveParser';
+import checkersMoveParser from '#lib/services/checkersMoveParser';
 
 describe('a standard move', () => {
   it('must parse out the details', () => {

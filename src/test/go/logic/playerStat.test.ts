@@ -4,7 +4,7 @@ import {
   markAsPassed,
   markAsContinuing,
   addToPrisonerCount
-} from '$lib/go/logic/playerStat';
+} from '#lib/go/logic/playerStat';
 
 describe('markAsPassed', () => {
   it('sets passed to true', () => {

@@ -1,5 +1,5 @@
-import type Match from '$lib/backgammon/interfaces/Match';
-import deepClone from '$lib/utils/deepClone';
+import type Match from '#lib/backgammon/interfaces/Match';
+import deepClone from '#lib/utils/deepClone';
 
 let match = {
   id: 0,

@@ -1,5 +1,5 @@
-import type GameState from '$lib/go/interfaces/GameState';
-import deepClone from '$lib/utils/deepClone';
+import type GameState from '#lib/go/interfaces/GameState';
+import deepClone from '#lib/utils/deepClone';
 
 let gameState = {
   currentPlayerNumber: 2,

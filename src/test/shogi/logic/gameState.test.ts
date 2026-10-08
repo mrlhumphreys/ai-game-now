@@ -44,7 +44,7 @@ import {
   deselectPieceInHand,
   promote,
   passTurn
-} from '$lib/shogi/logic/gameState';
+} from '#lib/shogi/logic/gameState';
 
 describe('gameOver', () => {
   it('returns true if player 1 is in checkmate', () => {

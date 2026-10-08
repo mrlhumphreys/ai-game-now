@@ -16,7 +16,7 @@ import {
   clearLastAction,
   notify,
   addMoveToLastAction
-} from '$lib/checkers/logic/match';
+} from '#lib/checkers/logic/match';
 
 describe('winner', () => {
   it('must return winner if player resigned', () => {

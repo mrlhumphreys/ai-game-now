@@ -1,15 +1,15 @@
-import type Point from '$lib/go/interfaces/Point';
-import type Stone from '$lib/go/interfaces/Stone';
+import type Point from '#lib/go/interfaces/Point';
+import type Stone from '#lib/go/interfaces/Stone';
 
-import compact from '$lib/utils/compact';
-import exists from '$lib/utils/exists';
-import max from '$lib/utils/max';
-import min from '$lib/utils/min';
-import reject from '$lib/utils/reject';
-import uniq from '$lib/utils/uniq';
+import compact from '#lib/utils/compact';
+import exists from '#lib/utils/exists';
+import max from '#lib/utils/max';
+import min from '#lib/utils/min';
+import reject from '#lib/utils/reject';
+import uniq from '#lib/utils/uniq';
 import {
   playerNumber as pointSetPlayerNumber
-} from '$lib/go/logic/pointSet';
+} from '#lib/go/logic/pointSet';
 import {
   occupied as pointOccupied,
   unoccupied as pointUnoccupied,
@@ -20,14 +20,14 @@ import {
   clearTerritory,
   unmarked,
   addToTerritory
-} from '$lib/go/logic/point';
+} from '#lib/go/logic/point';
 import {
   joinChain
-} from '$lib/go/logic/stone';
+} from '#lib/go/logic/stone';
 import {
   orthogonal,
   magnitude
-} from '$lib/go/logic/vector';
+} from '#lib/go/logic/vector';
 
 export const includes = function(points: Array<Point>, point: Point): boolean {
   return points.find(function(p) {

@@ -1,11 +1,11 @@
-import type Point from '$lib/shogi/interfaces/Point';
-import type Piece from '$lib/shogi/interfaces/Piece';
-import type Square from '$lib/shogi/interfaces/Square';
+import type Point from '#lib/shogi/interfaces/Point';
+import type Piece from '#lib/shogi/interfaces/Piece';
+import type Square from '#lib/shogi/interfaces/Square';
 
 import {
   select as pieceSelect,
   deselect as pieceDeselect
-} from '$lib/shogi/logic/piece';
+} from '#lib/shogi/logic/piece';
 
 export const occupied = function(square: Square): boolean {
   return square.piece !== null;

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import type Square from '$lib/chess/interfaces/Square';
+import type Square from '#lib/chess/interfaces/Square';
 
 import defaultGameState from '../fixtures/defaultGameState';
 import enPassantGameState from '../fixtures/enPassantGameState';
@@ -29,7 +29,7 @@ import {
   pawnDirection,
   kingBaseDestinations,
   kingCastle
-} from '$lib/chess/logic/piece';
+} from '#lib/chess/logic/piece';
 
 describe('canMoveFrom', () => {
   it('returns true if there is at least one destination', () => {

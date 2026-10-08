@@ -8,7 +8,7 @@ import {
   filterEqualToNumber,
   use,
   roll
-} from '$lib/backgammon/logic/diceSet';
+} from '#lib/backgammon/logic/diceSet';
 
 describe('unused', () => {
   it('must return unused dice', () => {

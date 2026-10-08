@@ -1,5 +1,5 @@
 <script >
-  import calculatePositionClass from '$lib/utils/calculatePositionClass';
+  import calculatePositionClass from '#lib/utils/calculatePositionClass';
   export let point;
   export let pov;
   export let touchPoint;
@@ -7,12 +7,12 @@
   $: positionClass = calculatePositionClass(point, pov, 19, 19);
 </script>
 
-<div class={'point ' + positionClass } role="button" on:click={() => touchPoint(point.id)}>
+<div class={'point ' + positionClass } role="button" onclick={() => touchPoint(point.id)}>
 
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/go_position.scss';
+  @use '#lib/styles/go_position.scss' as go-position;
 
   .point {
     position: absolute;

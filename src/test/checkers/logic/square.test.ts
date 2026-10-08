@@ -16,7 +16,7 @@ import {
   mark,
   unmark,
   promote
-} from '$lib/checkers/logic/square';
+} from '#lib/checkers/logic/square';
 
 describe('occupied', () => {
   describe('with piece', () => {

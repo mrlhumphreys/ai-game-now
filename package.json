@@ -11,16 +11,20 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^3.0.5",
-    "@sveltejs/kit": "^2.5.28",
-    "@sveltejs/vite-plugin-svelte": "^3.1.2",
-    "sass": "^1.79.1",
-    "svelte": "^4.2.19",
-    "svelte-check": "^3.4.5",
-    "tslib": "^2.7.0",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.6",
-    "vitest": "^2.1.1"
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "sass": "^1.105.1",
+    "svelte": "^5.57.1",
+    "svelte-check": "^4.7.6",
+    "tslib": "^2.8.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  },
+  "imports": {
+    "#lib": "./src/lib/index.js",
+    "#lib/*": "./src/lib/*"
   },
   "type": "module"
 }

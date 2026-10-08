@@ -1,13 +1,13 @@
-import type Square from '$lib/xiangqi/interfaces/Square';
-import type Conditions from '$lib/xiangqi/interfaces/Conditions';
-import type GameState from '$lib/xiangqi/interfaces/GameState';
+import type Square from '#lib/xiangqi/interfaces/Square';
+import type Conditions from '#lib/xiangqi/interfaces/Conditions';
+import type GameState from '#lib/xiangqi/interfaces/GameState';
 
-import uniqArr from '$lib/utils/uniq';
+import uniqArr from '#lib/utils/uniq';
 
-import opposingPlayer from '$lib/xiangqi/logic/opposingPlayer';
+import opposingPlayer from '#lib/xiangqi/logic/opposingPlayer';
 import {
   add
-} from '$lib/xiangqi/logic/point';
+} from '#lib/xiangqi/logic/point';
 import {
   distance as vectorDistance,
   direction as vectorDirection,
@@ -20,11 +20,11 @@ import {
   orthogonal as vectorOrthogonal,
   orthogonalOrDiagonal as vectorOrthogonalOrDiagonal,
   notOrthogonalOrDiagonal as vectorNotOrthogonalOrDiagonal
-} from '$lib/xiangqi/logic/vector';
+} from '#lib/xiangqi/logic/vector';
 import {
   destinations,
   captureSquares
-} from '$lib/xiangqi/logic/piece';
+} from '#lib/xiangqi/logic/piece';
 import {
   occupiedByPieceType as squareOccupiedByPieceType,
   notOccupiedByPieceType as squareNotOccupiedByPieceType,
@@ -34,7 +34,7 @@ import {
   unoccupiedOrOccupiedByOpponentOf as squareUnoccupiedOrOccupiedByOpponentOf,
   occupiedByOpponentOf as squareOccupiedByOpponentOf,
   point
-} from '$lib/xiangqi/logic/square';
+} from '#lib/xiangqi/logic/square';
 
 // operators
 

@@ -1,11 +1,11 @@
-import type Square from '$lib/chess/interfaces/Square';
-import type GameState from '$lib/chess/interfaces/GameState';
+import type Square from '#lib/chess/interfaces/Square';
+import type GameState from '#lib/chess/interfaces/GameState';
 
-import uniqArr from '$lib/utils/uniq';
+import uniqArr from '#lib/utils/uniq';
 
 import {
   add
-} from '$lib/chess/logic/point';
+} from '#lib/chess/logic/point';
 import {
   direction as vectorDirection,
   distance as vectorDistance,
@@ -13,10 +13,10 @@ import {
   orthogonal as vectorOrthogonal,
   diagonal as vectorDiagonal,
   orthogonalOrDiagonal as vectorOrthogonalOrDiagonal
-} from '$lib/chess/logic/vector';
+} from '#lib/chess/logic/vector';
 import {
   captureSquares
-} from '$lib/chess/logic/piece';
+} from '#lib/chess/logic/piece';
 import {
   point,
   unoccupied as squareUnoccupied,
@@ -25,7 +25,7 @@ import {
   unoccupiedOrOccupiedByOpponentOf as squareUnoccupiedOrOccupiedByOpponentOf,
   occupiedByPieceType as squareOccupiedByPieceType,
   notOccupiedByPieceType as squareNotOccupiedByPieceType
-} from '$lib/chess/logic/square';
+} from '#lib/chess/logic/square';
 
 // set operations
 export const difference = function(squaresA: Array<Square>, squaresB: Array<Square>): Array<Square> {

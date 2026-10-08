@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   use,
   roll
-} from '$lib/backgammon/logic/die';
+} from '#lib/backgammon/logic/die';
 
 describe('use', () => {
   it('marks the die as used', () => {

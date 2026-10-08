@@ -5,7 +5,7 @@ import winnerMatch from '../fixtures/winnerMatch';
 
 import {
   getPassResult
-} from '$lib/go/logic/passResult';
+} from '#lib/go/logic/passResult';
 
 describe('getPassResult', () => {
   describe('when there is a winner', () => {

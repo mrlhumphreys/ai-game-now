@@ -1,5 +1,5 @@
-import type Move from '$lib/backgammon/interfaces/Move';
-import type Match from '$lib/backgammon/interfaces/Match';
+import type Move from '#lib/backgammon/interfaces/Move';
+import type Match from '#lib/backgammon/interfaces/Match';
 
 import {
   winner as gameStateWinner,
@@ -12,20 +12,20 @@ import {
   passTurn,
   stepPhase,
   clearDice
-} from '$lib/backgammon/logic/gameState';
+} from '#lib/backgammon/logic/gameState';
 import {
   getRollResult,
-} from '$lib/backgammon/logic/rollResult';
+} from '#lib/backgammon/logic/rollResult';
 import {
   getPassResult,
-} from '$lib/backgammon/logic/passResult';
+} from '#lib/backgammon/logic/passResult';
 import {
   getMoveResult,
   dieNumber,
   completeMoveList,
   details,
   winnerMessage
-} from '$lib/backgammon/logic/moveResult';
+} from '#lib/backgammon/logic/moveResult';
 
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;

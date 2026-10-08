@@ -1,7 +1,7 @@
-import type Bar from '$lib/backgammon/interfaces/Bar';
-import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
-import type Point from '$lib/backgammon/interfaces/Point';
-import type GameState from '$lib/backgammon/interfaces/GameState';
+import type Bar from '#lib/backgammon/interfaces/Bar';
+import type OffBoard from '#lib/backgammon/interfaces/OffBoard';
+import type Point from '#lib/backgammon/interfaces/Point';
+import type GameState from '#lib/backgammon/interfaces/GameState';
 
 import {
   hasPiecesOwnedByPlayer,
@@ -9,23 +9,23 @@ import {
   deselect as barDeselect,
   pop as barPop,
   push as barPush,
-} from '$lib/backgammon/logic/bar';
+} from '#lib/backgammon/logic/bar';
 import {
   piecesOwnedByPlayer,
   hasAllOfPlayersPieces
-} from '$lib/backgammon/logic/offBoard';
+} from '#lib/backgammon/logic/offBoard';
 import {
   enemyBlot,
   pop as pointPop,
   push as pointPush
-} from '$lib/backgammon/logic/point';
+} from '#lib/backgammon/logic/point';
 import {
   roll as diceRoll,
   unused,
   findByNumber as diceFindByNumber,
   highestUnused,
   use
-} from '$lib/backgammon/logic/diceSet';
+} from '#lib/backgammon/logic/diceSet';
 import {
   selected,
   findByNumber,
@@ -35,7 +35,7 @@ import {
   cannotBearOff,
   select as pointSelect,
   deselect as pointDeselect
-} from '$lib/backgammon/logic/pointSet';
+} from '#lib/backgammon/logic/pointSet';
 
 export const selectedPoint = function(gameState: GameState): Point | Bar | undefined {
   let point = selected(gameState.points);

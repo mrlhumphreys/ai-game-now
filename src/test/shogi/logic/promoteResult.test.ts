@@ -8,7 +8,7 @@ import {
   getPromoteResult,
   gameOver,
   playersTurn
-} from '$lib/shogi/logic/promoteResult';
+} from '#lib/shogi/logic/promoteResult';
 
 describe('getPromoteResult', () => {
   describe('when game is over', () => {

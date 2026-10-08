@@ -2,30 +2,31 @@
   // bug: when too many pieces on one point, piece is rendered in corner
   // bug: off board: move does not match dice roll (ai)
   // bug: off board: move last piece to home + bear off. bear off doesnt work (ai)
-  import { browser } from '$app/environment';
-  import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
+  import { browser } from '$app/env';
+  import { PUBLIC_AI_SERVICE_URL } from '$app/env/public';
 
-  import exists from '$lib/utils/exists';
-  import tossCoin from '$lib/utils/tossCoin';
-  import AiService from '$lib/services/AiService';
+  import exists from '#lib/utils/exists';
+  import tossCoin from '#lib/utils/tossCoin';
+  import AiService from '#lib/services/AiService';
   import {
     touchDice as matchTouchDice,
     touchPoint as matchTouchPoint,
     touchPass as matchTouchPass,
     passable as matchPassable,
     winner as matchWinner
-  } from '$lib/backgammon/logic/match';
-  import buildMatchAttributes from '$lib/backgammon/logic/buildMatchAttributes';
+  } from '#lib/backgammon/logic/match';
+  import buildMatchAttributes from '#lib/backgammon/logic/buildMatchAttributes';
 
-  import Notification from '$lib/shared/Notification.svelte';
-  import ResetControl from '$lib/shared/ResetControl.svelte';
-  import PointControl from '$lib/backgammon/PointControl.svelte';
-  import BarControl from '$lib/backgammon/BarControl.svelte';
-  import OffBoardControl from '$lib/backgammon/OffBoardControl.svelte';
-  import PassControl from '$lib/backgammon/PassControl.svelte';
-  import DiceControl from '$lib/backgammon/DiceControl.svelte';
-  import PieceImage from '$lib/backgammon/PieceImage.svelte';
-  import collatePieces from '$lib/backgammon/logic/collatePieces';
+  import MatchBar from '#lib/shared/MatchBar.svelte';
+  import Notification from '#lib/shared/Notification.svelte';
+  import ResetControl from '#lib/shared/ResetControl.svelte';
+  import PointControl from '#lib/backgammon/PointControl.svelte';
+  import BarControl from '#lib/backgammon/BarControl.svelte';
+  import OffBoardControl from '#lib/backgammon/OffBoardControl.svelte';
+  import PassControl from '#lib/backgammon/PassControl.svelte';
+  import DiceControl from '#lib/backgammon/DiceControl.svelte';
+  import PieceImage from '#lib/backgammon/PieceImage.svelte';
+  import collatePieces from '#lib/backgammon/logic/collatePieces';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
@@ -244,15 +245,14 @@
     </div>
   </div>
   <Notification notification={notification} />
-  <div class="match_bar">
+  <MatchBar>
     <ResetControl touchReset={touchReset} />
-  </div>
+  </MatchBar>
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
-  @import '$lib/styles/match.scss';
-  @import '$lib/styles/backgammon_units.scss';
+  @use '#lib/styles/match.scss' as match;
+  @use '#lib/styles/backgammon_units.scss' as backgammon-units;
 
   .backgammon_match {
     @media only screen and (max-device-width: 480px) {
@@ -267,11 +267,11 @@
 
   .backgammon_board {
     @media only screen and (max-device-width: 480px) {
-      height: 13*$backgammon-vertical-unit;
+      height: 13*backgammon-units.$backgammon-vertical-unit;
     }
 
     @media only screen and (min-device-width: 481px) {
-      height: 13*$backgammon-pixel-unit;
+      height: 13*backgammon-units.$backgammon-pixel-unit;
     }
 
     & {
@@ -301,20 +301,20 @@
     }
 
     .left {
-      width: 6*$backgammon-percent-unit;
+      width: 6*backgammon-units.$backgammon-percent-unit;
     }
 
     .right {
-      width: 6*$backgammon-percent-unit;
+      width: 6*backgammon-units.$backgammon-percent-unit;
     }
 
     .bar {
-      width: $backgammon-percent-unit;
+      width: backgammon-units.$backgammon-percent-unit;
       height: 100%;
     }
 
     .off_board {
-      width: $backgammon-percent-unit;
+      width: backgammon-units.$backgammon-percent-unit;
       height: 100%;
       display: flex;
       flex-direction: column;

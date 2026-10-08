@@ -1,12 +1,12 @@
-import type Match from '$lib/go/interfaces/Match';
-import type Point from '$lib/go/interfaces/Point';
+import type Match from '#lib/go/interfaces/Match';
+import type Point from '#lib/go/interfaces/Point';
 
-import exists from '$lib/utils/exists';
-import deepClone from '$lib/utils/deepClone';
+import exists from '#lib/utils/exists';
+import deepClone from '#lib/utils/deepClone';
 
 import {
   winner
-} from '$lib/go/logic/match';
+} from '#lib/go/logic/match';
 import {
   findById,
   libertiesFor,
@@ -15,10 +15,10 @@ import {
   deprivesOpponentsLiberties as pointSetDeprivesOpponentsLiberties,
   performMove,
   minify
-} from '$lib/go/logic/pointSet';
+} from '#lib/go/logic/pointSet';
 import {
   occupied
-} from '$lib/go/logic/point';
+} from '#lib/go/logic/point';
 
 interface Result {
   name: string;

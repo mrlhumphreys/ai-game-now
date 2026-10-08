@@ -1,5 +1,5 @@
-import type Square from '$lib/checkers/interfaces/Square';
-import type Piece from '$lib/checkers/interfaces/Piece';
+import type Square from '#lib/checkers/interfaces/Square';
+import type Piece from '#lib/checkers/interfaces/Piece';
 
 import { 
   occupiedByPlayer as squareOccupiedByPlayer, 
@@ -11,10 +11,10 @@ import {
   possibleMoves,
   deselect,
   unmark
-} from '$lib/checkers/logic/square';
+} from '#lib/checkers/logic/square';
 import { 
   direction as pieceDirection
-} from '$lib/checkers/logic/piece';
+} from '#lib/checkers/logic/piece';
 import { 
   distance,
   directionY,
@@ -22,8 +22,8 @@ import {
   orthogonalOrDiagonal as vectorOrthogonalOrDiagonal,
   orthogonal as vectorOrthogonal,
   diagonal as vectorDiagonal
-} from '$lib/checkers/logic/vector';
-import { add } from '$lib/checkers/logic/point';
+} from '#lib/checkers/logic/vector';
+import { add } from '#lib/checkers/logic/point';
 
 export const findById = function(squares: Array<Square>, id: number): Square | undefined {
   return squares.find(function(s) {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import opposingPlayer from '$lib/xiangqi/logic/opposingPlayer';
+import opposingPlayer from '#lib/xiangqi/logic/opposingPlayer';
 
 describe('opposingPlayer', () => {
   it('returns 1 if 2', () => {

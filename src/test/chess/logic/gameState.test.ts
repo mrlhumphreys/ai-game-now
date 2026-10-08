@@ -36,7 +36,7 @@ import {
   deselectPiece,
   promote,
   passTurn
-} from '$lib/chess/logic/gameState';
+} from '#lib/chess/logic/gameState';
 
 describe('gameOver', () => {
   it('returns true if player 1 is in checkmate', () => {

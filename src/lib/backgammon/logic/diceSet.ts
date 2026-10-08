@@ -1,8 +1,8 @@
-import type Die from '$lib/backgammon/interfaces/Die';
+import type Die from '#lib/backgammon/interfaces/Die';
 import {
   use as dieUse,
   roll as dieRoll
-} from '$lib/backgammon/logic/die';
+} from '#lib/backgammon/logic/die';
 
 export const unused = function(dice: Array<Die>): Array<Die> {
   return dice.filter((d) => {

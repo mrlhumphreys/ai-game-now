@@ -1,11 +1,11 @@
-import type Point from '$lib/chess/interfaces/Point';
-import type Piece from '$lib/chess/interfaces/Piece';
-import type Square from '$lib/chess/interfaces/Square';
+import type Point from '#lib/chess/interfaces/Point';
+import type Piece from '#lib/chess/interfaces/Piece';
+import type Square from '#lib/chess/interfaces/Square';
 
 import {
   select as pieceSelect,
   deselect as pieceDeselect
-} from '$lib/chess/logic/piece';
+} from '#lib/chess/logic/piece';
 
 export const occupied = function(square: Square): boolean {
   return square.piece !== null;

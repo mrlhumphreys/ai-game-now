@@ -1,6 +1,6 @@
-import type Square from '$lib/checkers/interfaces/Square';
-import type Point from '$lib/checkers/interfaces/Point';
-import type Piece from '$lib/checkers/interfaces/Piece';
+import type Square from '#lib/checkers/interfaces/Square';
+import type Point from '#lib/checkers/interfaces/Point';
+import type Piece from '#lib/checkers/interfaces/Piece';
 import { 
   occupiedByPlayer as squareSetOccupiedByPlayer, 
   squaresAwayFrom,
@@ -10,12 +10,12 @@ import {
   between,
   diagonal,
   allPossibleJumps
-} from '$lib/checkers/logic/squareSet';
+} from '#lib/checkers/logic/squareSet';
 import {
   select as pieceSelect,
   deselect as pieceDeselect,
   promote as piecePromote
-} from '$lib/checkers/logic/piece';
+} from '#lib/checkers/logic/piece';
 
 export const occupied = function(square: Square): boolean {
   return square.piece !== null;

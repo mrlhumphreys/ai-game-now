@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import collatePieces from '$lib/backgammon/logic/collatePieces';
-import buildMatchAttributes from '$lib/backgammon/logic/buildMatchAttributes';
+import collatePieces from '#lib/backgammon/logic/collatePieces';
+import buildMatchAttributes from '#lib/backgammon/logic/buildMatchAttributes';
 
 describe('with a match', () => {
   it('it collates all the pieces on points, bar and off board', () => {

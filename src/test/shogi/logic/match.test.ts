@@ -23,7 +23,7 @@ import {
   setupPromotion,
   teardownPromotion,
   notify
-} from '$lib/shogi/logic/match';
+} from '#lib/shogi/logic/match';
 
 describe('winner', () => {
   it('returns the winner if there is one', () => {

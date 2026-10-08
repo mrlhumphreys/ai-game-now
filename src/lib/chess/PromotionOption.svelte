@@ -87,7 +87,7 @@
   }
 </script>
 
-<li on:click={() => touchPromotionPiece(pieceType)}>
+<li onclick={() => touchPromotionPiece(pieceType)}>
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
     {#if pieceType === 'rook'}
       <polygon points={rookPointsString()} stroke="#303030" strokeWidth="3" fill="transparent" />
@@ -104,12 +104,12 @@
 </li>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
+  @use '#lib/styles/colors.scss' as colors;
 
   li {
     width: 25%;
     &:hover {
-      background-color: $spot-colour;
+      background-color: colors.$spot-colour;
     }
   }
 </style>

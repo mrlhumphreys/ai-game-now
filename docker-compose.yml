@@ -2,6 +2,8 @@ version: "3.8"
 
 services:
   web:
+    environment:
+      PUBLIC_AI_SERVICE_URL: 'http://127.0.0.1:7878'
     build:
       context: .
       target: builder
@@ -9,5 +11,9 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - .:/src
+      - .:/app
+      - node_modules:/app/node_modules # anonymous node_modules volumne to ensure that node_modules binaries are built in and used from the container and not from the local machine
+
+volumes:
+  node_modules:
 

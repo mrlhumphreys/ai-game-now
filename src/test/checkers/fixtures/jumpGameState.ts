@@ -1,5 +1,5 @@
-import type GameState from '$lib/checkers/interfaces/GameState';
-import deepClone from '$lib/utils/deepClone';
+import type GameState from '#lib/checkers/interfaces/GameState';
+import deepClone from '#lib/utils/deepClone';
 
 let gameState = {
   currentPlayerNumber: 1,

@@ -1,7 +1,7 @@
 <script>
-  import calculatePositionClass from '$lib/utils/calculatePositionClass';
-  import calculatePieceInHandPositionClass from '$lib/shogi/logic/calculatePieceInHandPositionClass';
-  import calculatePointsString from '$lib/shogi/logic/calculatePointsString';
+  import calculatePositionClass from '#lib/utils/calculatePositionClass';
+  import calculatePieceInHandPositionClass from '#lib/shogi/logic/calculatePieceInHandPositionClass';
+  import calculatePointsString from '#lib/shogi/logic/calculatePointsString';
 
   const PIECE_CHARACTERS = {
     "oushou": "王",
@@ -65,7 +65,7 @@
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/shogi_position.scss';
+  @use '#lib/styles/shogi_position.scss' as shogi-position;
 
   .piece {
     position: absolute;

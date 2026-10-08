@@ -20,7 +20,7 @@ import {
   addMoveToLastAction,
   clearLastAction,
   notify
-} from '$lib/chess/logic/match';
+} from '#lib/chess/logic/match';
 
 describe('winner', () => {
   it('returns the winner if there is one', () => {

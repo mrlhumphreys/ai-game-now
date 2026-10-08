@@ -39,7 +39,7 @@ import {
   pieceCanPromote,
   pieceMustPromote,
   winnerMessage
-} from '$lib/shogi/logic/moveResult';
+} from '#lib/shogi/logic/moveResult';
 
 describe('getMoveResult', () => {
   describe('when game is over', () => {

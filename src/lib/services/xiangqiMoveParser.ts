@@ -1,8 +1,8 @@
-import type GameState from '$lib/xiangqi/interfaces/GameState';
-import type Square from '$lib/xiangqi/interfaces/Square';
-import type PieceType from '$lib/xiangqi/types/PieceType';
+import type GameState from '#lib/xiangqi/interfaces/GameState';
+import type Square from '#lib/xiangqi/interfaces/Square';
+import type PieceType from '#lib/xiangqi/types/PieceType';
 
-import exists from '$lib/utils/exists';
+import exists from '#lib/utils/exists';
 
 function hasKey<O extends object>(obj: O, key: PropertyKey): key is keyof O {
   return key in obj;

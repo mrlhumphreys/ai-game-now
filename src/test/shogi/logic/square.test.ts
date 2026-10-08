@@ -14,7 +14,7 @@ import {
   removePiece,
   select,
   deselect
-} from '$lib/shogi/logic/square';
+} from '#lib/shogi/logic/square';
 
 describe('occupied', () => {
   it('returns true if piece is present', () => {

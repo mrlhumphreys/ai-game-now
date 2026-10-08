@@ -9,7 +9,7 @@ import {
   winner,
   playersTurn,
   movePhase
-} from '$lib/backgammon/logic/rollResult';
+} from '#lib/backgammon/logic/rollResult';
 
 describe('getRollResult', () => {
   it('returns a GameOver result if there is a winner', () => {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import capitalize from '$lib/utils/capitalize';
+import capitalize from '#lib/utils/capitalize';
 
 describe('lower case word', () => {
   it('should return capitalized', () => {

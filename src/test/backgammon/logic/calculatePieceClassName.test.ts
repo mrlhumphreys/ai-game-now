@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import calculatePieceClassName from '$lib/backgammon/logic/calculatePieceClassName';
+import calculatePieceClassName from '#lib/backgammon/logic/calculatePieceClassName';
 
 describe('pov 1, player 1, point bar, pieceIndex 1', () => {
   it('should return class name', () => {

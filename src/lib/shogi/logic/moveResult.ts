@@ -1,24 +1,24 @@
-import type Piece from '$lib/shogi/interfaces/Piece';
-import type Square from '$lib/shogi/interfaces/Square';
-import type Match from '$lib/shogi/interfaces/Match';
+import type Piece from '#lib/shogi/interfaces/Piece';
+import type Square from '#lib/shogi/interfaces/Square';
+import type Match from '#lib/shogi/interfaces/Match';
 
-import deepClone from '$lib/utils/deepClone';
+import deepClone from '#lib/utils/deepClone';
 import {
   canMove,
   canMoveFrom,
   promotable,
   hasLegalMovesFromY
-} from '$lib/shogi/logic/piece';
+} from '#lib/shogi/logic/piece';
 import {
   occupied,
   unoccupied,
   occupiedByPlayer
-} from '$lib/shogi/logic/square';
+} from '#lib/shogi/logic/square';
 import {
   whereX,
   occupiedByPlayer as squareSetOccupiedByPlayer,
   occupiedByPieceType
-} from '$lib/shogi/logic/squareSet';
+} from '#lib/shogi/logic/squareSet';
 import {
   findSquare,
   selectedSquare as gameStateSelectedSquare,
@@ -30,10 +30,10 @@ import {
   inCheck,
   inCheckmate,
   playersTurn as gameStatePlayersTurn
-} from '$lib/shogi/logic/gameState';
+} from '#lib/shogi/logic/gameState';
 import {
   winner,
-} from '$lib/shogi/logic/match';
+} from '#lib/shogi/logic/match';
 
 interface Result {
   name: string;

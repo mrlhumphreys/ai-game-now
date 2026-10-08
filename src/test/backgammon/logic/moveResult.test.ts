@@ -68,7 +68,7 @@ import {
   numberOfMoves,
   barHasNoPiecesOwnedByPlayer,
   winnerMessage
-} from '$lib/backgammon/logic/moveResult';
+} from '#lib/backgammon/logic/moveResult';
 
 describe('getMoveResult', () => {
   describe('when there is a winner', () => {

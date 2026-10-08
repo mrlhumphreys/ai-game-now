@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import calculateStrokeColour from '$lib/utils/calculateStrokeColour';
+import calculateStrokeColour from '#lib/utils/calculateStrokeColour';
 
 describe('player 1', () => {
   it('must return player 1 colour', () => {

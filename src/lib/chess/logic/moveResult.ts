@@ -1,15 +1,15 @@
-import type Square from '$lib/chess/interfaces/Square';
-import type Match from '$lib/chess/interfaces/Match';
+import type Square from '#lib/chess/interfaces/Square';
+import type Match from '#lib/chess/interfaces/Match';
 
-import deepClone from '$lib/utils/deepClone';
+import deepClone from '#lib/utils/deepClone';
 import {
   canMove,
   canMoveFrom
-} from '$lib/chess/logic/piece';
+} from '#lib/chess/logic/piece';
 import {
   unoccupied,
   occupiedByPlayer
-} from '$lib/chess/logic/square';
+} from '#lib/chess/logic/square';
 import {
   pawnMoveToLastRank as gameStatePawnMoveToLastRank,
   findSquare,
@@ -17,10 +17,10 @@ import {
   move,
   inCheck,
   playersTurn as gameStatePlayersTurn
-} from '$lib/chess/logic/gameState';
+} from '#lib/chess/logic/gameState';
 import {
   winner
-} from '$lib/chess/logic/match';
+} from '#lib/chess/logic/match';
 
 interface Result {
   name: string;

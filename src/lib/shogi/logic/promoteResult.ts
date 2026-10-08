@@ -1,11 +1,11 @@
-import type Match from '$lib/shogi/interfaces/Match';
+import type Match from '#lib/shogi/interfaces/Match';
 
 import {
   playersTurn as gameStatePlayersTurn
-} from '$lib/shogi/logic/gameState';
+} from '#lib/shogi/logic/gameState';
 import {
   winner,
-} from '$lib/shogi/logic/match';
+} from '#lib/shogi/logic/match';
 
 interface Result {
   name: string;

@@ -1,7 +1,7 @@
 <script>
-  import calculatePositionClass from '$lib/utils/calculatePositionClass';
-  import calculateStrokeColour from '$lib/utils/calculateStrokeColour';
-  import calculateBackgroundColour from '$lib/utils/calculateBackgroundColour';
+  import calculatePositionClass from '#lib/utils/calculatePositionClass';
+  import calculateStrokeColour from '#lib/utils/calculateStrokeColour';
+  import calculateBackgroundColour from '#lib/utils/calculateBackgroundColour';
 
   export let point;
   export let pov;
@@ -18,7 +18,7 @@
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/go_position.scss';
+  @use '#lib/styles/go_position.scss' as go-position;
 
   .stone {
     position: absolute;

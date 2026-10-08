@@ -1,6 +1,6 @@
-import type Piece from '$lib/shogi/interfaces/Piece';
-import type Square from '$lib/shogi/interfaces/Square';
-import type GameState from '$lib/shogi/interfaces/GameState';
+import type Piece from '#lib/shogi/interfaces/Piece';
+import type Square from '#lib/shogi/interfaces/Square';
+import type GameState from '#lib/shogi/interfaces/GameState';
 
 import {
   includes,
@@ -14,7 +14,7 @@ import {
   orthogonal,
   unoccupiedOrOccupiedByOpponentOf,
   unblocked
-} from '$lib/shogi/logic/squareSet';
+} from '#lib/shogi/logic/squareSet';
 
 export const canMove = function(piece: Piece, from: Square, to: Square, gameState: GameState): boolean {
   return includes(destinations(piece, from, gameState), to);

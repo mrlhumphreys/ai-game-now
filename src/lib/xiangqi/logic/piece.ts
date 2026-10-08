@@ -1,6 +1,6 @@
-import type Piece from '$lib/xiangqi/interfaces/Piece';
-import type Square from '$lib/xiangqi/interfaces/Square';
-import type GameState from '$lib/xiangqi/interfaces/GameState';
+import type Piece from '#lib/xiangqi/interfaces/Piece';
+import type Square from '#lib/xiangqi/interfaces/Square';
+import type GameState from '#lib/xiangqi/interfaces/GameState';
 
 import {
   includes,
@@ -22,7 +22,7 @@ import {
   betweenContainsExactlyOnePiece,
   betweenContainsAtLeastOnePiece,
   findKingForPlayer
-} from '$lib/xiangqi/logic/squareSet';
+} from '#lib/xiangqi/logic/squareSet';
 
 const PALACE_X_COORDINATES = [3, 4, 5];
 const PALACE_Y_COORDINATES = [0, 1, 2, 7, 8, 9];

@@ -3,7 +3,7 @@
   export let value;
 </script>
 
-<li on:click={() => touchPromotionOption(value)}>
+<li onclick={() => touchPromotionOption(value)}>
   {#if value}
     Yes
   {:else}
@@ -12,18 +12,18 @@
 </li>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
+  @use '#lib/styles/colors.scss' as colors;
 
   li {
     width: 80px;
     text-align: center;
     font-size: 2em;
     padding: 0.5em 10px;
-    color: $gray-20;
-    background-color: $spot-colour;
+    color: colors.$gray-20;
+    background-color: colors.$spot-colour;
     &:hover {
-      color: $spot-colour;
-      background-color: $gray-20;
+      color: colors.$spot-colour;
+      background-color: colors.$gray-20;
     }
   }
 </style>

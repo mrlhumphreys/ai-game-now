@@ -1,11 +1,11 @@
-import type Match from '$lib/chess/interfaces/Match';
+import type Match from '#lib/chess/interfaces/Match';
 
 import {
   playersTurn as gameStatePlayersTurn
-} from '$lib/chess/logic/gameState';
+} from '#lib/chess/logic/gameState';
 import {
   winner
-} from '$lib/chess/logic/match';
+} from '#lib/chess/logic/match';
 
 interface Result {
   name: string;

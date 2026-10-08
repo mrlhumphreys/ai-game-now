@@ -1,5 +1,5 @@
 <script>
-  import capitalize from '$lib/utils/capitalize';
+  import capitalize from '#lib/utils/capitalize';
 
   export let games;
   export let selectedGame;
@@ -9,20 +9,20 @@
 <nav class="game_selector">
   <ul>
     {#each games as game}
-      <li><a href="#{game}" class="game" class:selected={game === selectedGame} on:click={ () => selectGame(game) }>{capitalize(game)}</a></li>
+      <li><a href="#{game}" class="game" class:selected={game === selectedGame} onclick={ () => selectGame(game) }>{capitalize(game)}</a></li>
     {/each}
   </ul>
 </nav>
 
 <style lang="scss">
-  @import '../styles/colors.scss';
-  @import '../styles/responsive_full_width.scss';
+  @use '#lib/styles/colors.scss' as colors;
+  @use '#lib/styles/responsive_full_width.scss' as responsive-full-width;
 
   nav.game_selector {
-    @include responsive-full-width;
+    @include responsive-full-width.styles;
 
     ul {
-      background-color: $gray-90;
+      background-color: colors.$gray-90;
       display: flex;
       flex-direction: row;
 
@@ -31,13 +31,13 @@
           display: block;
           padding: 1em 10px;
           text-decoration: none;
-          color: $spot-colour;
+          color: colors.$spot-colour;
           &.selected {
-            background-color: $gray-20;
+            background-color: colors.$gray-20;
           }
           &:hover {
             color: white;
-            background-color: $spot-colour;
+            background-color: colors.$spot-colour;
           }
         }
       }

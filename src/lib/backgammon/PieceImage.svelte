@@ -1,7 +1,7 @@
 <script>
-  import calculateStrokeColour from '$lib/utils/calculateStrokeColour';
-  import calculateBackgroundColour from '$lib/utils/calculateBackgroundColour';
-  import calculatePieceClassName from '$lib/backgammon/logic/calculatePieceClassName';
+  import calculateStrokeColour from '#lib/utils/calculateStrokeColour';
+  import calculateBackgroundColour from '#lib/utils/calculateBackgroundColour';
+  import calculatePieceClassName from '#lib/backgammon/logic/calculatePieceClassName';
 
   export let pointNumber;
   export let pieceIndex;
@@ -22,43 +22,43 @@
 
 <style lang="scss">
   @use "sass:math";
-  @import '$lib/styles/backgammon_units.scss';
+  @use '#lib/styles/backgammon_units.scss' as backgammon-units;
 
   @mixin backgammon-bar-position($position, $piece-index) {
-    left: 7*$backgammon-percent-unit;
+    left: 7*backgammon-units.$backgammon-percent-unit;
 
     @if $position == 'top' {
-      top: (-1*$piece-index + 5)*$backgammon-vertical-percent-unit;
+      top: (-1*$piece-index + 5)*backgammon-units.$backgammon-vertical-percent-unit;
     }
 
     @if $position == 'bottom' {
-      top: ($piece-index + 7)*$backgammon-vertical-percent-unit;
+      top: ($piece-index + 7)*backgammon-units.$backgammon-vertical-percent-unit;
     }
   }
 
   @mixin backgammon-position($point-number, $piece-index) {
     @if 1 <= $point-number and $point-number <= 12 {
-      top: (($piece-index*-1)+36)*math.div($backgammon-vertical-percent-unit, 3);
+      top: (($piece-index*-1)+36)*math.div(backgammon-units.$backgammon-vertical-percent-unit, 3);
     }
 
     @if 13 <= $point-number and $point-number <= 24 {
-      top: $piece-index*math.div($backgammon-vertical-percent-unit, 3);
+      top: $piece-index*math.div(backgammon-units.$backgammon-vertical-percent-unit, 3);
     }
 
     @if 1 <= $point-number and $point-number <= 6 {
-      left: ($point-number*-1 + 14)*$backgammon-percent-unit;
+      left: ($point-number*-1 + 14)*backgammon-units.$backgammon-percent-unit;
     }
 
     @if 7 <= $point-number and $point-number <= 12 {
-      left: ($point-number*-1 + 13)*$backgammon-percent-unit;
+      left: ($point-number*-1 + 13)*backgammon-units.$backgammon-percent-unit;
     }
 
     @if 13 <= $point-number and $point-number <= 18 {
-      left: ($point-number - 12)*$backgammon-percent-unit;
+      left: ($point-number - 12)*backgammon-units.$backgammon-percent-unit;
     }
 
     @if 19 <= $point-number and $point-number <= 24 {
-      left: ($point-number - 11)*$backgammon-percent-unit;
+      left: ($point-number - 11)*backgammon-units.$backgammon-percent-unit;
     }
 
     z-index: $piece-index+1;
@@ -66,7 +66,7 @@
 
   @mixin backgammon-off-board-position($x-position, $y-position, $piece-index) {
     @if $x-position == 'right' {
-      left: 14*$backgammon-percent-unit;
+      left: 14*backgammon-units.$backgammon-percent-unit;
     }
 
     @if $x-position == 'left' {
@@ -74,11 +74,11 @@
     }
 
     @if $y-position == 'top' {
-      top: (-1*$piece-index + 20)*math.div($backgammon-vertical-percent-unit, 4);
+      top: (-1*$piece-index + 20)*math.div(backgammon-units.$backgammon-vertical-percent-unit, 4);
     }
 
     @if $y-position == 'bottom' {
-      top: ($piece-index + 28)*math.div($backgammon-vertical-percent-unit, 4);
+      top: ($piece-index + 28)*math.div(backgammon-units.$backgammon-vertical-percent-unit, 4);
     }
 
     z-index: $piece-index+1;
@@ -86,8 +86,8 @@
 
   .piece {
     position: absolute;
-    width: $backgammon-percent-unit;
-    height: $backgammon-percent-unit;
+    width: backgammon-units.$backgammon-percent-unit;
+    height: backgammon-units.$backgammon-percent-unit;
     transition: top 0.5s, left 0.5s;
     transition-timing-function: ease-out;
 

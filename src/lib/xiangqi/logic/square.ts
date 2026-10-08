@@ -1,11 +1,11 @@
-import type Point from '$lib/xiangqi/interfaces/Point';
-import type Piece from '$lib/xiangqi/interfaces/Piece';
-import type Square from '$lib/xiangqi/interfaces/Square';
+import type Point from '#lib/xiangqi/interfaces/Point';
+import type Piece from '#lib/xiangqi/interfaces/Piece';
+import type Square from '#lib/xiangqi/interfaces/Square';
 
 import {
   select as pieceSelect,
   deselect as pieceDeselect
-} from '$lib/xiangqi/logic/piece';
+} from '#lib/xiangqi/logic/piece';
 
 export const occupied = function(square: Square): boolean {
   return square.piece !== null;

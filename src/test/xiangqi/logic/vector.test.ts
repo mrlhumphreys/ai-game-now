@@ -13,7 +13,7 @@ import {
   orthogonal,
   diagonal,
   direction
-} from '$lib/xiangqi/logic/vector';
+} from '#lib/xiangqi/logic/vector';
 
 describe('distance', () => {
   it('should return the distance between the two points', () => {

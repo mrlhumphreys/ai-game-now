@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import calculateBackgroundColour from '$lib/utils/calculateBackgroundColour';
+import calculateBackgroundColour from '#lib/utils/calculateBackgroundColour';
 
 describe('selected', () => {
 	it('returns white', () => {

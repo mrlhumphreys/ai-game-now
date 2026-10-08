@@ -1,6 +1,6 @@
-import type GameState from '$lib/checkers/interfaces/GameState';
-import type Square from '$lib/checkers/interfaces/Square';
-import eachCons from '$lib/utils/eachCons';
+import type GameState from '#lib/checkers/interfaces/GameState';
+import type Square from '#lib/checkers/interfaces/Square';
+import eachCons from '#lib/utils/eachCons';
 import {
   selected,
   allMovesForPlayer,
@@ -9,13 +9,13 @@ import {
   deselectSquares as squaresDeselectSquares,
   unmarkSquares as squareUnmarkSquares,
   between
-} from '$lib/checkers/logic/squareSet';
+} from '#lib/checkers/logic/squareSet';
 import {
   select,
   mark,
   lastRankForPlayer,
   promote
-} from '$lib/checkers/logic/square';
+} from '#lib/checkers/logic/square';
 
 export const selectedSquare = function(gameState: GameState): Square | undefined {
   return selected(gameState.squares);

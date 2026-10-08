@@ -23,7 +23,7 @@ import {
   touchedSquare,
   selectedSquare,
   winnerMessage
-} from '$lib/chess/logic/moveResult';
+} from '#lib/chess/logic/moveResult';
 
 describe('getMoveResult', () => {
   describe('when game is over', () => {

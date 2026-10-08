@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import calculatePointsString from '$lib/shogi/logic/calculatePointsString';
+import calculatePointsString from '#lib/shogi/logic/calculatePointsString';
 
 describe('calculatePointsString', () => {
   describe('when playerNumber and pov are equal', () => {

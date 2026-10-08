@@ -4,7 +4,7 @@ import {
   select,
   deselect,
   promote
-} from '$lib/checkers/logic/piece';
+} from '#lib/checkers/logic/piece';
 
 describe('direction', () => {
   describe('player 1', () => {

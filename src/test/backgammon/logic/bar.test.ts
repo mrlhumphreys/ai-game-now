@@ -7,7 +7,7 @@ import {
   select,
   deselect,
   pop
-} from '$lib/backgammon/logic/bar';
+} from '#lib/backgammon/logic/bar';
 
 describe('piecesOwnedByPlayer', () => {
   it('returns pieces owned by the player', () => {

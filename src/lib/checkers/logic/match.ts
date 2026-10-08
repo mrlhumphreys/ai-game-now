@@ -1,4 +1,4 @@
-import type Match from '$lib/checkers/interfaces/Match';
+import type Match from '#lib/checkers/interfaces/Match';
 
 import { 
   winner as gameStateWinner,
@@ -6,8 +6,8 @@ import {
   markSquare,
   move,
   selectSquare
-} from '$lib/checkers/logic/gameState';
-import { getMoveResult, winnerMessage } from '$lib/checkers/logic/moveResult';
+} from '#lib/checkers/logic/gameState';
+import { getMoveResult, winnerMessage } from '#lib/checkers/logic/moveResult';
 
 export const winner = function(match: Match): number | null {
   let playerResigned = match.players.filter(function(p) { return p.resigned; }).length > 0;

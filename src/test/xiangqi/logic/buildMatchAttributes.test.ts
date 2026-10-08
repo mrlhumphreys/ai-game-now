@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import buildMatchAttributes from '$lib/xiangqi/logic/buildMatchAttributes';
+import buildMatchAttributes from '#lib/xiangqi/logic/buildMatchAttributes';
 
 describe('build match attributes', () => {
   it('should return default game state', () => {

@@ -4,27 +4,27 @@
 </script>
 
 {#if passable}
-  <div class="pass" role="button" on:click={() => touchPass()}><p>Pass</p></div>
+  <div class="pass" role="button" onclick={() => touchPass()}><p>Pass</p></div>
 {:else}
   <div class="nopass"></div>
 {/if}
 
 <style lang="scss">
   @use "sass:math";
-  @import '$lib/styles/colors.scss';
-  @import '$lib/styles/backgammon_units.scss';
+  @use '#lib/styles/colors.scss' as colors;
+  @use '#lib/styles/backgammon_units.scss' as backgammon-units;
 
   .pass, .nopass {
     @media only screen and (max-device-width: 480px) {
-      height: $backgammon-vertical-unit;
-      padding-top: $backgammon-vertical-unit;
-      padding-bottom: $backgammon-vertical-unit;
+      height: backgammon-units.$backgammon-vertical-unit;
+      padding-top: backgammon-units.$backgammon-vertical-unit;
+      padding-bottom: backgammon-units.$backgammon-vertical-unit;
     }
 
     @media only screen and (min-device-width: 481px) {
-      height: $backgammon-pixel-unit;
-      padding-top: $backgammon-pixel-unit;
-      padding-bottom: $backgammon-pixel-unit;
+      height: backgammon-units.$backgammon-pixel-unit;
+      padding-top: backgammon-units.$backgammon-pixel-unit;
+      padding-bottom: backgammon-units.$backgammon-pixel-unit;
     }
 
     & {
@@ -37,18 +37,18 @@
   .pass {
     p {
       @media only screen and (max-device-width: 480px) {
-        font-size: math.div($backgammon-vertical-unit, 2);
+        font-size: math.div(backgammon-units.$backgammon-vertical-unit, 2);
       }
 
       @media only screen and (min-device-width: 481px) {
-        font-size: math.div($backgammon-pixel-unit, 2);
+        font-size: math.div(backgammon-units.$backgammon-pixel-unit, 2);
       }
 
       & {
         text-align: center;
         padding: 0.25em 0;
         border: solid 1px white;
-        background-color: $gray-20;
+        background-color: colors.$gray-20;
         color: white;
       }
     }

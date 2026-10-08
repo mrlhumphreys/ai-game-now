@@ -1,14 +1,14 @@
-import type Piece from '$lib/shogi/interfaces/Piece';
-import type Match from '$lib/shogi/interfaces/Match';
+import type Piece from '#lib/shogi/interfaces/Piece';
+import type Match from '#lib/shogi/interfaces/Match';
 
 import {
   findPieceInHand,
   selectedPieceInHand as gameStateSelectedPieceInHand,
   playersTurn as gameStatePlayersTurn
-} from '$lib/shogi/logic/gameState';
+} from '#lib/shogi/logic/gameState';
 import {
   winner,
-} from '$lib/shogi/logic/match';
+} from '#lib/shogi/logic/match';
 
 interface Result {
   name: string;

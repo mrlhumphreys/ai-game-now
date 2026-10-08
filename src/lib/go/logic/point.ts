@@ -1,7 +1,7 @@
-import type Point from '$lib/go/interfaces/Point';
-import type Stone from '$lib/go/interfaces/Stone';
+import type Point from '#lib/go/interfaces/Point';
+import type Stone from '#lib/go/interfaces/Stone';
 
-import exists from '$lib/utils/exists';
+import exists from '#lib/utils/exists';
 
 export const occupied = function(point: Point): boolean {
   return exists(point.stone);

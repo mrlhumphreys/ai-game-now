@@ -10,7 +10,7 @@ import {
   orthogonal,
   diagonal,
   direction
-} from '$lib/checkers/logic/vector';
+} from '#lib/checkers/logic/vector';
 
 describe('distance', () => {
   it('should return the distance between the two points', () => {

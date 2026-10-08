@@ -1,9 +1,9 @@
-import type Die from '$lib/backgammon/interfaces/Die';
-import type Point from '$lib/backgammon/interfaces/Point';
-import type Bar from '$lib/backgammon/interfaces/Bar';
-import type OffBoard from '$lib/backgammon/interfaces/OffBoard';
-import type GameState from '$lib/backgammon/interfaces/GameState';
-import exists from '$lib/utils/exists';
+import type Die from '#lib/backgammon/interfaces/Die';
+import type Point from '#lib/backgammon/interfaces/Point';
+import type Bar from '#lib/backgammon/interfaces/Bar';
+import type OffBoard from '#lib/backgammon/interfaces/OffBoard';
+import type GameState from '#lib/backgammon/interfaces/GameState';
+import exists from '#lib/utils/exists';
 
 const pointToString = function(point: Point | Bar | OffBoard): string {
   let playerOnePiecesCount = point.pieces.filter(function(p) { return p.playerNumber === 1; }).length.toString(16);

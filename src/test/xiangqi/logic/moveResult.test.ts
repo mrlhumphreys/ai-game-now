@@ -24,7 +24,7 @@ import {
   moveValid,
   movePossible,
   winnerMessage
-} from '$lib/xiangqi/logic/moveResult';
+} from '#lib/xiangqi/logic/moveResult';
 
 describe('getMoveResult', () => {
   describe('when game is over', () => {

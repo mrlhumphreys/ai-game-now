@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import exists from '$lib/utils/exists';
+import exists from '#lib/utils/exists';
 
 describe('undefined', () => {
 	it('returns false', () => {

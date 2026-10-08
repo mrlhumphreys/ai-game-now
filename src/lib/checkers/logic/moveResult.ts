@@ -1,23 +1,23 @@
-import type Piece from '$lib/checkers/interfaces/Piece';
-import type Square from '$lib/checkers/interfaces/Square';
-import type Match from '$lib/checkers/interfaces/Match';
+import type Piece from '#lib/checkers/interfaces/Piece';
+import type Square from '#lib/checkers/interfaces/Square';
+import type Match from '#lib/checkers/interfaces/Match';
 
-import eachCons from '$lib/utils/eachCons';
-import { distance } from '$lib/checkers/logic/vector';
+import eachCons from '#lib/utils/eachCons';
+import { distance } from '#lib/checkers/logic/vector';
 import {
   selectable,
   point,
   possibleJumps,
   actionable
-} from '$lib/checkers/logic/square';
-import { difference } from '$lib/checkers/logic/squareSet';
+} from '#lib/checkers/logic/square';
+import { difference } from '#lib/checkers/logic/squareSet';
 import {
   playersTurn,
   selectedSquare,
   findSquareById,
   filterSquaresByIds
-} from '$lib/checkers/logic/gameState';
-import { winner } from '$lib/checkers/logic/match';
+} from '#lib/checkers/logic/gameState';
+import { winner } from '#lib/checkers/logic/match';
 
 interface Result {
   name: string;

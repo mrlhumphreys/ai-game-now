@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import type Square from '$lib/checkers/interfaces/Square';
+import type Square from '#lib/checkers/interfaces/Square';
 
 import defaultMatch from '../fixtures/defaultMatch';
 import resignedMatch from '../fixtures/resignedMatch';
@@ -29,7 +29,7 @@ import {
   lastLegEnd,
   nextTurnMessage,
   winnerMessage
-} from '$lib/checkers/logic/moveResult';
+} from '#lib/checkers/logic/moveResult';
 
 describe('getMoveResult', () => {
   it('must return game over result if game is over', () => {

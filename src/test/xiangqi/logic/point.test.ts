@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { add } from '$lib/xiangqi/logic/point';
+import { add } from '#lib/xiangqi/logic/point';
 
 describe('add', () => {
   it('must return the sum of two points', () => {

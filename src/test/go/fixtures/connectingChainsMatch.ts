@@ -1,5 +1,5 @@
-import type Match from '$lib/go/interfaces/Match';
-import deepClone from '$lib/utils/deepClone';
+import type Match from '#lib/go/interfaces/Match';
+import deepClone from '#lib/utils/deepClone';
 
 let match = {
   id: 0,

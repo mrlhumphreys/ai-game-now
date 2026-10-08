@@ -13,7 +13,7 @@ import {
   rollPhase,
   movesAvailable,
   allDiceUsed
-} from '$lib/backgammon/logic/passResult';
+} from '#lib/backgammon/logic/passResult';
 
 describe('getPassResult', () => {
   it('returns a game over result if there is a winner', () => {

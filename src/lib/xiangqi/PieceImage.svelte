@@ -1,5 +1,5 @@
 <script>
-  import calculatePositionClass from '$lib/utils/calculatePositionClass';
+  import calculatePositionClass from '#lib/utils/calculatePositionClass';
 
   const RED_PIECE_CHARACTERS = {
     "king": "帥",
@@ -47,7 +47,7 @@
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/xiangqi_position.scss';
+  @use '#lib/styles/xiangqi_position.scss' as xiangqi-position;
 
   .piece {
     position: absolute;

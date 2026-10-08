@@ -29,7 +29,7 @@ import {
   pinThreatsToSquare,
   pinnedToSquare,
   threatenedBy
-} from '$lib/shogi/logic/squareSet';
+} from '#lib/shogi/logic/squareSet';
 
 describe('includes', () => {
   it('returns true if the square is in the set', () => {

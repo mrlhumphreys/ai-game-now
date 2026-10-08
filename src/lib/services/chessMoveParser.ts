@@ -1,6 +1,6 @@
-import type GameState from '$lib/chess/interfaces/GameState';
-import type Square from '$lib/chess/interfaces/Square';
-import exists from '$lib/utils/exists';
+import type GameState from '#lib/chess/interfaces/GameState';
+import type Square from '#lib/chess/interfaces/Square';
+import exists from '#lib/utils/exists';
 
 function hasKey<O extends object>(obj: O, key: PropertyKey): key is keyof O {
   return key in obj;

@@ -1,23 +1,24 @@
 <script>
-  import { browser } from '$app/environment';
-  import { PUBLIC_AI_SERVICE_URL } from '$env/static/public';
+  import { browser } from '$app/env';
+  import { PUBLIC_AI_SERVICE_URL } from '$app/env/public';
 
-  import exists from '$lib/utils/exists';
-  import tossCoin from '$lib/utils/tossCoin';
-  import AiService from '$lib/services/AiService';
-  import Notification from '$lib/shared/Notification.svelte';
-  import ResetControl from '$lib/shared/ResetControl.svelte';
+  import exists from '#lib/utils/exists';
+  import tossCoin from '#lib/utils/tossCoin';
+  import AiService from '#lib/services/AiService';
+  import MatchBar from '#lib/shared/MatchBar.svelte';
+  import Notification from '#lib/shared/Notification.svelte';
+  import ResetControl from '#lib/shared/ResetControl.svelte';
 
   import {
     touchSquare as matchTouchSquare,
     touchPromotionPiece as matchTouchPromotionPiece,
     gameOver
-  } from '$lib/chess/logic/match';
+  } from '#lib/chess/logic/match';
 
-  import PieceImage from '$lib/chess/PieceImage.svelte';
-  import SquareControl from '$lib/chess/SquareControl.svelte';
-  import PromotionSelect from '$lib/chess/PromotionSelect.svelte';
-  import buildMatchAttributes from '$lib/chess/logic/buildMatchAttributes';
+  import PieceImage from '#lib/chess/PieceImage.svelte';
+  import SquareControl from '#lib/chess/SquareControl.svelte';
+  import PromotionSelect from '#lib/chess/PromotionSelect.svelte';
+  import buildMatchAttributes from '#lib/chess/logic/buildMatchAttributes';
 
   export let playerNumber = undefined;
   export let aiPlayerNumber = undefined;
@@ -150,14 +151,13 @@
     <PromotionSelect touchPromotionPiece={touchPromotionPiece} display={promotion} />
   </div>
   <Notification notification={notification} />
-  <div class="match_bar">
+  <MatchBar>
     <ResetControl touchReset={touchReset} />
-  </div>
+  </MatchBar>
 </div>
 
 <style lang="scss">
-  @import '$lib/styles/colors.scss';
-  @import '$lib/styles/match.scss';
+  @use '#lib/styles/match.scss' as match;
 
   .chess_match {
     @media only screen and (max-device-width: 480px) {

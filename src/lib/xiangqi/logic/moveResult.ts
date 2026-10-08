@@ -1,26 +1,26 @@
-import type Square from '$lib/xiangqi/interfaces/Square';
-import type Match from '$lib/xiangqi/interfaces/Match';
+import type Square from '#lib/xiangqi/interfaces/Square';
+import type Match from '#lib/xiangqi/interfaces/Match';
 
-import deepClone from '$lib/utils/deepClone';
+import deepClone from '#lib/utils/deepClone';
 import {
   canMove,
   canMoveFrom,
-} from '$lib/xiangqi/logic/piece';
+} from '#lib/xiangqi/logic/piece';
 import {
   occupied,
   unoccupied,
   occupiedByPlayer
-} from '$lib/xiangqi/logic/square';
+} from '#lib/xiangqi/logic/square';
 import {
   findSquare,
   selectedSquare as gameStateSelectedSquare,
   move,
   inCheck,
   playersTurn as gameStatePlayersTurn
-} from '$lib/xiangqi/logic/gameState';
+} from '#lib/xiangqi/logic/gameState';
 import {
   winner,
-} from '$lib/xiangqi/logic/match';
+} from '#lib/xiangqi/logic/match';
 
 interface Result {
   name: string;

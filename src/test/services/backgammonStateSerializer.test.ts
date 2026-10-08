@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import backgammonStateSerializer from '$lib/services/backgammonStateSerializer';
-import buildMatchAttributes from '$lib/backgammon/logic/buildMatchAttributes';
+import backgammonStateSerializer from '#lib/services/backgammonStateSerializer';
+import buildMatchAttributes from '#lib/backgammon/logic/buildMatchAttributes';
 
 describe('state', () => {
   it('must be serialized', () => {
